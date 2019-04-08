@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
 
     private Vector3 cameraOffset = new Vector3(0, 2.0f, -7.0f);
     private SphereCollider sphereCollider;
-    public LayerMask geometriLayer;
+    public LayerMask geometryLayer;
 
 
     enum State

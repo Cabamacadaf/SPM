@@ -42,7 +42,7 @@ public class PlayerController3D : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Awake ()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
         point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
@@ -51,13 +51,13 @@ public class PlayerController3D : MonoBehaviour
 
     }
 
-    void Start()
+    void Start ()
     {
 
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
 
         HandleInput();
@@ -72,19 +72,17 @@ public class PlayerController3D : MonoBehaviour
 
     }
 
-    private void HandleInput()
+    private void HandleInput ()
     {
 
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         input = mainCamera.transform.rotation * input;
 
-        if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask))
-        {
+        if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask)) {
             input = Vector3.ProjectOnPlane(input, hitInfo.normal).normalized;
 
         }
-        else
-        {
+        else {
             input = Vector3.ProjectOnPlane(input, Vector3.up).normalized;
 
         }
@@ -94,17 +92,15 @@ public class PlayerController3D : MonoBehaviour
 
     }
 
-    private void CheckCollision()
+    private void CheckCollision ()
     {
 
         checkCollisionCounter++;
-        if (maxLoopValue > checkCollisionCounter)
-        {
+        if (maxLoopValue > checkCollisionCounter) {
 
             Vector3 velocity = physics.GetVelocity();
             RaycastHit hitInfo;
-            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, layerMask))
-            {
+            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
 
                 float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
 
@@ -112,8 +108,7 @@ public class PlayerController3D : MonoBehaviour
 
 
 
-                if (hitInfo.distance > Mathf.Abs(hypotenuse))
-                {
+                if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
                     snapSum += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
                     transform.position += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
 
