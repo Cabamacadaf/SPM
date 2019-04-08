@@ -90,6 +90,13 @@ public class PlayerController3D : MonoBehaviour
 
         physics.AddVelocity(input * acceleration * Time.deltaTime);
 
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask))
+        {
+
+            physics.AddVelocity(Vector2.up * jumpHeight);
+
+        }
+
     }
 
     private void CheckCollision ()
