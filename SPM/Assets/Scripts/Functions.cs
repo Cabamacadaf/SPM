@@ -13,7 +13,7 @@ public class Functions : MonoBehaviour
             dotProduct = 0;
         }
 
-        Vector2 projection = dotProduct * normal;
+        Vector3 projection = dotProduct * normal;
 
         return -projection;
     }

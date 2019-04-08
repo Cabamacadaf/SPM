@@ -59,17 +59,13 @@ public class PlayerController3D : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-
         HandleInput();
-
-
-
+        
         CheckCollision();
 
         transform.position += physics.GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
-
     }
 
     private void HandleInput ()
@@ -93,7 +89,7 @@ public class PlayerController3D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask))
         {
 
-            physics.AddVelocity(Vector2.up * jumpHeight);
+            physics.AddVelocity(Vector3.up * jumpHeight);
 
         }
 
@@ -108,28 +104,32 @@ public class PlayerController3D : MonoBehaviour
             Vector3 velocity = physics.GetVelocity();
             RaycastHit hitInfo;
             if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
+                //if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
 
-                float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
+                    float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
 
-                float hypotenuse = skinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
-
-
-
-                if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
-                    snapSum += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-                    transform.position += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-
-                }
+                    float hypotenuse = skinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
 
 
-                Vector2 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
-                physics.AddVelocity(normalForce);
 
-                physics.ApplyFriction(normalForce.magnitude);
+                    if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
+                        snapSum += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+                        transform.position += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
 
+                    }
+
+                    //transform.position += (Vector3)(-hitInfo.normal * (hitInfo.distance - skinWidth));
+                    //snapSum += (-hitInfo.normal * (hitInfo.distance - skinWidth));
+
+                    Vector3 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
+                    physics.AddVelocity(normalForce);
+
+                    physics.ApplyFriction(normalForce.magnitude);
+
+                    
+
+                //}
                 CheckCollision();
-
-
 
             }
         }
