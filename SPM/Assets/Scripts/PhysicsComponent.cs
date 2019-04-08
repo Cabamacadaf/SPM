@@ -89,7 +89,7 @@ public class PhysicsComponent : MonoBehaviour
 
     public void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)
     {
-        float difference = velocity.x - hit.transform.GetComponent<PhysicsComponent2D>().GetVelocity().x;
+        float difference = velocity.x - hit.transform.GetComponent<PhysicsComponent>().GetVelocity().x;
 
         if (difference < CalculateStaticFriction(normalForceMagnitude))
         {
