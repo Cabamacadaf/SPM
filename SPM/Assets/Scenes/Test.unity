@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 12
   mainCamera: {fileID: 129741697}
-  jumpHeight: 12
+  jumpHeight: 45
   groundCheckDistance: 0.02
   layerMask:
     serializedVersion: 2
@@ -344,9 +344,9 @@ MonoBehaviour:
   maxClampValue: 45
   zoomSensitivity: 2
   sensitivity: 1
-  geometriLayer:
+  geometryLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!135 &129741702
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480463026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.501259, y: 1.88, z: 8.9849415}
+  m_LocalPosition: {x: -5.501259, y: 2.29, z: 8.9849415}
   m_LocalScale: {x: 4.1718, y: 2.6626, z: 4.2417}
   m_Children: []
   m_Father: {fileID: 0}
@@ -787,7 +787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006187660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.51, y: 1.88, z: 8.9849415}
+  m_LocalPosition: {x: 9.51, y: 2.7, z: 8.9849415}
   m_LocalScale: {x: 4.1718, y: 2.6626, z: 4.2417}
   m_Children: []
   m_Father: {fileID: 0}
