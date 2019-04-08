@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 2232470}
   - component: {fileID: 2232469}
   - component: {fileID: 2232468}
-  - component: {fileID: 2232473}
   - component: {fileID: 2232472}
   m_Layer: 10
   m_Name: Player
@@ -219,6 +218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58772cfe05904f4d915ab52536dfcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  airResistanceCoefficient: 0.6
+  staticFrictionCoefficient: 0.8
+  dynamicFrictionCoefficient: 0.5
+  gravity: 9.82
   acceleration: 12
   mainCamera: {fileID: 129741697}
   jumpHeight: 12
@@ -228,22 +231,6 @@ MonoBehaviour:
     m_Bits: 512
   skinWidth: 0.03
   maxLoopValue: 20
---- !u!114 &2232473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2232467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f70a421da727645961da2732e475fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  airResistanceCoefficient: 0.6
-  staticFrictionCoefficient: 0.8
-  dynamicFrictionCoefficient: 0.5
-  gravity: 9.82
 --- !u!1 &129741697
 GameObject:
   m_ObjectHideFlags: 0

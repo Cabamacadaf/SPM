@@ -13,54 +13,39 @@ public class PhysicsComponent : MonoBehaviour
 
     //Gravity
     [SerializeField] private float gravity;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ApplyGravity();
-        ApplyAirResistance();
-
-
-
-    }
-
-    public void AddVelocity(Vector3 vel)
+    protected void AddVelocity(Vector3 vel)
     {
         velocity += vel;
     }
 
-    public void DecreaseVelocity(Vector3 vel)
+    protected void DecreaseVelocity(Vector3 vel)
     {
         velocity -= vel;
     }
 
-    public Vector3 GetVelocity()
+    protected Vector3 GetVelocity()
     {
         return velocity;
     }
 
-    public void SetVelocity(Vector2 vel)
+    protected void SetVelocity(Vector2 vel)
     {
         velocity = vel;
     }
 
-    private void ApplyGravity()
+    protected void ApplyGravity()
     {
         velocity += Vector3.down * gravity * Time.deltaTime;
 
     }
-    private void ApplyAirResistance()
+    protected void ApplyAirResistance()
     {
         velocity *= Mathf.Pow(airResistanceCoefficient, Time.deltaTime);
 
     }
 
-    public void ApplyFriction(float normalForceMagnitude)
+    protected void ApplyFriction(float normalForceMagnitude)
     {
 
         if (velocity.magnitude < CalculateStaticFriction(normalForceMagnitude))
@@ -77,17 +62,17 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
-    public float CalculateStaticFriction(float normalForceMagnitude)
+    protected float CalculateStaticFriction(float normalForceMagnitude)
     {
         return Functions.CalculateFriction(normalForceMagnitude, staticFrictionCoefficient);
     }
 
-    public float CalculateDynamicFriction(float normalForceMagnitude)
+    protected float CalculateDynamicFriction(float normalForceMagnitude)
     {
         return Functions.CalculateFriction(normalForceMagnitude, dynamicFrictionCoefficient);
     }
 
-    public void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)
+    protected void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)
     {
         float difference = velocity.x - hit.transform.GetComponent<PhysicsComponent>().GetVelocity().x;
 

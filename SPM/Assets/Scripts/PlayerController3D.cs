@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController3D : MonoBehaviour
+public class PlayerController3D : PhysicsComponent
 {
     //Attributes
 
@@ -36,8 +36,7 @@ public class PlayerController3D : MonoBehaviour
     //Collision
     private int checkCollisionCounter = 0;
     [SerializeField] private int maxLoopValue;
-
-    private PhysicsComponent physics;
+    
     // Start is called before the first frame update
 
 
@@ -47,8 +46,6 @@ public class PlayerController3D : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
         point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-        physics = GetComponent<PhysicsComponent>();
-
     }
 
     void Start ()
@@ -60,10 +57,13 @@ public class PlayerController3D : MonoBehaviour
     void Update ()
     {
         HandleInput();
-        
+
+        ApplyGravity();
+        ApplyAirResistance();
+
         CheckCollision();
 
-        transform.position += physics.GetVelocity() * Time.deltaTime - snapSum;
+        transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
     }
@@ -84,12 +84,12 @@ public class PlayerController3D : MonoBehaviour
         }
 
 
-        physics.AddVelocity(input * acceleration * Time.deltaTime);
+        AddVelocity(input * acceleration * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask))
         {
 
-            physics.AddVelocity(Vector3.up * jumpHeight);
+            AddVelocity(Vector3.up * jumpHeight);
 
         }
 
@@ -101,7 +101,7 @@ public class PlayerController3D : MonoBehaviour
         checkCollisionCounter++;
         if (maxLoopValue > checkCollisionCounter) {
 
-            Vector3 velocity = physics.GetVelocity();
+            Vector3 velocity = GetVelocity();
             RaycastHit hitInfo;
             if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
                 //if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
@@ -122,9 +122,9 @@ public class PlayerController3D : MonoBehaviour
                     //snapSum += (-hitInfo.normal * (hitInfo.distance - skinWidth));
 
                     Vector3 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
-                    physics.AddVelocity(normalForce);
+                    AddVelocity(normalForce);
 
-                    physics.ApplyFriction(normalForce.magnitude);
+                    ApplyFriction(normalForce.magnitude);
 
                     
 
