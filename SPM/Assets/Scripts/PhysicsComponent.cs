@@ -87,4 +87,9 @@ public class PhysicsComponent : MonoBehaviour
         }
     }
 
+    protected virtual void CheckCollision ()
+    {
+
+    }
+
 }

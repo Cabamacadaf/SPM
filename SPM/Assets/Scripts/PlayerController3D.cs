@@ -27,6 +27,7 @@ public class PlayerController3D : PhysicsComponent
     [SerializeField] private float skinWidth;
     private float size;
     private CapsuleCollider capsuleCollider;
+    private GravityGun gravityGun;
     private Vector3 snapSum;
     private Vector3 point1;
     private Vector3 point2;
@@ -36,14 +37,16 @@ public class PlayerController3D : PhysicsComponent
     //Collision
     private int checkCollisionCounter = 0;
     [SerializeField] private int maxLoopValue;
-    
+
     // Start is called before the first frame update
 
 
 
     private void Awake ()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         capsuleCollider = GetComponent<CapsuleCollider>();
+        gravityGun = GetComponentInChildren<GravityGun>();
         point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
         point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
     }
@@ -86,16 +89,18 @@ public class PlayerController3D : PhysicsComponent
 
         AddVelocity(input * acceleration * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask))
-        {
-
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask)) {
             AddVelocity(Vector3.up * jumpHeight);
+        }
 
+        if (Input.GetMouseButtonDown(0)) {
+            Debug.Log("Click");
+            gravityGun.Shoot();
         }
 
     }
 
-    private void CheckCollision ()
+    protected override void CheckCollision ()
     {
 
         checkCollisionCounter++;
@@ -106,27 +111,26 @@ public class PlayerController3D : PhysicsComponent
             if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
                 //if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
 
-                    float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
+                float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
 
-                    float hypotenuse = skinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
+                float hypotenuse = skinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
 
 
 
-                    if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
-                        snapSum += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-                        transform.position += (Vector3)velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+                if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
+                    snapSum += velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+                    transform.position += velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+                }
 
-                    }
+                //transform.position += (Vector3)(-hitInfo.normal * (hitInfo.distance - skinWidth));
+                //snapSum += (-hitInfo.normal * (hitInfo.distance - skinWidth));
 
-                    //transform.position += (Vector3)(-hitInfo.normal * (hitInfo.distance - skinWidth));
-                    //snapSum += (-hitInfo.normal * (hitInfo.distance - skinWidth));
+                Vector3 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
+                AddVelocity(normalForce);
 
-                    Vector3 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
-                    AddVelocity(normalForce);
+                ApplyFriction(normalForce.magnitude);
 
-                    ApplyFriction(normalForce.magnitude);
 
-                    
 
                 //}
                 CheckCollision();
