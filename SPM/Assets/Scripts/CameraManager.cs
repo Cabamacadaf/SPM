@@ -110,7 +110,7 @@ public class CameraManager : MonoBehaviour
     private void CheckCollision()
     {
         RaycastHit hitInfo;
-        if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometriLayer))
+        if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer))
         {
             movement = movement.normalized * (hitInfo.distance - sphereCollider.radius);
         }
