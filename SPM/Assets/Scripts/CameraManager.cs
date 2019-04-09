@@ -34,27 +34,46 @@ public class CameraManager : MonoBehaviour
     {
 
         rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+        if(rotationX > maxClampValue)
+        {
+            rotationX = maxClampValue;
+        }
+        else if(rotationX < minClampValue)
+        {
+            rotationX = minClampValue;
+        }
 
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
 
 
         transform.rotation = Quaternion.Euler(Mathf.Clamp(rotationX, minClampValue, maxClampValue), rotationY, 0);
-
+       
         movement = transform.rotation * cameraOffset;
+        if (CheckCollision())
+        {
+            transform.position += Vector3.zero;
+        }
+        else
+        {
+            transform.position = movement + transform.parent.position;
+
+        }
 
 
-        CheckCollision();
-        transform.position = movement + transform.parent.position;
+
+
+
     }
 
 
 
-    private void CheckCollision()
+    private bool CheckCollision()
     {
         RaycastHit hitInfo;
-        if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer))
+        return Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer);
         {
-            movement = movement.normalized * (hitInfo.distance - sphereCollider.radius);
+            //movement = movement.normalized * (hitInfo.distance - sphereCollider.radius);
+           
         }
 
     }
