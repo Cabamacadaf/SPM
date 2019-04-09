@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour
 {
-    public bool active = false;
+    private bool active = false;
+    [HideInInspector] public bool holding = false;
     private Transform player;
     private float pullForce;
     private Transform pullPoint;
+    private Rigidbody rb;
 
     void Awake()
     {
         player = FindObjectOfType<PlayerController3D>().transform;
+        rb = GetComponent<Rigidbody>();
     }
     
     void Update()
     {
-        if(active == true) {
+        if(active && !holding) {
             transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
+            if (Vector3.Distance(transform.position, pullPoint.position) < 0.1f){
+                rb.useGravity = false;
+                holding = true;
+            }
         }
+    }
+
+    public void Drop() {
+        active = false;
+        holding = false;
+        rb.useGravity = true;
     }
 
     public void Pull (float pullForce, Transform pullPoint)
