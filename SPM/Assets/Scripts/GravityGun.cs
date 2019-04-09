@@ -8,32 +8,32 @@ public class GravityGun : MonoBehaviour
     [SerializeField] private float pullRange;
     [SerializeField] private float pushForce;
     [SerializeField] private float pullForce;
+    [SerializeField] private float cameraOffset;
     [SerializeField] private LayerMask hitLayer;
-    [SerializeField] private Transform firePoint;
     [SerializeField] private Transform pullPoint;
-    
+
     public void Push ()
     {
         Debug.Log("Push");
-        if(Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit, pushRange, hitLayer)) {
+        if(Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer)) {
             Debug.Log("Hit");
-            Debug.DrawLine(firePoint.position, hit.point, Color.red, 2);
+            Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.red, 2);
             if (hit.collider.attachedRigidbody != null) {
                 Debug.Log(1-(hit.distance / pushRange));
-                hit.collider.attachedRigidbody.AddForce(firePoint.forward * pushForce * (1-(hit.distance / pushRange)));
+                hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * pushForce * (1-(hit.distance / pushRange)));
             }
         }
         else {
-            Debug.DrawRay(firePoint.position, firePoint.forward * pushRange, Color.blue, 2);
+            Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward * pushRange, Color.blue, 2);
         }
     }
 
     public void Pull ()
     {
         Debug.Log("Pull");
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit, pullRange, hitLayer)) {
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer)) {
             Debug.Log("Hit");
-            Debug.DrawLine(firePoint.position, hit.point, Color.green, 2);
+            Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);
 
             hit.collider.GetComponent<PickUpObject>().Pull(pullForce, pullPoint);
             //if (hit.collider.attachedRigidbody != null) {
@@ -41,7 +41,7 @@ public class GravityGun : MonoBehaviour
             //}
         }
         else {
-            Debug.DrawRay(firePoint.position, firePoint.forward * pushRange, Color.blue, 2);
+            Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward * pushRange, Color.blue, 2);
         }
     }
 }
