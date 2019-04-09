@@ -14,6 +14,11 @@ public class PhysicsComponent : MonoBehaviour
     //Gravity
     [SerializeField] private float gravity;
 
+    private void FixedUpdate()
+    {
+      
+    }
+
     protected void AddVelocity(Vector3 vel)
     {
         velocity += vel;
@@ -24,7 +29,7 @@ public class PhysicsComponent : MonoBehaviour
         velocity -= vel;
     }
 
-    protected Vector3 GetVelocity()
+    public Vector3 GetVelocity()
     {
         return velocity;
     }
@@ -72,20 +77,7 @@ public class PhysicsComponent : MonoBehaviour
         return Functions.CalculateFriction(normalForceMagnitude, dynamicFrictionCoefficient);
     }
 
-    protected void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)
-    {
-        float difference = velocity.x - hit.transform.GetComponent<PhysicsComponent>().GetVelocity().x;
 
-        if (difference < CalculateStaticFriction(normalForceMagnitude))
-        {
-
-            velocity.x = difference - velocity.x;
-        }
-        else
-        {
-            velocity += -velocity.normalized * CalculateDynamicFriction(normalForceMagnitude);
-        }
-    }
 
     protected virtual void CheckCollision ()
     {

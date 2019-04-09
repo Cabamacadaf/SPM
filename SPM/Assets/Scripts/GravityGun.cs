@@ -14,7 +14,7 @@ public class GravityGun : MonoBehaviour
         if(Physics.Raycast(transform.position, Vector3.forward, out hit, range, hitLayer)) {
             Debug.Log("Hit");
             if (hit.collider.attachedRigidbody != null) {
-                hit.collider.attachedRigidbody.AddForce(-hit.normal * force);
+                hit.collider.attachedRigidbody.AddForce(hit.normal * force);
             }
         }
         Debug.DrawRay(transform.position, Vector3.forward, Color.red, range);

@@ -60,7 +60,6 @@ public class PlayerController3D : PhysicsComponent
     void Update ()
     {
         HandleInput();
-
         ApplyGravity();
         ApplyAirResistance();
 
@@ -69,6 +68,7 @@ public class PlayerController3D : PhysicsComponent
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
+
     }
 
     private void HandleInput ()
@@ -124,9 +124,26 @@ public class PlayerController3D : PhysicsComponent
 
                 //transform.position += (Vector3)(-hitInfo.normal * (hitInfo.distance - skinWidth));
                 //snapSum += (-hitInfo.normal * (hitInfo.distance - skinWidth));
+                Vector3 normalForce;
+                normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
 
-                Vector3 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
+                if (hitInfo.collider.gameObject.CompareTag("MovingPlatform"))
+                {
+                    Debug.Log(hitInfo.collider.GetComponent<Platform>().GetVelocity().y);
+                    normalForce += new Vector3(0, hitInfo.collider.GetComponent<Platform>().GetVelocity().y, 0);
+
+
+                }
+
+
                 AddVelocity(normalForce);
+
+                if (hitInfo.collider.gameObject.CompareTag("MovingPlatform"))
+                {
+
+                    HandlePlatformCollision(normalForce.magnitude, hitInfo.collider.gameObject);
+
+                }
 
                 ApplyFriction(normalForce.magnitude);
 
@@ -136,6 +153,17 @@ public class PlayerController3D : PhysicsComponent
                 CheckCollision();
 
             }
+        }
+
+    }
+
+    private void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)
+    {
+        Vector3 horizontalVelocity = new Vector3(GetVelocity().x, 0, GetVelocity().z);
+        Vector3 difference = horizontalVelocity - hit.GetComponent<Platform>().GetVelocity();
+        if (difference.magnitude > CalculateStaticFriction(normalForceMagnitude))
+        {
+            transform.position +=(GetVelocity() - difference) * Time.deltaTime;
         }
 
     }
