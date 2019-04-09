@@ -22,13 +22,19 @@ public class PickUpObject : MonoBehaviour
         if(active && !holding) {
             transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
             if (Vector3.Distance(transform.position, pullPoint.position) < 0.1f){
+                transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
+                rb.isKinematic = true;
+                rb.velocity = Vector3.zero;
                 rb.useGravity = false;
                 holding = true;
             }
         }
     }
 
-    public void Drop() {
+    public void Drop()
+    {
+        rb.isKinematic = false;
+        transform.SetParent(null);
         active = false;
         holding = false;
         rb.useGravity = true;
