@@ -17,6 +17,6 @@ public class GravityGun : MonoBehaviour
                 hit.collider.attachedRigidbody.AddForce(hit.normal * force);
             }
         }
-        Debug.DrawRay(transform.position, Vector3.forward, Color.red, range);
+        Debug.DrawRay(transform.position, hit.point, Color.red, 2);
     }
 }
