@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour
 {
-    private bool active = false;
+    public bool active = false;
     private Transform player;
     private float pullForce;
     private Transform pullPoint;
