@@ -94,8 +94,13 @@ public class PlayerController3D : PhysicsComponent
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("Click");
-            gravityGun.Shoot();
+            Debug.Log("LeftClick");
+            gravityGun.Push();
+        }
+
+        if (Input.GetMouseButtonDown(1)) {
+            Debug.Log("RightClick");
+            gravityGun.Pull();
         }
 
     }
