@@ -93,7 +93,7 @@ public class PlayerController3D : PhysicsComponent
         transform.rotation = cameraRotation;
 
         cameraRotation = mainCamera.transform.rotation;
-        cameraRotation.z = 0;
+        //cameraRotation.z = 0;
         gravityGun.transform.rotation = cameraRotation;
 
         AddVelocity(input * acceleration * Time.deltaTime);
@@ -103,12 +103,10 @@ public class PlayerController3D : PhysicsComponent
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("LeftClick");
             gravityGun.Push();
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            Debug.Log("RightClick");
             gravityGun.Pull();
         }
 
