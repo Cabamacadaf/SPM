@@ -87,6 +87,15 @@ public class PlayerController3D : PhysicsComponent
         }
 
 
+        var cameraRotation = mainCamera.transform.rotation;
+        cameraRotation.z = 0;
+        cameraRotation.x = 0;
+        transform.rotation = cameraRotation;
+
+        cameraRotation = mainCamera.transform.rotation;
+        cameraRotation.z = 0;
+        gravityGun.transform.rotation = cameraRotation;
+
         AddVelocity(input * acceleration * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, layerMask)) {
