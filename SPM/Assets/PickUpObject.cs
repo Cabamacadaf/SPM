@@ -7,6 +7,7 @@ public class PickUpObject : MonoBehaviour
     private bool active = false;
     private Transform player;
     private float pullForce;
+    private Transform pullPoint;
 
     void Awake()
     {
@@ -16,12 +17,13 @@ public class PickUpObject : MonoBehaviour
     void Update()
     {
         if(active == true) {
-            transform.position += (player.position - transform.position).normalized * pullForce * Time.deltaTime;
+            transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
         }
     }
 
-    public void Pull (float pullForce)
+    public void Pull (float pullForce, Transform pullPoint)
     {
+        this.pullPoint = pullPoint;
         this.pullForce = pullForce;
         active = true;
     }

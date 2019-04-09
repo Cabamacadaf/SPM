@@ -35,7 +35,7 @@ public class GravityGun : MonoBehaviour
             Debug.Log("Hit");
             Debug.DrawLine(firePoint.position, hit.point, Color.green, 2);
 
-            hit.collider.GetComponent<PickUpObject>().Pull(pullForce);
+            hit.collider.GetComponent<PickUpObject>().Pull(pullForce, pullPoint);
             //if (hit.collider.attachedRigidbody != null) {
             //    hit.collider.attachedRigidbody.AddForce(-firePoint.forward * pullForce * (1-(hit.distance / pullRange)));
             //}
