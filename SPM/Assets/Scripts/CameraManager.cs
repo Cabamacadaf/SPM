@@ -70,7 +70,7 @@ public class CameraManager : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer))
         {
-            Debug.Log(movement.normalized);
+
             Vector3 newoffset = cameraOffset;
             newoffset.z = -(hitInfo.distance - sphereCollider.radius);
             movement = transform.rotation * newoffset;

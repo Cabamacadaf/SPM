@@ -14,6 +14,8 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] private float damage = 10f;
 
+    private int geometry = 9;
+
     void Awake()
     {
         player = FindObjectOfType<PlayerController3D>().transform;
@@ -27,9 +29,9 @@ public class PickUpObject : MonoBehaviour
             if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab){
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
-               // rb.useGravity = false;
+                rb.useGravity = false;
                 transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
-            
+              
                 holding = true;
             }
         }
@@ -53,8 +55,11 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
+        Debug.Log(collision.collider.gameObject.layer);
         if (collision.collider.CompareTag("Enemy")) {
             collision.collider.GetComponent<Enemy>().Damage(rb.velocity.magnitude, damage);
         }
+
+
     }
 }

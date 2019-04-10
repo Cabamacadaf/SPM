@@ -8,10 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float hitPoints = 100f;
     [SerializeField] private float movementSpeed = 5.0f;
 
+    private Material material;
+
     private Transform player;
 
     void Awake()
     {
+        material = GetComponent<Renderer>().material;
         player = FindObjectOfType<PlayerController3D>().transform;
     }
 
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour
 
     public void Damage (float speed, float damage)
     {
+        material.color = Color.red * hitPoints/100;
         Debug.Log((speed * damage)/10);
         hitPoints -= (speed * damage)/10;
     }

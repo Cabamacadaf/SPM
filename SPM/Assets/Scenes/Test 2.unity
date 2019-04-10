@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 1005064516}
   m_Layer: 9
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3926,60 +3926,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491053, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491053, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586053171767197, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: maxClampValue
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
-      propertyPath: cameraOffset
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pullForce
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pullRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pushRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pushForce
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6875950713825207462, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6875950713825207462, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491055, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: crosshair
       value: 
-      objectReference: {fileID: 2100000, guid: 5fdd049fc1f64ca41a3bcf4ee3258d66, type: 2}
+      objectReference: {fileID: 1349164564}
+    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
+        type: 3}
+      propertyPath: playerPushForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483391c0130292745ae859d3cd322aae, type: 3}

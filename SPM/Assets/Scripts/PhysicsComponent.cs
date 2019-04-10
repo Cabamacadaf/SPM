@@ -19,7 +19,7 @@ public class PhysicsComponent : MonoBehaviour
       
     }
 
-    protected void AddVelocity(Vector3 vel)
+    public void AddVelocity(Vector3 vel)
     {
         velocity += vel;
     }
