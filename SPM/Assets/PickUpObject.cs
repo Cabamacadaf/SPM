@@ -11,6 +11,8 @@ public class PickUpObject : MonoBehaviour
     private Transform pullPoint;
     private Rigidbody rb;
 
+    [SerializeField] private float distance;
+
     void Awake()
     {
         player = FindObjectOfType<PlayerController3D>().transform;
@@ -21,11 +23,12 @@ public class PickUpObject : MonoBehaviour
     {
         if(active && !holding) {
             transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
-            if (Vector3.Distance(transform.position, pullPoint.position) < 0.1f){
-                transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
+            if (Vector3.Distance(transform.position, pullPoint.position) < distance){
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
-                rb.useGravity = false;
+               // rb.useGravity = false;
+                transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
+            
                 holding = true;
             }
         }

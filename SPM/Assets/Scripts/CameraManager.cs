@@ -49,15 +49,13 @@ public class CameraManager : MonoBehaviour
         transform.rotation = Quaternion.Euler(Mathf.Clamp(rotationX, minClampValue, maxClampValue), rotationY, 0);
        
         movement = transform.rotation * cameraOffset;
-        if (CheckCollision())
-        {
-            transform.position += Vector3.zero;
-        }
-        else
-        {
-            transform.position = movement + transform.parent.position;
+        PreventCollision();
+       
+     
+        transform.position = movement + transform.parent.position;
+            //transform.position = Vector3.Lerp(transform.position, movement + transform.parent.position, 0.5f);
 
-        }
+        
 
 
 
@@ -67,12 +65,15 @@ public class CameraManager : MonoBehaviour
 
 
 
-    private bool CheckCollision()
+    private void PreventCollision()
     {
         RaycastHit hitInfo;
-        return Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer);
+        if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer))
         {
-            //movement = movement.normalized * (hitInfo.distance - sphereCollider.radius);
+            Debug.Log(movement.normalized);
+            Vector3 newoffset = cameraOffset;
+            newoffset.z = -(hitInfo.distance - sphereCollider.radius);
+            movement = transform.rotation * newoffset;
            
         }
 

@@ -91,7 +91,6 @@ public class PlayerController3D : PhysicsComponent
         cameraRotation.z = 0;
         cameraRotation.x = 0;
         transform.rotation = cameraRotation;
-
         cameraRotation = mainCamera.transform.rotation;
         //cameraRotation.z = 0;
         gravityGun.transform.rotation = cameraRotation;
