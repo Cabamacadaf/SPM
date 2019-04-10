@@ -260,6 +260,12 @@ PrefabInstance:
       objectReference: {fileID: 40272126}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+--- !u!1 &94082002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8727586053171767193, guid: 483391c0130292745ae859d3cd322aae,
+    type: 3}
+  m_PrefabInstance: {fileID: 61681084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &603646612
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +365,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &613283155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8727586053112546443, guid: 483391c0130292745ae859d3cd322aae,
+    type: 3}
+  m_PrefabInstance: {fileID: 61681084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &613283156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613283155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f70a421da727645961da2732e475fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  airResistanceCoefficient: 0.6
+  staticFrictionCoefficient: 0.8
+  dynamicFrictionCoefficient: 0.5
+  gravity: 9.82
+--- !u!114 &613283157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613283155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed041333b49399c49b14ab9f98506ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - {fileID: 11400000, guid: 2650979281ec9d646907d923bf78a240, type: 2}
+  - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
+  groundCheckDistance: 0.02
+  mainCamera: {fileID: 94082002}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  skinWidth: 0.03
+  capsuleCollider: {fileID: 0}
+  physics: {fileID: 0}
+  gravityGun: {fileID: 1416415137}
 --- !u!1001 &977250870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -723,6 +775,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1416415137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
+    type: 3}
+  m_PrefabInstance: {fileID: 61681084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f33e6fc3969ef4e831bd1bc46f34bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2118894242
 PrefabInstance:
   m_ObjectHideFlags: 0

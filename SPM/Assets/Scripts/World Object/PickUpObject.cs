@@ -18,20 +18,28 @@ public class PickUpObject : MonoBehaviour
 
     void Awake()
     {
-        player = FindObjectOfType<PlayerController3D>().transform;
+        player = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody>();
     }
     
     void Update()
     {
         if(active && !holding) {
+            //rb.useGravity = false;
+            //if (!(Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab))
+            //{
+            //    transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
+            //}
             transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
-            if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab){
+
+            if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab)
+            {
+
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
-                rb.useGravity = false;
+                //rb.useGravity = false;
                 transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
-              
+
                 holding = true;
             }
         }
@@ -39,11 +47,12 @@ public class PickUpObject : MonoBehaviour
 
     public void Drop()
     {
+        rb.useGravity = true;
         rb.isKinematic = false;
         transform.SetParent(null);
         active = false;
         holding = false;
-        rb.useGravity = true;
+        //rb.useGravity = true;
     }
 
     public void Pull (float pullForce, Transform pullPoint)

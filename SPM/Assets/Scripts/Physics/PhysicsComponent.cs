@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class PhysicsComponent : MonoBehaviour
 {
-    //Movement
+    //Attributes
     private Vector3 velocity;
     [SerializeField] private float airResistanceCoefficient;
-
     [SerializeField] private float staticFrictionCoefficient;
     [SerializeField] private float dynamicFrictionCoefficient;
-
-    //Gravity
     [SerializeField] private float gravity;
 
-    private void FixedUpdate()
+    //Methods
+    private void Update()
     {
-      
+        ApplyGravity();
+        ApplyAirResistance();
     }
 
     public void AddVelocity(Vector3 vel)
@@ -39,7 +38,7 @@ public class PhysicsComponent : MonoBehaviour
         velocity = vel;
     }
 
-    protected void ApplyGravity()
+    public void ApplyGravity()
     {
         velocity += Vector3.down * gravity * Time.deltaTime;
 
@@ -50,7 +49,7 @@ public class PhysicsComponent : MonoBehaviour
 
     }
 
-    protected void ApplyFriction(float normalForceMagnitude)
+    public void ApplyFriction(float normalForceMagnitude)
     {
 
         if (velocity.magnitude < CalculateStaticFriction(normalForceMagnitude))

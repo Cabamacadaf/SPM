@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         material = GetComponent<Renderer>().material;
-        player = FindObjectOfType<PlayerController3D>().transform;
+        player = FindObjectOfType<Player>().transform;
     }
 
     void Update()

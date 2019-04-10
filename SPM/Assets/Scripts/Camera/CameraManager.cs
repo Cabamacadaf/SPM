@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float mouseSensitivity;
 
 
+
     private Vector3 movement;
 
     [SerializeField] private Vector3 cameraOffset;
@@ -53,12 +54,6 @@ public class CameraManager : MonoBehaviour
        
      
         transform.position = movement + transform.parent.position;
-            //transform.position = Vector3.Lerp(transform.position, movement + transform.parent.position, 0.5f);
-
-        
-
-
-
 
 
     }
