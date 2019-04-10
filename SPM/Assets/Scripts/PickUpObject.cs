@@ -11,7 +11,8 @@ public class PickUpObject : MonoBehaviour
     private Transform pullPoint;
     private Rigidbody rb;
 
-    [SerializeField] private float distance;
+    [SerializeField] private float distanceToGrab = 0.1f;
+    [SerializeField] private float damage = 10f;
 
     void Awake()
     {
@@ -23,7 +24,7 @@ public class PickUpObject : MonoBehaviour
     {
         if(active && !holding) {
             transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
-            if (Vector3.Distance(transform.position, pullPoint.position) < distance){
+            if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab){
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                // rb.useGravity = false;
@@ -48,5 +49,12 @@ public class PickUpObject : MonoBehaviour
         this.pullPoint = pullPoint;
         this.pullForce = pullForce;
         active = true;
+    }
+
+    private void OnCollisionEnter (Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy")) {
+            collision.collider.GetComponent<Enemy>().Damage(rb.velocity.magnitude, damage);
+        }
     }
 }
