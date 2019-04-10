@@ -27,7 +27,9 @@ public class Enemy : MonoBehaviour
 
     private void MoveTowardPlayer ()
     {
-        transform.position += (player.position - transform.position).normalized * movementSpeed * Time.deltaTime;
+        Vector3 movement = (player.position - transform.position).normalized * movementSpeed * Time.deltaTime;
+        movement = new Vector3(movement.x, 0, movement.z);
+        transform.position += movement;
     }
 
     public void Damage (float speed, float damage)
