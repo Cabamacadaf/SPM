@@ -12,11 +12,7 @@ public class SharpObject : PickUpObject
         if (collision.collider.CompareTag("Enemy"))
         {
             collision.collider.GetComponent<Enemy>().Damage(rb.velocity.magnitude, damage);
-            durability--;
-            if (durability == 0)
-            {
-                Destroy(this.gameObject);
-            }
+            LoseDurability();
         }
 
 

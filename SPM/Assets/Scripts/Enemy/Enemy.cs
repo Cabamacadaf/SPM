@@ -23,4 +23,8 @@ public class Enemy : StateMachine
     {
         Debug.Log("Damage doesn't work, please fix me");
     }
+    public void Damage(float damage)
+    {
+        Debug.Log("Damage doesn't work, please fix me");
+    }
 }

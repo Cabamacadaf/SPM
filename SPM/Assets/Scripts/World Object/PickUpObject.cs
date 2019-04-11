@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUpObject : MonoBehaviour
 {
     [SerializeField] protected int durability;
-    private bool active = false;
+    protected bool active = false;
     [HideInInspector] public bool holding = false;
     private Transform player;
     private float pullForce;
@@ -13,6 +13,7 @@ public class PickUpObject : MonoBehaviour
     protected Rigidbody rb;
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] protected float damage = 10f;
+    protected bool thrown = false;
 
     private int geometry = 9;
 
@@ -52,6 +53,7 @@ public class PickUpObject : MonoBehaviour
         transform.SetParent(null);
         active = false;
         holding = false;
+        thrown = true;
         //rb.useGravity = true;
     }
 
@@ -60,6 +62,15 @@ public class PickUpObject : MonoBehaviour
         this.pullPoint = pullPoint;
         this.pullForce = pullForce;
         active = true;
+    }
+
+    protected void LoseDurability()
+    {
+        durability--;
+        if(durability <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 

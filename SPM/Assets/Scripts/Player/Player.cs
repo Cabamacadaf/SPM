@@ -40,7 +40,7 @@ public class Player : StateMachine
     
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
 
         health -= damage;
