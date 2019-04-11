@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Enemy/AggroState")]
 public class EnemyAggroState : EnemyBaseState
 {
+    [SerializeField] private float chaseDistance = 6.0f;
     public override void Enter ()
     {
         base.Enter();
@@ -12,8 +13,11 @@ public class EnemyAggroState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
-        owner.agent.SetDestination(owner.player.transform.position);
         base.HandleUpdate();
+        owner.agent.SetDestination(owner.player.transform.position);
+        if(Vector3.Distance(owner.player.transform.position, owner.transform.position) > chaseDistance) {
+            owner.Transition<EnemyIdleState>();
+        }
         //MoveTowardPlayer();
     }
 
