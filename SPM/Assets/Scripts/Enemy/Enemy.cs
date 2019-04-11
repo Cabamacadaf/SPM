@@ -30,9 +30,9 @@ public class Enemy : MonoBehaviour
 
     private void MoveTowardPlayer ()
     {
-        Vector3 movement = (player.position - transform.position).normalized * movementSpeed * Time.deltaTime;
-        movement = new Vector3(movement.x, 0, movement.z);
-        transform.position += movement;
+        Vector3 direction = (player.position - transform.position).normalized;
+        direction = new Vector3(direction.x, 0, direction.z).normalized;
+        transform.position += direction * movementSpeed * Time.deltaTime;
     }
 
     public void Damage (float speed, float damage)
