@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Enemy/AggroState")]
 public class EnemyAggroState : EnemyBaseState
 {
+    public override void Enter ()
+    {
+        base.Enter();
+    }
+
     public override void HandleUpdate ()
     {
         owner.agent.SetDestination(owner.player.transform.position);
@@ -14,8 +19,8 @@ public class EnemyAggroState : EnemyBaseState
 
     //private void MoveTowardPlayer ()
     //{
-    //    Vector3 direction = (player.position - transform.position).normalized;
+    //    Vector3 direction = (owner.player.transform.position - owner.transform.position).normalized;
     //    direction = new Vector3(direction.x, 0, direction.z).normalized;
-    //    transform.position += direction * movementSpeed * Time.deltaTime;
+    //    owner.transform.position += direction * movementSpeed * Time.deltaTime;
     //}
 }
