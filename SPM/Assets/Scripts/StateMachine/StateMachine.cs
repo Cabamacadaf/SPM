@@ -32,6 +32,11 @@ public class StateMachine : MonoBehaviour
         currentState.Enter();
     }
 
+    public String getCurrentState ()
+    {
+        return currentState.ToString();
+    }
+
     private void Update()
     {
         currentState.HandleUpdate();

@@ -15,8 +15,8 @@ public class EnemyIdleState : EnemyBaseState
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= aggroDistance) {
-            owner.Transition<EnemyAggroState>();
-        }
+        //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= aggroDistance) {
+        //    owner.Transition<EnemyAggroState>();
+        //}
     }
 }
