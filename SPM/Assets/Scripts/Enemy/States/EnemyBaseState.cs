@@ -12,6 +12,8 @@ public class EnemyBaseState : State
     public override void Enter ()
     {
         owner.agent.speed = movementSpeed;
+        base.Enter();
+
     }
 
     public override void Initialize (StateMachine owner)

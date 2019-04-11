@@ -24,7 +24,6 @@ public class PlayerBaseState : State
 
     public override void Enter()
     {
-        base.Enter();
         Cursor.lockState = CursorLockMode.Locked;
 
         point1 = owner.capsuleCollider.center + Vector3.up * ((owner.capsuleCollider.height / 2) - owner.capsuleCollider.radius);
