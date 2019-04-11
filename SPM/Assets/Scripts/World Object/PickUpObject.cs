@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour
 {
+    [SerializeField] protected int durability;
     private bool active = false;
     [HideInInspector] public bool holding = false;
     private Transform player;
     private float pullForce;
     private Transform pullPoint;
-    private Rigidbody rb;
-
+    protected Rigidbody rb;
     [SerializeField] private float distanceToGrab = 0.1f;
-    [SerializeField] private float damage = 10f;
+    [SerializeField] protected float damage = 10f;
 
     private int geometry = 9;
 
@@ -62,13 +62,5 @@ public class PickUpObject : MonoBehaviour
         active = true;
     }
 
-    private void OnCollisionEnter (Collision collision)
-    {
 
-        if (collision.collider.CompareTag("Enemy")) {
-            collision.collider.GetComponent<Enemy>().Damage(rb.velocity.magnitude, damage);
-        }
-
-
-    }
 }
