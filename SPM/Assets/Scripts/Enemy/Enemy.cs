@@ -2,43 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : StateMachine
 {
-    [SerializeField] private float hitPoints = 100f;
-    [SerializeField] private float movementSpeed = 5.0f;
+    [HideInInspector] public MeshRenderer meshRenderer;
+    [HideInInspector] public NavMeshAgent agent;
 
-    private Material material;
+    [HideInInspector] public Player player;
 
-    private Transform player;
-
-    void Awake()
+    protected override void Awake ()
     {
-        material = GetComponent<Renderer>().material;
-        player = FindObjectOfType<Player>().transform;
-    }
-
-    void Update()
-    {
-        MoveTowardPlayer();
-
-        if(hitPoints < 0) {
-            Debug.Log("Kill enemy");
-            Destroy(gameObject);
-        }
-    }
-
-    private void MoveTowardPlayer ()
-    {
-        Vector3 direction = (player.position - transform.position).normalized;
-        direction = new Vector3(direction.x, 0, direction.z).normalized;
-        transform.position += direction * movementSpeed * Time.deltaTime;
+        meshRenderer = GetComponent<MeshRenderer>();
+        agent = GetComponent<NavMeshAgent>();
+        player = FindObjectOfType<Player>();
+        base.Awake();
     }
 
     public void Damage (float speed, float damage)
     {
-        material.color = Color.red * hitPoints/100;
-        Debug.Log((speed * damage)/10);
-        hitPoints -= (speed * damage)/10;
+
     }
 }
