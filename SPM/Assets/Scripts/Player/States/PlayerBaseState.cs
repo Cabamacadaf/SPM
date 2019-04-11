@@ -153,6 +153,9 @@ public class PlayerBaseState : State
 
     }
 
+    
+
+
     //private void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)
     //{
     //    Vector3 horizontalVelocity = new Vector3(GetVelocity().x, 0, GetVelocity().z);

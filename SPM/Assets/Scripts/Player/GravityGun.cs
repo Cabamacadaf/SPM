@@ -20,6 +20,10 @@ public class GravityGun : MonoBehaviour
 
     [SerializeField] private float playerPushForce;
 
+    //Power up
+    [SerializeField] private float powerUpLength;
+    [SerializeField] private float powerUpMultiplier;
+
 
     public void Update()
     {
@@ -94,5 +98,21 @@ public class GravityGun : MonoBehaviour
             holdingObject.Drop();
             holdingObject = null;
         }
+    }
+    private IEnumerator PowerDownRoutine()
+    {
+
+        yield return new WaitForSeconds(5.0f);
+
+        pushRange -= 10;
+        pullRange -= 10;
+
+    }
+
+    public void PowerUp()
+    {
+        pushRange += 10;
+        pullRange += 10;
+        StartCoroutine(PowerDownRoutine());
     }
 }

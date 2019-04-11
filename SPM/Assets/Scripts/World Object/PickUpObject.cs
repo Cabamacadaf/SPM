@@ -64,7 +64,7 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
-        Debug.Log(collision.collider.gameObject.layer);
+
         if (collision.collider.CompareTag("Enemy")) {
             collision.collider.GetComponent<Enemy>().Damage(rb.velocity.magnitude, damage);
         }
