@@ -17,7 +17,7 @@ public class GravityGunPowerUp : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided");
+
         if (other.CompareTag("Player"))
         {
             GravityGun gravityGun = other.GetComponentInChildren<GravityGun>();
