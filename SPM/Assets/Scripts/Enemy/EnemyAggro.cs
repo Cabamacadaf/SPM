@@ -12,8 +12,8 @@ public class EnemyAggro : MonoBehaviour
     }
     private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Player") && !enemy.GetCurrentState().ToString().Equals("EnemyAggroState")) {
-            enemy.Transition<EnemyAggroState>();
+        if (other.CompareTag("Player") && !enemy.GetCurrentState().ToString().Equals("EnemyAggroState1")) {
+            enemy.Transition<Enemy1AggroState>();
         }
     }
 }

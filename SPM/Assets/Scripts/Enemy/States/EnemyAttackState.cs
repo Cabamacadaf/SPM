@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy/AttackState")]
 public class EnemyAttackState : EnemyBaseState
 {
     private float timer = 0.0f;
-    private Transform attackMesh;
+    private Transform attackObject;
 
     public override void Enter ()
     {
         base.Enter();
         timer = 0.0f;
-        attackMesh = owner.transform.GetChild(0).GetChild(0);
+        attackObject = owner.transform.GetChild(0);
         Attack();
     }
 
@@ -23,12 +22,13 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
+        base.HandleUpdate();
         if(timer >= owner.attackTime) {
-            attackMesh.position = Vector3.zero;
+            attackObject.position = owner.transform.position;
             owner.Transition<EnemyAggroState>();
         }
 
-        attackMesh.position += attackMesh.forward * Time.deltaTime * owner.attackAnimationSpeed;
+        attackObject.position += attackObject.forward * Time.deltaTime * owner.attackAnimationSpeed;
         timer += Time.deltaTime;
     }
 }

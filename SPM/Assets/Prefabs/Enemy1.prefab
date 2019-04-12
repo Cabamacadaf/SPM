@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 665622606162497539}
   - component: {fileID: 1158220384848658762}
   - component: {fileID: 6770975385961368712}
+  - component: {fileID: 610382946099135254}
   m_Layer: 0
   m_Name: AttackMesh
   m_TagString: Untagged
@@ -209,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012928528840510324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.275}
+  m_LocalPosition: {x: 0, y: 0.063, z: 0.178}
   m_LocalScale: {x: 0.26382, y: 0.26382, z: 0.95286506}
   m_Children: []
   m_Father: {fileID: 6801821671488285149}
@@ -268,11 +269,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012928528840510324}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &610382946099135254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012928528840510324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3eb1cb8459c3f54e9462bcf2085dd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7468751758027635186
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7468751758027635186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.068, z: 0.43}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2115557505866970416}
@@ -359,7 +372,7 @@ GameObject:
   - component: {fileID: 2226854606375388720}
   - component: {fileID: 3580324963919691689}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,14 +467,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: acc8bd9363b2cac42875957d857eb468, type: 2}
-  - {fileID: 11400000, guid: 19e2e66b98f4c1646a68df49ad47013f, type: 2}
-  - {fileID: 11400000, guid: abcb92fc7a005d54f8b1603b5f8a05be, type: 2}
+  - {fileID: 11400000, guid: 998f84886cf2eca4f9f8a3665fdd2f29, type: 2}
+  - {fileID: 11400000, guid: 3817c971b816d6148b31acceb185892d, type: 2}
+  - {fileID: 11400000, guid: a697000dcae55c147b973673601ff9e9, type: 2}
   chaseDistance: 16
   attackDistance: 3
-  attackTime: 1
+  attackTime: 0.3
   attackCooldown: 1
-  attackAnimationSpeed: 2
+  attackAnimationSpeed: 10
   hitPoints: 100
   movementSpeed: 5
   rotationSpeed: 5
