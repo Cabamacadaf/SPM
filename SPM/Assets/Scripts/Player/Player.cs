@@ -57,6 +57,11 @@ public class Player : StateMachine
         }
     }
 
+    public void Addhealth()
+    {
+        health = startHealth;
+    }
+
     public void Respawn()
     {
         Debug.Log("Player respawned");
