@@ -19,8 +19,7 @@ public class ExplosiveObject : PickUpObject
                 if (col.gameObject.CompareTag("Player"))
                 {
                     hit = col.ClosestPoint(transform.position);
-
-                    Debug.Log(col.ClosestPoint(transform.position));
+                    
                     Player player = col.gameObject.GetComponent<Player>();
                     player.Damage(damage - hit.x - hit.z);
                 }

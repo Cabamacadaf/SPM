@@ -8,6 +8,8 @@ public class Enemy1AttackState : EnemyAttackState
     public override void Enter ()
     {
         base.Enter();
+        Debug.Log("enter attack state");
+        owner.attacking = true;
     }
 
     public override void HandleUpdate ()
@@ -25,5 +27,6 @@ public class Enemy1AttackState : EnemyAttackState
     {
         base.Exit();
         owner.GetComponentInChildren<Attack>().hasAttacked = false;
+        owner.attacking = false;
     }
 }

@@ -45,8 +45,6 @@ public class Player : StateMachine
     {
         health -= damage;
         healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
-        Debug.Log("Player takes " + damage + " damage.");
-        Debug.Log("Player has " + health + " health.");
         if (health <= 0)
         {
             Respawn();
@@ -65,7 +63,6 @@ public class Player : StateMachine
 
     public void Respawn()
     {
-        Debug.Log("Player respawned");
         health = startHealth;
         healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
         transform.position = respawnPoint.transform.position;

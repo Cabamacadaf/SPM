@@ -20,7 +20,6 @@ public class EnemyBaseState : State
     public override void HandleUpdate ()
     {
         if (owner.hitPoints < 0) {
-            Debug.Log("Kill enemy");
             Kill();
         }
     }
@@ -32,7 +31,6 @@ public class EnemyBaseState : State
 
     public void Damage (float damage)
     {
-        Debug.Log("Damage: " + damage);
         owner.hitPoints -= damage;
         owner.meshRenderer.material.color = owner.meshRenderer.material.color * owner.hitPoints / 100;
     }

@@ -16,9 +16,8 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Player") && !hasAttacked) {
+        if (enemy.attacking && other.CompareTag("Player") && !hasAttacked) {
             hasAttacked = true;
-            Debug.Log("Player hit");
             player.Damage(enemy.attackDamage);
         }
     }

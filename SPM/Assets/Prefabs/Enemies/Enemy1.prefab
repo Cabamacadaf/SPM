@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3eb1cb8459c3f54e9462bcf2085dd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasAttacked: 0
 --- !u!1 &7468751758027635186
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +473,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a697000dcae55c147b973673601ff9e9, type: 2}
   chaseDistance: 16
   attackDistance: 3
+  attackDamage: 25
   attackTime: 0.3
   attackCooldown: 1
   attackAnimationSpeed: 10
@@ -487,7 +489,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8493557469479239451}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
