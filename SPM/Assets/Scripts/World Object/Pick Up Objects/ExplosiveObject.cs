@@ -25,8 +25,11 @@ public class ExplosiveObject : PickUpObject
                 {
                     hit = col.ClosestPoint(transform.position);
 
-                    EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponent<Enemy>().GetCurrentState();
-                    enemyState.Damage(damage - hit.x - hit.z);
+                    EnemyBaseState enemyState = (EnemyBaseState)col.gameObject.GetComponent<Enemy>().GetCurrentState();
+
+                    //enemyState.Damage(damage - hit.x - hit.z);
+                    enemyState.Damage(damage);
+
                 }
             }
             LoseDurability();
