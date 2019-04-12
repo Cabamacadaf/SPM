@@ -9,6 +9,7 @@ public class Enemy : StateMachine
     public float chaseDistance = 6.0f;
     public float attackDistance = 2.0f;
 
+    public float attackDamage = 25f;
     public float attackTime = 1.0f;
     public float attackCooldown = 1.0f;
     public float attackAnimationSpeed = 2.0f;

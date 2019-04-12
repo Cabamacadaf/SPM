@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAggroState : EnemyBaseState
 {
-    private float timer;
+    protected float timer;
 
     public override void Initialize (StateMachine owner)
     {
@@ -22,13 +22,5 @@ public class EnemyAggroState : EnemyBaseState
     {
         base.HandleUpdate();
         timer += Time.deltaTime;
-
-        if (timer > owner.attackCooldown){
-            owner.Transition<EnemyAttackState>();
-        }
-
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) > owner.chaseDistance) {
-            owner.Transition<EnemyIdleState>();
-        }
     }
 }

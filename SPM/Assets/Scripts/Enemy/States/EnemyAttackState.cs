@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyBaseState
 {
-    private float timer = 0.0f;
-    private Transform attackObject;
+    protected float timer = 0.0f;
+    protected Transform attackObject;
 
     public override void Enter ()
     {
@@ -23,12 +23,5 @@ public class EnemyAttackState : EnemyBaseState
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
-        if(timer >= owner.attackTime) {
-            attackObject.position = owner.transform.position;
-            owner.Transition<EnemyAggroState>();
-        }
-
-        attackObject.position += attackObject.forward * Time.deltaTime * owner.attackAnimationSpeed;
-        timer += Time.deltaTime;
     }
 }
