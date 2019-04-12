@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExplosiveObject : PickUpObject
 {
+    public GameObject explosion;
     [SerializeField] private float radius;
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,6 +33,7 @@ public class ExplosiveObject : PickUpObject
 
                 }
             }
+            Instantiate(explosion, transform.position, Quaternion.identity);
             LoseDurability();
         }
   

@@ -42,8 +42,9 @@ public class Player : StateMachine
 
     public void Damage(float damage)
     {
-
         health -= damage;
+        Debug.Log("Player takes " + damage + " damage.");
+        Debug.Log("Player has " + health + " health.");
         if (health <= 0)
         {
             Respawn();
@@ -56,6 +57,7 @@ public class Player : StateMachine
 
     public void Respawn()
     {
+        Debug.Log("Player respawned");
         health = startHealth;
         transform.position = respawnPoint.transform.position;
     }

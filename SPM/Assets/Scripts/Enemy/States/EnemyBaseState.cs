@@ -25,9 +25,9 @@ public class EnemyBaseState : State
         }
     }
 
-    public void Damage (float speed, float damage)
+    public void Damage (float speed, float mass, float damage)
     {
-        Damage((speed * damage) / 10);
+        Damage((speed * mass * damage) / 10);
     }
 
     public void Damage (float damage)

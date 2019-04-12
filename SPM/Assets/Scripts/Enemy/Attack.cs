@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player player;
+    private Enemy enemy;
+    public bool hasAttacked;
+
+    private void Awake ()
     {
-        
+        player = FindObjectOfType<Player>();
+        enemy = GetComponentInParent<Enemy>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter (Collider other)
     {
-        
+        if (other.CompareTag("Player") && !hasAttacked) {
+            hasAttacked = true;
+            Debug.Log("Player hit");
+            player.Damage(enemy.attackDamage);
+        }
     }
 }

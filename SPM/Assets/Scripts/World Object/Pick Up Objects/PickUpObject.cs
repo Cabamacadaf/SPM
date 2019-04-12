@@ -78,7 +78,7 @@ public class PickUpObject : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponent<Enemy>().GetCurrentState();
-            enemyState.Damage(rb.velocity.magnitude, damage);
+            enemyState.Damage(rb.velocity.magnitude, rb.mass, damage);
             LoseDurability();
         }
     }
