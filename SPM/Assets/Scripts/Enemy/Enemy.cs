@@ -18,13 +18,4 @@ public class Enemy : StateMachine
         player = FindObjectOfType<Player>();
         base.Awake();
     }
-
-    public void Damage (float speed, float damage)
-    {
-        Debug.Log("Damage doesn't work, please fix me");
-    }
-    public void Damage(float damage)
-    {
-        Debug.Log("Damage doesn't work, please fix me");
-    }
 }

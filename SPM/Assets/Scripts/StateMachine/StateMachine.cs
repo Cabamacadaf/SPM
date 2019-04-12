@@ -32,13 +32,23 @@ public class StateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    public String getCurrentState ()
+    public State GetCurrentState ()
     {
-        return currentState.ToString();
+        return currentState;
     }
 
     private void Update()
     {
         currentState.HandleUpdate();
+    }
+
+    private void OnCollisionEnter (Collision collision)
+    {
+        currentState.HandleCollision(collision);
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        currentState.HandleTrigger(other);
     }
 }

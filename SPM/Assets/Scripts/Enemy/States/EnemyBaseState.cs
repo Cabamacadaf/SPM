@@ -31,9 +31,14 @@ public class EnemyBaseState : State
 
     public void Damage (float speed, float damage)
     {
-        owner.meshRenderer.material.color = owner.meshRenderer.material.color * hitPoints / 100;
         Debug.Log("Damage: " + (speed * damage) / 10);
-        hitPoints -= (speed * damage) / 10;
+        Damage((speed * damage / 10));
+    }
+
+    public void Damage (float damage)
+    {
+        hitPoints -= damage;
+        owner.meshRenderer.material.color = owner.meshRenderer.material.color * hitPoints / 100;
     }
 
     public void Kill ()

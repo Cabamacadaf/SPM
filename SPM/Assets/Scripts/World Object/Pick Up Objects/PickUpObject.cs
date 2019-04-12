@@ -13,6 +13,7 @@ public class PickUpObject : MonoBehaviour
     protected Rigidbody rb;
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] protected float damage = 10f;
+    [SerializeField] private float lowestVelocityToDoDamage = 5.0f;
     protected bool thrown = false;
 
     private int geometry = 9;
@@ -73,5 +74,12 @@ public class PickUpObject : MonoBehaviour
         }
     }
 
-
+    private void OnCollisionEnter (Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
+            EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponent<Enemy>().GetCurrentState();
+            enemyState.Damage(rb.velocity.magnitude, damage);
+            LoseDurability();
+        }
+    }
 }
