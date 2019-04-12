@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackState : MonoBehaviour
+[CreateAssetMenu(menuName = "States/Enemy/AttackState")]
+public class EnemyAttackState : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    private float timer = 0.0f;
+    private Transform attackMesh;
+
+    public override void Enter ()
     {
-        
+        base.Enter();
+        timer = 0.0f;
+        attackMesh = owner.transform.GetChild(0).GetChild(0);
+        Attack();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Attack ()
     {
-        
+
+    }
+
+    public override void HandleUpdate ()
+    {
+        if(timer >= owner.attackTime) {
+            attackMesh.position = Vector3.zero;
+            owner.Transition<EnemyAggroState>();
+        }
+
+        attackMesh.position += attackMesh.forward * Time.deltaTime * owner.attackAnimationSpeed;
+        timer += Time.deltaTime;
     }
 }

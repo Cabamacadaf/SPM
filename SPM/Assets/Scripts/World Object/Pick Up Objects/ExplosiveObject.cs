@@ -7,7 +7,7 @@ public class ExplosiveObject : PickUpObject
     [SerializeField] private float radius;
     private void OnCollisionEnter(Collision collision)
     {
-        if (active || thrown)
+        if (thrown)
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider col in colls)

@@ -9,17 +9,18 @@ public class PickUpObject : MonoBehaviour
     [HideInInspector] public bool holding = false;
     private Transform player;
     private float pullForce;
-    private Transform pullPoint;
     protected Rigidbody rb;
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] protected float damage = 10f;
     [SerializeField] private float lowestVelocityToDoDamage = 5.0f;
+    protected Transform pullPoint;
     protected bool thrown = false;
 
     private int geometry = 9;
 
     void Awake()
     {
+        pullPoint = GameObject.Find("PullPoint Close").transform;
         player = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody>();
     }
@@ -58,9 +59,8 @@ public class PickUpObject : MonoBehaviour
         //rb.useGravity = true;
     }
 
-    public void Pull (float pullForce, Transform pullPoint)
+    public void Pull (float pullForce)
     {
-        this.pullPoint = pullPoint;
         this.pullForce = pullForce;
         active = true;
     }

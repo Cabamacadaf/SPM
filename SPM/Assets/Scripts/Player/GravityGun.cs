@@ -12,7 +12,6 @@ public class GravityGun : MonoBehaviour
     [SerializeField] private float cameraOffset;
 
     [SerializeField] private LayerMask hitLayer;
-    [SerializeField] private Transform pullPoint;
 
     [SerializeField] private Image crosshair;
 
@@ -85,7 +84,7 @@ public class GravityGun : MonoBehaviour
 
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);
                 holdingObject = hit.collider.GetComponent<PickUpObject>();
-                holdingObject.Pull(pullForce, pullPoint);
+                holdingObject.Pull(pullForce);
             }
             else
             {

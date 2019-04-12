@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyBaseState : State
 {
-    [SerializeField] protected float hitPoints = 100f;
-    [SerializeField] protected float movementSpeed = 5.0f;
-    [SerializeField] protected float rotationSpeed = 5.0f;
 
     protected Enemy owner;
 
@@ -22,7 +19,7 @@ public class EnemyBaseState : State
 
     public override void HandleUpdate ()
     {
-        if (hitPoints < 0) {
+        if (owner.hitPoints < 0) {
             Debug.Log("Kill enemy");
             Kill();
         }
@@ -36,8 +33,8 @@ public class EnemyBaseState : State
     public void Damage (float damage)
     {
         Debug.Log("Damage: " + damage);
-        hitPoints -= damage;
-        owner.meshRenderer.material.color = owner.meshRenderer.material.color * hitPoints / 100;
+        owner.hitPoints -= damage;
+        owner.meshRenderer.material.color = owner.meshRenderer.material.color * owner.hitPoints / 100;
     }
 
     public void Kill ()
