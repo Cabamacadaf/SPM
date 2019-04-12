@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy/AttackState")]
 public class EnemyAttackState : EnemyBaseState
 {
     private float timer = 0.0f;
@@ -23,6 +22,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
+        base.HandleUpdate();
         if(timer >= owner.attackTime) {
             attackObject.position = owner.transform.position;
             owner.Transition<EnemyAggroState>();

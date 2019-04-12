@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy/AggroState")]
 public class EnemyAggroState : EnemyBaseState
 {
     private float timer;
 
-    private void Awake ()
+    public override void Initialize (StateMachine owner)
     {
-        timer = owner.attackCooldown;
+        base.Initialize(owner);
+        timer = this.owner.attackCooldown;
     }
 
     public override void Enter ()

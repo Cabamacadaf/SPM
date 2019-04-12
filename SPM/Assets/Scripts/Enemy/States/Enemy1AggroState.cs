@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Enemy1/AggroState")]
 public class Enemy1AggroState : EnemyAggroState
 {
     public override void HandleUpdate ()
