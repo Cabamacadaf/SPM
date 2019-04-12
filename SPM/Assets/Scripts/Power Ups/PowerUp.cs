@@ -12,6 +12,7 @@ public class PowerUp : MonoBehaviour
             Player player = other.gameObject.GetComponent<Player>();
             player.Addhealth();
             Destroy(this.gameObject);
+            
         }
     }
 }

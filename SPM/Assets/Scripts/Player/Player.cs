@@ -19,7 +19,7 @@ public class Player : StateMachine
 
     public GameObject respawnPoint;
     public float startHealth;
-    private float health;
+    public float health;
 
 
     protected override void Awake()
