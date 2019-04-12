@@ -15,7 +15,7 @@ public class Player : StateMachine
     [HideInInspector] public CapsuleCollider capsuleCollider;
     [HideInInspector] public PhysicsComponent physics;
     public GravityGun gravityGun;
-
+    private Transform healthBar;
 
     public GameObject respawnPoint;
     public float startHealth;
@@ -27,6 +27,7 @@ public class Player : StateMachine
         health = startHealth;
         physics = GetComponent<PhysicsComponent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        healthBar = transform.GetChild(2);
         base.Awake();
 
     }
@@ -43,6 +44,7 @@ public class Player : StateMachine
     public void Damage(float damage)
     {
         health -= damage;
+        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
         Debug.Log("Player takes " + damage + " damage.");
         Debug.Log("Player has " + health + " health.");
         if (health <= 0)
@@ -59,6 +61,7 @@ public class Player : StateMachine
     {
         Debug.Log("Player respawned");
         health = startHealth;
+        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
         transform.position = respawnPoint.transform.position;
     }
 
