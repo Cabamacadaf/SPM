@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyAggroState : EnemyBaseState
 {
     [SerializeField] private float chaseDistance = 6.0f;
+    [SerializeField] private float attackDistance = 2.0f;
     public override void Enter ()
     {
         base.Enter();
@@ -14,17 +15,15 @@ public class EnemyAggroState : EnemyBaseState
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
-        owner.agent.SetDestination(owner.player.transform.position);
-        if(Vector3.Distance(owner.player.transform.position, owner.transform.position) > chaseDistance) {
+
+        if(Vector3.Distance(owner.player.transform.position, owner.transform.position) > attackDistance) {
+            owner.transform.position = Vector3.MoveTowards(owner.transform.position, owner.player.transform.position, movementSpeed * Time.deltaTime);
+
+            owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.player.transform.position - owner.transform.position, rotationSpeed * Time.deltaTime, 0.0f));
+        }
+
+        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) > chaseDistance) {
             owner.Transition<EnemyIdleState>();
         }
-        //MoveTowardPlayer();
     }
-
-    //private void MoveTowardPlayer ()
-    //{
-    //    Vector3 direction = (owner.player.transform.position - owner.transform.position).normalized;
-    //    direction = new Vector3(direction.x, 0, direction.z).normalized;
-    //    owner.transform.position += direction * movementSpeed * Time.deltaTime;
-    //}
 }
