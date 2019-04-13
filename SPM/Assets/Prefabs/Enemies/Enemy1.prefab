@@ -472,15 +472,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3817c971b816d6148b31acceb185892d, type: 2}
   - {fileID: 11400000, guid: a697000dcae55c147b973673601ff9e9, type: 2}
   chaseDistance: 16
-  attackDistance: 3
+  attackDistance: 4
   attackDamage: 25
   attackTime: 0.3
   attackCooldown: 1
   attackAnimationSpeed: 10
+  attacking: 0
   hitPoints: 100
   movementSpeed: 5
   rotationSpeed: 5
   meshRenderer: {fileID: 0}
+  agent: {fileID: 0}
+  boxCollider: {fileID: 0}
   player: {fileID: 0}
 --- !u!195 &2226854606375388720
 NavMeshAgent:
@@ -518,7 +521,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &8018094471353667263
 PrefabInstance:

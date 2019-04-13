@@ -20,11 +20,13 @@ public class Enemy : StateMachine
     public float rotationSpeed = 5.0f;
     [HideInInspector] public MeshRenderer meshRenderer;
     [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public BoxCollider boxCollider;
 
     [HideInInspector] public Player player;
 
     protected override void Awake ()
     {
+        boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
         player = FindObjectOfType<Player>();

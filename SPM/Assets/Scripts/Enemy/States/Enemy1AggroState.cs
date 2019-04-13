@@ -21,11 +21,13 @@ public class Enemy1AggroState : EnemyAggroState
         }
 
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance && timer > owner.attackCooldown) {
+            owner.agent.SetDestination(owner.transform.position);
             owner.agent.isStopped = true;
             owner.Transition<Enemy1AttackState>();
         }
 
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) > owner.chaseDistance) {
+            owner.agent.isStopped = true;
             owner.Transition<Enemy1IdleState>();
         }
     }
