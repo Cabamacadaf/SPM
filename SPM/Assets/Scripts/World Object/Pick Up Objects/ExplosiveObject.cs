@@ -6,6 +6,7 @@ public class ExplosiveObject : PickUpObject
 {
     public GameObject explosion1;
     public GameObject explosion2;
+    public float power = 10.0F;
 
     [SerializeField] private float radius;
     private void OnCollisionEnter(Collision collision)
@@ -13,8 +14,17 @@ public class ExplosiveObject : PickUpObject
         if (thrown)
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, radius);
+            
+
             foreach (Collider col in colls)
             {
+                Vector3 explosionPos = transform.position;
+                Rigidbody rb = col.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.AddExplosionForce(power, explosionPos, radius, 3.0f);
+                }
+
                 Vector3 hit;
                 if (col.gameObject.CompareTag("Player"))
                 {
