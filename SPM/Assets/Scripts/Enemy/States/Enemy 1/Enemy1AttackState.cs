@@ -8,7 +8,6 @@ public class Enemy1AttackState : EnemyAttackState
     public override void Enter ()
     {
         base.Enter();
-        Debug.Log("enter attack state");
         owner.attacking = true;
     }
 
@@ -23,6 +22,7 @@ public class Enemy1AttackState : EnemyAttackState
         attackObject.position += attackObject.forward * Time.deltaTime * owner.attackAnimationSpeed;
         timer += Time.deltaTime;
     }
+
     public override void Exit ()
     {
         base.Exit();

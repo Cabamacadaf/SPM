@@ -6,7 +6,7 @@ public class Attack : MonoBehaviour
 {
     private Player player;
     private Enemy enemy;
-    public bool hasAttacked;
+    [HideInInspector] public bool hasAttacked;
 
     private void Awake ()
     {

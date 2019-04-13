@@ -13,7 +13,7 @@ public class Enemy : StateMachine
     public float attackTime = 1.0f;
     public float attackCooldown = 1.0f;
     public float attackAnimationSpeed = 2.0f;
-    public bool attacking = false;
+    [HideInInspector] public bool attacking = false;
 
     public float hitPoints = 100f;
     public float movementSpeed = 5.0f;
