@@ -50,7 +50,7 @@ public class PickUpObject : MonoBehaviour
 
     public void Drop()
     {
-        rb.useGravity = true;
+        //rb.useGravity = true;
         rb.isKinematic = false;
         transform.SetParent(null);
         active = false;
