@@ -8,8 +8,8 @@ public class Enemy2AggroState : EnemyAggroState
     private Enemy2 owner2;
     public override void Enter()
     {
+        Debug.Log("Aggro State");
         owner2 = (Enemy2)owner;
-        Debug.Log("Aggro");
         base.Enter();
     }
 

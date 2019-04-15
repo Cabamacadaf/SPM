@@ -7,7 +7,7 @@ public class Enemy2AttackState : EnemyAttackState
 {
     public override void Enter ()
     {
-        Debug.Log("Attack");
+        Debug.Log("Attack State");
         base.Enter();
     }
 

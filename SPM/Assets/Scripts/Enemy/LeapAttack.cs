@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class LeapAttack : MonoBehaviour
 {
     private Player player;
-    private Enemy enemy;
+    private Enemy2 enemy;
     [HideInInspector] public bool hasAttacked;
 
     private void Awake ()
     {
         player = FindObjectOfType<Player>();
-        enemy = GetComponentInParent<Enemy>();
+        enemy = GetComponentInParent<Enemy2>();
     }
-
     private void OnTriggerEnter (Collider other)
     {
         if (enemy.attacking && other.CompareTag("Player") && !hasAttacked) {
             hasAttacked = true;
-            Debug.Log("attack");
             player.Damage(enemy.attackDamage);
         }
     }
