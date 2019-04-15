@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class Enemy : StateMachine
 {
-    public float chaseDistance = 6.0f;
     public float attackDistance = 2.0f;
 
     public float attackDamage = 25f;
