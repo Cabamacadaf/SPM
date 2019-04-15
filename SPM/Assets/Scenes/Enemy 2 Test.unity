@@ -317,7 +317,7 @@ PrefabInstance:
     - target: {fileID: 8493557469479239451, guid: ccf594ff4364c9f469c3047931af1582,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8493557469479239452, guid: ccf594ff4364c9f469c3047931af1582,
         type: 3}
@@ -1094,6 +1094,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994670898}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1261198831988845498
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3048001400863143757, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Stop Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216019696115784112, guid: b7ae66590feab9b4f9fb8f8da171b9b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b7ae66590feab9b4f9fb8f8da171b9b7, type: 3}
 --- !u!4 &2302755911761741580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7262512699746432890, guid: eb065775cdc08b34090714614bc7c69e,
@@ -1236,6 +1305,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7262512699746432893, guid: eb065775cdc08b34090714614bc7c69e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7262512699746432890, guid: eb065775cdc08b34090714614bc7c69e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1290,6 +1364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586337677126387113, guid: eb065775cdc08b34090714614bc7c69e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7262512699746432891, guid: eb065775cdc08b34090714614bc7c69e, type: 3}

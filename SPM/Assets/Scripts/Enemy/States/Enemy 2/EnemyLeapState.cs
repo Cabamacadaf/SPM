@@ -32,6 +32,7 @@ public class EnemyLeapState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
+        base.HandleUpdate();
         chargeTimer += Time.deltaTime;
         if (!leaping && chargeTimer >= owner2.leapChargeTime) {
             hit = false;

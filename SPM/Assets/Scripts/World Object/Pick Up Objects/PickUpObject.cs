@@ -74,16 +74,10 @@ public class PickUpObject : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter (Collision collision)
+    private void OnTriggerEnter (Collider other)
     {
-        if (collision.collider.CompareTag("Enemy") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
-            EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponent<Enemy>().GetCurrentState();
-            enemyState.Damage(rb.velocity.magnitude, rb.mass, damage);
-            LoseDurability();
-        }
-
-        if (collision.collider.CompareTag("Mouth") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
-            EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponentInParent<Enemy>().GetCurrentState();
+        if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
+            EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
             enemyState.Damage(rb.velocity.magnitude, rb.mass, damage);
             LoseDurability();
         }
