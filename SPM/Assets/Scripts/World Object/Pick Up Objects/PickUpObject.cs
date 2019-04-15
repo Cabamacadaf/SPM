@@ -81,5 +81,11 @@ public class PickUpObject : MonoBehaviour
             enemyState.Damage(rb.velocity.magnitude, rb.mass, damage);
             LoseDurability();
         }
+
+        if (collision.collider.CompareTag("Mouth") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
+            EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponentInParent<Enemy>().GetCurrentState();
+            enemyState.Damage(rb.velocity.magnitude, rb.mass, damage);
+            LoseDurability();
+        }
     }
 }
