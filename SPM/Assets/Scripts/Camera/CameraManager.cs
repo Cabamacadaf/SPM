@@ -10,7 +10,6 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float minClampValue;
     [SerializeField] private float maxClampValue;
 
-    [SerializeField] private float zoomSensitivity;
     [SerializeField] private float mouseSensitivity;
 
 
