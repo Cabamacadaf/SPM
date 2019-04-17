@@ -19,7 +19,7 @@ public class Enemy2AggroState : EnemyAggroState
         if(Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner2.leapRange && timer > owner2.leapCooldown) {
             owner.agent.SetDestination(owner.transform.position);
             owner.agent.isStopped = true;
-            owner.Transition<EnemyLeapState>();
+            owner.Transition<EnemyLeapChargeState>();
         }
     }
     public override void Exit ()
