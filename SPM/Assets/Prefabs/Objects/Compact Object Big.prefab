@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1905823645152155400}
   - component: {fileID: 1905823645152155401}
   - component: {fileID: 1905823645152155406}
-  - component: {fileID: 1905823645152155407}
   - component: {fileID: 1905823645152155404}
   - component: {fileID: 1905823645152155403}
+  - component: {fileID: 5209025948460638824}
   m_Layer: 9
   m_Name: Compact Object Big
   m_TagString: Shootable
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905823645152155405}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: a17fd2dc2ceb02e4cb95daaf3dcf934a, type: 3}
 --- !u!23 &1905823645152155406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1905823645152155407
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905823645152155405}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1905823645152155404
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,3 +113,16 @@ MonoBehaviour:
   distanceToGrab: 0.1
   damage: 25
   lowestVelocityToDoDamage: 5
+--- !u!65 &5209025948460638824
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905823645152155405}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.21834, y: 5.870632, z: 5.870632}
+  m_Center: {x: 0, y: 2.935316, z: 0}
