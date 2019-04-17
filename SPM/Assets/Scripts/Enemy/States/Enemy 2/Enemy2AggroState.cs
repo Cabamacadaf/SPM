@@ -25,6 +25,5 @@ public class Enemy2AggroState : EnemyAggroState
     public override void Exit ()
     {
         base.Exit();
-        Debug.Log("Exit Aggro State");
     }
 }

@@ -442,8 +442,11 @@ MonoBehaviour:
   physics: {fileID: 0}
   gravityGun: {fileID: 8727586052577491054}
   respawnPoint: {fileID: 0}
+  groundAcceleration: 70
+  airAcceleration: 0
+  jumpHeight: 70
   startHealth: 100
-  health: 0
+  health: 100
 --- !u!136 &9013354550664442613
 CapsuleCollider:
   m_ObjectHideFlags: 0

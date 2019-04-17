@@ -12,6 +12,8 @@ public class PickUpObject : MonoBehaviour
     protected Rigidbody rb;
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] protected float damage = 10f;
+    [SerializeField] protected float minDamage = 10f;
+    [SerializeField] protected float maxDamage = 50f;
     [SerializeField] private float lowestVelocityToDoDamage = 5.0f;
     protected Transform pullPoint;
     protected bool thrown = false;
@@ -38,7 +40,6 @@ public class PickUpObject : MonoBehaviour
 
             if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab)
             {
-
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 //rb.useGravity = false;
@@ -78,7 +79,7 @@ public class PickUpObject : MonoBehaviour
     {
         if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
-            enemyState.Damage(rb.velocity.magnitude, rb.mass, damage);
+            enemyState.Damage(Mathf.Clamp(rb.velocity.magnitude/5, minDamage, maxDamage));
             LoseDurability();
         }
     }

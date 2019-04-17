@@ -18,8 +18,12 @@ public class Player : StateMachine
     private Transform healthBar;
 
     public GameObject respawnPoint;
+
+    public float groundAcceleration;
+    //public float airAcceleration;
+    public float jumpHeight;
     public float startHealth;
-    public float health;
+    [HideInInspector] public float health;
 
 
     protected override void Awake()
