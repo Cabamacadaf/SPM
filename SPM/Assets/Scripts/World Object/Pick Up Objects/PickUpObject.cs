@@ -16,11 +16,12 @@ public class PickUpObject : MonoBehaviour
     protected Transform pullPoint;
     protected bool thrown = false;
 
+    //Should probably fix this
     private int geometry = 9;
 
     void Awake()
     {
-        pullPoint = GameObject.Find("PullPoint Close").transform;
+        pullPoint = GameObject.Find("PullPoint").transform;
         player = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody>();
     }
@@ -56,7 +57,6 @@ public class PickUpObject : MonoBehaviour
         active = false;
         holding = false;
         thrown = true;
-        //rb.useGravity = true;
     }
 
     public void Pull (float pullForce)
