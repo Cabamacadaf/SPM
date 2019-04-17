@@ -69,7 +69,7 @@ public class EnemyLeapState : EnemyBaseState
         base.HandleCollision(collision);
         // hit = true;
         if (collision.collider.CompareTag("Player")) {
-            Debug.Log("fisk");
+            Debug.Log("Enemy 2 Collision with Player");
         }
 
     }

@@ -22,4 +22,8 @@ public class Enemy2AggroState : EnemyAggroState
             owner.Transition<EnemyLeapState>();
         }
     }
+    public override void Exit ()
+    {
+        base.Exit();
+    }
 }

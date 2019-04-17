@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.8533053, y: 6.8533053, z: 6.8533053}
-  m_Center: {x: 0, y: 2.85, z: 0}
+  m_Size: {x: 13.617972, y: 6.853305, z: 13.267911}
+  m_Center: {x: -0.024445057, y: 2.85, z: -0.46980047}
 --- !u!1 &5012928528840510324
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 8493557469479239455}
   - component: {fileID: 8493557469479239454}
   - component: {fileID: 8493557469479239449}
-  - component: {fileID: 8493557469479239453}
+  - component: {fileID: 476107637921438998}
   - component: {fileID: 2226854606375388720}
   - component: {fileID: 3580324963919691689}
   m_Layer: 0
@@ -314,9 +314,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.808429, y: 6.8084273, z: 6.8084273}
-  m_Center: {x: 0, y: 2.88, z: 0}
---- !u!114 &8493557469479239453
+  m_Size: {x: 13.553902, y: 5.9074893, z: 11.479876}
+  m_Center: {x: -0.030731678, y: 2.9537446, z: 0}
+--- !u!114 &476107637921438998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,22 +325,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8493557469479239451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2682974cfd07455418d97ff2c0c725ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 473fc7f74f2072a4cbd62f13c9936e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   states:
   - {fileID: 11400000, guid: 998f84886cf2eca4f9f8a3665fdd2f29, type: 2}
   - {fileID: 11400000, guid: 3817c971b816d6148b31acceb185892d, type: 2}
   - {fileID: 11400000, guid: a697000dcae55c147b973673601ff9e9, type: 2}
-  attackDistance: 4
+  attackDistance: 15
   attackDamage: 25
-  attackTime: 0.3
+  attackTime: 0.1
   attackCooldown: 1
-  attackAnimationSpeed: 10
+  attackAnimationSpeed: 50
   attacking: 0
   hitPoints: 100
-  movementSpeed: 5
-  rotationSpeed: 5
+  movementSpeed: 20
   meshRenderer: {fileID: 0}
   agent: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -390,6 +389,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
+    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+      propertyPath: m_Name
+      value: Aggro Range
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -445,10 +448,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.z
       value: 6.255243
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
-      propertyPath: m_Name
-      value: Aggro Range
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Enabled

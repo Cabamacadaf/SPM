@@ -20,7 +20,7 @@ public class Enemy2 : Enemy
     protected override void Awake ()
     {
         base.Awake();
-        mouth = transform.GetChild(4);
+        mouth = transform.GetChild(2);
         mouthCollider = mouth.GetComponent<BoxCollider>();
         mouthRenderer = mouth.GetComponent<MeshRenderer>();
     }

@@ -24,11 +24,6 @@ public class EnemyBaseState : State
         }
     }
 
-    public void Damage (float speed, float mass, float damage)
-    {
-        Damage((speed * mass * damage) / 10);
-    }
-
     public void Damage (float damage)
     {
         Debug.Log(damage);

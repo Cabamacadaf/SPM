@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
     //Attributes
-
-    [SerializeField] private float acceleration;
+    
     private Vector3 direction;
     private float distance;
     private float size;
@@ -77,7 +76,7 @@ public class PlayerBaseState : State
         cameraRotation = owner.mainCamera.transform.rotation;
         owner.gravityGun.transform.rotation = cameraRotation;
 
-        owner.physics.AddVelocity(input * acceleration * Time.deltaTime);
+        owner.physics.AddVelocity(input * owner.groundAcceleration * Time.deltaTime);
 
 
         if (Input.GetMouseButtonDown(0))
