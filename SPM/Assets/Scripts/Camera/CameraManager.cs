@@ -47,7 +47,6 @@ public class CameraManager : MonoBehaviour
 
 
         transform.rotation = Quaternion.Euler(Mathf.Clamp(rotationX, minClampValue, maxClampValue), rotationY, 0);
-       
         movement = transform.rotation * cameraOffset;
         PreventCollision();
        

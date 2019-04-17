@@ -30,6 +30,37 @@ Transform:
   m_Father: {fileID: 8727586052577491053}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &527902997906261435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5989384535796477618}
+  m_Layer: 10
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5989384535796477618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527902997906261435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8727586053171767196}
+  m_Father: {fileID: 8727586053112546447}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3953414067077455359
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +381,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8727586053171767196}
+  - {fileID: 5989384535796477618}
   - {fileID: 8727586052577491053}
   - {fileID: 8747945087733278471}
   m_Father: {fileID: 0}
@@ -443,7 +474,6 @@ MonoBehaviour:
   gravityGun: {fileID: 8727586052577491054}
   respawnPoint: {fileID: 0}
   groundAcceleration: 70
-  airAcceleration: 0
   jumpHeight: 70
   startHealth: 100
   health: 100
@@ -489,10 +519,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727586053171767193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 15, z: -12}
+  m_LocalPosition: {x: 7, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8727586053112546447}
+  m_Father: {fileID: 5989384535796477618}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8727586053171767195
@@ -560,7 +590,7 @@ MonoBehaviour:
   minClampValue: -60
   maxClampValue: 60
   mouseSensitivity: 1
-  cameraOffset: {x: 7, y: 15, z: -12}
+  cameraOffset: {x: 7, y: 0, z: -12}
   geometryLayer:
     serializedVersion: 2
     m_Bits: 512
