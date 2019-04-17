@@ -12,12 +12,6 @@ public class EnemyAttackState : EnemyBaseState
         base.Enter();
         timer = 0.0f;
         attackObject = owner.transform.GetChild(0);
-        Attack();
-    }
-
-    private void Attack ()
-    {
-
     }
 
     public override void HandleUpdate ()
