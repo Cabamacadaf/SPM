@@ -329,9 +329,9 @@ GameObject:
   - component: {fileID: 8727586053112546447}
   - component: {fileID: 8727586053112546446}
   - component: {fileID: 8727586053112546445}
-  - component: {fileID: 8727586053112546444}
   - component: {fileID: 613283156}
   - component: {fileID: 613283157}
+  - component: {fileID: 9013354550664442613}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -401,20 +401,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8727586053112546444
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727586053112546443}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 5.1144466
-  m_Height: 18.585424
-  m_Direction: 1
-  m_Center: {x: 0.00005221367, y: 9.450149, z: 0.54948443}
 --- !u!114 &613283156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +444,20 @@ MonoBehaviour:
   respawnPoint: {fileID: 0}
   startHealth: 100
   health: 0
+--- !u!136 &9013354550664442613
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5.1144466
+  m_Height: 18.585424
+  m_Direction: 1
+  m_Center: {x: 0.00005221367, y: 9.450149, z: 0.54948443}
 --- !u!1 &8727586053171767193
 GameObject:
   m_ObjectHideFlags: 0
