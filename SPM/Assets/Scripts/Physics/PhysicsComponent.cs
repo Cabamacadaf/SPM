@@ -12,11 +12,6 @@ public class PhysicsComponent : MonoBehaviour
     [SerializeField] private float gravity;
 
     //Methods
-    private void Update()
-    {
-        ApplyGravity();
-        ApplyAirResistance();
-    }
 
     public void AddVelocity(Vector3 vel)
     {
@@ -43,7 +38,7 @@ public class PhysicsComponent : MonoBehaviour
         velocity += Vector3.down * gravity * Time.deltaTime;
 
     }
-    protected void ApplyAirResistance()
+    public void ApplyAirResistance()
     {
         velocity *= Mathf.Pow(airResistanceCoefficient, Time.deltaTime);
 

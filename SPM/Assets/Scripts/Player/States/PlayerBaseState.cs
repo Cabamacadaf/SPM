@@ -41,8 +41,8 @@ public class PlayerBaseState : State
     public override void HandleUpdate()
     {
         HandleInput();
-        //ApplyGravity();
-        //ApplyAirResistance();
+        owner.physics.ApplyGravity();
+        owner.physics.ApplyAirResistance();
 
         CheckCollision();
 
