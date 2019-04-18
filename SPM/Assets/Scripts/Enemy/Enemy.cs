@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Enemy : StateMachine
 {
+    public AudioClip attackSound;
     public float attackDamage = 25f;
     public float hitPoints = 100f;
     public float movementSpeed = 5.0f;
@@ -15,11 +16,13 @@ public class Enemy : StateMachine
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public BoxCollider boxCollider;
     [HideInInspector] public GameObject attackHitbox;
+    [HideInInspector] public AudioSource audioSource;
 
     [HideInInspector] public Player player;
 
     protected override void Awake ()
     {
+        audioSource = GetComponent<AudioSource>();
         attackHitbox = transform.GetChild(0).gameObject;
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();

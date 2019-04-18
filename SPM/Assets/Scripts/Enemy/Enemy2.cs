@@ -13,6 +13,7 @@ public class Enemy2 : Enemy
     public float leapRecovery = 0.5f;
     public float leapDamage = 10.0f;
     [HideInInspector] public Transform mouth;
+    public float leapSpeed = 2.0f;
 
     protected override void Awake ()
     {
