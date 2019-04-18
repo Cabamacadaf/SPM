@@ -111,8 +111,10 @@ MonoBehaviour:
   durability: 2
   holding: 0
   distanceToGrab: 0.1
-  damage: 100
-  lowestVelocityToDoDamage: 5
+  damageMultiplier: 0.2
+  minDamage: 30
+  maxDamage: 70
+  lowestVelocityToDoDamage: 3
 --- !u!65 &4474471544723994075
 BoxCollider:
   m_ObjectHideFlags: 0
