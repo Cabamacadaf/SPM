@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy2/LeapChargeState")]
-public class EnemyLeapChargeState : EnemyBaseState
+[CreateAssetMenu(menuName = "States/Enemy1/AttackRecoverState")]
+public class Enemy1AttackRecoverState : EnemyBaseState
 {
     private float timer;
-    private Enemy2 owner2;
+    private Enemy1 owner1;
+
     public override void Enter ()
     {
+        Debug.Log("Attack Recover State");
         base.Enter();
-        Debug.Log("Leap Charge State");
         timer = 0.0f;
-        owner2 = (Enemy2)owner;
-        owner2.mouth.gameObject.SetActive(true);
+        owner1 = (Enemy1)owner;
+        owner.attackHitbox.SetActive(false);
     }
+
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
@@ -22,8 +24,9 @@ public class EnemyLeapChargeState : EnemyBaseState
         owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.player.transform.position - owner.transform.position, owner.rotationSpeed * Time.deltaTime, 0.0f));
 
         timer += Time.deltaTime;
-        if(timer >= owner2.leapChargeTime) {
-            owner.Transition<EnemyLeapState>();
+
+        if(timer >= owner1.attackCooldown) {
+            owner.Transition<Enemy1AggroState>();
         }
     }
 }

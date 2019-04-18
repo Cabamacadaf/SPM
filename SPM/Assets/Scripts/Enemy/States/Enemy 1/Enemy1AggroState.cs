@@ -5,26 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Enemy1/AggroState")]
 public class Enemy1AggroState : EnemyAggroState
 {
-    private float timer;
+    private Enemy1 owner1;
     public override void Enter ()
     {
         Debug.Log("Aggro State");
-        timer = 0.0f;
+        owner1 = (Enemy1)owner;
         base.Enter();
     }
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
-        
-        owner.agent.SetDestination(owner.player.transform.position);
-        timer += Time.deltaTime;
 
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance ) {
+        owner.agent.SetDestination(owner.player.transform.position);
+
+        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner1.attackDistance) {
             owner.agent.SetDestination(owner.transform.position);
-            if (timer > owner.attackCooldown) {
-                owner.agent.isStopped = true;
-                owner.Transition<Enemy1AttackState>();
-            }
+            owner.agent.isStopped = true;
+            owner.Transition<Enemy1AttackState>();
         }
     }
 }

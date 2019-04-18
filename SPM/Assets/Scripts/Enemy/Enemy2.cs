@@ -7,13 +7,11 @@ using UnityEngine.AI;
 public class Enemy2 : Enemy
 {
     public float leapRange = 10.0f;
-    public float leapCooldown = 1.0f;
     public float leapChargeTime = 0.5f;
     public float leapHeight = 5.0f;
     public float leapTime = 1.0f;
     public float leapRecovery = 0.5f;
     public float leapDamage = 10.0f;
-    public float chargeRotationSpeed = 5.0f;
     [HideInInspector] public Transform mouth;
 
     protected override void Awake ()

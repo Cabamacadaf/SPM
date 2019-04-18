@@ -265,27 +265,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a50e24b28e51fd49b6f691d02c67e35, type: 2}
   - {fileID: 11400000, guid: 7be9f70fbad2a274bb14f13d02031d47, type: 2}
   - {fileID: 11400000, guid: 397eb62e95f4ad944a218a23b3cba9cb, type: 2}
-  attackDistance: 15
   attackDamage: 35
-  attackTime: 1
-  attackCooldown: 1
-  attackAnimationSpeed: 2
   hitPoints: 75
   movementSpeed: 25
   acceleration: 100
+  rotationSpeed: 5
   meshRenderer: {fileID: 0}
   agent: {fileID: 0}
   boxCollider: {fileID: 0}
   attackHitbox: {fileID: 0}
   player: {fileID: 0}
   leapRange: 40
-  leapCooldown: 1
   leapChargeTime: 0.5
   leapHeight: 5
   leapTime: 1
   leapRecovery: 0.5
   leapDamage: 50
-  chargeRotationSpeed: 5
   mouth: {fileID: 0}
 --- !u!195 &1148960109065948758
 NavMeshAgent:

@@ -20,7 +20,11 @@ public class EnemyLeapRecoverState : EnemyBaseState
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
+
+        owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.player.transform.position - owner.transform.position, owner2.rotationSpeed * Time.deltaTime, 0.0f));
+
         timer += Time.deltaTime;
+
         if (timer >= owner2.leapRecovery) {
             owner.Transition<Enemy2AggroState>();
         }

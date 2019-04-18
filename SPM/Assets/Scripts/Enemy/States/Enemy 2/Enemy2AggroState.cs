@@ -6,10 +6,8 @@ using UnityEngine;
 public class Enemy2AggroState : EnemyAggroState
 {
     private Enemy2 owner2;
-    private float timer;
     public override void Enter ()
     {
-        timer = 0.0f;
         Debug.Log("Aggro State");
         owner2 = (Enemy2)owner;
         base.Enter();
@@ -19,16 +17,11 @@ public class Enemy2AggroState : EnemyAggroState
     {
         base.HandleUpdate();
         owner.agent.SetDestination(owner.player.transform.position);
-        timer += Time.deltaTime;
 
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner2.leapRange && timer > owner2.leapCooldown) {
+        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner2.leapRange) {
             owner.agent.SetDestination(owner.transform.position);
             owner.agent.isStopped = true;
             owner.Transition<EnemyLeapChargeState>();
-        }
-
-        else if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance) {
-            owner.agent.SetDestination(owner.transform.position);
         }
 
         

@@ -332,19 +332,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 998f84886cf2eca4f9f8a3665fdd2f29, type: 2}
   - {fileID: 11400000, guid: 3817c971b816d6148b31acceb185892d, type: 2}
   - {fileID: 11400000, guid: a697000dcae55c147b973673601ff9e9, type: 2}
-  attackDistance: 15
+  - {fileID: 11400000, guid: cff0b0ecff67a4c4abc3d49501c47fbf, type: 2}
   attackDamage: 25
-  attackTime: 0.1
-  attackCooldown: 1
-  attackAnimationSpeed: 50
-  attacking: 0
   hitPoints: 50
   movementSpeed: 20
   acceleration: 100
   meshRenderer: {fileID: 0}
   agent: {fileID: 0}
   boxCollider: {fileID: 0}
+  attackHitbox: {fileID: 0}
   player: {fileID: 0}
+  attackDistance: 15
+  attackTime: 0.1
+  attackCooldown: 1
+  attackAnimationSpeed: 50
 --- !u!195 &2226854606375388720
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -390,6 +391,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
+    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+      propertyPath: m_Name
+      value: Aggro Range
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -445,10 +450,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.z
       value: 6.255243
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
-      propertyPath: m_Name
-      value: Aggro Range
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Enabled
