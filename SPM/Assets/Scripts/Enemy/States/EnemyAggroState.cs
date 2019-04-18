@@ -17,6 +17,7 @@ public class EnemyAggroState : EnemyBaseState
         base.Enter();
         timer = 0.0f;
         owner.agent.speed = owner.movementSpeed;
+        owner.agent.acceleration = owner.acceleration;
         owner.agent.isStopped = false;
     }
 

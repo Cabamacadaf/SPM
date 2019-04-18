@@ -13,6 +13,7 @@ public class Enemy2 : Enemy
     public float leapTime = 1.0f;
     public float leapRecovery = 0.5f;
     public float leapDamage = 10.0f;
+    public float chargeRotationSpeed = 5.0f;
     [HideInInspector] public Transform mouth;
     [HideInInspector] public BoxCollider mouthCollider;
     [HideInInspector] public MeshRenderer mouthRenderer;

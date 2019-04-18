@@ -20,7 +20,7 @@ public class EnemyLeapChargeState : EnemyBaseState
     {
         base.HandleUpdate();
 
-        owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.player.transform.position - owner.transform.position, owner.rotationSpeed * Time.deltaTime, 0.0f));
+        owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.player.transform.position - owner.transform.position, owner2.chargeRotationSpeed * Time.deltaTime, 0.0f));
 
         timer += Time.deltaTime;
         if(timer >= owner2.leapChargeTime) {
