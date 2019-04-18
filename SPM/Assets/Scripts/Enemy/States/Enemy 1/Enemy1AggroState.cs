@@ -18,6 +18,7 @@ public class Enemy1AggroState : EnemyAggroState
         
         owner.agent.SetDestination(owner.player.transform.position);
         timer += Time.deltaTime;
+
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance ) {
             owner.agent.SetDestination(owner.transform.position);
             if (timer > owner.attackCooldown) {
