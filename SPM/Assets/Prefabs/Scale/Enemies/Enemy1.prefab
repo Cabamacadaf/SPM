@@ -72,8 +72,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012928528840510324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.063, z: -0.63}
-  m_LocalScale: {x: 0.60209, y: 0.60209, z: 2.1746287}
+  m_LocalPosition: {x: 0, y: 2.52, z: 3.27}
+  m_LocalScale: {x: 1.1772064, y: 1.1772064, z: 4.251834}
   m_Children: []
   m_Father: {fileID: 6801821671488285149}
   m_RootOrder: 0
@@ -173,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7468751758027635186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.42, z: 2.92}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2115557505866970416}
@@ -332,18 +332,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 998f84886cf2eca4f9f8a3665fdd2f29, type: 2}
   - {fileID: 11400000, guid: 3817c971b816d6148b31acceb185892d, type: 2}
   - {fileID: 11400000, guid: a697000dcae55c147b973673601ff9e9, type: 2}
-  attackDistance: 15
+  - {fileID: 11400000, guid: cff0b0ecff67a4c4abc3d49501c47fbf, type: 2}
   attackDamage: 25
-  attackTime: 0.1
-  attackCooldown: 1
-  attackAnimationSpeed: 50
-  attacking: 0
-  hitPoints: 100
+  hitPoints: 50
   movementSpeed: 20
+  acceleration: 100
   meshRenderer: {fileID: 0}
   agent: {fileID: 0}
   boxCollider: {fileID: 0}
+  attackHitbox: {fileID: 0}
   player: {fileID: 0}
+  attackDistance: 15
+  attackTime: 0.1
+  attackCooldown: 1
+  attackAnimationSpeed: 50
 --- !u!195 &2226854606375388720
 NavMeshAgent:
   m_ObjectHideFlags: 0

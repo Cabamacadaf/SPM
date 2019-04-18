@@ -5,21 +5,24 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Enemy1/AttackState")]
 public class Enemy1AttackState : EnemyAttackState
 {
+    private Enemy1 owner1;
     public override void Enter ()
     {
+        Debug.Log("Attack State");
         base.Enter();
-        owner.attacking = true;
+        owner1 = (Enemy1)owner;
+        owner.attackHitbox.SetActive(true);
     }
 
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
-        if (timer >= owner.attackTime) {
+        if (timer >= owner1.attackTime) {
             attackObject.position = owner.transform.position;
-            owner.Transition<Enemy1AggroState>();
+            owner.Transition<Enemy1AttackRecoverState>();
         }
 
-        attackObject.position += attackObject.forward * Time.deltaTime * owner.attackAnimationSpeed;
+        attackObject.position += attackObject.forward * Time.deltaTime * owner1.attackAnimationSpeed;
         timer += Time.deltaTime;
     }
 
@@ -27,6 +30,5 @@ public class Enemy1AttackState : EnemyAttackState
     {
         base.Exit();
         owner.GetComponentInChildren<Attack>().hasAttacked = false;
-        owner.attacking = false;
     }
 }

@@ -13,10 +13,10 @@ public class EnemyAggro : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Player")) {
-            if (enemy is Enemy2 && !(enemy.GetCurrentState() is Enemy2AggroState)) {
+            if (enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) {
                 enemy.Transition<Enemy2AggroState>();
             }
-            else if (enemy is Enemy1 && !(enemy.GetCurrentState() is Enemy1AggroState)) {
+            else if (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState) {
                 enemy.Transition<Enemy1AggroState>();
             }
         }

@@ -8,6 +8,7 @@ public class ExplosiveObject : PickUpObject
     public GameObject explosion2;
     public float power = 10.0F;
 
+    [SerializeField] private float damage = 10f;
     [SerializeField] private float radius;
     private void OnCollisionEnter(Collision collision)
     {
