@@ -7,8 +7,9 @@ public class Enemy1AttackState : EnemyAttackState
 {
     public override void Enter ()
     {
+        Debug.Log("Attack State");
         base.Enter();
-        owner.attacking = true;
+        owner.attackHitbox.SetActive(true);
     }
 
     public override void HandleUpdate ()
@@ -27,6 +28,6 @@ public class Enemy1AttackState : EnemyAttackState
     {
         base.Exit();
         owner.GetComponentInChildren<Attack>().hasAttacked = false;
-        owner.attacking = false;
+        owner.attackHitbox.SetActive(false);
     }
 }

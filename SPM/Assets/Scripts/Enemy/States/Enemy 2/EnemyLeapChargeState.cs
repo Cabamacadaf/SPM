@@ -13,8 +13,7 @@ public class EnemyLeapChargeState : EnemyBaseState
         Debug.Log("Leap Charge State");
         timer = 0.0f;
         owner2 = (Enemy2)owner;
-        owner2.mouthRenderer.enabled = true;
-        owner2.mouthCollider.enabled = true;
+        owner2.mouth.gameObject.SetActive(true);
     }
     public override void HandleUpdate ()
     {

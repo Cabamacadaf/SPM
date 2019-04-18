@@ -10,11 +10,12 @@ public class EnemyLeapRecoverState : EnemyBaseState
 
     public override void Enter ()
     {
+        Debug.Log("Leap Recover State");
         base.Enter();
+        timer = 0.0f;
         owner2 = (Enemy2)owner;
-        owner2.attacking = false;
-        owner2.mouthCollider.enabled = false;
-        owner2.mouthRenderer.enabled = false;
+        owner2.attackHitbox.SetActive(false);
+        owner2.mouth.gameObject.SetActive(false);
     }
     public override void HandleUpdate ()
     {

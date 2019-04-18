@@ -20,7 +20,7 @@ public class EnemyLeapState : EnemyBaseState
         startPosition = owner.transform.position;
         endPosition = owner.player.transform.position;
         midPosition = startPosition + (endPosition - startPosition) / 2 + Vector3.up * owner2.leapHeight;
-        owner2.attacking = true;
+        owner2.attackHitbox.SetActive(true);
         base.Enter();
     }
 
@@ -45,5 +45,10 @@ public class EnemyLeapState : EnemyBaseState
         if (collision.collider.CompareTag("Player")) {
             Debug.Log("Enemy 2 Collision with Player");
         }
+    }
+    public override void Exit ()
+    {
+        base.Exit();
+        owner.GetComponentInChildren<Attack>().hasAttacked = false;
     }
 }

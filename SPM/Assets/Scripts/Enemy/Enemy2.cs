@@ -15,14 +15,10 @@ public class Enemy2 : Enemy
     public float leapDamage = 10.0f;
     public float chargeRotationSpeed = 5.0f;
     [HideInInspector] public Transform mouth;
-    [HideInInspector] public BoxCollider mouthCollider;
-    [HideInInspector] public MeshRenderer mouthRenderer;
 
     protected override void Awake ()
     {
         base.Awake();
         mouth = transform.GetChild(2);
-        mouthCollider = mouth.GetComponent<BoxCollider>();
-        mouthRenderer = mouth.GetComponent<MeshRenderer>();
     }
 }

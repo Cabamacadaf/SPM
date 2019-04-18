@@ -12,7 +12,6 @@ public class Enemy : StateMachine
     public float attackTime = 1.0f;
     public float attackCooldown = 1.0f;
     public float attackAnimationSpeed = 2.0f;
-    [HideInInspector] public bool attacking = false;
 
     public float hitPoints = 100f;
     public float movementSpeed = 5.0f;
@@ -20,11 +19,13 @@ public class Enemy : StateMachine
     [HideInInspector] public MeshRenderer meshRenderer;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public BoxCollider boxCollider;
+    [HideInInspector] public GameObject attackHitbox;
 
     [HideInInspector] public Player player;
 
     protected override void Awake ()
     {
+        attackHitbox = transform.GetChild(0).gameObject;
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
