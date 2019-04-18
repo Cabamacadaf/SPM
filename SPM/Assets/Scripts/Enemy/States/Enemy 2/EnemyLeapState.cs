@@ -26,7 +26,7 @@ public class EnemyLeapState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * owner2.leapSpeed;
 
         Vector3 m1 = Vector3.Lerp(startPosition, midPosition, timer);
         Vector3 m2 = Vector3.Lerp(midPosition, endPosition, timer);
