@@ -14,6 +14,7 @@ public class EnemyLeapState : EnemyBaseState
 
     public override void Enter ()
     {
+        owner.audioSource.PlayOneShot(owner.attackSound);
         Debug.Log("Leap State");
         owner2 = (Enemy2)owner;
         timer = 0.0f;
