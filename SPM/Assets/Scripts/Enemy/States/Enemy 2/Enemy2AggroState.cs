@@ -21,15 +21,17 @@ public class Enemy2AggroState : EnemyAggroState
         owner.agent.SetDestination(owner.player.transform.position);
         timer += Time.deltaTime;
 
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance) {
-            owner.agent.SetDestination(owner.transform.position);
-        }
-
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner2.leapRange && timer > owner2.leapCooldown) {
             owner.agent.SetDestination(owner.transform.position);
             owner.agent.isStopped = true;
             owner.Transition<EnemyLeapChargeState>();
         }
+
+        else if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance) {
+            owner.agent.SetDestination(owner.transform.position);
+        }
+
+        
     }
     public override void Exit ()
     {
