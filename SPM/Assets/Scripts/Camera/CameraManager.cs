@@ -13,8 +13,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float mouseSensitivity;
 
 
-
-    private Vector3 movement;
+    Vector3 movement;
 
     [SerializeField] private Vector3 cameraOffset;
     private SphereCollider sphereCollider;
@@ -34,41 +33,42 @@ public class CameraManager : MonoBehaviour
     {
 
         rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-        if(rotationX > maxClampValue)
-        {
-            rotationX = maxClampValue;
-        }
-        else if(rotationX < minClampValue)
-        {
-            rotationX = minClampValue;
-        }
-
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
 
 
         transform.rotation = Quaternion.Euler(Mathf.Clamp(rotationX, minClampValue, maxClampValue), rotationY, 0);
-        movement = transform.rotation * cameraOffset;
-        PreventCollision();
-       
-     
-        transform.position = movement + transform.parent.position;
+
+        //förhållandet mellan karaktären och kameran, i den riktning kameran är roterad mot.
+        Vector3 wantedMovement = transform.rotation * cameraOffset;
+
+        
+        movement = PreventCollision(wantedMovement);
+
+
+        
 
 
     }
 
+    private void LateUpdate()
+    {
+        
+        transform.position = movement + transform.parent.position;
+    }
 
 
-    private void PreventCollision()
+
+    private Vector3 PreventCollision(Vector3 wantedMovement)
     {
         RaycastHit hitInfo;
-        if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, movement.normalized, out hitInfo, movement.magnitude + sphereCollider.radius, geometryLayer))
+        if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, wantedMovement.normalized, out hitInfo, wantedMovement.magnitude + sphereCollider.radius, geometryLayer))
         {
+            //Vector3 newOffset = new Vector3(cameraOffset.x, cameraOffset.y, -(hitInfo.distance - sphereCollider.radius));
 
-            Vector3 newoffset = cameraOffset;
-            newoffset.z = -(hitInfo.distance - sphereCollider.radius);
-            movement = transform.rotation * newoffset;
-           
+            //wantedMovement = transform.rotation * newOffset;
+            wantedMovement = wantedMovement.normalized * (hitInfo.distance - sphereCollider.radius);
+
         }
-
+        return wantedMovement;
     }
 }
