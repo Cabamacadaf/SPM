@@ -15,7 +15,6 @@ public class Enemy2AggroState : EnemyAggroState
 
     public override void HandleUpdate ()
     {
-        base.HandleUpdate();
         owner.agent.SetDestination(owner.player.transform.position);
 
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner2.leapRange) {
@@ -23,8 +22,7 @@ public class Enemy2AggroState : EnemyAggroState
             owner.agent.isStopped = true;
             owner.Transition<EnemyLeapChargeState>();
         }
-
-        
+        base.HandleUpdate();
     }
     public override void Exit ()
     {

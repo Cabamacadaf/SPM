@@ -14,8 +14,6 @@ public class Enemy1AggroState : EnemyAggroState
     }
     public override void HandleUpdate ()
     {
-        base.HandleUpdate();
-
         owner.agent.SetDestination(owner.player.transform.position);
 
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner1.attackDistance) {
@@ -23,5 +21,6 @@ public class Enemy1AggroState : EnemyAggroState
             owner.agent.isStopped = true;
             owner.Transition<Enemy1AttackState>();
         }
+        base.HandleUpdate();
     }
 }
