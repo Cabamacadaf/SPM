@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class CorePlacementPlace : MonoBehaviour
 {
+    public GameObject objectA;
+    private GameObject objectB;
+
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("PowerCore"))
         {
-            other.transform.parent = transform; // Måste fixas xD
+            
+            objectB = other.transform.gameObject;
+            objectB.transform.position = objectA.transform.position;
+            objectB.transform.parent = objectA.transform;
             GameController.gameControllerInstance.powerCoreCollection++;
-            //Gör Power core ointeraktivt();
+            GameObject.Find("Objective_Power_Core").GetComponent<PickUpObject>().enabled = false;
         }
     }
 }
