@@ -26,11 +26,11 @@ public class GravityGun : MonoBehaviour
 
     public void Update()
     {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.collider.gameObject.CompareTag("Shootable"))
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.collider.GetComponent<PickUpObject>() != null)
         {
             crosshair.color = Color.green;
         }
-        else if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hitInfo, pullRange, hitLayer) && hitInfo.collider.gameObject.CompareTag("Shootable"))
+        else if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hitInfo, pullRange, hitLayer) && hitInfo.collider.GetComponent<PickUpObject>() != null)
         {
 
             crosshair.color = Color.green;
@@ -52,7 +52,7 @@ public class GravityGun : MonoBehaviour
             if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer))
             {
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.red, 2);
-                if (hit.collider.attachedRigidbody != null && hit.collider.gameObject.CompareTag("Shootable"))
+                if (hit.collider.attachedRigidbody != null && hit.collider.GetComponent<PickUpObject>() != null)
                 {
                     hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * pushForce * (1 - (hit.distance / pushRange)));
                 }
@@ -79,7 +79,7 @@ public class GravityGun : MonoBehaviour
     {
         if (holdingObject == null)
         {
-            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer) && hit.collider.gameObject.CompareTag("Shootable"))
+            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer) && hit.collider.GetComponent<PickUpObject>() != null)
             {
 
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);
