@@ -17,7 +17,6 @@ public class Enemy1AttackState : EnemyAttackState
 
     public override void HandleUpdate ()
     {
-        base.HandleUpdate();
         if (timer >= owner1.attackTime) {
             attackObject.position = owner.transform.position;
             owner.Transition<Enemy1AttackRecoverState>();
@@ -25,6 +24,7 @@ public class Enemy1AttackState : EnemyAttackState
 
         attackObject.position += attackObject.forward * Time.deltaTime * owner1.attackAnimationSpeed;
         timer += Time.deltaTime;
+        base.HandleUpdate();
     }
 
     public override void Exit ()

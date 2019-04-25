@@ -12,8 +12,11 @@ public class EnemyLeapState : EnemyBaseState
     private Vector3 endPosition;
     private Vector3 midPosition;
 
+    private bool hitPlayer;
+
     public override void Enter ()
     {
+        hitPlayer = false;
         owner.audioSource.PlayOneShot(owner.attackSound);
         Debug.Log("Leap State");
         owner2 = (Enemy2)owner;
@@ -29,21 +32,23 @@ public class EnemyLeapState : EnemyBaseState
     {
         timer += Time.deltaTime * owner2.leapSpeed;
 
-        Vector3 m1 = Vector3.Lerp(startPosition, midPosition, timer);
-        Vector3 m2 = Vector3.Lerp(midPosition, endPosition, timer);
-        owner.transform.position = Vector3.Lerp(m1, m2, timer);
+        if (!hitPlayer) {
+            Vector3 m1 = Vector3.Lerp(startPosition, midPosition, timer);
+            Vector3 m2 = Vector3.Lerp(midPosition, endPosition, timer);
+            owner.transform.position = Vector3.Lerp(m1, m2, timer);
+        }
 
         if (timer >= owner2.leapTime) {
             owner.Transition<EnemyLeapRecoverState>();
         }
-
-
+        base.HandleUpdate();
     }
 
     public override void HandleCollision (Collision collision)
     {
         base.HandleCollision(collision);
         if (collision.collider.CompareTag("Player")) {
+            hitPlayer = true;
             Debug.Log("Enemy 2 Collision with Player");
         }
     }

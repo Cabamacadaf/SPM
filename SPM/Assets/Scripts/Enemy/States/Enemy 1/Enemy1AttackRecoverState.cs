@@ -19,8 +19,6 @@ public class Enemy1AttackRecoverState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
-        base.HandleUpdate();
-
         owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.player.transform.position - owner.transform.position, owner.rotationSpeed * Time.deltaTime, 0.0f));
 
         timer += Time.deltaTime;
@@ -28,5 +26,6 @@ public class Enemy1AttackRecoverState : EnemyBaseState
         if(timer >= owner1.attackCooldown) {
             owner.Transition<Enemy1AggroState>();
         }
+        base.HandleUpdate();
     }
 }

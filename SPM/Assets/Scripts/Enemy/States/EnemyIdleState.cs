@@ -13,8 +13,8 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
-        base.HandleUpdate();
         //rotationY += owner.transform.rotation.y + 2.0f * Time.deltaTime;
         //owner.transform.rotation = Quaternion.Euler(rotationY, 0, 0);
+        base.HandleUpdate();
     }
 }
