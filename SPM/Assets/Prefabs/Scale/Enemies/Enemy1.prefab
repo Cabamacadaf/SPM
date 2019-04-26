@@ -339,7 +339,7 @@ MonoBehaviour:
   aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
   attackDamage: 25
   hitPoints: 50
-  movementSpeed: 20
+  movementSpeed: 25
   acceleration: 100
   rotationSpeed: 5
   meshRenderer: {fileID: 0}
@@ -494,6 +494,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
+    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Red_Light
+      objectReference: {fileID: 0}
     - target: {fileID: 4527334072976497326, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -549,11 +554,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Red_Light
-      objectReference: {fileID: 0}
     - target: {fileID: 5356084169017483719, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
         type: 3}
       propertyPath: m_Range
@@ -584,6 +584,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
+    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+      propertyPath: m_Name
+      value: Aggro Range
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -630,19 +634,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.255243
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.255243
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.255243
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
-      propertyPath: m_Name
-      value: Aggro Range
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Enabled
