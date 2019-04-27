@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAggro : MonoBehaviour
 {
+    [SerializeField] private LayerMask wallLayer;
     private Enemy enemy;
 
     private void Awake ()
@@ -13,11 +14,14 @@ public class EnemyAggro : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Player")) {
-            if (enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) {
-                enemy.Transition<Enemy2AggroState>();
-            }
-            else if (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState) {
-                enemy.Transition<Enemy1AggroState>();
+            Vector3 raycastDirection = enemy.transform.position - other.transform.position;
+            if (!Physics.Raycast(other.transform.position, raycastDirection.normalized, out RaycastHit hit, raycastDirection.magnitude, wallLayer)) {
+                if (enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) {
+                    enemy.Transition<Enemy2AggroState>();
+                }
+                else if (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState) {
+                    enemy.Transition<Enemy1AggroState>();
+                }
             }
         }
     }
