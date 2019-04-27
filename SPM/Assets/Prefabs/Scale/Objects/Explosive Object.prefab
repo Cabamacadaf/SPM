@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7543826323438187457}
   - component: {fileID: 7543826323438187456}
   - component: {fileID: 2883381633301016481}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Explosive Object
   m_TagString: Shootable
   m_Icon: {fileID: 0}
@@ -95,13 +95,16 @@ MonoBehaviour:
   durability: 1
   holding: 0
   distanceToGrab: 0.1
-  damage: 101
+  damageMultiplier: 0.2
+  minDamage: 10
+  maxDamage: 50
   lowestVelocityToDoDamage: 5
   explosion1: {fileID: 5251145782221235652, guid: acf93958653fa844880eaa8cf5e49ad3,
     type: 3}
   explosion2: {fileID: 2032767768531018655, guid: b2922bc602723b64b820e89128aada85,
     type: 3}
   power: 10
+  damage: 101
   radius: 10
 --- !u!54 &7543826323438187456
 Rigidbody:

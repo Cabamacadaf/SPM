@@ -57,7 +57,7 @@ public class PlayerBaseState : State
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         input = owner.mainCamera.transform.rotation * input;
 
-        if (Physics.SphereCast(owner.transform.position + point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.layerMask))
+        if (Physics.SphereCast(owner.transform.position + point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.walkableMask))
         {
             input = Vector3.ProjectOnPlane(input, hitInfo.normal).normalized;
 
@@ -100,7 +100,7 @@ public class PlayerBaseState : State
 
             Vector3 velocity = owner.physics.GetVelocity();
             RaycastHit hitInfo;
-            if (Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, owner.capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + owner.skinWidth, owner.layerMask))
+            if (Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, owner.capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + owner.skinWidth, owner.walkableMask))
             {
                 //if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
 

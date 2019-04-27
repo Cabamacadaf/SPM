@@ -10,7 +10,7 @@ public class Player : StateMachine
 
     public float groundCheckDistance;
     public GameObject mainCamera;
-    public LayerMask layerMask;
+    public LayerMask walkableMask;
     public float skinWidth;
     [HideInInspector] public CapsuleCollider capsuleCollider;
     [HideInInspector] public PhysicsComponent physics;

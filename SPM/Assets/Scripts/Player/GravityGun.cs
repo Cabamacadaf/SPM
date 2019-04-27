@@ -26,11 +26,11 @@ public class GravityGun : MonoBehaviour
 
     public void Update()
     {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.collider.GetComponent<PickUpObject>() != null)
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer))
         {
             crosshair.color = Color.green;
         }
-        else if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hitInfo, pullRange, hitLayer) && hitInfo.collider.GetComponent<PickUpObject>() != null)
+        else if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hitInfo, pullRange, hitLayer))
         {
 
             crosshair.color = Color.green;
@@ -79,7 +79,7 @@ public class GravityGun : MonoBehaviour
     {
         if (holdingObject == null)
         {
-            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer) && hit.collider.GetComponent<PickUpObject>() != null)
+            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer))
             {
 
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);

@@ -18,7 +18,7 @@ public class PlayerAirState : PlayerBaseState
         base.HandleUpdate();
 
         RaycastHit hitInfo;
-        if (Physics.SphereCast(owner.transform.position + base.point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.layerMask))
+        if (Physics.SphereCast(owner.transform.position + base.point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.walkableMask))
         {
             owner.Transition<PlayerGroundState>();
         }

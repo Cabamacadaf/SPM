@@ -487,7 +487,7 @@ MonoBehaviour:
   cameraOffset: 3.5
   hitLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
   crosshair: {fileID: 0}
   playerPushForce: 10
   powerUpLength: 100
@@ -609,9 +609,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
   groundCheckDistance: 0.02
   mainCamera: {fileID: 8727586053171767193}
-  layerMask:
+  walkableMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8704
   skinWidth: 0.03
   capsuleCollider: {fileID: 0}
   physics: {fileID: 0}

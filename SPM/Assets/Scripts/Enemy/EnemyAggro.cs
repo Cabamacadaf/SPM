@@ -11,17 +11,20 @@ public class EnemyAggro : MonoBehaviour
     {
         enemy = GetComponentInParent<Enemy>();
     }
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerStay (Collider other)
     {
         if (other.CompareTag("Player")) {
-            Vector3 raycastDirection = enemy.transform.position - other.transform.position;
-            if (!Physics.Raycast(other.transform.position, raycastDirection.normalized, out RaycastHit hit, raycastDirection.magnitude, wallLayer)) {
+            Debug.DrawLine(other.bounds.center, enemy.transform.position, Color.yellow, 2);
+            Vector3 raycastDirection = enemy.transform.position - other.bounds.center;
+            if (!Physics.Raycast(other.bounds.center, raycastDirection.normalized, out RaycastHit hit, raycastDirection.magnitude, wallLayer)) {
+                
                 if (enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) {
                     enemy.Transition<Enemy2AggroState>();
                 }
                 else if (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState) {
                     enemy.Transition<Enemy1AggroState>();
                 }
+                gameObject.SetActive(false);
             }
         }
     }
