@@ -482,14 +482,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushRange: 120
   pullRange: 120
-  pushForce: 6000
+  pushForce: 9000
   pullForce: 120
   cameraOffset: 3.5
   hitLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
   crosshair: {fileID: 0}
-  playerPushForce: 10
+  playerPushForce: 20
   powerUpLength: 100
   powerUpMultiplier: 0
 --- !u!1 &8727586053112546443
@@ -588,10 +588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f70a421da727645961da2732e475fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airResistanceCoefficient: 0.6
+  airResistanceCoefficient: 0.3
   staticFrictionCoefficient: 0.6
-  dynamicFrictionCoefficient: 0.4
-  gravity: 100
+  dynamicFrictionCoefficient: 0.3
+  gravity: 110
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,16 +609,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
   groundCheckDistance: 0.02
   mainCamera: {fileID: 8727586053171767193}
-  layerMask:
+  walkableMask:
     serializedVersion: 2
-    m_Bits: 512
-  skinWidth: 0.03
+    m_Bits: 8704
+  skinWidth: 0.2
   capsuleCollider: {fileID: 0}
   physics: {fileID: 0}
   gravityGun: {fileID: 8727586052577491054}
   respawnPoint: {fileID: 0}
-  groundAcceleration: 70
-  jumpHeight: 70
+  groundAcceleration: 75
+  jumpHeight: 75
   startHealth: 100
   health: 100
 --- !u!136 &9013354550664442613
