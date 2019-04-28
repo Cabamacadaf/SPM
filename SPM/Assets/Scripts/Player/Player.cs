@@ -17,7 +17,7 @@ public class Player : StateMachine
     public GravityGun gravityGun;
     private Transform healthBar;
 
-    public GameObject respawnPoint;
+    public Transform respawnPoint;
 
     public float groundAcceleration;
     //public float airAcceleration;
@@ -69,7 +69,7 @@ public class Player : StateMachine
     {
         health = startHealth;
         healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
-        transform.position = respawnPoint.transform.position;
+        transform.position = respawnPoint.position;
     }
 
 }
