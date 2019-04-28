@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerBaseState
 {
+    private float speed;
     // Methods
     public override void Enter()
     {
         base.Enter();
+        speed = owner.physics.GetVelocity().magnitude;
+
 
     }
 
@@ -22,6 +25,8 @@ public class PlayerAirState : PlayerBaseState
         {
             owner.Transition<PlayerGroundState>();
         }
+        owner.physics.AddVelocity(base.direction * speed * Time.deltaTime);
+
 
     }
 }

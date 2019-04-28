@@ -50270,6 +50270,14 @@ PrefabInstance:
       propertyPath: skinWidth
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 613283157, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+      propertyPath: jumpHeight
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 613283157, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+      propertyPath: groundAcceleration
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
       propertyPath: crosshair
@@ -50284,6 +50292,18 @@ PrefabInstance:
         type: 3}
       propertyPath: pushForce
       value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 613283156, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+      propertyPath: gravity
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 613283156, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+      propertyPath: dynamicFrictionCoefficient
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 613283156, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+      propertyPath: airResistanceCoefficient
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483391c0130292745ae859d3cd322aae, type: 3}

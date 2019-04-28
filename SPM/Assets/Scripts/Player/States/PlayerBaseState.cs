@@ -6,7 +6,7 @@ public class PlayerBaseState : State
 {
     //Attributes
     
-    private Vector3 direction;
+    protected Vector3 direction;
     private float distance;
     private float size;
     private Vector3  snapSum;
@@ -19,6 +19,7 @@ public class PlayerBaseState : State
 
     protected Vector3 point1;
     protected Vector3 point2;
+
 
 
     public override void Enter()
@@ -54,29 +55,22 @@ public class PlayerBaseState : State
     private void HandleInput()
     {
 
-        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        input = owner.mainCamera.transform.rotation * input;
+        direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        direction = owner.mainCamera.transform.rotation * direction;
 
         if (Physics.SphereCast(owner.transform.position + point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.walkableMask))
         {
-            input = Vector3.ProjectOnPlane(input, hitInfo.normal).normalized;
+            direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
 
         }
         else
         {
-            input = Vector3.ProjectOnPlane(input, Vector3.up).normalized;
+            direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
 
         }
 
+        CameraRotation();
 
-        var cameraRotation = owner.mainCamera.transform.rotation;
-        cameraRotation.z = 0;
-        cameraRotation.x = 0;
-        owner.transform.rotation = cameraRotation;
-        cameraRotation = owner.mainCamera.transform.rotation;
-        owner.gravityGun.transform.rotation = cameraRotation;
-
-        owner.physics.AddVelocity(input * owner.groundAcceleration * Time.deltaTime);
 
 
         if (Input.GetMouseButtonDown(0))
@@ -89,6 +83,16 @@ public class PlayerBaseState : State
             owner.gravityGun.Pull();
         }
 
+    }
+
+    private void CameraRotation()
+    {
+        var cameraRotation = owner.mainCamera.transform.rotation;
+        cameraRotation.z = 0;
+        cameraRotation.x = 0;
+        owner.transform.rotation = cameraRotation;
+        cameraRotation = owner.mainCamera.transform.rotation;
+        owner.gravityGun.transform.rotation = cameraRotation;
     }
 
     protected void CheckCollision()

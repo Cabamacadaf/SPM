@@ -24,5 +24,8 @@ public class PlayerGroundState : PlayerBaseState
 
         }
         base.HandleUpdate();
+
+        owner.physics.AddVelocity(base.direction * owner.groundAcceleration * Time.deltaTime);
+
     }
 }
