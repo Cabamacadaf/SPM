@@ -13,12 +13,12 @@ public class GameController_2 : MonoBehaviour
     public GameObject door_Goal;
 
     [HideInInspector] //ni får skriva det här med eran andra version
-    public int powerCoreCollection;
+    public int greenCollecting;
 
     void Start()
     {
         gameControllerInstance_2 = this;
-        powerCoreCollection = 0;
+        greenCollecting = 0;
         hasKeycard = false;
     }
 
@@ -26,18 +26,19 @@ public class GameController_2 : MonoBehaviour
     void Update()
     {
 
-        if (powerCoreCollection == 16)
+        if (greenCollecting == 16)
         {
-            //spawna keyCard
+            Debug.Log("You have reached your goal");
             OpenDoor();
-            powerCoreCollection = 0;
+            greenCollecting = 0;
 
         }
     }
 
     void OpenDoor()
     {
-        door_Goal.SetActive(true);
+        door_Goal.SetActive(false);
+        Debug.Log("The path is open");
         return;
     }
 }

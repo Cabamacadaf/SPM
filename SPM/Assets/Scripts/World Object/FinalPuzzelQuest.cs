@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Final_Puzzel_Quest : MonoBehaviour
+public class FinalPuzzelQuest : MonoBehaviour
 {
-    [SerializeField] private Light[] lights;
-    [SerializeField] private Color newColor;
-    [SerializeField] private float timeBetweenLights;
+    //[SerializeField] private Light[] lights;
+    //[SerializeField] private Color newColor;
+    //[SerializeField] private float timeBetweenLights;
 
     private bool active = true;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (active && other.CompareTag("PowerCore"))
+        if (active && other.CompareTag("GreenStuff"))
         {
             active = false;
             other.transform.position = transform.position;
@@ -20,8 +20,8 @@ public class Final_Puzzel_Quest : MonoBehaviour
             other.transform.rotation = Quaternion.identity;
             other.gameObject.layer = 0;
             Destroy(other.GetComponent<Rigidbody>());
-            GameController.gameControllerInstance.powerCoreCollection++;
-            StartCoroutine(ChangeColors());
+            GameController_2.gameControllerInstance_2.greenCollecting++;
+            //StartCoroutine(ChangeColors());
 
             //objectB = other.transform.gameObject;
             //objectB.transform.position = objectA.transform.position;
@@ -34,12 +34,12 @@ public class Final_Puzzel_Quest : MonoBehaviour
             //lt.color = (color1 / 2.0f) * Time.deltaTime;
         }
     }
-    private IEnumerator ChangeColors()
-    {
-        foreach (Light light in lights)
-        {
-            light.color = newColor;
-            yield return new WaitForSeconds(timeBetweenLights);
-        }
-    }
+    //private IEnumerator ChangeColors()
+    //{
+    //    foreach (Light light in lights)
+    //    {
+    //        light.color = newColor;
+    //        yield return new WaitForSeconds(timeBetweenLights);
+    //    }
+    //}
 }
