@@ -7,7 +7,6 @@ public class EnemyAggroState : EnemyBaseState
     public override void Enter ()
     {
         base.Enter();
-        owner.audioSource.PlayOneShot(owner.aggroSound);
         owner.lightSource.enabled = true;
         owner.agent.speed = owner.movementSpeed;
         owner.agent.acceleration = owner.acceleration;
