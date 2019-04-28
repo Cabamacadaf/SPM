@@ -19,9 +19,11 @@ public class EnemyAggro : MonoBehaviour
             if (!Physics.Raycast(other.bounds.center, raycastDirection.normalized, out RaycastHit hit, raycastDirection.magnitude, wallLayer)) {
                 
                 if (enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) {
+                    enemy.audioSource.PlayOneShot(enemy.aggroSound);
                     enemy.Transition<Enemy2AggroState>();
                 }
                 else if (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState) {
+                    enemy.audioSource.PlayOneShot(enemy.aggroSound);
                     enemy.Transition<Enemy1AggroState>();
                 }
                 gameObject.SetActive(false);
