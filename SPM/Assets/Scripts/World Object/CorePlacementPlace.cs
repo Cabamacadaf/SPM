@@ -24,6 +24,7 @@ public class CorePlacementPlace : MonoBehaviour
             GameController.gameControllerInstance.powerCoreCollection++;
             GameObject.Find("Objective_Power_Core").GetComponent<PickUpObject>().enabled = false;
             //stäng av Rigided body
+            objectB.gameObject.SetActive(false);
             //byt ljusen till grönt!
             lt.color = (color1 / 2.0f) * Time.deltaTime;
         }
