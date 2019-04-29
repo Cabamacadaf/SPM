@@ -687,7 +687,6 @@ Transform:
   m_Children:
   - {fileID: 1441389700}
   - {fileID: 771177914}
-  - {fileID: 1368403379}
   m_Father: {fileID: 80756369}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8128,7 +8127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &152908929
 Transform:
   m_ObjectHideFlags: 0
@@ -41734,6 +41733,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648281401}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &648311475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8001425276971509056, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1284382296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &648311476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648311475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b007236b41ae8c4d89ac04a45a9603a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 1785510480}
+  eButton: {fileID: 789136458}
 --- !u!1 &648510465
 GameObject:
   m_ObjectHideFlags: 0
@@ -73449,7 +73468,6 @@ MonoBehaviour:
   light4: {fileID: 1259648975}
   light5: {fileID: 1518770170}
   eButton: {fileID: 789136458}
-  buttonColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1154131718
 GameObject:
   m_ObjectHideFlags: 0
@@ -81828,7 +81846,7 @@ PrefabInstance:
     - target: {fileID: 8001425276971509063, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 260.49
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 8001425276971509063, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
         type: 3}
@@ -81869,6 +81887,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 8.004399
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -3.502199
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.176294
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.09243052
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 9.271858
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.8875715
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001425276971509062, guid: 8b3e65c62dbf13f4f91486d872b8b3a4,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b3e65c62dbf13f4f91486d872b8b3a4, type: 3}
@@ -86972,11 +87025,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368403378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 437.93, y: -102.52, z: 259.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.03878991, y: -0.07816212, z: -0.86632335}
+  m_LocalScale: {x: 0.29837272, y: 0.6513775, z: 0.6513775}
   m_Children: []
-  m_Father: {fileID: 7412577}
-  m_RootOrder: 2
+  m_Father: {fileID: 1284382297}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1368403380
 Light:
