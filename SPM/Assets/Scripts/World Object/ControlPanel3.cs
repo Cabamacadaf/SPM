@@ -26,12 +26,12 @@ public class ControlPanel3 : MonoBehaviour
             if (GameController_2.gameControllerInstance_2.hasKeycard)
             {
                 Vector3 tmp = button.transform.position;
-                tmp.z = (tmp.z + 1);
+                tmp.z = (tmp.z + 0.5f);
                 button.transform.position = tmp;
                 button.GetComponent<Light>().color = Color.green;
 
                 tmp = door.transform.position;
-                tmp.z = (tmp.z - 8);
+                tmp.z = (tmp.z - 24);
                 door.transform.position = tmp;
                 eButton.enabled = false;
             }

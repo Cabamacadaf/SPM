@@ -39,16 +39,15 @@ public class ControlPanel2 : MonoBehaviour
                 light4.enabled = true;
                 light5.enabled = true;
                 Debug.Log("I now Open the door for you");
-                eButton.enabled = false;
+                eButton.text = "";
                 Vector3 tmp = button.transform.position;
                 tmp.z = (tmp.z - 0.5f) ;
                 button.transform.position = tmp;
                 button.GetComponentInChildren<Light>().color = Color.green;
 
                 tmp = door.transform.position;
-                tmp.z = tmp.z + 8;
+                tmp.z = (tmp.z + 24);
                 door.transform.position = tmp;
-
                 //doorLight.SetActive(true);
             }
         }
@@ -69,5 +68,11 @@ public class ControlPanel2 : MonoBehaviour
         //}
     }
 
-   
+    private void OnTriggerExit(Collider other)
+    {
+
+        eButton.enabled = false;
+    }
+
+
 }
