@@ -51,10 +51,10 @@ public class ControlPanel2 : MonoBehaviour
                   
                     button.GetComponentInChildren<Light>().color = Color.green;
 
-                    Vector3 tmp = door.transform.position;
-                    //tmp.z = (tmp.z + 8);
-                    tmp.z = 270;
-                    door.transform.position = tmp;
+                    //Vector3 tmp = door.transform.position;
+                    //tmp.z = 270;
+                    //door.transform.position = tmp;
+                    door.SetActive(false);
                     //doorLight.SetActive(true);
                 }
             }
