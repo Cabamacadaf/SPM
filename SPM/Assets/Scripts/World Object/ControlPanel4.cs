@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ControlPanel3 : MonoBehaviour
+public class ControlPanel4 : MonoBehaviour
 {
     public GameObject door;
     public Text eButton;
 
     private GameObject button;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +19,9 @@ public class ControlPanel3 : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player")) {
-            if (button.transform.position.z == 260)
+        if (other.CompareTag("Player"))
+        {
+            if (button.transform.position.x < 185)
             {
                 eButton.enabled = true;
                 eButton.text = "Press E";
@@ -30,15 +30,14 @@ public class ControlPanel3 : MonoBehaviour
                     if (GameController_2.gameControllerInstance_2.hasKeycard)
                     {
                         Vector3 tmp = button.transform.position;
-                        tmp.z = 261;
+                        tmp.x = 185.2f;
                         button.transform.position = tmp;
 
                         eButton.text = "";
                         eButton.enabled = false;
-                        tmp = door.transform.position;
-                        //tmp.z = (tmp.z - 8);
-                        tmp.z = 246;
-                        door.transform.position = tmp;
+                        Quaternion tmpp = button.transform.rotation;
+                        tmpp.y = 0;
+                        door.transform.rotation = tmpp;
                         button.GetComponentInChildren<Light>().color = Color.green;
 
                         button.GetComponent<ControlPanel3>().enabled = false;

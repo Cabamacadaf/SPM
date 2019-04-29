@@ -27,29 +27,36 @@ public class ControlPanel2 : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        eButton.enabled = true;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player"))
         {
-            if (GameController_2.gameControllerInstance_2.hasKeycard)
+            eButton.enabled = true;
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                //door.SetActive(false);
-                light1.enabled = true;
-                light2.enabled = true;
-                light3.enabled = true;
-                light4.enabled = true;
-                light5.enabled = true;
-                Debug.Log("I now Open the door for you");
-                eButton.text = "";
-                Vector3 tmp = button.transform.position;
-                tmp.z = (tmp.z - 0.5f) ;
-                button.transform.position = tmp;
-                button.GetComponentInChildren<Light>().color = Color.green;
+                if (GameController_2.gameControllerInstance_2.hasKeycard)
+                {
+                    //door.SetActive(false);
+                    light1.enabled = true;
+                    light2.enabled = true;
+                    light3.enabled = true;
+                    light4.enabled = true;
+                    light5.enabled = true;
+                    Debug.Log("I now Open the door for you");
+                    eButton.text = "";
+                    if(button.transform.position.z > 82)
+                    {
+                        Vector3 tmpp = button.transform.position;
+                        tmpp.z = (tmpp.z - 0.5f);
+                        button.transform.position = tmpp;
+                    }
+                  
+                    button.GetComponentInChildren<Light>().color = Color.green;
 
-                tmp = door.transform.position;
-                //tmp.z = (tmp.z + 8);
-                tmp.z = 270;
-                door.transform.position = tmp;
-                //doorLight.SetActive(true);
+                    Vector3 tmp = door.transform.position;
+                    //tmp.z = (tmp.z + 8);
+                    tmp.z = 270;
+                    door.transform.position = tmp;
+                    //doorLight.SetActive(true);
+                }
             }
         }
         //if (Input.GetKeyDown(KeyCode.E))
