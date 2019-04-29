@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
     //Attributes
-    
+
     protected Vector3 direction;
     private float distance;
     private float size;
-    private Vector3  snapSum;
+    private Vector3 snapSum;
     private RaycastHit hitInfo;
 
     private int checkCollisionCounter = 0;
@@ -22,7 +22,7 @@ public class PlayerBaseState : State
 
 
 
-    public override void Enter()
+    public override void Enter ()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -31,14 +31,14 @@ public class PlayerBaseState : State
 
     }
 
-    public override void Initialize(StateMachine owner)
+    public override void Initialize (StateMachine owner)
     {
         this.owner = (Player)owner;
     }
 
-  
 
-    public override void HandleUpdate()
+
+    public override void HandleUpdate ()
     {
         HandleInput();
         owner.physics.ApplyGravity();
@@ -52,19 +52,17 @@ public class PlayerBaseState : State
 
     }
 
-    private void HandleInput()
+    private void HandleInput ()
     {
 
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         direction = owner.mainCamera.transform.rotation * direction;
 
-        if (Physics.SphereCast(owner.transform.position + point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.walkableMask))
-        {
+        if (Physics.SphereCast(owner.transform.position + point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.walkableMask)) {
             direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
 
         }
-        else
-        {
+        else {
             direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
 
         }
@@ -75,19 +73,26 @@ public class PlayerBaseState : State
             owner.Respawn();
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetKeyDown(KeyCode.F)) {
+            if (owner.flashlight.enabled) {
+                owner.flashlight.enabled = false;
+            }
+            else {
+                owner.flashlight.enabled = true;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
             owner.gravityGun.Push();
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
+        if (Input.GetMouseButtonDown(1)) {
             owner.gravityGun.Pull();
         }
 
     }
 
-    private void CameraRotation()
+    private void CameraRotation ()
     {
         var cameraRotation = owner.mainCamera.transform.rotation;
         cameraRotation.z = 0;
@@ -97,17 +102,15 @@ public class PlayerBaseState : State
         owner.gravityGun.transform.rotation = cameraRotation;
     }
 
-    protected void CheckCollision()
+    protected void CheckCollision ()
     {
 
         checkCollisionCounter++;
-        if (maxLoopValue > checkCollisionCounter)
-        {
+        if (maxLoopValue > checkCollisionCounter) {
 
             Vector3 velocity = owner.physics.GetVelocity();
             RaycastHit hitInfo;
-            if (Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, owner.capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + owner.skinWidth, owner.walkableMask))
-            {
+            if (Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, owner.capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + owner.skinWidth, owner.walkableMask)) {
                 //if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, -hitInfo.normal, velocity.magnitude * Time.deltaTime + skinWidth, layerMask)) {
 
                 float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
@@ -116,8 +119,7 @@ public class PlayerBaseState : State
 
 
 
-                if (hitInfo.distance > Mathf.Abs(hypotenuse))
-                {
+                if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
                     snapSum += velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
                     owner.transform.position += velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
                 }
@@ -127,8 +129,7 @@ public class PlayerBaseState : State
                 Vector3 normalForce;
                 normalForce = Functions.CalculateNormalForce(velocity, hitInfo.normal);
 
-                if (hitInfo.collider.gameObject.CompareTag("MovingPlatform"))
-                {
+                if (hitInfo.collider.gameObject.CompareTag("MovingPlatform")) {
                     Debug.Log(hitInfo.collider.GetComponent<Platform>().GetVelocity().y);
                     normalForce += new Vector3(0, hitInfo.collider.GetComponent<Platform>().GetVelocity().y, 0);
 
@@ -157,7 +158,7 @@ public class PlayerBaseState : State
 
     }
 
-    
+
 
 
     //private void HandlePlatformCollision(float normalForceMagnitude, GameObject hit)

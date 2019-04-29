@@ -16,6 +16,7 @@ public class Player : StateMachine
     [HideInInspector] public PhysicsComponent physics;
     public GravityGun gravityGun;
     private Transform healthBar;
+    [HideInInspector] public Light flashlight;
 
     public Transform respawnPoint;
 
@@ -29,6 +30,7 @@ public class Player : StateMachine
     protected override void Awake()
     {
         health = startHealth;
+        flashlight = GetComponentInChildren<Light>();
         physics = GetComponent<PhysicsComponent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         healthBar = transform.GetChild(2);
