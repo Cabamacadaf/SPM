@@ -40,6 +40,7 @@ public class PickUpObject : MonoBehaviour
 
             if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab)
             {
+                transform.position = pullPoint.position;
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 //rb.useGravity = false;
