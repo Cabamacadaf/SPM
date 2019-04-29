@@ -46,7 +46,8 @@ public class ControlPanel2 : MonoBehaviour
                 button.GetComponentInChildren<Light>().color = Color.green;
 
                 tmp = door.transform.position;
-                tmp.z = (tmp.z + 24);
+                //tmp.z = (tmp.z + 8);
+                tmp.z = 270;
                 door.transform.position = tmp;
                 //doorLight.SetActive(true);
             }

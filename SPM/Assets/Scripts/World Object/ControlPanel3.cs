@@ -30,8 +30,10 @@ public class ControlPanel3 : MonoBehaviour
                 button.transform.position = tmp;
                 button.GetComponentInChildren<Light>().color = Color.green;
                 eButton.text = "";
+                eButton.enabled = false;
                 tmp = door.transform.position;
-                tmp.z = (tmp.z - 24);
+                //tmp.z = (tmp.z - 8);
+                tmp.z = 246;
                 door.transform.position = tmp;
             }
         }
