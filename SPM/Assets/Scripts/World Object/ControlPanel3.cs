@@ -20,21 +20,30 @@ public class ControlPanel3 : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        eButton.text = "Press E";
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (GameController_2.gameControllerInstance_2.hasKeycard)
+        if (other.CompareTag("Player")) {
+            if (button.transform.position.z == 260)
             {
-                Vector3 tmp = button.transform.position;
-                tmp.z = (tmp.z + 0.5f);
-                button.transform.position = tmp;
-                button.GetComponentInChildren<Light>().color = Color.green;
-                eButton.text = "";
-                eButton.enabled = false;
-                tmp = door.transform.position;
-                //tmp.z = (tmp.z - 8);
-                tmp.z = 246;
-                door.transform.position = tmp;
+                eButton.enabled = true;
+                eButton.text = "Press E";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (GameController_2.gameControllerInstance_2.hasKeycard)
+                    {
+                        Vector3 tmp = button.transform.position;
+                        tmp.z = 261;
+                        button.transform.position = tmp;
+
+                        eButton.text = "";
+                        eButton.enabled = false;
+                        tmp = door.transform.position;
+                        //tmp.z = (tmp.z - 8);
+                        tmp.z = 246;
+                        door.transform.position = tmp;
+                        button.GetComponentInChildren<Light>().color = Color.green;
+
+                        button.GetComponent<ControlPanel3>().enabled = false;
+                    }
+                }
             }
         }
     }
