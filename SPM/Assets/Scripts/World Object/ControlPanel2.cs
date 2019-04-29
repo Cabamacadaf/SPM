@@ -8,20 +8,30 @@ public class ControlPanel2 : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (door == isActiveAndEnabled)
+            if (GameController_2.gameControllerInstance_2.hasKeycard)
             {
                 door.SetActive(false);
-                return;
+                Debug.Log("I now Open the door for you");
             }
-
-            else if (door.activeInHierarchy == false)
-            {
-                door.SetActive(true);
-                return;
-            }
-
         }
+
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    if (door == isActiveAndEnabled)
+        //    {
+        //        door.SetActive(false);
+        //        return;
+        //    }
+
+        //    else if (door.activeInHierarchy == false)
+        //    {
+        //        door.SetActive(true);
+        //        return;
+        //    }
+
+        //}
     }
 }

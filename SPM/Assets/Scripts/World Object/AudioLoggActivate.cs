@@ -19,9 +19,9 @@ public class AudioLoggActivate : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider col)
+    private void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.CompareTag("Player") && !source.isPlaying) // ska ha keypress down
+        if (col.gameObject.CompareTag("Player") && !source.isPlaying && Input.GetKeyDown(KeyCode.E)) // ska ha keypress down
         {
             source.PlayOneShot(loggClip, 1.0f);
         }

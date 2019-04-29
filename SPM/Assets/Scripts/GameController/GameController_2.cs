@@ -19,7 +19,7 @@ public class GameController_2 : MonoBehaviour
     {
         gameControllerInstance_2 = this;
         greenCollecting = 0;
-        hasKeycard = false;
+        hasKeycard = true;
     }
 
     // Update is called once per frame
