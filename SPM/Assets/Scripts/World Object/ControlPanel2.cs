@@ -9,6 +9,7 @@ public class ControlPanel2 : MonoBehaviour
     private GameObject button;
     public Light light1, light2, light3, light4, light5;
     public Text eButton;
+    public Color buttonColor;
     //public GameObject doorLight;
 
     private void Start()
@@ -20,6 +21,8 @@ public class ControlPanel2 : MonoBehaviour
         light5.enabled = false;
         eButton.enabled = false;
         button = this.gameObject;
+        buttonColor = button.GetComponentInChildren<Light>().color = Color.red;
+
         //doorLight.SetActive(false);
     }
 
@@ -41,6 +44,7 @@ public class ControlPanel2 : MonoBehaviour
                 Vector3 tmp = button.transform.position;
                 tmp.z = (tmp.z - 0.5f) ;
                 button.transform.position = tmp;
+                buttonColor = button.GetComponentInChildren<Light>().color = Color.green;
                 //doorLight.SetActive(true);
             }
         }
