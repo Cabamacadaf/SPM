@@ -20,7 +20,7 @@ public class ControlPanel3 : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        eButton.enabled = true;
+        eButton.text = "Press E";
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (GameController_2.gameControllerInstance_2.hasKeycard)
@@ -28,19 +28,17 @@ public class ControlPanel3 : MonoBehaviour
                 Vector3 tmp = button.transform.position;
                 tmp.z = (tmp.z + 0.5f);
                 button.transform.position = tmp;
-                button.GetComponent<Light>().color = Color.green;
-
+                button.GetComponentInChildren<Light>().color = Color.green;
+                eButton.text = "";
                 tmp = door.transform.position;
                 tmp.z = (tmp.z - 24);
                 door.transform.position = tmp;
-                eButton.enabled = false;
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        eButton.text = "";
     }
 }
