@@ -284,9 +284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9772b5cf8862984f9521a68b9fc80d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &857819317 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4424867427550289491, guid: 875f11e6cda3aba429c2ad093e465532,
+--- !u!4 &857819318 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4424867427550289488, guid: 875f11e6cda3aba429c2ad093e465532,
     type: 3}
   m_PrefabInstance: {fileID: 4424867426763904742}
   m_PrefabAsset: {fileID: 0}
@@ -547,15 +547,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 613283157, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: respawnPoint
-      value: 
-      objectReference: {fileID: 857819317}
     - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1405487666}
+    - target: {fileID: 613283157, guid: 483391c0130292745ae859d3cd322aae, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 857819318}
     - target: {fileID: 8727586053171767195, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
