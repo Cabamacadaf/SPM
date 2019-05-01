@@ -26,13 +26,12 @@ public class GravityGun : MonoBehaviour
 
     public void Update()
     {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer))
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
         {
             crosshair.color = Color.green;
         }
-        else if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hitInfo, pullRange, hitLayer))
+        else if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hitInfo, pullRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
         {
-
             crosshair.color = Color.green;
         }
         else
@@ -49,7 +48,7 @@ public class GravityGun : MonoBehaviour
 
         if (holdingObject == null)
         {
-            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer))
+            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
             {
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.red, 2);
                 if (hit.collider.attachedRigidbody != null && hit.collider.GetComponent<PickUpObject>() != null)
@@ -79,7 +78,7 @@ public class GravityGun : MonoBehaviour
     {
         if (holdingObject == null)
         {
-            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer))
+            if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
             {
 
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);
