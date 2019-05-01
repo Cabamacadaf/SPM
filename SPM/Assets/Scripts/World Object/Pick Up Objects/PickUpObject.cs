@@ -10,9 +10,11 @@ public class PickUpObject : MonoBehaviour
     private Transform player;
     private float pullForce;
     protected Rigidbody rb;
+    protected MeshRenderer meshRenderer;
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] protected float impactDamage = 25f;
     [SerializeField] protected float lowestVelocityToDoDamage = 5.0f;
+    [SerializeField] private float holdingOpacity = 0.5f;
     protected Transform pullPoint;
     protected bool thrown = false;
 
@@ -24,6 +26,7 @@ public class PickUpObject : MonoBehaviour
         pullPoint = GameObject.Find("PullPoint").transform;
         player = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
     
     void Update()
@@ -43,6 +46,7 @@ public class PickUpObject : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 //rb.useGravity = false;
                 transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
+                meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
 
                 holding = true;
             }
@@ -52,6 +56,7 @@ public class PickUpObject : MonoBehaviour
     public void Drop()
     {
         //rb.useGravity = true;
+        meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         rb.isKinematic = false;
         transform.SetParent(null);
         active = false;

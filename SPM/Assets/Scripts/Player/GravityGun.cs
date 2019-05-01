@@ -37,15 +37,11 @@ public class GravityGun : MonoBehaviour
         else
         {
             crosshair.color = Color.red;
-
         }
-
-
     }
 
     public void Push()
     {
-
         if (holdingObject == null)
         {
             if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
@@ -65,13 +61,13 @@ public class GravityGun : MonoBehaviour
                 Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward * pushRange, Color.blue, 2);
             }
         }
+
         else if (holdingObject.holding)
         {
             holdingObject.Drop();
             holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * pushForce);
             holdingObject = null;
         }
-
     }
 
     public void Pull()
@@ -80,7 +76,6 @@ public class GravityGun : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
             {
-
                 Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);
                 holdingObject = hit.collider.GetComponent<PickUpObject>();
                 holdingObject.Pull(pullForce);
@@ -97,14 +92,13 @@ public class GravityGun : MonoBehaviour
             holdingObject = null;
         }
     }
+
     private IEnumerator PowerDownRoutine()
     {
-
         yield return new WaitForSeconds(5.0f);
 
         pushRange -= 10;
         pullRange -= 10;
-
     }
 
     public void PowerUp()
