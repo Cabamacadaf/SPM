@@ -11,10 +11,8 @@ public class PickUpObject : MonoBehaviour
     private float pullForce;
     protected Rigidbody rb;
     [SerializeField] private float distanceToGrab = 0.1f;
-    [SerializeField] protected float damageMultiplier = 0.2f;
-    [SerializeField] protected float minDamage = 10f;
-    [SerializeField] protected float maxDamage = 50f;
-    [SerializeField] private float lowestVelocityToDoDamage = 5.0f;
+    [SerializeField] protected float impactDamage = 25f;
+    [SerializeField] protected float lowestVelocityToDoDamage = 5.0f;
     protected Transform pullPoint;
     protected bool thrown = false;
 
@@ -80,7 +78,7 @@ public class PickUpObject : MonoBehaviour
     {
         if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
-            enemyState.Damage(Mathf.Clamp(rb.velocity.magnitude * damageMultiplier, minDamage, maxDamage));
+            enemyState.Damage(impactDamage);
             LoseDurability();
         }
     }
@@ -88,7 +86,7 @@ public class PickUpObject : MonoBehaviour
     private void OnCollisionEnter (Collision collision)
     {
         if (collision.collider.CompareTag("DestructibleObject") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
-            collision.collider.GetComponent<DestructibleObject>().hitPoints -= Mathf.Clamp(rb.velocity.magnitude * damageMultiplier, minDamage, maxDamage);
+            collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
         }
     }
 }

@@ -8,11 +8,11 @@ public class ExplosiveObject : PickUpObject
     public GameObject explosion2;
     public float power = 10.0F;
 
-    [SerializeField] private float damage = 10f;
+    [SerializeField] private float explosionDamage = 101f;
     [SerializeField] private float radius;
     private void OnCollisionEnter(Collision collision)
     {
-        if (thrown)
+        if (thrown && rb.velocity.magnitude > lowestVelocityToDoDamage)
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, radius);
             
@@ -32,7 +32,7 @@ public class ExplosiveObject : PickUpObject
                     hit = col.ClosestPoint(transform.position);
                     
                     Player player = col.gameObject.GetComponent<Player>();
-                    player.Damage(damage - hit.x - hit.z);
+                    player.Damage(explosionDamage - hit.x - hit.z);
                 }
                 if (col.gameObject.CompareTag("Enemy"))
                 {
@@ -41,7 +41,7 @@ public class ExplosiveObject : PickUpObject
                     EnemyBaseState enemyState = (EnemyBaseState)col.gameObject.GetComponent<Enemy>().GetCurrentState();
 
                     //enemyState.Damage(damage - hit.x - hit.z);
-                    enemyState.Damage(damage);
+                    enemyState.Damage(explosionDamage);
 
                 }
             }
