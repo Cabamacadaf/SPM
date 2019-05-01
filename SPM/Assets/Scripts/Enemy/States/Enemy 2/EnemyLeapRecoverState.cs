@@ -23,7 +23,7 @@ public class EnemyLeapRecoverState : EnemyBaseState
 
         timer += Time.deltaTime;
 
-        if (timer >= owner2.leapRecovery) {
+        if (timer >= owner2.leapCooldown) {
             owner.Transition<Enemy2AggroState>();
         }
 
