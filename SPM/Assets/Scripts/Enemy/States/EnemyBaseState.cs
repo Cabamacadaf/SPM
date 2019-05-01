@@ -19,7 +19,7 @@ public class EnemyBaseState : State
 
     public override void HandleUpdate ()
     {
-        if (owner.hitPoints < 0) {
+        if (owner.hitPoints <= 0) {
             Kill();
         }
     }
