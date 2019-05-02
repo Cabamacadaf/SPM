@@ -26,6 +26,9 @@ public class NotHoldingState : State
     {
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
         {
+            if(lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit) {
+                lastPickUpObjectHit.GetComponent<PickUpObject>().UnHighlight();
+            }
             lastPickUpObjectHit = hit.transform.gameObject;
             hit.transform.GetComponent<PickUpObject>().Highlight();
             owner.crosshair.color = Color.green;
