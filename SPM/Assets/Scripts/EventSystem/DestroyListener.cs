@@ -8,6 +8,7 @@ public class DestroyListener : MonoBehaviour
     {
         EnemyDeathEvent.RegisterListener(OnEnemyDeath);
         KeycardPickedUpEvent.RegisterListener(OnKeyCardPickedUp);
+        ObjectDestroyedEvent.RegisterListener(OnObjectDestroyed);
     }
 
     void OnKeyCardPickedUp (KeycardPickedUpEvent keycardPickedUpEvent)
@@ -18,5 +19,10 @@ public class DestroyListener : MonoBehaviour
     void OnEnemyDeath (EnemyDeathEvent enemyDeathEvent)
     {
         Destroy(enemyDeathEvent.gameObject);
+    }
+
+    void OnObjectDestroyed(ObjectDestroyedEvent objectDestroyedEvent)
+    {
+        Destroy(objectDestroyedEvent.gameObject);
     }
 }
