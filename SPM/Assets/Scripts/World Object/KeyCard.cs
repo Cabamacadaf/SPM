@@ -8,9 +8,9 @@ public class KeyCard : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Key");
-            GameController.gameControllerInstance.hasKeycard = true;
-            Destroy(this.gameObject);
+            KeycardPickedUpEvent keycardPickedUpEvent = new KeycardPickedUpEvent(gameObject);
+            keycardPickedUpEvent.eventDescription = "Keycard picked up";
+            keycardPickedUpEvent.ExecuteEvent();
         }
     }
 }
