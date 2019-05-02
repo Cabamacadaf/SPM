@@ -16,7 +16,7 @@ public class Enemy2LeapRecoverState : EnemyBaseState
 
     public override void Enter ()
     {
-        Debug.Log("Leap Recover State");
+        //Debug.Log("Leap Recover State");
         base.Enter();
         timer = 0.0f;
         owner2.attackHitbox.SetActive(false);

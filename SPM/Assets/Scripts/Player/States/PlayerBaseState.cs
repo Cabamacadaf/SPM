@@ -68,13 +68,6 @@ public class PlayerBaseState : State
             }
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-            owner.gravityGun.Push();
-        }
-
-        if (Input.GetMouseButtonDown(1)) {
-            owner.gravityGun.Pull();
-        }
 
     }
 

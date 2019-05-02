@@ -7,7 +7,6 @@ public class Player : StateMachine
     //Attributes
 
     public GameObject mainCamera;
-
     public GravityGun gravityGun;
     private Transform healthBar;
     [HideInInspector] public Light flashlight;

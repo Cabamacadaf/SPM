@@ -17,7 +17,7 @@ public class Enemy2LeapChargeState : EnemyBaseState
     public override void Enter ()
     {
         base.Enter();
-        Debug.Log("Leap Charge State");
+        //Debug.Log("Leap Charge State");
         timer = 0.0f;
         owner2.mouth.gameObject.SetActive(true);
     }

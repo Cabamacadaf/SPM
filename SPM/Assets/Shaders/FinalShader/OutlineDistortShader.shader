@@ -1,4 +1,4 @@
-﻿Shader "Custom/DistortShader"
+﻿Shader "Custom/OutlineDistortShader"
 {
     Properties
     {
@@ -6,6 +6,7 @@
 		_BumpAmt("Distortion", Range(0,128)) = 10
 		_DistortTex("Distort Texture (RGB)", 2D) = "white" {}
 		_BumpMap("Normal map", 2D) = "bump" {}
+		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
     }
     
 	SubShader
@@ -19,7 +20,9 @@
 
 		Pass
 		{
-			Name "DISTORT"
+			Name "OUTLINEDISTORT"
+
+			ZWrite Off
 
 			CGPROGRAM
 
@@ -54,7 +57,7 @@
 			float _BumpAmt;
 			float4 _BumpMap_ST;
 			float4 _DistortTex_ST;
-
+			float _OutlineWidth;
 			fixed4 _DistortColor;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;
@@ -65,8 +68,8 @@
 
 			v2f vert(appdata IN)
 			{
+				IN.vertex.xyz *= _OutlineWidth;
 				v2f OUT;
-
 				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
 				#if UNITY_UV_STARTS_AT_TOP

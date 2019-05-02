@@ -16,7 +16,7 @@ public class Enemy1AttackRecoverState : EnemyBaseState
 
     public override void Enter ()
     {
-        Debug.Log("Attack Recover State");
+        //Debug.Log("Attack Recover State");
         base.Enter();
         timer = 0.0f;
         owner.attackHitbox.SetActive(false);

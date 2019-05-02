@@ -3,10 +3,10 @@
     Properties
     {
         _MainTex ("Main Texture (RGB)", 2D) = "white" {}
-		_Color("Color", Color) = (255,255,255,255)
+		_Color("Color", Color) = (1,1,1,1)
 
 		_OutlineTex("Outline Texture", 2D) = "white" {}
-		_OutlineColor("Outline color", Color) = (255,255,255,255)
+		_OutlineColor("Outline color", Color) = (1,1,1,1)
 		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
     }
     
