@@ -6,10 +6,15 @@ using UnityEngine;
 public class Enemy1AggroState : EnemyAggroState
 {
     private Enemy1 owner1;
+
+    public override void Initialize (StateMachine owner)
+    {
+        base.Initialize(owner);
+        owner1 = (Enemy1)owner;
+    }
     public override void Enter ()
     {
         Debug.Log("Aggro State");
-        owner1 = (Enemy1)owner;
         base.Enter();
     }
     public override void HandleUpdate ()

@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Enemy2/LeapChargeState")]
-public class EnemyLeapChargeState : EnemyBaseState
+public class Enemy2LeapChargeState : EnemyBaseState
 {
     private float timer;
     private Enemy2 owner2;
+
+    public override void Initialize (StateMachine owner)
+    {
+        base.Initialize(owner);
+        owner2 = (Enemy2)owner;
+    }
+
     public override void Enter ()
     {
         base.Enter();
         Debug.Log("Leap Charge State");
         timer = 0.0f;
-        owner2 = (Enemy2)owner;
         owner2.mouth.gameObject.SetActive(true);
     }
     public override void HandleUpdate ()
@@ -21,7 +27,7 @@ public class EnemyLeapChargeState : EnemyBaseState
 
         timer += Time.deltaTime;
         if(timer >= owner2.leapChargeTime) {
-            owner.Transition<EnemyLeapState>();
+            owner.Transition<Enemy2LeapState>();
         }
         base.HandleUpdate();
     }
