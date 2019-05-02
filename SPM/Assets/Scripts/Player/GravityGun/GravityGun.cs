@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GravityGun : MonoBehaviour
+public class GravityGun : StateMachine
 {
     [SerializeField] private float pushRange;
     [SerializeField] private float pullRange;
@@ -46,20 +46,12 @@ public class GravityGun : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pushRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
             {
-                Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.red, 2);
                 if (hit.collider.attachedRigidbody != null && hit.collider.GetComponent<PickUpObject>() != null)
                 {
                     hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * pushForce * (1 - (hit.distance / pushRange)));
                 }
-                else if (hit.collider.gameObject.CompareTag("Platform"))
-                {
-                    //GetComponentInParent<PlayerController3D>().AddVelocity(hit.normal * playerPushForce);
-                }
             }
-            else
-            {
-                Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward * pushRange, Color.blue, 2);
-            }
+
         }
 
         else if (holdingObject.holding)
@@ -76,14 +68,10 @@ public class GravityGun : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward, out RaycastHit hit, pullRange, hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
             {
-                Debug.DrawLine(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, hit.point, Color.green, 2);
                 holdingObject = hit.collider.GetComponent<PickUpObject>();
                 holdingObject.Pull(pullForce);
             }
-            else
-            {
-                Debug.DrawRay(Camera.main.transform.position + Camera.main.transform.forward * cameraOffset, Camera.main.transform.forward * pushRange, Color.blue, 2);
-            }
+
         }
 
         else
