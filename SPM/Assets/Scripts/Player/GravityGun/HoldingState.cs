@@ -39,7 +39,6 @@ public class HoldingState : State
 
     public void Push()
     {
-
         owner.holdingObject.Drop();
         owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
         owner.holdingObject = null;
