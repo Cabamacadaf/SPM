@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Enemy2/LeapRecoverState")]
-public class EnemyLeapRecoverState : EnemyBaseState
+public class Enemy2LeapRecoverState : EnemyBaseState
 {
     private Enemy2 owner2;
     private float timer;
