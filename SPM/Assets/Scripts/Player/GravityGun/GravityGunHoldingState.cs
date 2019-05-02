@@ -18,7 +18,7 @@ public class GravityGunHoldingState : State
     {
 
         owner.holdingObject.Drop();
-        owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * pushForce);
+        owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
         owner.holdingObject = null;
         
     }

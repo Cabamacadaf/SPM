@@ -52,7 +52,6 @@ public class PlayerMovement : PhysicsComponent
 
     private void CheckCollision()
     {
-        Debug.Log("CheckCollision");
         checkCollisionCounter++;
         if (maxLoopValue > checkCollisionCounter)
         {

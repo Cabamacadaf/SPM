@@ -7,7 +7,7 @@ public class GravityGun : StateMachine
 {
     [SerializeField] private float pushRange;
     [SerializeField] private float pullRange;
-    [SerializeField] private float pushForce;
+    public float pushForce;
     [SerializeField] private float pullForce;
     [SerializeField] private float cameraOffset;
 
@@ -15,7 +15,7 @@ public class GravityGun : StateMachine
 
     [SerializeField] private Image crosshair;
 
-    private PickUpObject holdingObject;
+    [HideInInspector] public PickUpObject holdingObject;
 
     [SerializeField] private float playerPushForce;
 
