@@ -71,6 +71,7 @@ public class PickUpObject : MonoBehaviour
     {
         this.pullForce = pullForce;
         active = true;
+        UnHighlight();
     }
 
     protected void LoseDurability()
