@@ -22584,7 +22584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &976872486
 Light:
   m_ObjectHideFlags: 0
@@ -48078,6 +48078,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359280242225475700, guid: 86d5093d72c67664a9139d29b027470d,
+        type: 3}
+      propertyPath: hitPoints
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d5093d72c67664a9139d29b027470d, type: 3}
@@ -84637,10 +84642,9 @@ MonoBehaviour:
   durability: 3
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
 --- !u!1 &8810756312738142948
 GameObject:
   m_ObjectHideFlags: 0
@@ -84752,10 +84756,9 @@ MonoBehaviour:
   durability: 3
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
 --- !u!54 &8810756313031776332
 Rigidbody:
   m_ObjectHideFlags: 0
