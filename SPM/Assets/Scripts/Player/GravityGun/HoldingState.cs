@@ -25,7 +25,6 @@ public class HoldingState : State
         {
             owner.crosshair.color = Color.red;
         }
-        Debug.Log("HandleUpdate");
 
         if (Input.GetMouseButtonDown(0))
         {

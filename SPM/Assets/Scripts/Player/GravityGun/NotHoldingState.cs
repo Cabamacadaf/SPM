@@ -9,14 +9,14 @@ public class NotHoldingState : State
 
     public override void Initialize(StateMachine owner)
     {
-        Debug.Log("Init");
+  
         this.owner = (GravityGun)owner;
        
     }
 
     public override void Enter()
     {
-        Debug.Log("Enter");
+     
 
         base.Enter();
     }
@@ -32,7 +32,7 @@ public class NotHoldingState : State
         {
             owner.crosshair.color = Color.red;
         }
-        Debug.Log("HandleUpdate");
+     
 
         if (Input.GetMouseButtonDown(0))
         {
