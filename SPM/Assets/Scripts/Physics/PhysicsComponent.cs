@@ -5,7 +5,7 @@ using UnityEngine;
 public class PhysicsComponent : MonoBehaviour
 {
     //Attributes
-    private Vector3 velocity;
+    protected Vector3 velocity;
     [SerializeField] private float airResistanceCoefficient;
     [SerializeField] private float staticFrictionCoefficient;
     [SerializeField] private float dynamicFrictionCoefficient;
@@ -71,11 +71,5 @@ public class PhysicsComponent : MonoBehaviour
         return Functions.CalculateFriction(normalForceMagnitude, dynamicFrictionCoefficient);
     }
 
-
-
-    protected virtual void CheckCollision ()
-    {
-
-    }
 
 }

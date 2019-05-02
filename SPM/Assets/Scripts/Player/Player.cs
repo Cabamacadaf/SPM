@@ -4,35 +4,28 @@ using UnityEngine;
 
 public class Player : StateMachine
 {
-
-
     //Attributes
 
-    public float groundCheckDistance;
     public GameObject mainCamera;
-    public LayerMask walkableMask;
-    public float skinWidth;
-    [HideInInspector] public CapsuleCollider capsuleCollider;
-    [HideInInspector] public PhysicsComponent physics;
+
     public GravityGun gravityGun;
     private Transform healthBar;
     [HideInInspector] public Light flashlight;
 
     public Transform respawnPoint;
 
-    public float groundAcceleration;
-    //public float airAcceleration;
-    public float jumpHeight;
     public float startHealth;
     [HideInInspector] public float health;
+    [HideInInspector] public PlayerMovement Movement;
 
 
     protected override void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Movement = GetComponent<PlayerMovement>();
         health = startHealth;
         flashlight = GetComponentInChildren<Light>();
-        physics = GetComponent<PhysicsComponent>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
         healthBar = transform.GetChild(2);
         base.Awake();
 

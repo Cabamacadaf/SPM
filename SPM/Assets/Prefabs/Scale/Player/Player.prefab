@@ -129,7 +129,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5143796678288339796}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 8727586053112546447}
   - component: {fileID: 8727586053112546446}
   - component: {fileID: 8727586053112546445}
-  - component: {fileID: 613283156}
+  - component: {fileID: 5746688670931222284}
   - component: {fileID: 613283157}
   - component: {fileID: 9013354550664442613}
   - component: {fileID: 2821774831742086203}
@@ -576,7 +576,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &613283156
+--- !u!114 &5746688670931222284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,13 +585,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8727586053112546443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f70a421da727645961da2732e475fe, type: 3}
+  m_Script: {fileID: 11500000, guid: cc4bdf7a5d0290c499163dccc0439324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airResistanceCoefficient: 0.3
-  staticFrictionCoefficient: 0.6
+  airResistanceCoefficient: 0.5
+  staticFrictionCoefficient: 0.7
   dynamicFrictionCoefficient: 0.3
-  gravity: 110
+  gravity: 100
+  walkableMask:
+    serializedVersion: 2
+    m_Bits: 512
+  JumpHeight: 70
+  Acceleration: 70
+  SkinWidth: 0.2
+  GroundCheckDistance: 0.2
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,21 +614,13 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: 2650979281ec9d646907d923bf78a240, type: 2}
   - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
-  groundCheckDistance: 0.02
   mainCamera: {fileID: 8727586053171767193}
-  walkableMask:
-    serializedVersion: 2
-    m_Bits: 8704
-  skinWidth: 0.2
-  capsuleCollider: {fileID: 0}
-  physics: {fileID: 0}
   gravityGun: {fileID: 8727586052577491054}
   flashlight: {fileID: 0}
   respawnPoint: {fileID: 0}
-  groundAcceleration: 75
-  jumpHeight: 75
   startHealth: 100
   health: 100
+  Movement: {fileID: 0}
 --- !u!136 &9013354550664442613
 CapsuleCollider:
   m_ObjectHideFlags: 0

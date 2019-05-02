@@ -42,13 +42,5 @@ public class StateMachine : MonoBehaviour
         currentState.HandleUpdate();
     }
 
-    private void OnCollisionEnter (Collision collision)
-    {
-        currentState.HandleCollision(collision);
-    }
 
-    private void OnTriggerEnter (Collider other)
-    {
-        currentState.HandleTrigger(other);
-    }
 }

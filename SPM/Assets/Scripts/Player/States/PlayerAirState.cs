@@ -11,7 +11,7 @@ public class PlayerAirState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        speed = owner.physics.GetVelocity().magnitude;
+        speed = owner.Movement.GetVelocity().magnitude;
 
 
     }
@@ -20,12 +20,11 @@ public class PlayerAirState : PlayerBaseState
     {
         base.HandleUpdate();
 
-        RaycastHit hitInfo;
-        if (Physics.SphereCast(owner.transform.position + base.point2, owner.capsuleCollider.radius, Vector3.down, out hitInfo, owner.groundCheckDistance + owner.skinWidth, owner.walkableMask))
+        if (owner.Movement.IsGrounded())
         {
             owner.Transition<PlayerGroundState>();
         }
-        owner.physics.AddVelocity(base.direction * speed * Time.deltaTime);
+        owner.Movement.AddVelocity(base.direction * speed * Time.deltaTime);
 
 
     }
