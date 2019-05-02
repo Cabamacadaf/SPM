@@ -20,7 +20,9 @@
 
 		Pass
 		{
-			Name "DISTORT"
+			Name "OUTLINEDISTORT"
+
+			ZWrite Off
 
 			CGPROGRAM
 
@@ -55,7 +57,7 @@
 			float _BumpAmt;
 			float4 _BumpMap_ST;
 			float4 _DistortTex_ST;
-
+			float _OutlineWidth;
 			fixed4 _DistortColor;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;

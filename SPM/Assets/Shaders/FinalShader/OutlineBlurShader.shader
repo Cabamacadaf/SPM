@@ -20,6 +20,8 @@
 		{
 			Name "OUTLINEHORIZONTALBLUR"
 
+			ZWrite Off
+
 			CGPROGRAM
 
 			//Function Defines
@@ -46,12 +48,13 @@
 			float _Intensity;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;
+			float _OutlineWidth;
 
 			//Vertex Function
 
 			v2f vert(appdata_base IN)
 			{
-				IN.vertex.xyz *= _OutlineWidth;
+				IN.vertex.xyz *= _OutlineWidth + 0.1;
 				v2f OUT;
 				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
@@ -99,6 +102,8 @@
 		{
 			Name "OUTLINEVERTICALBLUR"
 
+			ZWrite Off
+
 			CGPROGRAM
 
 			//Function Defines
@@ -125,12 +130,13 @@
 			float _Intensity;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;
+			float _OutlineWidth;
 
 			//Vertex Function
 
 			v2f vert(appdata_base IN)
 			{
-				IN.vertex.xyz *= _OutlineWidth;
+				IN.vertex.xyz *= _OutlineWidth + 0.1;
 				v2f OUT;
 				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
