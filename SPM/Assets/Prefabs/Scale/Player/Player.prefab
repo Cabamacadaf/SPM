@@ -480,7 +480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f33e6fc3969ef4e831bd1bc46f34bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: []
+  states:
+  - {fileID: 11400000, guid: 40e7d3385defe654fa2862a78a08ff28, type: 2}
+  - {fileID: 11400000, guid: 371e46e79c666354cbedb232b3358f24, type: 2}
   pushRange: 120
   pullRange: 120
   pushForce: 9000
@@ -490,6 +492,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   crosshair: {fileID: 0}
+  holdingObject: {fileID: 0}
   playerPushForce: 20
   powerUpLength: 100
   powerUpMultiplier: 0
