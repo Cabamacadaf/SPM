@@ -1,0 +1,102 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Event<T> where T : Event<T>
+{
+    public string eventDescription;
+
+    private bool hasExecuted;
+
+    public delegate void EventListener (T info);
+    private static event EventListener listeners;
+
+    public static void RegisterListener (EventListener listener)
+    {
+        listeners += listener;
+    }
+
+    public static void UnregisterListener (EventListener listener)
+    {
+        listeners -= listener;
+    }
+
+    public void ExecuteEvent ()
+    {
+        if(hasExecuted) {
+            throw new System.Exception("Event already executed");
+        }
+        hasExecuted = true;
+        listeners?.Invoke(this as T);
+    }
+}
+
+public class EnemyDeathEvent : Event<EnemyDeathEvent>
+{
+    public GameObject gameObject;
+
+    public EnemyDeathEvent(GameObject gameObject)
+    {
+        this.gameObject = gameObject;
+    }
+}
+
+public class PowerCorePlacedEvent : Event<PowerCorePlacedEvent>
+{
+
+}
+
+public class KeycardPickedUpEvent : Event<KeycardPickedUpEvent>
+{
+    public GameObject gameObject;
+
+    public KeycardPickedUpEvent(GameObject gameObject)
+    {
+        this.gameObject = gameObject;
+    }
+}
+
+public class SpawnTriggerEvent : Event<SpawnTriggerEvent>
+{
+    public Spawner[] spawners;
+
+    public SpawnTriggerEvent(Spawner[] spawners)
+    {
+        this.spawners = spawners;
+    }
+}
+
+public class EnemyAggroEvent : Event<EnemyAggroEvent>
+{
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
+    public EnemyAggroEvent(AudioClip audioClip, AudioSource audioSource)
+    {
+        this.audioClip = audioClip;
+        this.audioSource = audioSource;
+    }
+}
+
+public class EnemyAttackEvent : Event<EnemyAttackEvent>
+{
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
+    public EnemyAttackEvent(AudioClip audioClip, AudioSource audioSource)
+    {
+        this.audioClip = audioClip;
+        this.audioSource = audioSource;
+    }
+
+}
+
+public class PlayerDeathEvent : Event<PlayerDeathEvent>
+{
+    public Transform respawnPoint;
+
+    public PlayerDeathEvent(Transform respawnPoint)
+    {
+        this.respawnPoint = respawnPoint;
+    }
+}

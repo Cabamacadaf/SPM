@@ -20,18 +20,12 @@ public class CorePlacementPlace : MonoBehaviour
             other.transform.rotation = Quaternion.identity;
             other.gameObject.layer = 0;
             Destroy(other.GetComponent<Rigidbody>());
-            GameController.gameControllerInstance.powerCoreCollection++;
-            StartCoroutine(ChangeColors());
 
-            //objectB = other.transform.gameObject;
-            //objectB.transform.position = objectA.transform.position;
-            //objectB.transform.parent = objectA.transform;
-            //GameController.gameControllerInstance.powerCoreCollection++;
-            //GameObject.Find("Objective_Power_Core").GetComponent<PickUpObject>().enabled = false;
-            ////stäng av Rigided body
-            //objectB.gameObject.SetActive(false);
-            ////byt ljusen till grönt!
-            //lt.color = (color1 / 2.0f) * Time.deltaTime;
+            PowerCorePlacedEvent objectiveEvent = new PowerCorePlacedEvent();
+            objectiveEvent.eventDescription = "Power Core placed.";
+            objectiveEvent.ExecuteEvent();
+
+            StartCoroutine(ChangeColors());
         }
     }
     private IEnumerator ChangeColors ()

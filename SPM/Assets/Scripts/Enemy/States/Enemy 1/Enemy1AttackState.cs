@@ -15,7 +15,9 @@ public class Enemy1AttackState : EnemyAttackState
 
     public override void Enter ()
     {
-        owner.audioSource.PlayOneShot(owner.attackSound);
+        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
+        enemyAttackEvent.ExecuteEvent();
+
         Debug.Log("Attack State");
         base.Enter();
         owner.attackHitbox.SetActive(true);

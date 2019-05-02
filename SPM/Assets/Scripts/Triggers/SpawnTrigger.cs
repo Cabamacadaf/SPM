@@ -11,9 +11,8 @@ public class SpawnTrigger : MonoBehaviour
     {
         if (!entered && other.CompareTag("Player")) {
             entered = true;
-            foreach (Spawner spawner in spawners) {
-                spawner.Spawn();
-            }
+            SpawnTriggerEvent spawnTriggerEvent = new SpawnTriggerEvent(spawners);
+            spawnTriggerEvent.ExecuteEvent();
         }
     }
 }

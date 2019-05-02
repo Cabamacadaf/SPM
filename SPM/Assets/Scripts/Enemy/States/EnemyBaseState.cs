@@ -17,30 +17,24 @@ public class EnemyBaseState : State
         this.owner = (Enemy)owner;
     }
 
-    public override void HandleUpdate ()
+    public void Damage (float damage)
     {
+        if ((owner is Enemy2 && owner.GetCurrentState() is Enemy2IdleState) || (owner is Enemy1 && owner.GetCurrentState() is Enemy1IdleState)) {
+            owner.GetComponentInChildren<EnemyAggro>().Aggro();
+        }
+
+        Debug.Log(damage);
+        owner.hitPoints -= damage;
         if (owner.hitPoints <= 0) {
             Kill();
         }
-    }
-
-    public void Damage (float damage)
-    {
-        if (owner is Enemy2 && owner.GetCurrentState() is Enemy2IdleState) {
-            owner.audioSource.PlayOneShot(owner.aggroSound);
-            owner.Transition<Enemy2AggroState>();
-        }
-        else if (owner is Enemy1 && owner.GetCurrentState() is Enemy1IdleState) {
-            owner.audioSource.PlayOneShot(owner.aggroSound);
-            owner.Transition<Enemy1AggroState>();
-        }
-        Debug.Log(damage);
-        owner.hitPoints -= damage;
         owner.meshRenderer.material.color = owner.meshRenderer.material.color * owner.hitPoints / 100;
     }
 
     public void Kill ()
     {
-        Destroy(owner.gameObject);
+        EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent(owner.gameObject);
+        enemyDeathEvent.eventDescription = "Enemy " + owner.gameObject.name + " has died.";
+        enemyDeathEvent.ExecuteEvent();
     }
 }
