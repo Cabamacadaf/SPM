@@ -18,7 +18,7 @@ public class Enemy2LeapState : EnemyBaseState
     {
         hitPlayer = false;
         owner.audioSource.PlayOneShot(owner.attackSound);
-        Debug.Log("Leap State");
+        //Debug.Log("Leap State");
         owner2 = (Enemy2)owner;
         timer = 0.0f;
         startPosition = owner.transform.position;

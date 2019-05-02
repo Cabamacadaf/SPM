@@ -18,7 +18,7 @@ public class Enemy1AttackState : EnemyAttackState
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
         enemyAttackEvent.ExecuteEvent();
 
-        Debug.Log("Attack State");
+        //Debug.Log("Attack State");
         base.Enter();
         owner.attackHitbox.SetActive(true);
     }
