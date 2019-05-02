@@ -1,10 +1,9 @@
-﻿Shader "Custom/OutlineBlurShader"
+﻿Shader "Custom/Blur"
 {
     Properties
     {
 		_BlurRadius("Blur Radius", Range(0.0, 20.0)) = 1
 		_Intensity("Blur Intensity", Range(0.0, 1.0)) = 0.01
-		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
     }
     
 	SubShader
@@ -18,9 +17,7 @@
 
 		Pass
 		{
-			Name "OUTLINEHORIZONTALBLUR"
-
-			ZWrite Off
+			Name "HORIZONTALBLUR"
 
 			CGPROGRAM
 
@@ -48,14 +45,13 @@
 			float _Intensity;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;
-			float _OutlineWidth;
 
 			//Vertex Function
 
 			v2f vert(appdata_base IN)
 			{
-				IN.vertex.xyz *= _OutlineWidth + 0.1;
 				v2f OUT;
+
 				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
 				#if UNITY_UV_STARTS_AT_TOP
@@ -100,9 +96,7 @@
 
 		Pass
 		{
-			Name "OUTLINEVERTICALBLUR"
-
-			ZWrite Off
+			Name "VERTICALBLUR"
 
 			CGPROGRAM
 
@@ -130,14 +124,13 @@
 			float _Intensity;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;
-			float _OutlineWidth;
 
 			//Vertex Function
 
 			v2f vert(appdata_base IN)
 			{
-				IN.vertex.xyz *= _OutlineWidth + 0.1;
 				v2f OUT;
+
 				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
 				#if UNITY_UV_STARTS_AT_TOP

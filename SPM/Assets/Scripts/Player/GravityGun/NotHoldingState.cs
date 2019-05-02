@@ -6,6 +6,7 @@ using UnityEngine;
 public class NotHoldingState : State
 {
     private GravityGun owner;
+    private GameObject lastPickUpObjectHit;
 
     public override void Initialize(StateMachine owner)
     {
@@ -25,11 +26,16 @@ public class NotHoldingState : State
     {
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
         {
+            lastPickUpObjectHit = hit.transform.gameObject;
+            hit.transform.GetComponent<PickUpObject>().Highlight();
             owner.crosshair.color = Color.green;
         }
 
         else
         {
+            if (lastPickUpObjectHit != null) {
+                lastPickUpObjectHit.GetComponent<PickUpObject>().UnHighlight();
+            }
             owner.crosshair.color = Color.red;
         }
      

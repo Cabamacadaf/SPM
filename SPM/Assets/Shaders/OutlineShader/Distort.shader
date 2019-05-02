@@ -1,4 +1,4 @@
-﻿Shader "Custom/DistortShader"
+﻿Shader "Custom/Distort"
 {
     Properties
     {

@@ -1,11 +1,11 @@
-﻿Shader "Custom/OutlineDistortShader"
+﻿Shader "Custom/OutlineDistort"
 {
     Properties
     {
 		_DistortColor("Distort Color", Color) = (1,1,1,1)
 		_BumpAmt("Distortion", Range(0,128)) = 10
 		_DistortTex("Distort Texture (RGB)", 2D) = "white" {}
-		_BumpMap("Normal map", 2D) = "bump" {}
+		_DistortBumpMap("Normal map", 2D) = "bump" {}
 		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
     }
     
@@ -55,13 +55,13 @@
 			//Imports
 
 			float _BumpAmt;
-			float4 _BumpMap_ST;
+			float4 _DistortBumpMap_ST;
 			float4 _DistortTex_ST;
 			float _OutlineWidth;
 			fixed4 _DistortColor;
 			sampler2D _GrabTexture;
 			float4 _GrabTexture_TexelSize;
-			sampler2D _BumpMap;
+			sampler2D _DistortBumpMap;
 			sampler2D _DistortTex;
 
 			//Vertex Function
@@ -81,7 +81,7 @@
 				OUT.uvgrab.xy = (float2(OUT.vertex.x, OUT.vertex.y * scale) + OUT.vertex.w) * 0.5;
 				OUT.uvgrab.zw = OUT.vertex.zw;
 
-				OUT.uvbump = TRANSFORM_TEX(IN.texcoord, _BumpMap);
+				OUT.uvbump = TRANSFORM_TEX(IN.texcoord, _DistortBumpMap);
 				OUT.uvmain = TRANSFORM_TEX(IN.texcoord, _DistortTex);
 
 				return OUT;
@@ -91,7 +91,7 @@
 
 			half4 frag(v2f IN) : COLOR
 			{
-				half2 bump = UnpackNormal(tex2D(_BumpMap, IN.uvbump)).rg;
+				half2 bump = UnpackNormal(tex2D(_DistortBumpMap, IN.uvbump)).rg;
 				float2 offset = bump * _BumpAmt * _GrabTexture_TexelSize.xy;
 				IN.uvgrab.xy = offset * IN.uvgrab.z + IN.uvgrab.xy;
 

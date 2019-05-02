@@ -15,8 +15,11 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] protected float impactDamage = 25f;
     [SerializeField] protected float lowestVelocityToDoDamage = 5.0f;
     [SerializeField] private float holdingOpacity = 0.5f;
+    [SerializeField] private Material regularMaterial;
+    [SerializeField] private Material highlightedMaterial;
     protected Transform pullPoint;
     protected bool thrown = false;
+    [HideInInspector] public bool isHighlighted = false;
 
     //Should probably fix this
     private int geometry = 9;
@@ -75,7 +78,28 @@ public class PickUpObject : MonoBehaviour
         durability--;
         if(durability <= 0)
         {
-            Destroy(this.gameObject);
+            ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
+            objectDestroyedEvent.ExecuteEvent();
+        }
+    }
+
+    public void Highlight ()
+    {
+        if (!isHighlighted) {
+            isHighlighted = true;
+            Color color = meshRenderer.material.color;
+            meshRenderer.material = highlightedMaterial;
+            meshRenderer.material.color = color;
+        }
+    }
+
+    public void UnHighlight ()
+    {
+        if (isHighlighted) {
+            isHighlighted = false;
+            Color color = meshRenderer.material.color;
+            meshRenderer.material = regularMaterial;
+            meshRenderer.material.color = color;
         }
     }
 

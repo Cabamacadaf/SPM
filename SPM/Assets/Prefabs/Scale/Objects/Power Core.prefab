@@ -181,10 +181,12 @@ MonoBehaviour:
   durability: 100
   holding: 0
   distanceToGrab: 1
-  damageMultiplier: 0
-  minDamage: 0
-  maxDamage: 0
+  impactDamage: 25
   lowestVelocityToDoDamage: 0
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 2100000, guid: 7393f4ffef8746b49a534f421f086cee, type: 2}
+  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
+  isHighlighted: 0
 --- !u!65 &4732997567223275734
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -100,3 +100,13 @@ public class PlayerDeathEvent : Event<PlayerDeathEvent>
         this.respawnPoint = respawnPoint;
     }
 }
+
+public class ObjectDestroyedEvent : Event<ObjectDestroyedEvent>
+{
+    public GameObject gameObject;
+
+    public ObjectDestroyedEvent(GameObject gameObject)
+    {
+        this.gameObject = gameObject;
+    }
+}
