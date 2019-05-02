@@ -1,4 +1,4 @@
-﻿Shader "Custom/DistortShader"
+﻿Shader "Custom/OutlineDistortShader"
 {
     Properties
     {
@@ -6,6 +6,7 @@
 		_BumpAmt("Distortion", Range(0,128)) = 10
 		_DistortTex("Distort Texture (RGB)", 2D) = "white" {}
 		_BumpMap("Normal map", 2D) = "bump" {}
+		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
     }
     
 	SubShader
@@ -65,8 +66,8 @@
 
 			v2f vert(appdata IN)
 			{
+				IN.vertex.xyz *= _OutlineWidth;
 				v2f OUT;
-
 				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
 				#if UNITY_UV_STARTS_AT_TOP
