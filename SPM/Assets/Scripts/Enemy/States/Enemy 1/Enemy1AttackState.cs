@@ -6,12 +6,18 @@ using UnityEngine;
 public class Enemy1AttackState : EnemyAttackState
 {
     private Enemy1 owner1;
+
+    public override void Initialize (StateMachine owner)
+    {
+        base.Initialize(owner);
+        owner1 = (Enemy1)owner;
+    }
+
     public override void Enter ()
     {
         owner.audioSource.PlayOneShot(owner.attackSound);
         Debug.Log("Attack State");
         base.Enter();
-        owner1 = (Enemy1)owner;
         owner.attackHitbox.SetActive(true);
     }
 

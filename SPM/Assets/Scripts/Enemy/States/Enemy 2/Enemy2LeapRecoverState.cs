@@ -8,12 +8,17 @@ public class Enemy2LeapRecoverState : EnemyBaseState
     private Enemy2 owner2;
     private float timer;
 
+    public override void Initialize (StateMachine owner)
+    {
+        base.Initialize(owner);
+        owner2 = (Enemy2)owner;
+    }
+
     public override void Enter ()
     {
         Debug.Log("Leap Recover State");
         base.Enter();
         timer = 0.0f;
-        owner2 = (Enemy2)owner;
         owner2.attackHitbox.SetActive(false);
         owner2.mouth.gameObject.SetActive(false);
     }

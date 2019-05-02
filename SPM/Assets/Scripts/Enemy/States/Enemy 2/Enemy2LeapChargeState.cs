@@ -7,12 +7,18 @@ public class Enemy2LeapChargeState : EnemyBaseState
 {
     private float timer;
     private Enemy2 owner2;
+
+    public override void Initialize (StateMachine owner)
+    {
+        base.Initialize(owner);
+        owner2 = (Enemy2)owner;
+    }
+
     public override void Enter ()
     {
         base.Enter();
         Debug.Log("Leap Charge State");
         timer = 0.0f;
-        owner2 = (Enemy2)owner;
         owner2.mouth.gameObject.SetActive(true);
     }
     public override void HandleUpdate ()

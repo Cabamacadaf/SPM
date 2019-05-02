@@ -49,7 +49,6 @@ public class Enemy2LeapState : EnemyBaseState
         base.HandleCollision(collision);
         if (collision.collider.CompareTag("Player")) {
             hitPlayer = true;
-            Debug.Log("Enemy 2 Collision with Player");
         }
     }
     public override void Exit ()

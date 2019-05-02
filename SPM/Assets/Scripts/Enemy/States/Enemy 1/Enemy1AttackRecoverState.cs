@@ -8,12 +8,17 @@ public class Enemy1AttackRecoverState : EnemyBaseState
     private float timer;
     private Enemy1 owner1;
 
+    public override void Initialize (StateMachine owner)
+    {
+        base.Initialize(owner);
+        owner1 = (Enemy1)owner;
+    }
+
     public override void Enter ()
     {
         Debug.Log("Attack Recover State");
         base.Enter();
         timer = 0.0f;
-        owner1 = (Enemy1)owner;
         owner.attackHitbox.SetActive(false);
     }
 
