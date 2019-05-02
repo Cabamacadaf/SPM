@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Enemy2/LeapState")]
-public class EnemyLeapState : EnemyBaseState
+public class Enemy2LeapState : EnemyBaseState
 {
     private float timer;
     private Enemy2 owner2;
@@ -39,7 +39,7 @@ public class EnemyLeapState : EnemyBaseState
         }
 
         if (timer >= owner2.leapTime) {
-            owner.Transition<EnemyLeapRecoverState>();
+            owner.Transition<Enemy2LeapRecoverState>();
         }
         base.HandleUpdate();
     }
@@ -49,7 +49,6 @@ public class EnemyLeapState : EnemyBaseState
         base.HandleCollision(collision);
         if (collision.collider.CompareTag("Player")) {
             hitPlayer = true;
-            Debug.Log("Enemy 2 Collision with Player");
         }
     }
     public override void Exit ()

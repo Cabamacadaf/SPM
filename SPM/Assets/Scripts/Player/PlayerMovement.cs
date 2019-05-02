@@ -14,10 +14,10 @@ public class PlayerMovement : PhysicsComponent
 
     private Vector3 direction;
     private Vector3 point1;
-    private Vector3 point2;
+    public Vector3 point2;
     private Vector3 snapSum;
 
-    private CapsuleCollider capsuleCollider;
+    public CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
 
 
@@ -35,6 +35,11 @@ public class PlayerMovement : PhysicsComponent
     {
 
         ApplyGravity();
+
+
+
+
+
         CheckCollision();
         ApplyAirResistance();
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
@@ -47,7 +52,6 @@ public class PlayerMovement : PhysicsComponent
 
     private void CheckCollision()
     {
-        Debug.Log("CheckCollision");
         checkCollisionCounter++;
         if (maxLoopValue > checkCollisionCounter)
         {

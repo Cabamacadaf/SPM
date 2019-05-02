@@ -285,7 +285,7 @@ MonoBehaviour:
   leapChargeTime: 0.5
   leapHeight: 5
   leapTime: 1
-  leapRecovery: 0.5
+  leapCooldown: 0.5
   leapDamage: 50
   mouth: {fileID: 0}
   leapSpeed: 2
@@ -552,11 +552,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7262512699746432890}
     m_Modifications:
-    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
-        type: 3}
-      propertyPath: m_Name
-      value: Purple_Enemy_Light
-      objectReference: {fileID: 0}
     - target: {fileID: 1207542668448993479, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -611,6 +606,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
+        type: 3}
+      propertyPath: m_Name
+      value: Purple_Enemy_Light
       objectReference: {fileID: 0}
     - target: {fileID: 2107069457265239875, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}

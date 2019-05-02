@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f33e6fc3969ef4e831bd1bc46f34bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  states: []
   pushRange: 120
   pullRange: 120
   pushForce: 9000
@@ -599,6 +600,9 @@ MonoBehaviour:
   Acceleration: 70
   SkinWidth: 0.2
   GroundCheckDistance: 0.2
+  maxLoopValue: 20
+  point2: {x: 0, y: 0, z: 0}
+  capsuleCollider: {fileID: 0}
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0

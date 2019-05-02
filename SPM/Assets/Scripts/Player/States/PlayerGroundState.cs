@@ -24,7 +24,12 @@ public class PlayerGroundState : PlayerBaseState
 
         }
         base.HandleUpdate();
+        RaycastHit hitInfo;
+        if (Physics.Raycast(owner.transform.position, Vector3.down, out hitInfo))
+        {
+            direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
 
+        }
         owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
 
     }
