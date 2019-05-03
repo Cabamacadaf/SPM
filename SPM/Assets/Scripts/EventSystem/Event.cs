@@ -110,3 +110,13 @@ public class ObjectDestroyedEvent : Event<ObjectDestroyedEvent>
         this.gameObject = gameObject;
     }
 }
+
+public class ParticleSystemDestroyedEvent : Event<ParticleSystemDestroyedEvent>
+{
+    public GameObject gameObject;
+
+    public ParticleSystemDestroyedEvent(GameObject gameObject)
+    {
+        this.gameObject = gameObject;
+    }
+}

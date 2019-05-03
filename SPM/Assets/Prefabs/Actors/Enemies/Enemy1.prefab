@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2503254995884775020}
   - component: {fileID: 762062913268461601}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hurtbox
   m_TagString: Damageable
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 1158220384848658762}
   - component: {fileID: 6770975385961368712}
   - component: {fileID: 610382946099135254}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6801821671488285149}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 2226854606375388720}
   - component: {fileID: 3580324963919691689}
   - component: {fileID: 6346549309010860513}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -497,11 +497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
-    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Red_Light
-      objectReference: {fileID: 0}
     - target: {fileID: 4527334072976497326, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -555,6 +550,16 @@ PrefabInstance:
     - target: {fileID: 4527334072976497326, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Red_Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5356084169017483719, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
@@ -646,6 +651,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Name
       value: Aggro Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Enabled

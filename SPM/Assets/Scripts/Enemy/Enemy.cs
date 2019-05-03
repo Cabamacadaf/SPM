@@ -17,6 +17,7 @@ public class Enemy : StateMachine
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public BoxCollider boxCollider;
     [HideInInspector] public GameObject attackHitbox;
+    [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public Light lightSource;
 
@@ -27,6 +28,7 @@ public class Enemy : StateMachine
         lightSource = GetComponentInChildren<Light>();
         audioSource = GetComponent<AudioSource>();
         attackHitbox = transform.GetChild(0).gameObject;
+        rigidBody = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();

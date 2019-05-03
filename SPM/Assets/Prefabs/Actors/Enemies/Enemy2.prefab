@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 886493349582110038}
   - component: {fileID: 5539950272164316398}
   - component: {fileID: 1832412375668018032}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attack Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 6583663860345471260}
   - component: {fileID: 7493940675289025407}
   - component: {fileID: 6586337677126387113}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mouth
   m_TagString: Damageable
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1148960109065948758}
   - component: {fileID: 2358007977902847951}
   - component: {fileID: 2152182244423250984}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,6 +611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Purple_Enemy_Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107069457265239875, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}
