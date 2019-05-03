@@ -627,6 +627,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdc0962540c28cc4b97f3636823c6616, type: 2}
   - {fileID: 11400000, guid: f9e8e05bb0ca6ca478f468025c72315c, type: 2}
   - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
+  - {fileID: 11400000, guid: 0f44b3ed9e96a214ab17af1bb42963d2, type: 2}
   mainCamera: {fileID: 8727586053171767193}
   gravityGun: {fileID: 8727586052577491054}
   flashlight: {fileID: 0}
@@ -634,6 +635,7 @@ MonoBehaviour:
   startHealth: 100
   health: 100
   Movement: {fileID: 0}
+  Collider: {fileID: 0}
 --- !u!136 &9013354550664442613
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -644,10 +646,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 5.1144466
-  m_Height: 18.585424
+  m_Radius: 5
+  m_Height: 18.58
   m_Direction: 1
-  m_Center: {x: 0.00005221367, y: 9.450149, z: 0.54948443}
+  m_Center: {x: 0.00005221367, y: 9.45, z: 0.54948443}
 --- !u!54 &2821774831742086203
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class PlayerWalkState : PlayerGroundState
 
     public override void Enter()
     {
+        Debug.Log("Enter Walk");
         base.Enter();
     }
 
@@ -17,6 +18,11 @@ public class PlayerWalkState : PlayerGroundState
     {
         base.HandleUpdate();
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            owner.Transition<PlayerCrouchState>();
+        }
+    
         owner.Movement.Recover();
 
         if (Input.GetKey(KeyCode.LeftShift) && owner.Movement.stamina >= PlayerMovement.FULL_STAMINA)

@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour
 
     Vector3 movement;
 
-    [SerializeField] private Vector3 cameraOffset;
+    public Vector3 cameraOffset;
     private SphereCollider sphereCollider;
     public LayerMask geometryLayer;
 

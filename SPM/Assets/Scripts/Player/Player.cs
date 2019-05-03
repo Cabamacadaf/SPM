@@ -16,12 +16,13 @@ public class Player : StateMachine
     public float startHealth;
     [HideInInspector] public float health;
     [HideInInspector] public PlayerMovement Movement;
+    [HideInInspector] public CapsuleCollider Collider;
 
 
     protected override void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        Collider = GetComponent<CapsuleCollider>();
         Movement = GetComponent<PlayerMovement>();
         health = startHealth;
         flashlight = GetComponentInChildren<Light>();

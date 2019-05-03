@@ -23,6 +23,7 @@ public class PlayerMovement : PhysicsComponent
     public float stamina = 100;
     public int WalkingSpeed = 20;
     public int RunningSpeed = 40;
+    public int CrouchSpeed = 10;
     public float RecoveryRate = 1f;
     public float LoseStaminaRate = 1f;
     public const int FULL_STAMINA = 100;
