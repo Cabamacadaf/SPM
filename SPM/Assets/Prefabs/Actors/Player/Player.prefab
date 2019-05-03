@@ -617,6 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blastRadius: {fileID: 1985083756425351724}
   meshRenderer: {fileID: 1897980552750338992}
+  blastForce: 1000
 --- !u!1 &8727586053112546443
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,13 +715,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   airResistanceCoefficient: 0.5
-  staticFrictionCoefficient: 0.7
-  dynamicFrictionCoefficient: 0.4
+  staticFrictionCoefficient: 0.6
+  dynamicFrictionCoefficient: 0.3
   gravity: 90
   walkableMask:
     serializedVersion: 2
     m_Bits: 8704
-  JumpHeight: 70
+  JumpHeight: 80
   Acceleration: 100
   SkinWidth: 0.2
   GroundCheckDistance: 0.2

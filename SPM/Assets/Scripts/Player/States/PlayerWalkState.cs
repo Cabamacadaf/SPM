@@ -30,14 +30,15 @@ public class PlayerWalkState : PlayerGroundState
         }
 
 
-        if (owner.Movement.GetVelocity().magnitude < owner.Movement.WalkingSpeed)
+        if (owner.Movement.GetVelocity().magnitude <= owner.Movement.WalkingSpeed)
         {
             float dotProduct = Vector3.Dot(direction, owner.Movement.GetVelocity().normalized);
             //Debug.Log("DotProduct: " + dotProduct);
 
-            if (dotProduct <= 0 && Input.GetKey(KeyCode.W))
+            if (dotProduct <= 0.60 && Input.GetKey(KeyCode.W))
             {
                 //Debug.Log("Turnspeed");
+                //owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
 
                 owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
             }
