@@ -62,7 +62,6 @@ public class NotHoldingState : State
         {
             if (hit.collider.attachedRigidbody != null && hit.collider.GetComponent<PickUpObject>() != null)
             {
-                Debug.Log("Push");
                 hit.collider.attachedRigidbody.isKinematic = false;
                 hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * owner.pushForce * (1 - (hit.distance / owner.pushRange)));
             }

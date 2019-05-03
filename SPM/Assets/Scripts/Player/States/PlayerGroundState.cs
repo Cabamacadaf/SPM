@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerGroundState : PlayerBaseState
 {
     // Attributes
-
+    protected int stamina = 1000;
     // Methods
     public override void Enter()
     {
@@ -15,7 +15,8 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-       
+        Debug.Log("Stamina: " + owner.Movement.stamina);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
@@ -30,7 +31,7 @@ public class PlayerGroundState : PlayerBaseState
             direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
 
         }
-        owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
+
 
     }
 }

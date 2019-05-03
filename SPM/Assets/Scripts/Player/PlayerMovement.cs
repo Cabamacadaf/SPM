@@ -20,7 +20,12 @@ public class PlayerMovement : PhysicsComponent
     public CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
 
-
+    public float stamina = 100;
+    public int WalkingSpeed = 20;
+    public int RunningSpeed = 40;
+    public float RecoveryRate = 1f;
+    public float LoseStamingRate = 1f;
+    public const int FULL_STAMINA = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -34,20 +39,15 @@ public class PlayerMovement : PhysicsComponent
     void Update()
     {
 
+
         ApplyGravity();
-
-
-
-
-
         CheckCollision();
-        ApplyAirResistance();
+        //ApplyAirResistance();
+        Debug.Log("Velocity: " + GetVelocity().magnitude);
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
     }
-
-
 
 
     private void CheckCollision()
@@ -86,5 +86,24 @@ public class PlayerMovement : PhysicsComponent
     {
         RaycastHit hitInfo;
         return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, GroundCheckDistance + SkinWidth, walkableMask);
+    }
+
+    public void Recover()
+    {
+        stamina += RecoveryRate * Time.deltaTime;
+        if (stamina >= FULL_STAMINA)
+        {
+            stamina = FULL_STAMINA;
+        }
+
+    }
+
+    public void Running()
+    {
+        stamina -= LoseStamingRate * Time.deltaTime;
+        if(stamina <= 0)
+        {
+            stamina = 0;
+        }
     }
 }

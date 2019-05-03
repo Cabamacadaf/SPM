@@ -22,7 +22,7 @@ public class PlayerAirState : PlayerBaseState
 
         if (owner.Movement.IsGrounded())
         {
-            owner.Transition<PlayerGroundState>();
+            owner.Transition<PlayerWalkState>();
         }
         owner.Movement.AddVelocity(base.direction * speed * Time.deltaTime);
 
