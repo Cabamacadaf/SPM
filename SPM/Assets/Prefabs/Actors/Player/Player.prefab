@@ -449,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8727586052577491053
 Transform:
   m_ObjectHideFlags: 0
@@ -594,8 +594,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airResistanceCoefficient: 0.5
   staticFrictionCoefficient: 0.7
-  dynamicFrictionCoefficient: 0.3
-  gravity: 100
+  dynamicFrictionCoefficient: 0.4
+  gravity: 90
   walkableMask:
     serializedVersion: 2
     m_Bits: 8704
@@ -606,6 +606,11 @@ MonoBehaviour:
   maxLoopValue: 20
   point2: {x: 0, y: 0, z: 0}
   capsuleCollider: {fileID: 0}
+  stamina: 100
+  WalkingSpeed: 20
+  RunningSpeed: 40
+  RecoveryRate: 15
+  LoseStamingRate: 15
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: 2650979281ec9d646907d923bf78a240, type: 2}
+  - {fileID: 11400000, guid: cdc0962540c28cc4b97f3636823c6616, type: 2}
+  - {fileID: 11400000, guid: f9e8e05bb0ca6ca478f468025c72315c, type: 2}
   - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
   mainCamera: {fileID: 8727586053171767193}
   gravityGun: {fileID: 8727586052577491054}
