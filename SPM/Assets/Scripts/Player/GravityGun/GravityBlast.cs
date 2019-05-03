@@ -5,10 +5,21 @@ using UnityEngine;
 public class GravityBlast : MonoBehaviour
 {
     public Collider blastRadius;
+    public Renderer meshRenderer;
+
+    public float blastForce = 1000.0f;
 
     public void Blast ()
     {
+        StartCoroutine(EnableTrigger());
+    }
+
+    IEnumerator EnableTrigger ()
+    {
+        meshRenderer.enabled = true;
         blastRadius.enabled = true;
-        Debug.Log("Blast");
+        yield return 0;
+        meshRenderer.enabled = false;
+        blastRadius.enabled = false;
     }
 }

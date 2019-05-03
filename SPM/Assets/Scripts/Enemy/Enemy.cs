@@ -19,6 +19,7 @@ public class Enemy : StateMachine
     public float movementSpeed = 5.0f;
     public float acceleration = 10.0f;
     public float rotationSpeed = 5.0f;
+    public float blastRecoveryTime = 2.0f;
     [HideInInspector] public MeshRenderer meshRenderer;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public BoxCollider boxCollider;

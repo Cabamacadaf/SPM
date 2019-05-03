@@ -8,6 +8,7 @@ public class EnemyAggroState : EnemyBaseState
     {
         base.Enter();
         owner.lightSource.enabled = true;
+        owner.agent.enabled = true;
         owner.agent.speed = owner.movementSpeed;
         owner.agent.acceleration = owner.acceleration;
         owner.agent.isStopped = false;
