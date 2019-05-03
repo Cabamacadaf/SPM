@@ -8,7 +8,13 @@ public class Enemy : StateMachine
 {
     public AudioClip attackSound;
     public AudioClip aggroSound;
+
+    public float attackDistance = 15.0f;
+    public float attackTime = 0.1f;
+    public float attackCooldown = 1.0f;
+    public float attackAnimationSpeed = 50.0f;
     public float attackDamage = 25f;
+
     public float hitPoints = 100f;
     public float movementSpeed = 5.0f;
     public float acceleration = 10.0f;
@@ -16,7 +22,7 @@ public class Enemy : StateMachine
     [HideInInspector] public MeshRenderer meshRenderer;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public BoxCollider boxCollider;
-    [HideInInspector] public GameObject attackHitbox;
+    public GameObject attackObject;
     [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public Light lightSource;
@@ -27,7 +33,6 @@ public class Enemy : StateMachine
     {
         lightSource = GetComponentInChildren<Light>();
         audioSource = GetComponent<AudioSource>();
-        attackHitbox = transform.GetChild(0).gameObject;
         rigidBody = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();

@@ -340,6 +340,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cff0b0ecff67a4c4abc3d49501c47fbf, type: 2}
   attackSound: {fileID: 8300000, guid: edb780fbd7a20a84cb327c73e3d01a1a, type: 3}
   aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
+  attackDistance: 15
+  attackTime: 0.1
+  attackCooldown: 1
+  attackAnimationSpeed: 50
   attackDamage: 25
   hitPoints: 50
   movementSpeed: 25
@@ -348,14 +352,11 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   agent: {fileID: 0}
   boxCollider: {fileID: 0}
-  attackHitbox: {fileID: 0}
+  attackObject: {fileID: 7468751758027635186}
+  rigidBody: {fileID: 0}
   audioSource: {fileID: 0}
   lightSource: {fileID: 0}
   player: {fileID: 0}
-  attackDistance: 15
-  attackTime: 0.1
-  attackCooldown: 1
-  attackAnimationSpeed: 50
 --- !u!195 &2226854606375388720
 NavMeshAgent:
   m_ObjectHideFlags: 0

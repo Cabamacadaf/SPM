@@ -20,7 +20,7 @@ public class Enemy1AttackState : EnemyAttackState
 
         //Debug.Log("Attack State");
         base.Enter();
-        owner.attackHitbox.SetActive(true);
+        owner.attackObject.SetActive(true);
     }
 
     public override void HandleUpdate ()

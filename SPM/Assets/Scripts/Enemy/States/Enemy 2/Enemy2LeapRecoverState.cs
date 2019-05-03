@@ -19,7 +19,7 @@ public class Enemy2LeapRecoverState : EnemyBaseState
         //Debug.Log("Leap Recover State");
         base.Enter();
         timer = 0.0f;
-        owner2.attackHitbox.SetActive(false);
+        owner2.leapAttackHitbox.SetActive(false);
         owner2.mouth.gameObject.SetActive(false);
     }
     public override void HandleUpdate ()

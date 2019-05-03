@@ -17,14 +17,15 @@ public class Enemy2LeapState : EnemyBaseState
     public override void Enter ()
     {
         hitPlayer = false;
-        owner.audioSource.PlayOneShot(owner.attackSound);
         //Debug.Log("Leap State");
         owner2 = (Enemy2)owner;
         timer = 0.0f;
         startPosition = owner.transform.position;
         endPosition = owner.player.transform.position;
         midPosition = startPosition + (endPosition - startPosition) / 2 + Vector3.up * owner2.leapHeight;
-        owner2.attackHitbox.SetActive(true);
+        owner2.leapAttackHitbox.SetActive(true);
+        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner2.leapSound, owner.audioSource);
+        enemyAttackEvent.ExecuteEvent();
         base.Enter();
     }
 

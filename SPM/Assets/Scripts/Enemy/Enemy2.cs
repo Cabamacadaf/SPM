@@ -6,18 +6,15 @@ using UnityEngine.AI;
 
 public class Enemy2 : Enemy
 {
-    public float leapRange = 10.0f;
-    public float leapChargeTime = 0.5f;
+    public AudioClip leapSound;
+
+    public float leapRange = 40.0f;
+    public float leapChargeTime = 1.0f;
     public float leapHeight = 5.0f;
     public float leapTime = 1.0f;
-    public float leapCooldown = 0.5f;
-    public float leapDamage = 10.0f;
-    [HideInInspector] public Transform mouth;
+    public float leapCooldown = 1.0f;
+    public float leapDamage = 50.0f;
+    public Transform mouth;
+    public GameObject leapAttackHitbox;
     public float leapSpeed = 2.0f;
-
-    protected override void Awake ()
-    {
-        base.Awake();
-        mouth = transform.GetChild(2);
-    }
 }
