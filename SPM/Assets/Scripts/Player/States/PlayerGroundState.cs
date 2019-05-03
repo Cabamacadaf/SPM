@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerBaseState
 {
+    protected float turnSpeedModifier = 5f;
+
     // Attributes
     protected int stamina = 1000;
     // Methods
