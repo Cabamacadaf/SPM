@@ -15,7 +15,6 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        Debug.Log("Stamina: " + owner.Movement.stamina);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

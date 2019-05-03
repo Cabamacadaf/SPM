@@ -16,7 +16,6 @@ public class PlayerRunState : PlayerGroundState
 
     public override void HandleUpdate()
     {
-        Debug.Log("RunState");
         base.HandleUpdate();
 
         if(owner.Movement.GetVelocity().magnitude < owner.Movement.RunningSpeed)

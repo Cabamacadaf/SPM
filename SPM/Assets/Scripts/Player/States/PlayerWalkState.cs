@@ -16,7 +16,6 @@ public class PlayerWalkState : PlayerGroundState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-        Debug.Log("Walkingstate");
 
         owner.Movement.Recover();
 

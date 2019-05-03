@@ -24,7 +24,7 @@ public class PlayerMovement : PhysicsComponent
     public int WalkingSpeed = 20;
     public int RunningSpeed = 40;
     public float RecoveryRate = 1f;
-    public float LoseStamingRate = 1f;
+    public float LoseStaminaRate = 1f;
     public const int FULL_STAMINA = 100;
 
     // Start is called before the first frame update
@@ -42,8 +42,7 @@ public class PlayerMovement : PhysicsComponent
 
         ApplyGravity();
         CheckCollision();
-        //ApplyAirResistance();
-        Debug.Log("Velocity: " + GetVelocity().magnitude);
+     
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
@@ -100,7 +99,7 @@ public class PlayerMovement : PhysicsComponent
 
     public void Running()
     {
-        stamina -= LoseStamingRate * Time.deltaTime;
+        stamina -= LoseStaminaRate * Time.deltaTime;
         if(stamina <= 0)
         {
             stamina = 0;
