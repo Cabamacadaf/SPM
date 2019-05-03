@@ -18,13 +18,11 @@ public class PlayerRunState : PlayerGroundState
     {
         base.HandleUpdate();
 
-        if(owner.Movement.GetVelocity().magnitude < owner.Movement.RunningSpeed)
+        if(owner.Movement.GetVelocity().magnitude <= owner.Movement.RunningSpeed)
         {
             float dotProduct = Vector3.Dot(owner.Movement.GetVelocity().normalized, direction);
-            Debug.Log("DotProduct: " + dotProduct);
-            if (dotProduct <= 0)
+            if (dotProduct <= 0.60)
             {
-                Debug.Log("Turnspeed");
                 owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
             }
             else

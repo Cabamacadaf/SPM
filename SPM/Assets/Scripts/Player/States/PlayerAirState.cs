@@ -12,6 +12,7 @@ public class PlayerAirState : PlayerBaseState
     {
         base.Enter();
         speed = owner.Movement.GetVelocity().magnitude;
+        owner.Movement.gravity = 150;
 
 
     }
@@ -20,12 +21,26 @@ public class PlayerAirState : PlayerBaseState
     {
         base.HandleUpdate();
 
+        if (owner.Movement.GetVelocity().magnitude <= owner.Movement.WalkingSpeed)
+        {
+            owner.Movement.AddVelocity(direction * speed * Time.deltaTime);
+
+
+        }
+
+
         if (owner.Movement.IsGrounded())
         {
             owner.Transition<PlayerWalkState>();
         }
-        owner.Movement.AddVelocity(base.direction * speed * Time.deltaTime);
 
+
+
+    }
+
+    public override void Exit()
+    {
+        owner.Movement.gravity = 90;
 
     }
 }
