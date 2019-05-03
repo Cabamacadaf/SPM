@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy1/AttackRecoverState")]
-public class Enemy1AttackRecoverState : EnemyBaseState
+[CreateAssetMenu(menuName = "States/Enemy/AttackRecoverState")]
+public class EnemyAttackRecoverState : EnemyBaseState
 {
     private float timer;
-    private Enemy1 owner1;
-
-    public override void Initialize (StateMachine owner)
-    {
-        base.Initialize(owner);
-        owner1 = (Enemy1)owner;
-    }
 
     public override void Enter ()
     {
@@ -28,8 +21,13 @@ public class Enemy1AttackRecoverState : EnemyBaseState
 
         timer += Time.deltaTime;
 
-        if(timer >= owner1.attackCooldown) {
-            owner.Transition<Enemy1AggroState>();
+        if (timer >= owner.attackCooldown) {
+            if (owner is Enemy1) {
+                owner.Transition<Enemy1AggroState>();
+            }
+            else if (owner is Enemy2) {
+                owner.Transition<Enemy2AggroState>();
+            }
         }
         base.HandleUpdate();
     }

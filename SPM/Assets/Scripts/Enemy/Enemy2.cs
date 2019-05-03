@@ -8,7 +8,8 @@ public class Enemy2 : Enemy
 {
     public AudioClip leapSound;
 
-    public float leapRange = 40.0f;
+    public float maxLeapRange = 40.0f;
+    public float minLeapRange = 20.0f;
     public float leapChargeTime = 1.0f;
     public float leapHeight = 5.0f;
     public float leapTime = 1.0f;

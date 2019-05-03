@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy2/LeapRecoverState")]
+[CreateAssetMenu(menuName = "States/Enemy/Enemy2/LeapRecoverState")]
 public class Enemy2LeapRecoverState : EnemyBaseState
 {
     private Enemy2 owner2;

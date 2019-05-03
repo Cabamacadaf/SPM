@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy1/IdleState")]
+[CreateAssetMenu(menuName = "States/Enemy/Enemy1/IdleState")]
 public class Enemy1IdleState : EnemyIdleState
 {
     public override void Enter ()

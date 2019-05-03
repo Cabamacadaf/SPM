@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy2/LeapChargeState")]
+[CreateAssetMenu(menuName = "States/Enemy/Enemy2/LeapChargeState")]
 public class Enemy2LeapChargeState : EnemyBaseState
 {
     private float timer;
