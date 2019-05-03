@@ -18,7 +18,6 @@ public class Attack : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasAttacked) {
             hasAttacked = true;
-            Debug.Log("attack");
             player.Damage(enemy.attackDamage);
         }
     }

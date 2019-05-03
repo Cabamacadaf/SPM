@@ -7,18 +7,16 @@ public class NotHoldingState : State
 {
     private GravityGun owner;
     private GameObject lastPickUpObjectHit;
+    private GravityBlast gravityBlast;
 
     public override void Initialize (StateMachine owner)
     {
-
         this.owner = (GravityGun)owner;
-
+        gravityBlast = owner.GetComponent<GravityBlast>();
     }
 
     public override void Enter ()
     {
-
-
         base.Enter();
     }
 
@@ -54,27 +52,20 @@ public class NotHoldingState : State
         if (Input.GetMouseButtonDown(1)) {
             Pull();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            gravityBlast.Blast();
+        }
     }
 
     public void Push ()
     {
-        Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer);
-        if (hit.collider != null && hit.collider.attachedRigidbody != null) {
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer) && hit.collider.attachedRigidbody != null) {
             if (hit.collider.GetComponent<PickUpObject>() != null) {
                 hit.collider.attachedRigidbody.isKinematic = false;
                 hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * owner.pushForce * (1 - (hit.distance / owner.pushRange)));
             }
-
-            //if(hit.collider.GetComponent<Enemy>() != null) {
-            //    Enemy enemy = hit.collider.GetComponent<Enemy>();
-            //    enemy.agent.enabled = false;
-            //    enemy.rigidBody.constraints = RigidbodyConstraints.None;
-            //    enemy.rigidBody.AddForce(Camera.main.transform.forward * owner.pushForce);
-            //}
         }
-
-
-
     }
 
     public void Pull ()
@@ -88,9 +79,4 @@ public class NotHoldingState : State
             owner.Transition<HoldingState>();
         }
     }
-
-
-
-
-
 }

@@ -91,6 +91,73 @@ Transform:
   m_Father: {fileID: 8727586052577491053}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4278488323586778763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8685283459452983092}
+  - component: {fileID: 7962176420111399736}
+  - component: {fileID: 1985083756425351724}
+  - component: {fileID: 5323025940301358972}
+  m_Layer: 12
+  m_Name: BlastRadius
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8685283459452983092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278488323586778763}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0, z: -0.47002}
+  m_LocalScale: {x: 19.8, y: 8.8, z: 8.8}
+  m_Children: []
+  m_Father: {fileID: 8727586052577491053}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &7962176420111399736
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278488323586778763}
+  m_Mesh: {fileID: 4300002, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+--- !u!64 &1985083756425351724
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278488323586778763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300002, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+--- !u!114 &5323025940301358972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278488323586778763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1cd9613f1c83445b7397c73b889a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5143796678288339796
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +169,7 @@ GameObject:
   - component: {fileID: 1515581263834801294}
   - component: {fileID: 9175110939945105700}
   m_Layer: 0
-  m_Name: Flash_Light
+  m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,6 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8727586052577491053}
   - component: {fileID: 8727586052577491054}
+  - component: {fileID: 5079452999055559323}
   m_Layer: 12
   m_Name: Gravity Gun
   m_TagString: Untagged
@@ -465,6 +533,7 @@ Transform:
   - {fileID: 1856394971495834143}
   - {fileID: 1184256900269344471}
   - {fileID: 1515581263834801294}
+  - {fileID: 8685283459452983092}
   m_Father: {fileID: 8727586053112546447}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -496,6 +565,19 @@ MonoBehaviour:
   playerPushForce: 20
   powerUpLength: 100
   powerUpMultiplier: 0
+--- !u!114 &5079452999055559323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586052577491052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a56f2fd8d00934db32a362a5adba48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blastRadius: {fileID: 1985083756425351724}
 --- !u!1 &8727586053112546443
 GameObject:
   m_ObjectHideFlags: 0

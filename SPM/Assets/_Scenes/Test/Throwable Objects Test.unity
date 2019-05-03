@@ -322,6 +322,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &523538744 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 1985083756425351724, guid: 483391c0130292745ae859d3cd322aae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1797270535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &773126965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1286,6 +1292,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079452999055559323, guid: 483391c0130292745ae859d3cd322aae,
+        type: 3}
+      propertyPath: blastRadius
+      value: 
+      objectReference: {fileID: 523538744}
+    - target: {fileID: 1985083756425351724, guid: 483391c0130292745ae859d3cd322aae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483391c0130292745ae859d3cd322aae, type: 3}
