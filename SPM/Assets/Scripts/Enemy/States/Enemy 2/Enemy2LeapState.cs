@@ -46,10 +46,12 @@ public class Enemy2LeapState : EnemyBaseState
 
     public override void HandleCollision (Collision collision)
     {
-        base.HandleCollision(collision);
+        Debug.Log("Hit something");
         if (collision.collider.CompareTag("Player")) {
+            Debug.Log("Hit player");
             hitPlayer = true;
         }
+        base.HandleCollision(collision);
     }
     public override void Exit ()
     {

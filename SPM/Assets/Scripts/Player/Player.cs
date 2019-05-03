@@ -31,15 +31,6 @@ public class Player : StateMachine
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            Damage(100);
-        }
-    
-    }
-
     public void Damage(float damage)
     {
         health -= damage;
