@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2728623054521184049}
   - component: {fileID: 2728623054521184048}
   m_Layer: 13
-  m_Name: TrasigtBord
+  m_Name: Broken Table
   m_TagString: Shootable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,10 +220,12 @@ MonoBehaviour:
   durability: 3
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
-  lowestVelocityToDoDamage: 5
+  impactDamage: 25
+  lowestVelocityToDoDamage: 20
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &2728623054989067717
 GameObject:
   m_ObjectHideFlags: 0

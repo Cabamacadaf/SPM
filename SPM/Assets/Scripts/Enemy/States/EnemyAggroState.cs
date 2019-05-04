@@ -11,7 +11,6 @@ public class EnemyAggroState : EnemyBaseState
         owner.agent.enabled = true;
         owner.agent.speed = owner.movementSpeed;
         owner.agent.acceleration = owner.acceleration;
-        owner.agent.isStopped = false;
     }
 
     public override void HandleUpdate ()

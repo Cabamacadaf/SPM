@@ -12,11 +12,12 @@ public class Enemy1AggroState : EnemyAggroState
     }
     public override void HandleUpdate ()
     {
-        owner.agent.SetDestination(owner.player.transform.position);
+        if (owner.agent.isOnNavMesh) {
+            owner.agent.SetDestination(owner.player.transform.position);
+        }
 
         if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner.attackDistance) {
-            owner.agent.SetDestination(owner.transform.position);
-            owner.agent.isStopped = true;
+            owner.agent.enabled = false;
             owner.Transition<EnemyAttackState>();
         }
         base.HandleUpdate();

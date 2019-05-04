@@ -109,6 +109,7 @@ public class PickUpObject : MonoBehaviour
         if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
             enemyState.Damage(impactDamage);
+            Debug.Log("Velocity: " + rb.velocity.magnitude);
             LoseDurability();
         }
         
@@ -121,7 +122,7 @@ public class PickUpObject : MonoBehaviour
         }
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Geometry"))
         {
-            Debug.Log("Collided with Geometry");
+            //Debug.Log("Collided with Geometry");
         }
     }
 }

@@ -15,7 +15,6 @@ public class BlastRadius : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             enemy.Transition<EnemyBlastedState>();
             enemy.rigidBody.AddForce((enemy.transform.position - enemy.player.transform.position).normalized * gravityBlast.blastForce);
-            Debug.Log("Blasted Enemy");
         }
     }
 }
