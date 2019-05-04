@@ -10,7 +10,7 @@ public class EnemyBlastedState : EnemyBaseState
     {
         timer = 0.0f;
         owner.agent.enabled = false;
-        owner.rigidBody.constraints = RigidbodyConstraints.None;
+        owner.rigidBody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
         base.Enter();
     }
 
@@ -26,5 +26,10 @@ public class EnemyBlastedState : EnemyBaseState
             }
         }
         base.HandleUpdate();
+    }
+    public override void Exit ()
+    {
+        owner.rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        base.Exit();
     }
 }

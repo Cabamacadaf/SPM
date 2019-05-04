@@ -12,7 +12,6 @@ public class EnemyAttackRecoverState : EnemyBaseState
         //Debug.Log("Attack Recover State");
         base.Enter();
         timer = 0.0f;
-        owner.attackObject.SetActive(false);
     }
 
     public override void HandleUpdate ()
