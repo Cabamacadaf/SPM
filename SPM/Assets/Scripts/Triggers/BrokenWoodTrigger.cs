@@ -8,6 +8,7 @@ public class BrokenWoodTrigger : MonoBehaviour
     public GameObject wood1;
     public GameObject wood2;
     public GameObject wood3, wood4, wood5, wood6;
+    public GameObject SpawnTrigger;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class BrokenWoodTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SpawnTrigger.SetActive(false);
             Debug.Log("Touched");
             wood1.GetComponent<Rigidbody>().isKinematic = false;
             wood2.GetComponent<Rigidbody>().isKinematic = false;
