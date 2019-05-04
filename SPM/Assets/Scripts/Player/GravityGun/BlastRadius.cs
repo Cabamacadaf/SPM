@@ -14,7 +14,7 @@ public class BlastRadius : MonoBehaviour
         if (other.CompareTag("Enemy")) {
             Enemy enemy = other.GetComponent<Enemy>();
             enemy.Transition<EnemyBlastedState>();
-            enemy.rigidBody.AddForce((enemy.transform.position - enemy.player.transform.position) * gravityBlast.blastForce);
+            enemy.rigidBody.AddForce((enemy.transform.position - enemy.player.transform.position).normalized * gravityBlast.blastForce);
             Debug.Log("Blasted Enemy");
         }
     }
