@@ -7,7 +7,7 @@ public class GravityBlast : MonoBehaviour
     public Collider blastRadius;
     public Renderer meshRenderer;
 
-    public float blastForce = 1000.0f;
+    public float blastForce = 50000.0f;
 
     public void Blast ()
     {
