@@ -21,7 +21,6 @@ public class EnemyAttackState : EnemyBaseState
     public override void HandleUpdate ()
     {
         if (timer >= owner.attackTime) {
-            owner.attackObject.transform.position = owner.transform.position;
             owner.Transition<EnemyAttackRecoverState>();
         }
 
@@ -33,6 +32,8 @@ public class EnemyAttackState : EnemyBaseState
     public override void Exit ()
     {
         base.Exit();
+        owner.attackObject.transform.position = owner.transform.position;
+        owner.attackObject.SetActive(false);
         owner.GetComponentInChildren<Attack>().hasAttacked = false;
     }
 }
