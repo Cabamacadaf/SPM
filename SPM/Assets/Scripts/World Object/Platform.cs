@@ -58,6 +58,11 @@ public class Platform : MonoBehaviour
 
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            IsActive = false;
+        }
+
     }
 
     private void Move(Vector3 targetPosition)
