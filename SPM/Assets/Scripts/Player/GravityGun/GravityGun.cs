@@ -28,10 +28,7 @@ public class GravityGun : StateMachine
 
     protected override void Awake()
     {
-
-
         base.Awake();
-
     }
 
 
