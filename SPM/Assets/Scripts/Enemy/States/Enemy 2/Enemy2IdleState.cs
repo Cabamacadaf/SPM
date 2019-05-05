@@ -7,7 +7,6 @@ public class Enemy2IdleState : EnemyIdleState
 {
     public override void Enter ()
     {
-        //Debug.Log("Idle State");
         base.Enter();
     }
 

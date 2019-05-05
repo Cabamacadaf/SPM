@@ -15,7 +15,6 @@ public class Enemy2AggroState : EnemyAggroState
 
     public override void Enter ()
     {
-        //Debug.Log("Aggro State");
         base.Enter();
     }
 

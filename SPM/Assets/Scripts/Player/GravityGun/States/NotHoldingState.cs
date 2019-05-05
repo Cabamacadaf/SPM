@@ -59,11 +59,6 @@ public class NotHoldingState : State
         {
             Pull();
         }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            gravityBlast.Blast();
-        }
     }
 
     public void Push()

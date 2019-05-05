@@ -9,11 +9,10 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Enter ()
     {
+        //Debug.Log("Attack State");
         timer = 0.0f;
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
         enemyAttackEvent.ExecuteEvent();
-
-        //Debug.Log("Attack State");
         owner.attackObject.SetActive(true);
         base.Enter();
     }
