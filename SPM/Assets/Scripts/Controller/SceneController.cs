@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class SceneController : Singleton<SceneController>
 {
     public KeyCode RestartSceneButton = KeyCode.P;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
+    public Vector3 lastCheckPointPos;
 
+    public bool RestartedFromLatestCheckpoint;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -19,11 +32,24 @@ public class SceneController : MonoBehaviour
         {
             RestartScene();
         }
+        if (Input.GetKeyDown(RestartFromLatestCheckpointButton))
+        {
+            RestartSceneFromLatestCheckpoint();
+        }
     }
 
     private void RestartScene()
     {
         Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
+        RestartedFromLatestCheckpoint = false;
+    }
+
+
+    private void RestartSceneFromLatestCheckpoint()
+    {
+        Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+        RestartedFromLatestCheckpoint = true;
     }
 }
