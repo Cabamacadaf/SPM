@@ -49,7 +49,6 @@ public class NotHoldingState : State
             owner.crosshair.color = Color.yellow;
         }
 
-
         if (Input.GetMouseButtonDown(0))
         {
             Push();
@@ -58,11 +57,6 @@ public class NotHoldingState : State
         if (Input.GetMouseButtonDown(1))
         {
             Pull();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            gravityBlast.Blast();
         }
     }
 
@@ -77,14 +71,11 @@ public class NotHoldingState : State
             }
             else if (hit.collider.gameObject.CompareTag("Platform"))
             {
-
                 Platform platform = hit.collider.gameObject.GetComponent<Platform>();
                 if (platform.IsActive)
                 {
                     hit.collider.gameObject.GetComponent<Platform>().IsActive = false;
-
                 }
-
             }
         }
     }
@@ -92,26 +83,20 @@ public class NotHoldingState : State
     public void Pull()
     {
 
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.hitLayer))
-
-            if (hit.transform.GetComponent<PickUpObject>() != null)
-            {
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.hitLayer)) {
+            if (hit.transform.GetComponent<PickUpObject>() != null) {
                 //hit.collider.attachedRigidbody.isKinematic = true;
                 owner.holdingObject = hit.collider.GetComponent<PickUpObject>();
                 owner.holdingObject.Pull(owner.pullForce);
                 owner.Transition<HoldingState>();
             }
-            else if (hit.collider.gameObject.CompareTag("Platform"))
-            {
-
+            else if (hit.collider.gameObject.CompareTag("Platform")) {
                 Platform platform = hit.collider.gameObject.GetComponent<Platform>();
-                if (!platform.IsActive)
-                {
+                if (!platform.IsActive) {
                     hit.collider.gameObject.GetComponent<Platform>().IsActive = true;
 
                 }
-
             }
-
+        }
     }
 }
