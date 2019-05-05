@@ -11,7 +11,7 @@ public class Player : StateMachine
     private Transform healthBar;
     [HideInInspector] public Light flashlight;
 
-    public Transform respawnPoint;
+    //public Transform respawnPoint;
 
     public float startHealth;
     [HideInInspector] public float health;
@@ -28,6 +28,10 @@ public class Player : StateMachine
         flashlight = GetComponentInChildren<Light>();
         healthBar = transform.GetChild(2);
         base.Awake();
+        if (SceneController.Instance.RestartedFromLatestCheckpoint)
+        {
+            RespawnCheckpoint();
+        }
 
     }
 
@@ -55,7 +59,13 @@ public class Player : StateMachine
     {
         health = startHealth;
         healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
-        transform.position = respawnPoint.position;
+        //transform.position = respawnPoint.position;
+    }
+
+    public void RespawnCheckpoint()
+    {
+        transform.position = SceneController.Instance.lastCheckPointPos;
+
     }
 
 }
