@@ -5205,9 +5205,9 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
-  m_Range: 75
-  m_SpotAngle: 65
+  m_Intensity: 8
+  m_Range: 7.5
+  m_SpotAngle: 66.6
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -5798,7 +5798,7 @@ MonoBehaviour:
   walkableMask:
     serializedVersion: 2
     m_Bits: 8704
-  JumpHeight: 15
+  JumpHeight: 4
   Acceleration: 10
   SkinWidth: 0.2
   GroundCheckDistance: 0.2
@@ -5806,11 +5806,12 @@ MonoBehaviour:
   point2: {x: 0, y: 0, z: 0}
   capsuleCollider: {fileID: 0}
   stamina: 100
-  WalkingSpeed: 30
-  RunningSpeed: 60
+  WalkingSpeed: 10
+  RunningSpeed: 30
   CrouchSpeed: 10
   RecoveryRate: 15
   LoseStaminaRate: 15
+  maxSpeed: 0
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
