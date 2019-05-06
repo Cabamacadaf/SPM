@@ -46,7 +46,6 @@ public class PickUpObject : MonoBehaviour
             if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab) {
                 //rb.useGravity = false;
                 transform.position = pullPoint.position;
-                StartCoroutine(RotateTowardPullpoint());
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
@@ -59,12 +58,10 @@ public class PickUpObject : MonoBehaviour
 
     private IEnumerator RotateTowardPullpoint ()
     {
-        while(transform.rotation != pullPoint.rotation) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, pullPoint.rotation, rotationSpeed * Time.deltaTime);
+        while(transform.rotation != pullPoint.rotation && active) {
+            transform.rotation = Quaternion.Lerp(transform.rotation, pullPoint.rotation, rotationSpeed * Time.deltaTime);
             yield return null;
         }
-        transform.rotation = pullPoint.rotation;
-        yield return null;
     }
 
     public void Drop ()
@@ -83,6 +80,7 @@ public class PickUpObject : MonoBehaviour
         this.pullForce = pullForce;
         active = true;
         UnHighlight();
+        StartCoroutine(RotateTowardPullpoint());
     }
 
     protected void LoseDurability ()
