@@ -12,7 +12,7 @@ public class PlayerAirState : PlayerBaseState
     {
         base.Enter();
         speed = owner.Movement.GetVelocity().magnitude;
-        owner.Movement.gravity = 150;
+        //owner.Movement.gravity = 150;
 
 
     }
@@ -40,7 +40,7 @@ public class PlayerAirState : PlayerBaseState
 
     public override void Exit()
     {
-        owner.Movement.gravity = 90;
+       // owner.Movement.gravity = 90;
 
     }
 }

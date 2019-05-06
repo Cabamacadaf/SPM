@@ -28,14 +28,15 @@ public class PlayerWalkState : PlayerGroundState
             owner.Transition<PlayerRunState>();
         }
 
-        owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
-        if (owner.Movement.GetVelocity().magnitude > owner.Movement.WalkingSpeed)
+        if (owner.Movement.GetVelocity().magnitude <= owner.Movement.WalkingSpeed)
         {
 
+            owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
 
-            owner.Movement.SetVelocity(owner.Movement.GetVelocity().normalized * owner.Movement.maxSpeed);
+            // owner.Movement.SetVelocity(owner.Movement.GetVelocity().normalized * owner.Movement.maxSpeed);
+
         }
-     
+
 
     }
 }
