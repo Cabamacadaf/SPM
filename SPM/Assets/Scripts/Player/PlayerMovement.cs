@@ -28,6 +28,8 @@ public class PlayerMovement : PhysicsComponent
     public float LoseStaminaRate = 1f;
     public const int FULL_STAMINA = 100;
 
+    public float maxSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class PlayerMovement : PhysicsComponent
 
         ApplyGravity();
         CheckCollision();
-     
+        ApplyAirResistance();
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
@@ -105,5 +107,12 @@ public class PlayerMovement : PhysicsComponent
         {
             stamina = 0;
         }
+    }
+
+
+
+    public void Decelerate()
+    {
+
     }
 }

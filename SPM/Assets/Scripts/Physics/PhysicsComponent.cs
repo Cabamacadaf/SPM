@@ -28,7 +28,7 @@ public class PhysicsComponent : MonoBehaviour
         return velocity;
     }
 
-    public void SetVelocity(Vector2 vel)
+    public void SetVelocity(Vector3 vel)
     {
         velocity = vel;
     }
