@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 22298498584101772}
   - component: {fileID: 1869731597915446185}
   m_Layer: 9
-  m_Name: Keycard
+  m_Name: KeyCard
   m_TagString: Shootable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +129,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7023717045014548748}
     m_Modifications:
+    - target: {fileID: 1330359353182319259, guid: a5b1a4d80f69df34081558ec0b41b190,
+        type: 3}
+      propertyPath: m_Name
+      value: Green_Light
+      objectReference: {fileID: 0}
     - target: {fileID: 2891311457588309823, guid: a5b1a4d80f69df34081558ec0b41b190,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -183,16 +188,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1330359353182319259, guid: a5b1a4d80f69df34081558ec0b41b190,
-        type: 3}
-      propertyPath: m_Name
-      value: Green_Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717346999368087069, guid: a5b1a4d80f69df34081558ec0b41b190,
-        type: 3}
-      propertyPath: m_Range
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b1a4d80f69df34081558ec0b41b190, type: 3}
