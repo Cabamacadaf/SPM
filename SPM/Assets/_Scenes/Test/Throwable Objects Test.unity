@@ -969,12 +969,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccf594ff4364c9f469c3047931af1582, type: 3}
---- !u!108 &756370561 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 8610990704857576711, guid: 483391c0130292745ae859d3cd322aae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1797270535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &773126965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2601,11 +2595,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5746688670931222284, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: walkableMask.m_Bits
-      value: 8704
-      objectReference: {fileID: 0}
     - target: {fileID: 613283157, guid: 483391c0130292745ae859d3cd322aae, type: 3}
       propertyPath: respawnPoint
       value: 
@@ -2615,51 +2604,6 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 203788182}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pullForce
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pushForce
-      value: 900
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pushRange
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: pullRange
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: cameraOffset
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491052, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5079452999055559323, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: light
-      value: 
-      objectReference: {fileID: 756370561}
-    - target: {fileID: 1985083756425351724, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1897980552750338992, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483391c0130292745ae859d3cd322aae, type: 3}
 --- !u!1 &1883067867
