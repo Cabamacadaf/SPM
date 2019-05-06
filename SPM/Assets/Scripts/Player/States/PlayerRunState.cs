@@ -20,16 +20,18 @@ public class PlayerRunState : PlayerGroundState
 
         if(owner.Movement.GetVelocity().magnitude <= owner.Movement.RunningSpeed)
         {
-            float dotProduct = Vector3.Dot(owner.Movement.GetVelocity().normalized, direction);
-            if (dotProduct <= 0.60)
-            {
-                owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
-            }
-            else
-            {
-                owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
+            //float dotProduct = Vector3.Dot(owner.Movement.GetVelocity().normalized, direction);
+            //if (dotProduct <= 0.60)
+            //{
+            //    owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
+            //}
+            //else
+            //{
+            //    owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
 
-            }
+            //}
+            owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
+
 
 
         }
