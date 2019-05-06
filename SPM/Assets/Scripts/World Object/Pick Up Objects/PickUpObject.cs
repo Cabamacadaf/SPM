@@ -106,10 +106,10 @@ public class PickUpObject : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
+        Debug.Log("Velocity: " + rb.velocity.magnitude);
         if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
             enemyState.Damage(impactDamage);
-            Debug.Log("Velocity: " + rb.velocity.magnitude);
             LoseDurability();
         }
         
