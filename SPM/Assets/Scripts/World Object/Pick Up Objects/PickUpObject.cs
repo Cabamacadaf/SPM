@@ -17,6 +17,7 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private float holdingOpacity = 0.5f;
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
+    [SerializeField] private float rotationSpeed = 1f;
     protected Transform pullPoint;
     protected bool thrown = false;
     [HideInInspector] public bool isHighlighted = false;
@@ -24,17 +25,17 @@ public class PickUpObject : MonoBehaviour
     //Should probably fix this
     private int geometry = 9;
 
-    void Awake()
+    void Awake ()
     {
         pullPoint = GameObject.Find("PullPoint").transform;
         player = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
-    
-    void Update()
+
+    void Update ()
     {
-        if(active && !holding) {
+        if (active && !holding) {
             //rb.useGravity = false;
             //if (!(Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab))
             //{
@@ -42,12 +43,11 @@ public class PickUpObject : MonoBehaviour
             //}
             transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
 
-            if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab)
-            {
+            if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab) {
+                //rb.useGravity = false;
                 transform.position = pullPoint.position;
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
-                //rb.useGravity = false;
                 transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
                 meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
 
@@ -56,7 +56,15 @@ public class PickUpObject : MonoBehaviour
         }
     }
 
-    public void Drop()
+    private IEnumerator RotateTowardPullpoint ()
+    {
+        while(transform.rotation != pullPoint.rotation && active) {
+            transform.rotation = Quaternion.Lerp(transform.rotation, pullPoint.rotation, rotationSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    public void Drop ()
     {
         //rb.useGravity = true;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
@@ -72,13 +80,13 @@ public class PickUpObject : MonoBehaviour
         this.pullForce = pullForce;
         active = true;
         UnHighlight();
+        StartCoroutine(RotateTowardPullpoint());
     }
 
-    protected void LoseDurability()
+    protected void LoseDurability ()
     {
         durability--;
-        if(durability <= 0)
-        {
+        if (durability <= 0) {
             ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
             objectDestroyedEvent.ExecuteEvent();
         }
@@ -112,7 +120,7 @@ public class PickUpObject : MonoBehaviour
             enemyState.Damage(impactDamage);
             LoseDurability();
         }
-        
+
     }
 
     private void OnCollisionEnter (Collision collision)
@@ -120,8 +128,7 @@ public class PickUpObject : MonoBehaviour
         if (collision.collider.CompareTag("DestructibleObject") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
         }
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Geometry"))
-        {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Geometry")) {
             //Debug.Log("Collided with Geometry");
         }
     }
