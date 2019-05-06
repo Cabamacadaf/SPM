@@ -45,8 +45,7 @@ public class PlayerMovement : PhysicsComponent
         ApplyGravity();
         CheckCollision();
         //ApplyAirResistance();
-        Debug.Log("Veclocity: " + velocity);
-        Debug.Log("Magnitude: " + velocity.magnitude);
+
 
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
