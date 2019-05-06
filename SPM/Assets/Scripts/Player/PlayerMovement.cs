@@ -42,10 +42,12 @@ public class PlayerMovement : PhysicsComponent
     void Update()
     {
 
-
         ApplyGravity();
         CheckCollision();
-        ApplyAirResistance();
+        //ApplyAirResistance();
+        Debug.Log("Veclocity: " + velocity);
+        Debug.Log("Magnitude: " + velocity.magnitude);
+
         transform.position += GetVelocity() * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;

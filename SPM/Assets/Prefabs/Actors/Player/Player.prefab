@@ -5794,11 +5794,11 @@ MonoBehaviour:
   airResistanceCoefficient: 0.5
   staticFrictionCoefficient: 0.6
   dynamicFrictionCoefficient: 0.5
-  gravity: 9.8
+  gravity: 15
   walkableMask:
     serializedVersion: 2
     m_Bits: 8704
-  JumpHeight: 15
+  JumpHeight: 8
   Acceleration: 10
   SkinWidth: 0.2
   GroundCheckDistance: 0.2
@@ -5806,11 +5806,12 @@ MonoBehaviour:
   point2: {x: 0, y: 0, z: 0}
   capsuleCollider: {fileID: 0}
   stamina: 100
-  WalkingSpeed: 30
-  RunningSpeed: 60
+  WalkingSpeed: 5
+  RunningSpeed: 10
   CrouchSpeed: 10
   RecoveryRate: 15
   LoseStaminaRate: 15
+  maxSpeed: 0
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
