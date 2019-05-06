@@ -35,6 +35,14 @@ public class CameraManager : MonoBehaviour
         rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
 
+        if(rotationX > maxClampValue)
+        {
+            rotationX = maxClampValue;
+        }
+        else if(rotationX < minClampValue) 
+        {
+            rotationX = minClampValue;
+        }
 
         transform.rotation = Quaternion.Euler(Mathf.Clamp(rotationX, minClampValue, maxClampValue), rotationY, 0);
 

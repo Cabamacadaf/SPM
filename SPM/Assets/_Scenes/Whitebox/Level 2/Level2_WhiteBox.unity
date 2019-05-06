@@ -4440,10 +4440,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &84373529
 GameObject:
   m_ObjectHideFlags: 0
@@ -29618,7 +29620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &482763420
 GameObject:
@@ -31320,10 +31322,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1001 &506363531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31374,7 +31378,7 @@ PrefabInstance:
     - target: {fileID: 3936150291309793900, guid: 46e0a9eb2b18db94f8e21539ba789f86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3936150291309793900, guid: 46e0a9eb2b18db94f8e21539ba789f86,
         type: 3}
@@ -32134,10 +32138,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &517695724
 GameObject:
   m_ObjectHideFlags: 0
@@ -32758,10 +32764,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &525184228
 GameObject:
   m_ObjectHideFlags: 0
@@ -37975,10 +37983,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &592745736
 GameObject:
   m_ObjectHideFlags: 0
@@ -40760,7 +40770,7 @@ PrefabInstance:
     - target: {fileID: 8727586053112546447, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8727586053112546447, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
@@ -43407,6 +43417,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674021124}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &677673354
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5684687261375855907, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_Name
+      value: EventListeners
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684687261375855909, guid: 0410cb9240c18364ebffb99a707a3c78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0410cb9240c18364ebffb99a707a3c78, type: 3}
 --- !u!1 &679687077
 GameObject:
   m_ObjectHideFlags: 0
@@ -53967,10 +54046,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &834739400
 GameObject:
   m_ObjectHideFlags: 0
@@ -65984,10 +66065,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1019881620
 GameObject:
   m_ObjectHideFlags: 0
@@ -66578,7 +66661,7 @@ Transform:
   - {fileID: 568382949}
   - {fileID: 1423572110}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1028902188
 PrefabInstance:
@@ -66707,10 +66790,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1032712836
 GameObject:
   m_ObjectHideFlags: 0
@@ -67829,10 +67914,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1055590646
 GameObject:
   m_ObjectHideFlags: 0
@@ -68902,10 +68989,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1073795990
 GameObject:
   m_ObjectHideFlags: 0
@@ -69621,10 +69710,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1082817913
 GameObject:
   m_ObjectHideFlags: 0
@@ -75258,6 +75349,7 @@ MonoBehaviour:
   wood4: {fileID: 1326708461}
   wood5: {fileID: 844478053}
   wood6: {fileID: 1455233065}
+  SpawnTrigger: {fileID: 0}
 --- !u!1 &1178157775
 GameObject:
   m_ObjectHideFlags: 0
@@ -87330,10 +87422,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1370181989
 GameObject:
   m_ObjectHideFlags: 0
@@ -102970,10 +103064,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1620632036
 GameObject:
   m_ObjectHideFlags: 0
@@ -109478,10 +109574,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1725528650
 GameObject:
   m_ObjectHideFlags: 0
@@ -113516,7 +113614,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1797371109
 GameObject:
@@ -115689,10 +115787,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &1826366600
 GameObject:
   m_ObjectHideFlags: 0
@@ -125546,7 +125646,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991632734
 GameObject:
@@ -134248,10 +134348,12 @@ MonoBehaviour:
   durability: 9999
   holding: 0
   distanceToGrab: 0.1
-  damageMultiplier: 0.2
-  minDamage: 10
-  maxDamage: 50
+  impactDamage: 25
   lowestVelocityToDoDamage: 5
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 0}
+  highlightedMaterial: {fileID: 0}
+  isHighlighted: 0
 --- !u!1 &2127414293
 GameObject:
   m_ObjectHideFlags: 0

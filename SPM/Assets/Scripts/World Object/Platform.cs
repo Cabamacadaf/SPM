@@ -2,42 +2,190 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : PhysicsComponent
+public class Platform : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
+
+    //Attributes
+    public bool IsActive { get; set; }
+
+    public Transform EndPosition;
+    public GameObject Player;
+    public MovingAxes movingAxes;
 
 
-    [SerializeField] private Vector3 direction;
-    private Transform startPosition;
-    private float counter;
+    [Tooltip("Ange ett värde mellan 0-1 för att ändra hur snabbt platformen rör sig med musen. \n" +
+        "1: Rör sig exakt lika snabbt som musen \n" +
+        "0: Rör sig inte alls")]
+    [SerializeField] private float SmootherMovementValue;
+
+    private Vector3 startPosition;
+    private float maxDistance;
+    private bool endPosIsLeftOfStart;
+    private delegate Vector3 GetTargetPosition();
+    private GetTargetPosition getTargetPosition;
+    private delegate bool CanMove(Vector3 targetPosition);
+    private CanMove canMove;
 
 
-    // Start is called before the first frame update
-    private void Awake()
-    {
-    }
+    //Methods
     void Start()
     {
-        startPosition = this.transform;
-        counter = 0;
+        Player = GameObject.Find("Player");
+        startPosition = transform.position;
+        maxDistance = Vector3.Distance(startPosition, EndPosition.position);
+
+
+
+        DelegateFuntions();
 
     }
-    //Riktning * movespeed * tid
+
+
+
     // Update is called once per frame
     void Update()
     {
-        ApplyAirResistance();
-        if (counter > 6)
+        if (IsActive)
         {
-            direction = -direction;
-            counter = 0;
-        }
-            
 
-        AddVelocity(direction * movementSpeed * Time.deltaTime);
-        //vel = direction * movementSpeed * Time.deltaTime * Time.deltaTime;
-        transform.position += GetVelocity() * Time.deltaTime;
-        counter+=Time.deltaTime;
+            Vector3 targetPosition = getTargetPosition();
+
+
+            if (canMove(targetPosition))
+            {
+                Move(targetPosition);
+            }
+
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            IsActive = false;
+        }
+
     }
 
+    private void Move(Vector3 targetPosition)
+    {
+        transform.position = Vector3.Lerp(transform.position, targetPosition, SmootherMovementValue);
+    }
+
+    private Vector3 GetTargetPositionX()
+    {
+        Vector3 targetPosition;
+        float playerZPos = Player.transform.position.z;
+
+        if (playerZPos < transform.position.z)
+        {
+            targetPosition = new Vector3(transform.position.x + Input.GetAxis("Mouse X"), transform.position.y, transform.position.z);
+
+        }
+        else
+        {
+            targetPosition = new Vector3(transform.position.x - Input.GetAxis("Mouse X"), transform.position.y, transform.position.z);
+
+        }
+
+        return targetPosition;
+    }
+
+    private Vector3 GetTargetPositionZ()
+    {
+        Vector3 targetPosition;
+        float playerXPos = Player.transform.position.x;
+
+        if (playerXPos < transform.position.x)
+        {
+            targetPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z - Input.GetAxis("Mouse X"));
+
+        }
+        else
+        {
+            targetPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + Input.GetAxis("Mouse X"));
+
+        }
+
+        return targetPosition;
+    }
+
+    private Vector3 GetTargetPositionY()
+    {
+
+        return new Vector3(transform.position.x, transform.position.y + Input.GetAxis("Mouse Y"), transform.position.z);
+    }
+
+
+
+    private bool CanMoveX(Vector3 targetPosition)
+    {
+        if (endPosIsLeftOfStart)
+        {
+
+            return targetPosition.x < startPosition.x + maxDistance && targetPosition.x > startPosition.x;
+
+        }
+        else
+        {
+            return targetPosition.x > startPosition.x - maxDistance && targetPosition.x < startPosition.x;
+        }
+    }
+
+    private bool CanMoveZ(Vector3 targetPosition)
+    {
+        if (endPosIsLeftOfStart)
+        {
+
+            return targetPosition.z < startPosition.z + maxDistance && targetPosition.z > startPosition.z;
+
+        }
+        else
+        {
+            return targetPosition.z > startPosition.z - maxDistance && targetPosition.z < startPosition.z;
+        }
+    }
+
+    private bool CanMoveY(Vector3 targetPosition)
+    {
+        return targetPosition.y < startPosition.y + maxDistance && targetPosition.y > startPosition.y;
+
+    }
+
+    private void DelegateFuntions()
+    {
+
+        switch (movingAxes)
+        {
+            case MovingAxes.X:
+                if (EndPosition.position.x > startPosition.x)
+                {
+                    endPosIsLeftOfStart = true;
+                }
+                getTargetPosition = GetTargetPositionX;
+                canMove = CanMoveX;
+                break;
+            case MovingAxes.Z:
+                if (EndPosition.position.z > startPosition.z)
+                {
+                    endPosIsLeftOfStart = true;
+                }
+                getTargetPosition = GetTargetPositionZ;
+                canMove = CanMoveZ;
+                break;
+            case MovingAxes.Y:
+                getTargetPosition = GetTargetPositionY;
+                canMove = CanMoveY;
+                break;
+
+        }
+
+        
+    }
+
+
 }
+[System.Serializable]
+public enum MovingAxes
+{
+    X, Y, Z
+}
+

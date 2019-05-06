@@ -12,6 +12,7 @@ public class PlayerBaseState : State
     private RaycastHit hitInfo;
 
     private int checkCollisionCounter = 0;
+    protected Vector3 keyboardDirection;
 
 
     protected Player owner;
@@ -41,7 +42,7 @@ public class PlayerBaseState : State
     private void HandleInput ()
     {
 
-        Vector3 keyboardDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        keyboardDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Quaternion cameraRotation = owner.mainCamera.transform.rotation;
         direction = cameraRotation * keyboardDirection;
 

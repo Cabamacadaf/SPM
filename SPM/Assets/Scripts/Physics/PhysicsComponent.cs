@@ -9,7 +9,7 @@ public class PhysicsComponent : MonoBehaviour
     [SerializeField] private float airResistanceCoefficient;
     [SerializeField] private float staticFrictionCoefficient;
     [SerializeField] private float dynamicFrictionCoefficient;
-    [SerializeField] private float gravity;
+    public float gravity;
 
     //Methods
 
@@ -28,7 +28,7 @@ public class PhysicsComponent : MonoBehaviour
         return velocity;
     }
 
-    protected void SetVelocity(Vector2 vel)
+    public void SetVelocity(Vector3 vel)
     {
         velocity = vel;
     }

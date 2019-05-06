@@ -106,17 +106,23 @@ public class PickUpObject : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
+        Debug.Log("Velocity: " + rb.velocity.magnitude);
         if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
             enemyState.Damage(impactDamage);
             LoseDurability();
         }
+        
     }
 
     private void OnCollisionEnter (Collision collision)
     {
         if (collision.collider.CompareTag("DestructibleObject") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
+        }
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Geometry"))
+        {
+            //Debug.Log("Collided with Geometry");
         }
     }
 }

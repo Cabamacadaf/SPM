@@ -9,11 +9,10 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Enter ()
     {
+        //Debug.Log("Attack State");
         timer = 0.0f;
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
         enemyAttackEvent.ExecuteEvent();
-
-        //Debug.Log("Attack State");
         owner.attackObject.SetActive(true);
         base.Enter();
     }
@@ -21,7 +20,6 @@ public class EnemyAttackState : EnemyBaseState
     public override void HandleUpdate ()
     {
         if (timer >= owner.attackTime) {
-            owner.attackObject.transform.position = owner.transform.position;
             owner.Transition<EnemyAttackRecoverState>();
         }
 
@@ -33,6 +31,8 @@ public class EnemyAttackState : EnemyBaseState
     public override void Exit ()
     {
         base.Exit();
+        owner.attackObject.transform.position = owner.transform.position;
         owner.GetComponentInChildren<Attack>().hasAttacked = false;
+        owner.attackObject.SetActive(false);
     }
 }
