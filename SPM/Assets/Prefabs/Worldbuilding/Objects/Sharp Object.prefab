@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5783386443276705253}
   - component: {fileID: 5783386443276705256}
   - component: {fileID: 5783386443276705255}
-  - component: {fileID: 4474471544723994075}
+  - component: {fileID: 1204479263051125963}
   m_Layer: 13
   m_Name: Sharp Object
   m_TagString: Shootable
@@ -117,8 +117,8 @@ MonoBehaviour:
   regularMaterial: {fileID: 2100000, guid: b233302b4b2184f4fb074d8606bcf89e, type: 2}
   highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
   isHighlighted: 0
---- !u!65 &4474471544723994075
-BoxCollider:
+--- !u!135 &1204479263051125963
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,5 +128,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.376761, y: 4.376761, z: 4.37676}
-  m_Center: {x: 0, y: 2.1900003, z: 0}
+  m_Radius: 0.21883805
+  m_Center: {x: 0, y: 0.21900003, z: 0}
