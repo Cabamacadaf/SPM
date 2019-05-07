@@ -10,7 +10,7 @@ public class AudioLog : InteractiveObject
 
     private bool played = false;
     
-    private void Awake()
+    private new void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         base.Awake();

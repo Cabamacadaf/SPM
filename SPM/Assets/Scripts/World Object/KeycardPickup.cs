@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Keycard : MonoBehaviour
+public class KeycardPickup : InteractiveObject
 {
-    private void OnTriggerEnter(Collider collision)
+    private void Update ()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
+        if(Input.GetKeyDown(KeyCode.E) && interactive) {
             KeycardPickedUpEvent keycardPickedUpEvent = new KeycardPickedUpEvent(gameObject);
             keycardPickedUpEvent.eventDescription = "Keycard picked up";
             keycardPickedUpEvent.ExecuteEvent();

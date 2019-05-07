@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InteractiveObject : MonoBehaviour
 {
+    protected string textToSet = "Press E to interact";
     protected Text interactText;
     protected bool interactive = false;
 
@@ -18,7 +19,7 @@ public class InteractiveObject : MonoBehaviour
         if (other.CompareTag("Player")) {
             interactText.enabled = true;
             interactive = true;
-            interactText.text = "Press E to interact";
+            interactText.text = textToSet;
         }
     }
 
