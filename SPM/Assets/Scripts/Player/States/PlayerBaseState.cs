@@ -46,12 +46,8 @@ public class PlayerBaseState : State
         Quaternion cameraRotation = owner.mainCamera.transform.rotation;
         direction = cameraRotation * keyboardDirection;
 
-        RaycastHit hitInfo;
-        if (Physics.SphereCast(owner.transform.position + owner.Movement.point2, owner.Movement.capsuleCollider.radius, Vector3.down, out hitInfo, owner.Movement.GroundCheckDistance + owner.Movement.SkinWidth, owner.Movement.walkableMask))
-        {
-            direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
+        direction = owner.Movement.MoveAlongGround(direction);
 
-        }
 
 
         CameraRotation();

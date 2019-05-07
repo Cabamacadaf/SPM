@@ -21,18 +21,18 @@ public class PlayerCrouchState : PlayerGroundState
     {
         base.HandleUpdate();
 
-        Debug.Log("CrouchState");
-        if(Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            owner.Transition<PlayerWalkState>();
-        }
-        //Physics.Raycast(owner.transform.position, Vector3.up, 6) || 
+        //Debug.Log("CrouchState");
+        //if(Input.GetKeyUp(KeyCode.LeftControl))
+        //{
+        //    owner.Transition<PlayerWalkState>();
+        //}
+        ////Physics.Raycast(owner.transform.position, Vector3.up, 6) || 
 
-        if (owner.Movement.GetVelocity().magnitude < owner.Movement.CrouchSpeed)
-        {
-            owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
+        //if (owner.Movement.GetVelocity().magnitude < owner.Movement.CrouchSpeed)
+        //{
+        //    owner.Movement.AddVelocity(direction * owner.Movement.acceleration * Time.deltaTime);
 
-        }
+        //}
 
     }
 

@@ -4,31 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : PhysicsComponent
 {
-    public LayerMask walkableMask;
-
-    public float JumpHeight;
-    public float Acceleration;
-    public float SkinWidth;
-    public float GroundCheckDistance;
-    public int maxLoopValue;
-
+    [SerializeField] private LayerMask walkableMask;
+    [SerializeField] float skinWidth = 0.05f;
+    [SerializeField] float groundCheckDistance = 0.05f;
+    
     private Vector3 direction;
     private Vector3 point1;
-    public Vector3 point2;
+    private Vector3 point2;
     private Vector3 snapSum;
-
-    public CapsuleCollider capsuleCollider;
+    private CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
+    private int maxLoopValue = 30;
 
-    public float stamina = 100;
-    public int WalkingSpeed = 20;
-    public int RunningSpeed = 40;
-    public int CrouchSpeed = 10;
-    public float RecoveryRate = 1f;
-    public float LoseStaminaRate = 1f;
-    public const int FULL_STAMINA = 100;
 
-    public float maxSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +47,10 @@ public class PlayerMovement : PhysicsComponent
         if (maxLoopValue > checkCollisionCounter)
         {
             RaycastHit hitInfo;
-            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + SkinWidth, walkableMask))
+            if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, walkableMask))
             {
                 float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
-                float hypotenuse = SkinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
+                float hypotenuse = skinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
 
                 if (hitInfo.distance > Mathf.Abs(hypotenuse))
                 {
@@ -88,28 +76,23 @@ public class PlayerMovement : PhysicsComponent
     public bool IsGrounded()
     {
         RaycastHit hitInfo;
-        return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, GroundCheckDistance + SkinWidth, walkableMask);
+        return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, walkableMask);
     }
 
-    public void Recover()
+
+    public Vector3 MoveAlongGround(Vector3 direction)
     {
-        stamina += RecoveryRate * Time.deltaTime;
-        if (stamina >= FULL_STAMINA)
+        if (Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out RaycastHit hitInfo, groundCheckDistance + skinWidth, walkableMask))
         {
-            stamina = FULL_STAMINA;
+
+            return Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
+
         }
-
-    }
-
-    public void Running()
-    {
-        stamina -= LoseStaminaRate * Time.deltaTime;
-        if(stamina <= 0)
+        else
         {
-            stamina = 0;
+            return direction;
         }
     }
-
 
 
     public void Decelerate()
