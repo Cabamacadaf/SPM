@@ -62,9 +62,12 @@ public class Player : StateMachine
         }
     }
 
-    public void Addhealth()
+    public void Addhealth(float healthToAdd)
     {
-        health = startHealth;
+        health += healthToAdd;
+        if(health > 100.0f) {
+            health = 100.0f;
+        }
         healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
     }
 
