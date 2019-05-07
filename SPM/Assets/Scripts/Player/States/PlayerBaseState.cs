@@ -57,11 +57,13 @@ public class PlayerBaseState : State
         }
 
         if (Input.GetKeyDown(KeyCode.F)) {
-            if (owner.flashlight.enabled) {
-                owner.flashlight.enabled = false;
-            }
-            else {
-                owner.flashlight.enabled = true;
+            if (owner.hasFlashlight) {
+                if (owner.flashlight.enabled) {
+                    owner.flashlight.enabled = false;
+                }
+                else {
+                    owner.flashlight.enabled = true;
+                }
             }
         }
 

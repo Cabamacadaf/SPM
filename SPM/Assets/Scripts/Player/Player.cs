@@ -15,6 +15,7 @@ public class Player : StateMachine
     public GravityGun gravityGun;
     private Transform healthBar;
     [HideInInspector] public Light flashlight;
+    [HideInInspector] public bool hasFlashlight = false;
 
     [SerializeField] private float walkSpeed = 8;
     [SerializeField] private float jumpHeight = 8;

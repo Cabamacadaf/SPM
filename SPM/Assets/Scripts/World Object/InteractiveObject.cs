@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InteractiveObject : MonoBehaviour
 {
-    private Text interactText;
+    protected Text interactText;
     protected bool interactive = false;
 
     protected void Awake ()
