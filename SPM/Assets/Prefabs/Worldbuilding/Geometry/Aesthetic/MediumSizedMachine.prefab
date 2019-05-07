@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6364253686747435167}
   - component: {fileID: 7303270439845052121}
   - component: {fileID: 248774015526745023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8511483179112746399}
   - component: {fileID: 3696339405319072259}
   - component: {fileID: 7433906102668158457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7627267170484215646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MediumSizedMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4815284829517428470}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1.0000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 7538319061578242181}
   - component: {fileID: 6168918186163545293}
   - component: {fileID: 7876312651073133820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 5091029017277014357}
   - component: {fileID: 3967402445231844434}
   - component: {fileID: 317447417141976942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,6 +412,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlowingPanel_Labb
       objectReference: {fileID: 0}
+    - target: {fileID: 8365575434021429499, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8365575434021429447, guid: 72cdf11df1c651c4092313c0212492bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -487,15 +492,10 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.048949808
       objectReference: {fileID: 0}
-    - target: {fileID: 8365575433261938245, guid: 72cdf11df1c651c4092313c0212492bd,
+    - target: {fileID: 8365575433261938244, guid: 72cdf11df1c651c4092313c0212492bd,
         type: 3}
-      propertyPath: minFlickerSpeed
+      propertyPath: m_Range
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8365575433261938245, guid: 72cdf11df1c651c4092313c0212492bd,
-        type: 3}
-      propertyPath: maxFlickerSpeed
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8365575433731504039, guid: 72cdf11df1c651c4092313c0212492bd,
         type: 3}
@@ -512,6 +512,41 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.10943107
       objectReference: {fileID: 0}
+    - target: {fileID: 8365575433731504039, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: m_Range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365575434684912371, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365575434684912369, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: m_Range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365575433261938246, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365575433731503193, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365575433261938245, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: minFlickerSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365575433261938245, guid: 72cdf11df1c651c4092313c0212492bd,
+        type: 3}
+      propertyPath: maxFlickerSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8365575433731504036, guid: 72cdf11df1c651c4092313c0212492bd,
         type: 3}
       propertyPath: minFlickerSpeed
@@ -521,11 +556,6 @@ PrefabInstance:
         type: 3}
       propertyPath: maxFlickerSpeed
       value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8365575434684912382, guid: 72cdf11df1c651c4092313c0212492bd,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8365575434684912382, guid: 72cdf11df1c651c4092313c0212492bd,
         type: 3}
@@ -559,8 +589,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7221145225339631361, guid: 41664a89dca1e724bb160a85f0dd7688,
         type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1861214808505347199, guid: 41664a89dca1e724bb160a85f0dd7688,
         type: 3}
