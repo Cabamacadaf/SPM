@@ -51,9 +51,10 @@ public class CameraManager : MonoBehaviour
 
         
         movement = PreventCollision(wantedMovement);
+        transform.position = movement + transform.parent.position;
 
 
-        
+
 
 
     }
@@ -61,7 +62,6 @@ public class CameraManager : MonoBehaviour
     private void LateUpdate()
     {
         
-        transform.position = movement + transform.parent.position;
     }
 
 
