@@ -19,11 +19,15 @@ public class CameraManager : MonoBehaviour
     private SphereCollider sphereCollider;
     public LayerMask geometryLayer;
 
+    public static Vector3 FIRSTPERSON = new Vector3(0, 0.05f, 0);
+    public static Vector3 THIRDPERSON;
+
 
 
     // Start is called before the first frame update
     private void Awake()
     {
+        THIRDPERSON = new Vector3(cameraOffset.x, cameraOffset.y, cameraOffset.z);
         sphereCollider = GetComponent<SphereCollider>();
 
     }
