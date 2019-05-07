@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioLoggActivate : MonoBehaviour
+public class AudioLogActivate : MonoBehaviour
 {
     private AudioSource source;
 
