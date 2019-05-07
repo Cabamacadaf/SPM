@@ -6,7 +6,7 @@ using UnityEngine;
 public class NotHoldingState : State
 {
     private GravityGun owner;
-    private GameObject lastPickUpObjectHit;
+    private PickUpObject lastPickUpObjectHit;
     private GravityBlast gravityBlast;
 
     public override void Initialize(StateMachine owner)
@@ -24,14 +24,14 @@ public class NotHoldingState : State
     {
         Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer);
 
-        if (hit.collider != null && hit.transform.GetComponent<PickUpObject>() != null)
+        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects"))
         {
             if (lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit)
             {
-                lastPickUpObjectHit.GetComponent<PickUpObject>().UnHighlight();
+                lastPickUpObjectHit.UnHighlight();
             }
-            lastPickUpObjectHit = hit.transform.gameObject;
-            hit.transform.GetComponent<PickUpObject>().Highlight();
+            lastPickUpObjectHit = hit.transform.GetComponent<PickUpObject>();
+            lastPickUpObjectHit.Highlight();
             owner.crosshair.color = Color.green;
         }
 
@@ -39,12 +39,12 @@ public class NotHoldingState : State
         {
             if (lastPickUpObjectHit != null)
             {
-                lastPickUpObjectHit.GetComponent<PickUpObject>().UnHighlight();
+                lastPickUpObjectHit.UnHighlight();
             }
             owner.crosshair.color = Color.red;
         }
 
-        if (hit.collider != null && hit.transform.GetComponent<Enemy>() != null)
+        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
             owner.crosshair.color = Color.yellow;
         }
@@ -64,7 +64,7 @@ public class NotHoldingState : State
     {
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer) && hit.collider.attachedRigidbody != null)
         {
-            if (hit.collider.GetComponent<PickUpObject>() != null)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects"))
             {
                 // hit.collider.attachedRigidbody.isKinematic = false;
                 hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * owner.pushForce * (1 - (hit.distance / owner.pushRange)));
@@ -84,7 +84,7 @@ public class NotHoldingState : State
     {
 
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.hitLayer)) {
-            if (hit.transform.GetComponent<PickUpObject>() != null) {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
                 //hit.collider.attachedRigidbody.isKinematic = true;
                 owner.holdingObject = hit.collider.GetComponent<PickUpObject>();
                 owner.holdingObject.Pull(owner.pullForce);

@@ -20,7 +20,7 @@ public class PlayerGroundState : PlayerBaseState
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            owner.Movement.AddVelocity(Vector2.up * owner.Movement.JumpHeight);
+            owner.Movement.AddVelocity(Vector2.up * owner.JumpHeight);
             owner.Transition<PlayerAirState>();
 
         }

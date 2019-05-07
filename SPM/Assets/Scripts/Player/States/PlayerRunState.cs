@@ -18,28 +18,17 @@ public class PlayerRunState : PlayerGroundState
     {
         base.HandleUpdate();
 
-        if(owner.Movement.GetVelocity().magnitude <= owner.Movement.RunningSpeed)
+        if(owner.Movement.GetVelocity().magnitude <= owner.GetWalkSpeed()*1.5f)
         {
-            //float dotProduct = Vector3.Dot(owner.Movement.GetVelocity().normalized, direction);
-            //if (dotProduct <= 0.60)
-            //{
-            //    owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
-            //}
-            //else
-            //{
-            //    owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
 
-            //}
-            owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
-
-
+            owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
 
         }
 
-        owner.Movement.Running();
+        owner.Stamina.Running();
 
 
-        if(owner.Movement.stamina <= 0 || Input.GetKeyUp(KeyCode.LeftShift))
+        if(owner.Stamina.Stamina <= 0 || Input.GetKeyUp(KeyCode.LeftShift))
         {
             owner.Transition<PlayerWalkState>();
         }

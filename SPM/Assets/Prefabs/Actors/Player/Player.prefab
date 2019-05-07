@@ -5710,6 +5710,7 @@ GameObject:
   - component: {fileID: 613283157}
   - component: {fileID: 9013354550664442613}
   - component: {fileID: 2821774831742086203}
+  - component: {fileID: 893394545}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -5793,25 +5794,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airResistanceCoefficient: 0.5
   staticFrictionCoefficient: 0.6
-  dynamicFrictionCoefficient: 0.5
+  dynamicFrictionCoefficient: 0.4
   gravity: 15
   walkableMask:
     serializedVersion: 2
-    m_Bits: 8704
-  JumpHeight: 4
-  Acceleration: 10
-  SkinWidth: 0.2
-  GroundCheckDistance: 0.2
-  maxLoopValue: 20
-  point2: {x: 0, y: 0, z: 0}
-  capsuleCollider: {fileID: 0}
-  stamina: 100
-  WalkingSpeed: 10
-  RunningSpeed: 30
-  CrouchSpeed: 10
-  RecoveryRate: 15
-  LoseStaminaRate: 15
-  maxSpeed: 0
+    m_Bits: 512
+  skinWidth: 0.05
+  groundCheckDistance: 0.05
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5832,10 +5821,13 @@ MonoBehaviour:
   mainCamera: {fileID: 8727586053171767193}
   gravityGun: {fileID: 8727586052577491054}
   flashlight: {fileID: 0}
+  walkSpeed: 5
+  jumpHeight: 10
+  acceleration: 10
+  crouchSpeed: 10
   respawnPoint: {fileID: 0}
   startHealth: 100
   health: 100
-  Movement: {fileID: 0}
   Collider: {fileID: 0}
 --- !u!136 &9013354550664442613
 CapsuleCollider:
@@ -5867,6 +5859,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &893394545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95025a071cabe0c45a82d133385c1b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RecoveryRate: 15
+  LoseStaminaRate: 15
 --- !u!1 &8727586053171767193
 GameObject:
   m_ObjectHideFlags: 0
@@ -5932,7 +5938,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

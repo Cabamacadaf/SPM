@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class Player : StateMachine
 {
-    //Attributes
+    public StaminaComponent Stamina { get; set; }
+    public PlayerMovement Movement { get; set; }
+    public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
+    public float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
+    public float Acceleration { get => acceleration; set => acceleration = value; }
+    public float CrouchSpeed { get => crouchSpeed; set => crouchSpeed = value; }
 
     public GameObject mainCamera;
     public GravityGun gravityGun;
     private Transform healthBar;
     [HideInInspector] public Light flashlight;
 
+    [SerializeField] private float walkSpeed = 8;
+    [SerializeField] private float jumpHeight = 8;
+    [SerializeField] private float acceleration = 10;
+    [SerializeField] private float crouchSpeed = 10;
+
+
+
     public Transform respawnPoint;
 
     public float startHealth;
     [HideInInspector] public float health;
-    [HideInInspector] public PlayerMovement Movement;
     [HideInInspector] public CapsuleCollider Collider;
 
 
@@ -24,6 +35,7 @@ public class Player : StateMachine
         Cursor.lockState = CursorLockMode.Locked;
         Collider = GetComponent<CapsuleCollider>();
         Movement = GetComponent<PlayerMovement>();
+        Stamina = GetComponent<StaminaComponent>();
         health = startHealth;
         flashlight = GetComponentInChildren<Light>();
         healthBar = transform.GetChild(2);
@@ -66,6 +78,11 @@ public class Player : StateMachine
     {
         transform.position = SceneController.Instance.lastCheckPointPos;
 
+    }
+
+    public float GetWalkSpeed()
+    {
+        return walkSpeed;
     }
 
 }
