@@ -22,6 +22,28 @@ public class InteractiveObject : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKeyDown(KeyCode.E) && other.CompareTag("Player"))
+        {
+            Player player = other.gameObject.GetComponent<Player>();
+
+
+            PlayerWalkState PC = player.GetCurrentState() as PlayerWalkState;
+            if (PC != null)
+            {
+                player.Transition<PlayerCrouchState>();
+
+            }
+            else
+            {
+
+                player.Transition<PlayerWalkState>();
+            }
+
+        }
+    }
+
     private void OnTriggerExit (Collider other)
     {
         if (other.CompareTag("Player")) {
@@ -31,3 +53,4 @@ public class InteractiveObject : MonoBehaviour
         }
     }
 }
+
