@@ -324,6 +324,7 @@ Transform:
   - {fileID: 4796941380208481792}
   - {fileID: 886493349582110038}
   - {fileID: 1848998462882093914}
+  - {fileID: 5193989042711970844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -571,6 +572,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8869359112908226051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5193989042711970844}
+  - component: {fileID: 7823164919106054081}
+  m_Layer: 11
+  m_Name: Hurtbox
+  m_TagString: Enemy2Hurtbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5193989042711970844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869359112908226051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.695, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7262512699746432890}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7823164919106054081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869359112908226051}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.78, y: 1.45, z: 1.92}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9102745880200757369
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,16 +745,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7262512699746432890}
     m_Modifications:
-    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
-        type: 3}
-      propertyPath: m_Name
-      value: Purple Enemy Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1207542668448993479, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -763,6 +798,16 @@ PrefabInstance:
     - target: {fileID: 1207542668448993479, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
+        type: 3}
+      propertyPath: m_Name
+      value: Purple Enemy Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107069457265239875, guid: 10b26a52b773a9b4c80b28389a36a149,

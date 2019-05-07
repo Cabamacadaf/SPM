@@ -10,40 +10,41 @@ public class ExplosiveObject : PickUpObject
 
     [SerializeField] private float explosionDamage = 101f;
     [SerializeField] private float radius;
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter (Collision collision)
     {
         Debug.Log("Velocity: " + rb.velocity.magnitude);
-        if (thrown && rb.velocity.magnitude > lowestVelocityToDoDamage)
-        {
+        if (thrown && rb.velocity.magnitude > lowestVelocityToDoDamage) {
             Collider[] colls = Physics.OverlapSphere(transform.position, radius);
-            
 
-            foreach (Collider col in colls)
-            {
+            foreach (Collider col in colls) {
                 Vector3 explosionPos = transform.position;
                 Rigidbody rb = col.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
+                if (rb != null) {
                     rb.AddExplosionForce(power, explosionPos, radius, 3.0f);
                 }
 
                 Vector3 hit;
-                if (col.gameObject.CompareTag("Player"))
-                {
+                if (col.CompareTag("Player")) {
                     hit = col.ClosestPoint(transform.position);
-                    
+
                     Player player = col.gameObject.GetComponent<Player>();
                     player.Damage(explosionDamage - hit.x - hit.z);
                 }
-                if (col.gameObject.CompareTag("Enemy"))
-                {
+
+                if (col.CompareTag("Damageable")) {
                     hit = col.ClosestPoint(transform.position);
 
-                    EnemyBaseState enemyState = (EnemyBaseState)col.gameObject.GetComponent<Enemy>().GetCurrentState();
+                    EnemyBaseState enemyState = (EnemyBaseState)col.GetComponent<Enemy>().GetCurrentState();
 
                     //enemyState.Damage(damage - hit.x - hit.z);
                     enemyState.Damage(explosionDamage);
+                }
 
+                if (col.CompareTag("Enemy2Hurtbox")) {
+                    Enemy2 enemy = col.GetComponentInParent<Enemy2>();
+                    EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
+
+                    enemyState.Damage(explosionDamage * enemy.damageReduction);
                 }
             }
             Instantiate(explosion1, transform.position, Quaternion.identity);
@@ -51,6 +52,5 @@ public class ExplosiveObject : PickUpObject
 
             LoseDurability();
         }
-  
     }
 }

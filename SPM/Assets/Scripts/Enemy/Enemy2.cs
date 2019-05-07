@@ -18,4 +18,5 @@ public class Enemy2 : Enemy
     public Transform mouth;
     public GameObject leapAttackHitbox;
     public float leapSpeed = 2.0f;
+    public float damageReduction = 0.5f;
 }
