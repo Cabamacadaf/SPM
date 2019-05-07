@@ -7,7 +7,8 @@ public class InteractiveObject : MonoBehaviour
 {
     private Text interactText;
     protected bool interactive = false;
-    private void Awake ()
+
+    protected void Awake ()
     {
         interactText = FindObjectOfType<Canvas>().GetComponentInChildren<Text>();
     }
