@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyCard : MonoBehaviour
+public class Keycard : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collision)
     {
