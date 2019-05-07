@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 8836213449158782233}
   - component: {fileID: 9179175259388463725}
   - component: {fileID: 636565704}
+  - component: {fileID: 6479734513647649519}
   m_Layer: 9
   m_Name: Button_Door
   m_TagString: Untagged
@@ -153,3 +154,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6479734513647649519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836213449156588505}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.225, y: 0.29999998, z: 0.14835323}
+  m_Center: {x: 0, y: 0, z: -0.02246008}
