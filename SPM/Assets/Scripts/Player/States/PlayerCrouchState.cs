@@ -5,15 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Player/CrouchState")]
 
 
-public class PlayerCrouchState : PlayerGroundState
+public class PlayerCrouchState : PlayerBaseState
 {
     public override void Enter()
     {
         base.Enter();
-        owner.Collider.center = new Vector3(5.221367e-05f, 5, 0.5494844f);
-        owner.Collider.height = 10;
-        owner.mainCamera.gameObject.GetComponent<CameraManager>().cameraOffset = new Vector3(0, 5, 0);
-        Debug.Log("EnterCrouch");
+        owner.Collider.center /= 2;
+        owner.Collider.height /= 2;
+        owner.mainCamera.gameObject.GetComponent<CameraManager>().cameraOffset = CameraManager.FIRSTPERSON;
 
     }
 
@@ -21,26 +20,21 @@ public class PlayerCrouchState : PlayerGroundState
     {
         base.HandleUpdate();
 
-        //Debug.Log("CrouchState");
-        //if(Input.GetKeyUp(KeyCode.LeftControl))
-        //{
-        //    owner.Transition<PlayerWalkState>();
-        //}
-        ////Physics.Raycast(owner.transform.position, Vector3.up, 6) || 
+        //Physics.Raycast(owner.transform.position, Vector3.up, 6) || 
 
-        //if (owner.Movement.GetVelocity().magnitude < owner.Movement.CrouchSpeed)
-        //{
-        //    owner.Movement.AddVelocity(direction * owner.Movement.acceleration * Time.deltaTime);
+        if (owner.Movement.GetVelocity().magnitude < owner.CrouchSpeed)
+        {
+            owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
 
-        //}
+        }
 
     }
 
     public override void Exit()
     {
-        owner.Collider.center = new Vector3(5.221367e-05f, 9.45f, 0.5494844f);
-        owner.Collider.height = 18.58f;
-        owner.mainCamera.gameObject.GetComponent<CameraManager>().cameraOffset = new Vector3(7, 0, -12);
+        owner.Collider.center *= 2;
+        owner.Collider.height *= 2;
+        owner.mainCamera.gameObject.GetComponent<CameraManager>().cameraOffset = CameraManager.THIRDPERSON;
         Debug.Log("ExitCrouch");
     }
 }
