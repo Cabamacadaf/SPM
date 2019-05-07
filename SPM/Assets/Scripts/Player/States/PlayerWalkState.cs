@@ -21,36 +21,21 @@ public class PlayerWalkState : PlayerGroundState
             owner.Transition<PlayerCrouchState>();
         }
     
-        owner.Movement.Recover();
+        owner.Stamina.Recover();
 
-        if (Input.GetKey(KeyCode.LeftShift) && owner.Movement.stamina >= PlayerMovement.FULL_STAMINA)
+        if (Input.GetKey(KeyCode.LeftShift) && owner.Stamina.Stamina >= owner.Stamina.MaxStamina)
         {
             owner.Transition<PlayerRunState>();
         }
 
-        if (owner.Movement.GetVelocity().magnitude <= owner.Movement.WalkingSpeed)
+        if (owner.Movement.GetVelocity().magnitude <= owner.GetWalkSpeed())
         {
 
-            owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
+            owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
 
-            // owner.Movement.SetVelocity(owner.Movement.GetVelocity().normalized * owner.Movement.maxSpeed);
 
         }
 
 
     }
 }
-//float dotProduct = Vector3.Dot(direction, owner.Movement.GetVelocity().normalized);
-
-//if (dotProduct <= 0.60 && Input.GetKey(KeyCode.W))
-//{
-//    //Debug.Log("Turnspeed");
-//    //owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
-
-//    owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * turnSpeedModifier * Time.deltaTime);
-//}
-//else
-//{
-//    owner.Movement.AddVelocity(direction * owner.Movement.Acceleration * Time.deltaTime);
-
-//}
