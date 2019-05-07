@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &175573462231409736
 Transform:
@@ -42,7 +42,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.0039215665, g: 0.9529412, b: 0.22602357, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -88,7 +88,7 @@ GameObject:
   m_TagString: PowerCore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6608050345945714888
 Transform:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 100
   holding: 0
-  distanceToGrab: 1
+  distanceToGrab: 0.5
   impactDamage: 25
   lowestVelocityToDoDamage: 1
   holdingOpacity: 0.5
