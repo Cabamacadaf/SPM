@@ -58,7 +58,7 @@ public class PickUpObject : MonoBehaviour
 
     private IEnumerator RotateTowardPullpoint ()
     {
-        while(transform.rotation != pullPoint.rotation && active) {
+        while (transform.rotation != pullPoint.rotation && active) {
             transform.rotation = Quaternion.Lerp(transform.rotation, pullPoint.rotation, rotationSpeed * Time.deltaTime);
             yield return null;
         }
@@ -115,12 +115,19 @@ public class PickUpObject : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         Debug.Log("Velocity: " + rb.velocity.magnitude);
-        if (other.CompareTag("Damageable") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
-            EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
-            enemyState.Damage(impactDamage);
-            LoseDurability();
-        }
+        if (rb.velocity.magnitude >= lowestVelocityToDoDamage) {
+            if (other.CompareTag("Damageable")) {
+                EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
+                enemyState.Damage(impactDamage);
+                LoseDurability();
+            }
 
+            if (other.CompareTag("Enemy2Hurtbox")) {
+                Enemy2 enemy = other.GetComponentInParent<Enemy2>();
+                EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
+                enemyState.Damage(impactDamage * enemy.damageReduction);
+            }
+        }
     }
 
     private void OnCollisionEnter (Collision collision)
