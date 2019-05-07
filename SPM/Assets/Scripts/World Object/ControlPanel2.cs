@@ -13,7 +13,7 @@ public class ControlPanel2 : MonoBehaviour
 
     private void Start()
     {
-        light1.enabled = false;
+        //light1.enabled = false;
         light2.enabled = false;
         light3.enabled = false;
         light4.enabled = false;
