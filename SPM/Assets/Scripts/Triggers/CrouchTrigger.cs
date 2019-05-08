@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrouchTrigger : MonoBehaviour
+public class CrouchTrigger : InteractiveObject
 {
     public GameObject teleportPosition;
 

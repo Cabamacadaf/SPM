@@ -9,7 +9,10 @@ public class FinalPuzzleTrigger : MonoBehaviour
 {
     [SerializeField] private List<Light> lights;
 
-    
+    private void Start ()
+    {
+        setLightFalse();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,6 +31,19 @@ public class FinalPuzzleTrigger : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit (Collider other)
+    {
+        if (other.CompareTag("PuzzleObject") && other.GetComponent<ID>().NR == GetComponent<ID>().NR) {
+
+
+            foreach (Light light in lights) {
+                light.enabled = false;
+            }
+            GameController_2.gameControllerInstance_2.greenCollecting--;
+
+        }
+    }
+
     private void TransformObject(Collider other)
     {
         other.transform.position = transform.position;
@@ -36,11 +52,21 @@ public class FinalPuzzleTrigger : MonoBehaviour
     
     }
 
+    
+
     private void HandleLight()
     {
         foreach(Light light in lights)
         {
-            //Gör det du vill göra med lights här
+            light.enabled = true;
+        }
+    }
+
+    private void setLightFalse ()
+    {
+        foreach (Light light in lights) {
+            Debug.Log("SetFalse");
+            light.enabled = false;
         }
     }
 }

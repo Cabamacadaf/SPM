@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Author: Simon Sundström
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,17 +56,19 @@ public class CameraManager : MonoBehaviour
 
         
         movement = PreventCollision(wantedMovement);
+
+      
         transform.position = movement + transform.parent.position;
 
-
-
+        
 
 
     }
 
     private void LateUpdate()
     {
-        
+ 
+
     }
 
 
@@ -75,11 +78,8 @@ public class CameraManager : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, wantedMovement.normalized, out hitInfo, wantedMovement.magnitude + sphereCollider.radius, geometryLayer))
         {
-            //Vector3 newOffset = new Vector3(cameraOffset.x, cameraOffset.y, -(hitInfo.distance - sphereCollider.radius));
-
-            //wantedMovement = transform.rotation * newOffset;
+ 
             wantedMovement = wantedMovement.normalized * (hitInfo.distance - sphereCollider.radius);
-
         }
         return wantedMovement;
     }
