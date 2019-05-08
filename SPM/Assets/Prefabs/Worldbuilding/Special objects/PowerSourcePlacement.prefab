@@ -121,6 +121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3398750072591368009}
+  - {fileID: 2838298870866130037}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -147,6 +148,10 @@ MonoBehaviour:
   - {fileID: 0}
   newColor: {r: 0, g: 0.5686275, b: 0, a: 0}
   timeBetweenLights: 0.2
+  timeUntillLightsActivate: 0
+  hit: {fileID: 0}
+  energiLightsSmall: {fileID: 0}
+  energiLightsBig: {fileID: 0}
 --- !u!65 &5314815650017982875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,3 +165,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.341251, y: 5.115149, z: 10.132807}
   m_Center: {x: -2.3854513, y: 3.804959, z: 3.8882964}
+--- !u!1 &5383974032828304906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2838298870866130037}
+  m_Layer: 9
+  m_Name: PositionForCore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2838298870866130037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383974032828304906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.28, y: 6.12, z: 2.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5314815650017982874}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
