@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private float mouseSensitivity;
 
+    public GameObject ParentCamera;
 
     Vector3 movement;
 
@@ -20,7 +21,7 @@ public class CameraManager : MonoBehaviour
     private SphereCollider sphereCollider;
     public LayerMask geometryLayer;
 
-    public static Vector3 FIRSTPERSON = new Vector3(0, 0.05f, 0);
+    public static Vector3 FIRSTPERSON;
     public static Vector3 THIRDPERSON;
 
 
@@ -28,6 +29,8 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        FIRSTPERSON = new Vector3(0, 0.75f, 0);
+
         THIRDPERSON = new Vector3(cameraOffset.x, cameraOffset.y, cameraOffset.z);
         sphereCollider = GetComponent<SphereCollider>();
 
@@ -36,6 +39,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
 
         rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
@@ -78,7 +82,8 @@ public class CameraManager : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.SphereCast(transform.parent.position, sphereCollider.radius, wantedMovement.normalized, out hitInfo, wantedMovement.magnitude + sphereCollider.radius, geometryLayer))
         {
- 
+            Debug.Log("Colliding");
+
             wantedMovement = wantedMovement.normalized * (hitInfo.distance - sphereCollider.radius);
         }
         return wantedMovement;

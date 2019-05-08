@@ -18,7 +18,7 @@ public class PhysicsComponent : MonoBehaviour
         velocity += vel;
     }
 
-    protected void DecreaseVelocity(Vector3 vel)
+    public void Decelerate(Vector3 vel)
     {
         velocity -= vel;
     }
