@@ -11,7 +11,7 @@ public class GameController_2 : MonoBehaviour
     [HideInInspector]
     public bool hasKeycard;
     public GameObject door_Goal;
-    public List<GameObject> lights;
+    public GameObject[] lights;
 
     [HideInInspector] //ni får skriva det här med eran andra version
     public int greenCollecting;

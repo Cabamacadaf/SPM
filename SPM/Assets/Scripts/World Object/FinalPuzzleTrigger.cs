@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class FinalPuzzleTrigger : MonoBehaviour
 {
-    [SerializeField] private List<Light> lights;
+    [SerializeField] private Light[] lights;
 
     private void Start ()
     {
