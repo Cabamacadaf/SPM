@@ -7,24 +7,26 @@ using UnityEngine;
 public class PlayerRunState : PlayerBaseState
 {
 
-
+    
 
     public override void Enter()
     {
         base.Enter();
+        owner.Movement.airResistanceCoefficient = 0.1f;
+
     }
 
     public override void HandleUpdate()
     {
         base.HandleUpdate();
+        owner.Movement.AddVelocity(direction * owner.RunningSpeed * Time.deltaTime);
 
-        if (owner.Movement.GetVelocity().magnitude <= owner.GetWalkSpeed() * 2f)
-        {
-
-            owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
+        //if (owner.Movement.GetVelocity().magnitude <= owner.GetWalkSpeed() * 2f)
+        //{
 
 
-        }
+
+        //}
 
         owner.Stamina.Running();
 
@@ -46,5 +48,12 @@ public class PlayerRunState : PlayerBaseState
         }
 
      
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        owner.Movement.airResistanceCoefficient = 0.1f;
     }
 }

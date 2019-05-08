@@ -32,15 +32,17 @@ public class PlayerMovement : PhysicsComponent
     // Update is called once per frame
     void Update()
     {
-        //if(groundAngle > 95)
-        //{
-        //    dynamicFrictionCoefficient = 0.5f;
+        if (groundAngle >= 95 && groundAngle <= 85 && groundAngle != 0)
+        {
+            velocity = velocity.normalized * 5;
 
-        //}
+        }
+        CalculateGroundAngle();
+        Debug.Log(groundAngle);
 
         ApplyGravity();
         CheckCollision();
-        //ApplyAirResistance();
+        ApplyAirResistance();
 
 
         transform.position += GetVelocity() * Time.deltaTime - snapSum;

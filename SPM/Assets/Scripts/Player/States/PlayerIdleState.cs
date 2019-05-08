@@ -40,7 +40,7 @@ public class PlayerIdleState : PlayerBaseState
         //    direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
 
         //}
-        //owner.Movement.Decelerate(owner.Deceleration * Time.deltaTime);
+        owner.Movement.Decelerate(owner.Movement.GetVelocity().normalized * owner.Deceleration * Time.deltaTime);
 
 
     }
