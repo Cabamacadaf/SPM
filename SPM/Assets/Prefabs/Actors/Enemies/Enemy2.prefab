@@ -409,6 +409,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 050668ac7cc5f274fbe5dd703da34c16, type: 2}
   attackSound: {fileID: 8300000, guid: edb780fbd7a20a84cb327c73e3d01a1a, type: 3}
   aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
+  idleSound: {fileID: 8300000, guid: f9655384cf7bae2448644e38fd737bb3, type: 3}
+  spawnSound: {fileID: 8300000, guid: 11f059c7b05be2a4b852cab21e0073c2, type: 3}
   attackDistance: 1
   attackTime: 0.1
   attackCooldown: 1
@@ -749,6 +751,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7262512699746432890}
     m_Modifications:
+    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
+        type: 3}
+      propertyPath: m_Name
+      value: Purple Enemy Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1207542668448993479, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -802,16 +814,6 @@ PrefabInstance:
     - target: {fileID: 1207542668448993479, guid: 10b26a52b773a9b4c80b28389a36a149,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
-        type: 3}
-      propertyPath: m_Name
-      value: Purple Enemy Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041992245015162778, guid: 10b26a52b773a9b4c80b28389a36a149,
-        type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107069457265239875, guid: 10b26a52b773a9b4c80b28389a36a149,

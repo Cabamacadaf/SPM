@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4638046599624931910}
-  - component: {fileID: 4638046599624931911}
+  - component: {fileID: 2267408607904516592}
   m_Layer: 0
-  m_Name: Enemy2Spawner
+  m_Name: Spawner_Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4638046599624931911
+--- !u!114 &2267408607904516592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4638046599624931961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9772b5cf8862984f9521a68b9fc80d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 04fc5670a38375d4bb6a23de473bd0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 7262512699746432893, guid: eb065775cdc08b34090714614bc7c69e,
     type: 3}
+  playSoundOnSpawn: 0
+  aggroOnSpawn: 0
 --- !u!1 &5006877666933252449
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,13 @@ public class SpawnListener : MonoBehaviour
     {
         //want to avoid foreach, don't know if possible
         foreach (Spawner spawner in spawnTriggerEvent.spawners) {
-            spawner.Spawn();
+            if (spawner is EnemySpawner) {
+                EnemySpawner enemySpawner = (EnemySpawner)spawner;
+                enemySpawner.Spawn();
+            }
+            else {
+                spawner.Spawn();
+            }
         }
     }
-
 }
