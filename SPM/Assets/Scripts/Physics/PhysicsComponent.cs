@@ -6,9 +6,9 @@ public class PhysicsComponent : MonoBehaviour
 {
     //Attributes
     protected Vector3 velocity;
-    [SerializeField] private float airResistanceCoefficient;
+    public float airResistanceCoefficient;
     [SerializeField] private float staticFrictionCoefficient;
-    [SerializeField] protected float dynamicFrictionCoefficient;
+    [SerializeField] public float dynamicFrictionCoefficient;
     public float gravity;
 
     //Methods
