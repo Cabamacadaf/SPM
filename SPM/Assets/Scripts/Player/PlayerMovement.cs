@@ -15,6 +15,9 @@ public class PlayerMovement : PhysicsComponent
     private CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
+    private float groundAngle;
+
+    private RaycastHit groundHitInfo;
 
 
 
@@ -29,6 +32,11 @@ public class PlayerMovement : PhysicsComponent
     // Update is called once per frame
     void Update()
     {
+        //if(groundAngle > 95)
+        //{
+        //    dynamicFrictionCoefficient = 0.5f;
+
+        //}
 
         ApplyGravity();
         CheckCollision();
@@ -75,8 +83,8 @@ public class PlayerMovement : PhysicsComponent
 
     public bool IsGrounded()
     {
-        RaycastHit hitInfo;
-        return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out hitInfo, groundCheckDistance + skinWidth, walkableMask);
+      
+        return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out groundHitInfo, groundCheckDistance + skinWidth, walkableMask);
     }
 
 
@@ -92,6 +100,16 @@ public class PlayerMovement : PhysicsComponent
         {
             return direction;
         }
+    }
+
+    private void CalculateGroundAngle()
+    {
+
+        if (!IsGrounded())
+        {
+            groundAngle = 90;
+        }
+        groundAngle = Vector3.Angle(groundHitInfo.normal, transform.forward);
     }
 
 

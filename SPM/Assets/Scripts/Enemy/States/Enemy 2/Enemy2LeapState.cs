@@ -12,11 +12,11 @@ public class Enemy2LeapState : EnemyBaseState
     private Vector3 endPosition;
     private Vector3 midPosition;
 
-    private bool hitPlayer;
+    private bool hitSomething;
 
     public override void Enter ()
     {
-        hitPlayer = false;
+        hitSomething = false;
         //Debug.Log("Leap State");
         owner2 = (Enemy2)owner;
         timer = 0.0f;
@@ -33,7 +33,7 @@ public class Enemy2LeapState : EnemyBaseState
     {
         timer += Time.deltaTime * owner2.leapSpeed;
 
-        if (!hitPlayer) {
+        if (!hitSomething) {
             Vector3 m1 = Vector3.Lerp(startPosition, midPosition, timer);
             Vector3 m2 = Vector3.Lerp(midPosition, endPosition, timer);
             owner.transform.position = Vector3.Lerp(m1, m2, timer);
@@ -47,9 +47,7 @@ public class Enemy2LeapState : EnemyBaseState
 
     public override void HandleCollision (Collision collision)
     {
-        if (collision.collider.CompareTag("Player")) {
-            hitPlayer = true;
-        }
+        hitSomething = true;
         base.HandleCollision(collision);
     }
     public override void Exit ()
