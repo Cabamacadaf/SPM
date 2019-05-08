@@ -358,6 +358,9 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   audioSource: {fileID: 0}
   lightSource: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
   player: {fileID: 0}
 --- !u!195 &2226854606375388720
 NavMeshAgent:
@@ -500,16 +503,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
-    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Red Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4527334072976497326, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -563,6 +556,16 @@ PrefabInstance:
     - target: {fileID: 4527334072976497326, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Red Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661739507151455245, guid: 1afaca5344f5d8d45acbcf262dcc78ff,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5356084169017483719, guid: 1afaca5344f5d8d45acbcf262dcc78ff,

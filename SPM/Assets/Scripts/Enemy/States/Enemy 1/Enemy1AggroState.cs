@@ -9,15 +9,18 @@ public class Enemy1AggroState : EnemyAggroState
     {
         base.Enter();
     }
+
     public override void HandleUpdate ()
     {
         if (owner.agent.isOnNavMesh) {
             owner.agent.SetDestination(owner.player.transform.position);
         }
-
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner.attackDistance) {
-            owner.agent.enabled = false;
-            owner.Transition<EnemyAttackState>();
+        Vector3 raycastDirection = owner.transform.position - owner.player.Collider.bounds.center;
+        if (!Physics.Raycast(owner.player.Collider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.wallLayer)) {
+            if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner.attackDistance) {
+                owner.agent.enabled = false;
+                owner.Transition<EnemyAttackState>();
+            }
         }
         base.HandleUpdate();
     }

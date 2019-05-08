@@ -26,7 +26,7 @@ public class Enemy : StateMachine
     [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public Light lightSource;
-
+    public LayerMask wallLayer;
     [HideInInspector] public Player player;
 
     protected override void Awake ()
