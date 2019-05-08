@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Marcus Mellström
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,8 +22,6 @@ public class InteractiveObject : MonoBehaviour
             interactText.text = textToSet;
         }
     }
-
-
 
     private void OnTriggerExit (Collider other)
     {

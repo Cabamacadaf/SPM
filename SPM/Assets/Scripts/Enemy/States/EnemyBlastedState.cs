@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Marcus Mellström
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Enemy/BlastedState")]

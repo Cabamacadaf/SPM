@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Marcus Mellström
+
 using UnityEngine;
 
+//Används inte just nu
 public class EnemyStopTrigger : MonoBehaviour
 {
     private void OnTriggerEnter (Collider other)

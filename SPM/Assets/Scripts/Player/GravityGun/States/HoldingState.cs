@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main Author: Marcus Mellström
+//Secondary Author: Simon Sundström
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/GravityGun/HoldingState")]
 public class HoldingState : State
 {
     private GravityGun owner;
-    // Start is called before the first frame update
 
 
     public override void Initialize(StateMachine owner)

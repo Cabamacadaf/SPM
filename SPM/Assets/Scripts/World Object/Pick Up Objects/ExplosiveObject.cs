@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main Author: Simon Sundström
+//Secondary Author: Marcus Mellström
+
 using UnityEngine;
 
 public class ExplosiveObject : PickUpObject

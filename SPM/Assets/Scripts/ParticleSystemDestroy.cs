@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Author: Marcus Mellström
+
+using UnityEngine;
 
 public class ParticleSystemDestroy : MonoBehaviour
 {

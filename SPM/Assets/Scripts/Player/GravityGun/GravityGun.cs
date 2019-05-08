@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main Author: Marcus Mellström
+//Secondary Author: Simon Sundström
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 

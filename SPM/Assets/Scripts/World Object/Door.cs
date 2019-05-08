@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Marcus Mellström
+
 using UnityEngine;
 
 public abstract class Door : MonoBehaviour
