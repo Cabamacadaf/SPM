@@ -37,4 +37,9 @@ public class EnemyBaseState : State
         enemyDeathEvent.eventDescription = "Enemy " + owner.gameObject.name + " has died.";
         enemyDeathEvent.ExecuteEvent();
     }
+
+    public void PlaySpawnSound ()
+    {
+        owner.audioSource.PlayOneShot(owner.spawnSound);
+    }
 }
