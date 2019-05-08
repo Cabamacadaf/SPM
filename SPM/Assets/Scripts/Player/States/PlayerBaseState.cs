@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
     //Attributes
-
+    protected Vector3 momentum;
     protected Vector3 direction;
     private float distance;
     private float size;

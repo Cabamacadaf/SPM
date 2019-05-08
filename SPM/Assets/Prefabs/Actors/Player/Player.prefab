@@ -5792,15 +5792,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4bdf7a5d0290c499163dccc0439324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airResistanceCoefficient: 0.5
-  staticFrictionCoefficient: 0.6
-  dynamicFrictionCoefficient: 0.4
-  gravity: 15
+  airResistanceCoefficient: 0.2
+  staticFrictionCoefficient: 4
+  dynamicFrictionCoefficient: 3
+  gravity: 20
   walkableMask:
     serializedVersion: 2
     m_Bits: 512
   skinWidth: 0.05
-  groundCheckDistance: 0.05
+  groundCheckDistance: 0.02
 --- !u!114 &613283157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5814,17 +5814,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
+  - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
   - {fileID: 11400000, guid: cdc0962540c28cc4b97f3636823c6616, type: 2}
   - {fileID: 11400000, guid: f9e8e05bb0ca6ca478f468025c72315c, type: 2}
-  - {fileID: 11400000, guid: ee915e24ed26b664fb40eeb5415bb062, type: 2}
   - {fileID: 11400000, guid: 0f44b3ed9e96a214ab17af1bb42963d2, type: 2}
+  - {fileID: 11400000, guid: 9d1f85cc695e8454abcc84a64ec2aa86, type: 2}
   mainCamera: {fileID: 8727586053171767193}
   gravityGun: {fileID: 8727586052577491054}
   flashlight: {fileID: 0}
+  hasFlashlight: 0
   walkSpeed: 5
-  jumpHeight: 10
-  acceleration: 10
-  crouchSpeed: 10
+  jumpHeight: 14
+  acceleration: 200
+  crouchSpeed: 3
   respawnPoint: {fileID: 0}
   startHealth: 100
   health: 100
