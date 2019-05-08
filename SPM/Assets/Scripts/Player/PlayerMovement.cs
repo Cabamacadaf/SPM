@@ -32,11 +32,11 @@ public class PlayerMovement : PhysicsComponent
     // Update is called once per frame
     void Update()
     {
-        if(groundAngle > 95)
-        {
-            dynamicFrictionCoefficient = 0.5f;
+        //if(groundAngle > 95)
+        //{
+        //    dynamicFrictionCoefficient = 0.5f;
 
-        }
+        //}
 
         ApplyGravity();
         CheckCollision();
