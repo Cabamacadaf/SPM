@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527902997906261435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8727586053171767196}
@@ -5553,7 +5553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5962612109775278386
 Transform:
   m_ObjectHideFlags: 0
@@ -5598,7 +5598,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 5120
+    m_Bits: 4096
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5675,8 +5675,8 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   holdingObject: {fileID: 0}
   playerPushForce: 20
-  powerUpLength: 100
-  powerUpIncreaseRange: 0
+  powerUpLength: 10
+  powerUpIncreaseRange: 3
 --- !u!114 &5079452999055559323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5792,10 +5792,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4bdf7a5d0290c499163dccc0439324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airResistanceCoefficient: 0.2
-  staticFrictionCoefficient: 4
-  dynamicFrictionCoefficient: 3
-  gravity: 20
+  airResistanceCoefficient: 0.1
+  staticFrictionCoefficient: 0.8
+  dynamicFrictionCoefficient: 0.5
+  gravity: 18
   walkableMask:
     serializedVersion: 2
     m_Bits: 512
@@ -5824,9 +5824,11 @@ MonoBehaviour:
   flashlight: {fileID: 0}
   hasFlashlight: 0
   walkSpeed: 4
-  jumpHeight: 9
-  acceleration: 200
+  jumpHeight: 15
+  acceleration: 25
   crouchSpeed: 2
+  deceleration: 50
+  runningSpeed: 30
   respawnPoint: {fileID: 0}
   startHealth: 100
   health: 100
@@ -5842,9 +5844,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.24
-  m_Height: 1.868042
+  m_Height: 1.86
   m_Direction: 1
-  m_Center: {x: 0, y: 0.934021, z: 0.025718499}
+  m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!54 &2821774831742086203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5975,7 +5977,8 @@ MonoBehaviour:
   minClampValue: -60
   maxClampValue: 60
   mouseSensitivity: 1
-  cameraOffset: {x: 1, y: 0, z: -1.3}
+  ParentCamera: {fileID: 527902997906261435}
+  cameraOffset: {x: 1, y: 0, z: -1.5}
   geometryLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -5990,7 +5993,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8902216743340853995
 GameObject:

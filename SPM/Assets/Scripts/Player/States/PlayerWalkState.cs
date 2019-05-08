@@ -37,15 +37,16 @@ public class PlayerWalkState : PlayerBaseState
         owner.Stamina.Recover();
 
 
-        Vector3 groundVel = new Vector3(owner.Movement.GetVelocity().x, 0, owner.Movement.GetVelocity().z);
-        if (groundVel.magnitude <= owner.GetWalkSpeed())
-        {
+        //Vector3 groundVel = new Vector3(owner.Movement.GetVelocity().x, 0, owner.Movement.GetVelocity().z);
+        owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
+        //if (owner.Movement.GetVelocity().magnitude > owner.GetWalkSpeed())
+        //{
 
 
-            owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
+        //    owner.Movement.SetVelocity(owner.Movement.GetVelocity().normalized * owner.GetWalkSpeed());
 
 
-        }
+        //}
 
 
 
