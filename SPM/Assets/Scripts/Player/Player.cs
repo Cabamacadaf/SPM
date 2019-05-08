@@ -10,6 +10,7 @@ public class Player : StateMachine
     public float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
     public float Acceleration { get => acceleration; set => acceleration = value; }
     public float CrouchSpeed { get => crouchSpeed; set => crouchSpeed = value; }
+    public float Deceleration { get => deceleration; set => deceleration = value; }
 
     public GameObject mainCamera;
     public GravityGun gravityGun;
@@ -21,6 +22,7 @@ public class Player : StateMachine
     [SerializeField] private float jumpHeight = 8;
     [SerializeField] private float acceleration = 10;
     [SerializeField] private float crouchSpeed = 10;
+    [SerializeField] private float deceleration = 10;
 
 
 

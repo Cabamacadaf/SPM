@@ -33,13 +33,14 @@ public class PlayerIdleState : PlayerBaseState
         {
             owner.Transition<PlayerWalkState>();
         }
-        
+
         //RaycastHit hitInfo;
         //if (Physics.Raycast(owner.transform.position, Vector3.down, out hitInfo))
         //{
         //    direction = Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
 
         //}
+        //owner.Movement.Decelerate(owner.Deceleration * Time.deltaTime);
 
 
     }

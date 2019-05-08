@@ -15,8 +15,8 @@ public class CrouchTrigger : InteractiveObject
             Player player = other.gameObject.GetComponent<Player>();
 
 
-            PlayerWalkState PC = player.GetCurrentState() as PlayerWalkState;
-            if (PC != null)
+            PlayerIdleState PIS = player.GetCurrentState() as PlayerIdleState;
+            if (PIS != null)
             {
                 player.transform.position = teleportPosition.transform.position;
                 player.Transition<PlayerCrouchState>();

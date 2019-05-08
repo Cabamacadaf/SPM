@@ -98,7 +98,7 @@ public class PlayerMovement : PhysicsComponent
         }
         else
         {
-            return direction;
+            return direction.normalized;
         }
     }
 
