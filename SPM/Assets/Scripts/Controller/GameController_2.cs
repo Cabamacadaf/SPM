@@ -11,14 +11,13 @@ public class GameController_2 : MonoBehaviour
     [HideInInspector]
     public bool hasKeycard;
     public GameObject door_Goal;
-    public List<GameObject> lights;
+    public GameObject[] lights;
 
     [HideInInspector] //ni får skriva det här med eran andra version
     public int greenCollecting;
 
     void Start()
     {
-        setAllLightFalse();
         gameControllerInstance_2 = this;
         greenCollecting = 0;
         hasKeycard = true;
@@ -33,7 +32,7 @@ public class GameController_2 : MonoBehaviour
             Debug.Log("You have reached your goal");
             OpenDoor();
             greenCollecting = 0;
-            setAllLightTrue();
+            SetAllLightTrue();
         }
     }
 
@@ -44,14 +43,14 @@ public class GameController_2 : MonoBehaviour
         return;
     }
 
-    private void setAllLightFalse ()
+    private void SetAllLightFalse ()
     {
         foreach(GameObject light in lights) {
             light.SetActive(false);
         }
     }
 
-    private void setAllLightTrue ()
+    private void SetAllLightTrue ()
     {
         foreach (GameObject light in lights) {
             light.SetActive(true);

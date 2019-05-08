@@ -411,12 +411,14 @@ MonoBehaviour:
   aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
   idleSound: {fileID: 8300000, guid: f9655384cf7bae2448644e38fd737bb3, type: 3}
   spawnSound: {fileID: 8300000, guid: 11f059c7b05be2a4b852cab21e0073c2, type: 3}
+  idleSoundMinTime: 1
+  idleSoundMaxTime: 5
   attackDistance: 1
   attackTime: 0.1
   attackCooldown: 1
   attackAnimationSpeed: 5
   attackDamage: 35
-  hitPoints: 75
+  hitPoints: 25
   movementSpeed: 2.5
   acceleration: 10
   rotationSpeed: 5
@@ -443,7 +445,7 @@ MonoBehaviour:
   mouth: {fileID: 4796941380208481792}
   leapAttackHitbox: {fileID: 6091103897953174290}
   leapSpeed: 1.5
-  damageReduction: 0.5
+  damageReduction: 0.17
 --- !u!195 &1148960109065948758
 NavMeshAgent:
   m_ObjectHideFlags: 0
