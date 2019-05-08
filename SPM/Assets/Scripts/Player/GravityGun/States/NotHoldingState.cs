@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main Author: Marcus Mellström
+//Secondary Author: Simon Sundström
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/GravityGun/NotHoldingState")]
