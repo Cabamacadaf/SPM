@@ -9,7 +9,7 @@ public class Platform : MonoBehaviour
     public bool IsActive { get; set; }
 
     public Transform EndPosition;
-    public GameObject Player;
+    [HideInInspector] public GameObject Player;
     public MovingAxes movingAxes;
 
 

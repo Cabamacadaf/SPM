@@ -4,11 +4,12 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Player/WalkState")]
 
-public class PlayerWalkState : PlayerGroundState
+public class PlayerWalkState : PlayerBaseState
 {
 
     public override void Enter()
     {
+      
         base.Enter();
     }
 
@@ -16,25 +17,37 @@ public class PlayerWalkState : PlayerGroundState
     {
         base.HandleUpdate();
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (keyboardDirection.magnitude == 0)
         {
-            owner.Transition<PlayerCrouchState>();
+            owner.Transition<PlayerIdleState>();
         }
-    
-        owner.Stamina.Recover();
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
 
-        if (Input.GetKey(KeyCode.LeftShift) && owner.Stamina.Stamina >= owner.Stamina.MaxStamina)
+
+            owner.Movement.AddVelocity(Vector2.up * owner.JumpHeight);
+            owner.Transition<PlayerAirState>();
+
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) && owner.Stamina.Stamina >= owner.Stamina.MaxStamina)
         {
             owner.Transition<PlayerRunState>();
         }
 
-        if (owner.Movement.GetVelocity().magnitude <= owner.GetWalkSpeed())
+        owner.Stamina.Recover();
+
+
+        Vector3 groundVel = new Vector3(owner.Movement.GetVelocity().x, 0, owner.Movement.GetVelocity().z);
+        if (groundVel.magnitude <= owner.GetWalkSpeed())
         {
+
 
             owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
 
 
         }
+
+
 
 
     }
