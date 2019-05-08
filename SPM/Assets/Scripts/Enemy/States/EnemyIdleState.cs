@@ -24,10 +24,6 @@ public class EnemyIdleState : EnemyBaseState
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
-        Debug.Log("Timer: " + timer);
-        Debug.Log("TimeUntilSound: " + timeUntilSound);
-        Debug.Log("Idle Min: " + owner.idleSoundMinTime);
-        Debug.Log("Idle Max: " + owner.idleSoundMaxTime);
         if (timer >= timeUntilSound && !playing) {
             owner.audioSource.PlayOneShot(owner.idleSound);
             playing = true;
