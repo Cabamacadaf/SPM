@@ -16,7 +16,8 @@ public class HoldingState : State
 
     public override void HandleUpdate()
     {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer) && hit.transform.GetComponent<PickUpObject>() != null)
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer)
+            && hit.transform.GetComponent<PickUpObject>() != null)
         {
             owner.crosshair.color = Color.green;
         }
