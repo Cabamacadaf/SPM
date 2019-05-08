@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: f45ec8d211a8a574fad32892d98e2ab4
+guid: 6ba2d260ec4078e4e96c2a381a77f7c5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: default
-    100002: //RootNode
-    100004: Female1
+    100002: Female1
+    100004: //RootNode
     100006: mixamorig:Head
     100008: mixamorig:HeadTop_End
     100010: mixamorig:Hips
@@ -72,8 +72,8 @@ ModelImporter:
     100132: mixamorig:Spine1
     100134: mixamorig:Spine2
     400000: default
-    400002: //RootNode
-    400004: Female1
+    400002: Female1
+    400004: //RootNode
     400006: mixamorig:Head
     400008: mixamorig:HeadTop_End
     400010: mixamorig:Hips
@@ -144,7 +144,7 @@ ModelImporter:
     3300000: default
     4300000: default
     4300002: Female1
-    7400000: mixamo.com
+    7400000: Strafe Left
     9500000: //RootNode
     13700000: Female1
     2186277476908879412: ImportLogs
@@ -175,11 +175,39 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Strafe Left
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -200,7 +228,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
