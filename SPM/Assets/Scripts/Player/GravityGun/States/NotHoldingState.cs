@@ -24,7 +24,7 @@ public class NotHoldingState : State
     public override void HandleUpdate ()
     {
         Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer);
-
+     
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
             if (lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit) {
                 lastPickUpObjectHit.UnHighlight();
@@ -32,6 +32,11 @@ public class NotHoldingState : State
             lastPickUpObjectHit = hit.transform.GetComponent<PickUpObject>();
             lastPickUpObjectHit.Highlight();
             owner.crosshair.color = Color.green;
+        }
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
+        {
+            owner.crosshair.color = Color.green;
+
         }
 
         else {
