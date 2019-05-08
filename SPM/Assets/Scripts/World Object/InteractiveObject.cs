@@ -11,7 +11,7 @@ public class InteractiveObject : MonoBehaviour
 
     protected void Awake ()
     {
-        interactText = FindObjectOfType<Canvas>().GetComponentInChildren<Text>();
+        interactText = FindObjectOfType<Canvas>().transform.Find("Interaction Text").GetComponent<Text>();
     }
 
     private void OnTriggerEnter (Collider other)

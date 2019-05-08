@@ -2,9 +2,19 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlashlightPickup : InteractiveObject
 {
+    private Text messageText;
+    [SerializeField] private float timeToShowMessage = 5.0f;
+
+    private new void Awake ()
+    {
+        messageText = FindObjectOfType<Canvas>().transform.Find("Message Text").GetComponent<Text>();
+        base.Awake();
+    }
+
     private void Update ()
     {
         if(Input.GetKeyDown(KeyCode.E) && interactive) {
@@ -18,16 +28,17 @@ public class FlashlightPickup : InteractiveObject
         GetComponent<MeshRenderer>().enabled = false;
         GetComponentInChildren<BoxCollider>().enabled = false;
         GetComponentInChildren<Light>().enabled = false;
+        interactText.enabled = false;
         StartCoroutine(DisplayHelpMessage());
     }
 
     private IEnumerator DisplayHelpMessage ()
     {
-        yield return new WaitForSeconds(0.5f);
-        interactText.text = "Press F to use Flashlight";
-        yield return new WaitForSeconds(5.0f);
-        interactText.text = "";
-        interactText.enabled = false;
+        messageText.enabled = true;
+        messageText.text = "Press F to use Flashlight";
+        yield return new WaitForSeconds(timeToShowMessage);
+        messageText.text = "";
+        messageText.enabled = false;
         Destroy(gameObject);
     }
 }
