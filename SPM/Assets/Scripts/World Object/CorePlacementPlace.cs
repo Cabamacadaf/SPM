@@ -8,6 +8,7 @@ public class CorePlacementPlace : MonoBehaviour
     [SerializeField] private Color newColor;
     [SerializeField] private float timeBetweenLights;
     [SerializeField] private float timeUntillLightsActivate;
+    public GameObject hit;
 
     [SerializeField] private GameObject energiLightsSmall;
     [SerializeField] private GameObject energiLightsBig;
@@ -28,8 +29,8 @@ public class CorePlacementPlace : MonoBehaviour
                 StartCoroutine(SetActiveOBJ());
             }
             active = false;
-            other.transform.position = transform.position;
-            other.transform.parent = transform;
+            other.transform.position = hit.transform.position;
+            other.transform.parent = hit.transform;
             other.transform.rotation = Quaternion.identity;
             other.gameObject.layer = 0;
             Destroy(other.GetComponent<Rigidbody>());
