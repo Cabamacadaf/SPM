@@ -426,6 +426,9 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   audioSource: {fileID: 0}
   lightSource: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
   player: {fileID: 0}
   leapSound: {fileID: 8300000, guid: ae6e0e91dd827a54ab9d17892852f94d, type: 3}
   maxLeapRange: 10
@@ -438,6 +441,7 @@ MonoBehaviour:
   mouth: {fileID: 4796941380208481792}
   leapAttackHitbox: {fileID: 6091103897953174290}
   leapSpeed: 1.5
+  damageReduction: 0.5
 --- !u!195 &1148960109065948758
 NavMeshAgent:
   m_ObjectHideFlags: 0
