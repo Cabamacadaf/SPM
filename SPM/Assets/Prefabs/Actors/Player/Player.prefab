@@ -5705,12 +5705,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8727586053112546447}
   - component: {fileID: 8727586053112546446}
-  - component: {fileID: 8727586053112546445}
+  - component: {fileID: 3076318624375485830}
   - component: {fileID: 5746688670931222284}
   - component: {fileID: 613283157}
   - component: {fileID: 9013354550664442613}
   - component: {fileID: 2821774831742086203}
   - component: {fileID: 893394545}
+  - component: {fileID: 8800547237065332889}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -5743,7 +5744,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727586053112546443}
   m_Mesh: {fileID: 4300002, guid: 49909345e33d5c64f81f5c00e64ae5e8, type: 3}
---- !u!23 &8727586053112546445
+--- !u!23 &3076318624375485830
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5877,6 +5878,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecoveryRate: 15
   LoseStaminaRate: 15
+--- !u!95 &8800547237065332889
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: a4684d1fbcd50ee47a81d25fe97b68c2, type: 3}
+  m_Controller: {fileID: 9100000, guid: bd89ee61c1c52b94ea439e1277c62ae5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8727586053171767193
 GameObject:
   m_ObjectHideFlags: 0
