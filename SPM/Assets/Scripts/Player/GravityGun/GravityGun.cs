@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Main Author: Marcus Mellström
+//Secondary Author: Simon Sundström
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +24,7 @@ public class GravityGun : StateMachine
 
     //Power up
     [SerializeField] private float powerUpLength;
-    [SerializeField] private float powerUpMultiplier;
+    [SerializeField] private float powerUpIncreaseRange;
 
 
 
@@ -34,16 +36,16 @@ public class GravityGun : StateMachine
 
     private IEnumerator PowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(powerUpLength);
 
-        pushRange -= 10;
-        pullRange -= 10;
+        pushRange -= powerUpIncreaseRange;
+        pullRange -= powerUpIncreaseRange;
     }
 
     public void PowerUp()
     {
-        pushRange += 10;
-        pullRange += 10;
+        pushRange += powerUpIncreaseRange;
+        pullRange += powerUpIncreaseRange;
         StartCoroutine(PowerDownRoutine());
     }
 }

@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Marcus Mellström
+
+using System.Collections;
 using UnityEngine;
 
 public class SplittingDoor : Door

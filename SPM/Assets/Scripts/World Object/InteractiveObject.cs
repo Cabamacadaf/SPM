@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//Author: Marcus Mellström
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,28 +20,6 @@ public class InteractiveObject : MonoBehaviour
             interactText.enabled = true;
             interactive = true;
             interactText.text = textToSet;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKeyDown(KeyCode.E) && other.CompareTag("Player"))
-        {
-            Player player = other.gameObject.GetComponent<Player>();
-
-
-            PlayerWalkState PC = player.GetCurrentState() as PlayerWalkState;
-            if (PC != null)
-            {
-                player.Transition<PlayerCrouchState>();
-
-            }
-            else
-            {
-
-                player.Transition<PlayerWalkState>();
-            }
-
         }
     }
 
