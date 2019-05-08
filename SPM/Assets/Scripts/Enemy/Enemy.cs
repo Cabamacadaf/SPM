@@ -7,6 +7,10 @@ public class Enemy : StateMachine
 {
     public AudioClip attackSound;
     public AudioClip aggroSound;
+    public AudioClip idleSound;
+    public AudioClip spawnSound;
+    public float idleSoundMinTime = 1.0f;
+    public float idleSoundMaxTime = 5.0f;
 
     public float attackDistance = 15.0f;
     public float attackTime = 0.1f;
