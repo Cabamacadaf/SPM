@@ -33,7 +33,8 @@ public class NotHoldingState : State
             lastPickUpObjectHit.Highlight();
             owner.crosshair.color = Color.green;
         }
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
+
+        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
         {
             owner.crosshair.color = Color.green;
 

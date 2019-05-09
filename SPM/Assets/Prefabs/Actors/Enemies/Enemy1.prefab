@@ -460,7 +460,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -607,14 +607,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8493557469479239452}
     m_Modifications:
-    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
-      propertyPath: m_Name
-      value: Aggro Range
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -670,6 +662,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+      propertyPath: m_Name
+      value: Aggro Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Enabled
