@@ -15,6 +15,8 @@ public class HealthPack : InteractiveObject
     {
         if (Input.GetKeyDown(KeyCode.E) && interactive){
             player.Addhealth(healthToAdd);
+            interactText.text = "";
+            interactText.enabled = false;
             ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
             objectDestroyedEvent.ExecuteEvent();
         }
