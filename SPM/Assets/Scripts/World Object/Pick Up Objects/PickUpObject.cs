@@ -134,6 +134,7 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
+        Debug.Log(rb.velocity.magnitude);
         if (collision.collider.CompareTag("DestructibleObject") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
         }
