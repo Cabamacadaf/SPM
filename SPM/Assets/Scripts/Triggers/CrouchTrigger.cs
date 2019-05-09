@@ -15,18 +15,17 @@ public class CrouchTrigger : InteractiveObject
             Player player = other.gameObject.GetComponent<Player>();
 
 
-            PlayerIdleState PIS = player.GetCurrentState() as PlayerIdleState;
-            if (PIS != null)
-            {
-                player.transform.position = teleportPosition.transform.position;
-                player.Transition<PlayerCrouchState>();
+            //PlayerIdleState PIS = player.GetCurrentState() as PlayerIdleState;
+            //if (PIS != null)
+            //{
+            //    player.Transition<PlayerCrouchState>();
 
-            }
-            else
-            {
-                player.transform.position = teleportPosition.transform.position;
-                player.Transition<PlayerIdleState>();
-            }
+            //}
+            //else
+            //{
+            //    player.Transition<PlayerIdleState>();
+            //}
+            player.transform.position = teleportPosition.transform.position;
 
         }
     }
