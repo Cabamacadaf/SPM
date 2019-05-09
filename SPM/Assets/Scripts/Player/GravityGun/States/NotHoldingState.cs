@@ -91,7 +91,9 @@ public class NotHoldingState : State
                 Platform platform = hit.collider.gameObject.GetComponent<Platform>();
                 if (!platform.IsActive) {
                     hit.collider.gameObject.GetComponent<Platform>().IsActive = true;
-
+                }
+                else {
+                    hit.collider.gameObject.GetComponent<Platform>().IsActive = false;
                 }
             }
         }
