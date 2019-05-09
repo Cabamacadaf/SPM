@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame ()
     {
-        SceneManager.LoadScene("Level1_Whitebox");
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame ()
