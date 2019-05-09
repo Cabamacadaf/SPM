@@ -38,6 +38,7 @@ public class Player : StateMachine
     protected override void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Collider = GetComponent<CapsuleCollider>();
         Movement = GetComponent<PlayerMovement>();
         Stamina = GetComponent<StaminaComponent>();
