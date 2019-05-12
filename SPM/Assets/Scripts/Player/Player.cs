@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : StateMachine
 {
+
+    public float CrouchColliderHeight = 0.80f;
+    public float CrouchColliderCenter = 0.40f;
+    public float CrouchCameraHeight;
+    public float CrouchGravityGunHeight;
+
     public StaminaComponent Stamina { get; set; }
     public PlayerMovement Movement { get; set; }
     public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }

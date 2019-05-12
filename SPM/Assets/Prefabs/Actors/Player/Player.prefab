@@ -39,6 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5989384535796477618}
+  - component: {fileID: 445659793}
   m_Layer: 10
   m_Name: YCameraOffset
   m_TagString: Untagged
@@ -61,6 +62,18 @@ Transform:
   m_Father: {fileID: 8727586053112546447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445659793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527902997906261435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728815595e2aed047bda6e43b6895bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172398643089575955
 GameObject:
   m_ObjectHideFlags: 0
@@ -5800,7 +5813,7 @@ MonoBehaviour:
   walkableMask:
     serializedVersion: 2
     m_Bits: 8704
-  skinWidth: 0.1
+  skinWidth: 0.05
   groundCheckDistance: 0.02
 --- !u!114 &613283157
 MonoBehaviour:
@@ -5820,6 +5833,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9e8e05bb0ca6ca478f468025c72315c, type: 2}
   - {fileID: 11400000, guid: 0f44b3ed9e96a214ab17af1bb42963d2, type: 2}
   - {fileID: 11400000, guid: 9d1f85cc695e8454abcc84a64ec2aa86, type: 2}
+  CrouchColliderHeight: 0.8
+  CrouchColliderCenter: 0.4
+  CrouchCameraHeight: 0.7
+  CrouchGravityGunHeight: 0.4
   mainCamera: {fileID: 8727586053171767193}
   gravityGun: {fileID: 8727586052577491054}
   flashlight: {fileID: 0}
@@ -5827,7 +5844,7 @@ MonoBehaviour:
   walkSpeed: 4
   jumpHeight: 11
   acceleration: 25
-  crouchSpeed: 2
+  crouchSpeed: 4
   deceleration: 50
   runningSpeed: 30
   respawnPoint: {fileID: 0}

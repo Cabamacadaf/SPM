@@ -10,10 +10,12 @@ public class PlayerCrouchState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.Collider.center = new Vector3(0, 0.40f, 0);
-        owner.Collider.height = 0.80f;
-        //owner.mainCamera.gameObject.GetComponent<CameraManager>().ParentCamera.transform.localPosition = CameraManager.FIRSTPERSON;
-        //owner.mainCamera.gameObject.GetComponent<CameraManager>().cameraOffset = Vector3.zero;
+        owner.Collider.center = new Vector3(0, owner.CrouchColliderCenter, 0);
+        owner.Collider.height = owner.CrouchColliderHeight;
+        owner.GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, owner.CrouchCameraHeight, 0);
+        owner.gravityGun.transform.localPosition = new Vector3(0.44f, owner.CrouchGravityGunHeight, 0.57f);
+
+
     }
 
     public override void HandleUpdate()
@@ -22,20 +24,21 @@ public class PlayerCrouchState : PlayerBaseState
 
         //Physics.Raycast(owner.transform.position, Vector3.up, 6) || 
 
-        if (owner.Movement.GetVelocity().magnitude < owner.CrouchSpeed)
+        owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
+
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            owner.Movement.AddVelocity(direction * owner.Acceleration * Time.deltaTime);
-
+            owner.Transition<PlayerIdleState>();
         }
-
     }
 
     public override void Exit()
     {
         owner.Collider.center = new Vector3(0, 0.93f, 0);
         owner.Collider.height = 1.86f;
-        //owner.mainCamera.gameObject.GetComponent<CameraManager>().ParentCamera.transform.localPosition = new Vector3(0, 1.5f, 0);
-        //owner.mainCamera.gameObject.GetComponent<CameraManager>().cameraOffset = CameraManager.THIRDPERSON;
+        owner.GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, 1.7f, 0);
+        owner.gravityGun.transform.localPosition = new Vector3(0.44f, 1.34f, 0.57f);
         Debug.Log("ExitCrouch");
     }
 }
