@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public Vector3 Velocity { get; set; }
+    private Vector3 Velocity;
 
     [SerializeField] private float skinWidth;
     [SerializeField] private LayerMask walkableMask;
