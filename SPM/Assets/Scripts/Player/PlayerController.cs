@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
     public float CrouchColliderHeight = 0.80f;
     public float CrouchColliderCenter = 0.40f;
+    public float CrouchCameraHeight;
+    public float CrouchGravityGunHeight;
 
     private void Awake()
     {
@@ -162,11 +164,15 @@ public class PlayerController : MonoBehaviour
         {
             capsuleCollider.center = new Vector3(0, CrouchColliderCenter, 0);
             capsuleCollider.height = CrouchColliderHeight;
+            GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, CrouchCameraHeight, 0);
+            gravityGun.transform.localPosition = new Vector3(0.44f, CrouchGravityGunHeight, 0.57f);
         }
         else
         {
             capsuleCollider.center = new Vector3(0, 0.93f, 0);
             capsuleCollider.height = 1.86f;
+            GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, 1.7f, 0);
+            gravityGun.transform.localPosition = new Vector3(0.44f, 1.34f, 0.57f);
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
