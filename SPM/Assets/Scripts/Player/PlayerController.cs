@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 point1;
     private Vector3 point2;
     private Vector3 snapSum;
-    private CapsuleCollider capsuleCollider;
+    public CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
     private float groundAngle;

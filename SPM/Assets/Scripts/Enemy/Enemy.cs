@@ -34,7 +34,7 @@ public class Enemy : StateMachine
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public Light lightSource;
     public LayerMask wallLayer;
-    [HideInInspector] public Player player;
+    [HideInInspector] public PlayerController player;
 
     protected override void Awake ()
     {
@@ -45,7 +45,7 @@ public class Enemy : StateMachine
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerController>();
         base.Awake();
     }
 }

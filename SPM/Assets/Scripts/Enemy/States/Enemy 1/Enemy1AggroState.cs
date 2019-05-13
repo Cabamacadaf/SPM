@@ -16,8 +16,8 @@ public class Enemy1AggroState : EnemyAggroState
         if (owner.agent.isOnNavMesh) {
             owner.agent.SetDestination(owner.player.transform.position);
         }
-        Vector3 raycastDirection = owner.transform.position - owner.player.Collider.bounds.center;
-        if (!Physics.Raycast(owner.player.Collider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.wallLayer)) {
+        Vector3 raycastDirection = owner.transform.position - owner.player.capsuleCollider.bounds.center;
+        if (!Physics.Raycast(owner.player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.wallLayer)) {
             if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner.attackDistance) {
                 owner.agent.enabled = false;
                 owner.Transition<EnemyAttackState>();
