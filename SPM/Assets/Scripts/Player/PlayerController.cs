@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
     public float CrouchColliderHeight = 0.80f;
     public float CrouchColliderCenter = 0.40f;
+    public float CrouchCameraHeight;
+    public float CrouchGravityGunHeight;
 
     private void Awake()
     {
@@ -158,15 +160,19 @@ public class PlayerController : MonoBehaviour
 
         //Vector3 movingDirection = GetDirection();
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.V))
         {
             capsuleCollider.center = new Vector3(0, CrouchColliderCenter, 0);
             capsuleCollider.height = CrouchColliderHeight;
+            GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, CrouchCameraHeight, 0);
+            gravityGun.transform.localPosition = new Vector3(0.44f, CrouchGravityGunHeight, 0.57f);
         }
         else
         {
             capsuleCollider.center = new Vector3(0, 0.93f, 0);
             capsuleCollider.height = 1.86f;
+            GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, 1.7f, 0);
+            gravityGun.transform.localPosition = new Vector3(0.44f, 1.34f, 0.57f);
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -279,6 +285,8 @@ public class PlayerController : MonoBehaviour
 
     private void CheckCollision()
     {
+        point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
+        point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
         checkCollisionCounter++;
         if (maxLoopValue > checkCollisionCounter)
         {
@@ -314,7 +322,8 @@ public class PlayerController : MonoBehaviour
     private void CheckCollision2()
     {
 
-
+        point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
+        point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
         RaycastHit hitInfo;
         if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, walkableMask))
         {
