@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
     public Transform respawnPoint;
     //private MyCharachterController CC;
 
+    public float CrouchColliderHeight = 0.80f;
+    public float CrouchColliderCenter = 0.40f;
+
     private void Awake()
     {
         flashlight = GetComponentInChildren<Light>();
@@ -155,13 +158,20 @@ public class PlayerController : MonoBehaviour
 
         //Vector3 movingDirection = GetDirection();
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            capsuleCollider.center = new Vector3(0, CrouchColliderCenter, 0);
+            capsuleCollider.height = CrouchColliderHeight;
+        }
+        else
+        {
+            capsuleCollider.center = new Vector3(0, 0.93f, 0);
+            capsuleCollider.height = 1.86f;
+        }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
-        }
-        else if (Input.GetKey(KeyCode.LeftControl))
-        {
-
         }
         else
         {
