@@ -11,10 +11,10 @@ public class EnemyAttackState : EnemyBaseState
     {
         //Debug.Log("Attack State");
         timer = 0.0f;
-		owner.anim.SetTrigger("Enemy1Attack");
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
         enemyAttackEvent.ExecuteEvent();
         owner.attackObject.SetActive(true);
+		owner.anim.SetTrigger("Enemy1Attack");
         base.Enter();
     }
 
