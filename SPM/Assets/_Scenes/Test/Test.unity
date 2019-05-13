@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -119,20 +119,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 613283157, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: respawnPoint
-      value: 
-      objectReference: {fileID: 582828077}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 704658042}
     - target: {fileID: 8727586053112546443, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
+        type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 704658042}
     - target: {fileID: 8727586053112546447, guid: 483391c0130292745ae859d3cd322aae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -197,6 +193,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7543826323438187487, guid: 5e70e5f2a1811424381dab9785e963e5,
+        type: 3}
+      propertyPath: m_Name
+      value: Explosive Object
+      objectReference: {fileID: 0}
     - target: {fileID: 7543826323438187461, guid: 5e70e5f2a1811424381dab9785e963e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -252,11 +253,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7543826323438187487, guid: 5e70e5f2a1811424381dab9785e963e5,
-        type: 3}
-      propertyPath: m_Name
-      value: Explosive Object
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e70e5f2a1811424381dab9785e963e5, type: 3}
 --- !u!1 &582828077
@@ -296,6 +292,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9124686035179313466, guid: 13a3b33c4cf7f4e4ab3ab3ba07504432,
+        type: 3}
+      propertyPath: m_Name
+      value: Medium_Wall 4p
+      objectReference: {fileID: 0}
     - target: {fileID: 6216186960831067118, guid: 13a3b33c4cf7f4e4ab3ab3ba07504432,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,11 +351,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9124686035179313466, guid: 13a3b33c4cf7f4e4ab3ab3ba07504432,
-        type: 3}
-      propertyPath: m_Name
-      value: Medium_Wall 4p
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13a3b33c4cf7f4e4ab3ab3ba07504432, type: 3}
@@ -912,6 +908,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1905823645152155405, guid: 7c313e112d69aef4da75ecd1e5802d18,
+        type: 3}
+      propertyPath: m_Name
+      value: Compact Object
+      objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 7c313e112d69aef4da75ecd1e5802d18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -966,11 +967,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905823645152155405, guid: 7c313e112d69aef4da75ecd1e5802d18,
-        type: 3}
-      propertyPath: m_Name
-      value: Compact Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c313e112d69aef4da75ecd1e5802d18, type: 3}
