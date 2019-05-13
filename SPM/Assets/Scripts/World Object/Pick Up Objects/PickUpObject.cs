@@ -30,7 +30,7 @@ public class PickUpObject : MonoBehaviour
     void Awake ()
     {
         pullPoint = GameObject.Find("PullPoint").transform;
-        player = FindObjectOfType<Player>().transform;
+        player = FindObjectOfType<PlayerController>().transform;
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
