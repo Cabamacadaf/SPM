@@ -43,5 +43,7 @@ public class AudioLog : InteractiveObject
             messageText.text = text;
             yield return new WaitForSeconds(timeBetweenText);
         }
+        messageText.text = "";
+        messageText.enabled = false;
     }
 }

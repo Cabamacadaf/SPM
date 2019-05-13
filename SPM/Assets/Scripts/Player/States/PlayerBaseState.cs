@@ -48,7 +48,9 @@ public class PlayerBaseState : State
 
         direction = owner.Movement.MoveAlongGround(direction);
 
-
+        if (Input.GetKey(KeyCode.LeftControl)){
+            owner.Transition<PlayerCrouchState>();
+        }
 
         CameraRotation();
 

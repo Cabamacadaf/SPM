@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 2226854606375388720}
   - component: {fileID: 3580324963919691689}
   - component: {fileID: 6346549309010860513}
+  - component: {fileID: 5196282901089799403}
   m_Layer: 11
   m_Name: Enemy1
   m_TagString: Enemy
@@ -339,10 +340,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5abc93d21e69a24da9949afba272e9e, type: 2}
   - {fileID: 11400000, guid: 560e73669cd133744974f86d3ba17ea8, type: 2}
   - {fileID: 11400000, guid: 050668ac7cc5f274fbe5dd703da34c16, type: 2}
+  anim: {fileID: 0}
   attackSound: {fileID: 8300000, guid: edb780fbd7a20a84cb327c73e3d01a1a, type: 3}
   aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
   idleSound: {fileID: 8300000, guid: f9655384cf7bae2448644e38fd737bb3, type: 3}
   spawnSound: {fileID: 8300000, guid: 11f059c7b05be2a4b852cab21e0073c2, type: 3}
+  idleSoundMinTime: 1
+  idleSoundMaxTime: 5
   attackDistance: 1
   attackTime: 0.1
   attackCooldown: 1
@@ -458,7 +462,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -498,6 +502,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &5196282901089799403
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493557469479239451}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: ec383af251750084cb7d455f1dac895f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 065e0ae173c972e42bd018b0bd21d8b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1491343836513279695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -659,15 +682,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7433812
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.0619731
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7433812
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7001716b53413164785a3645c3dcfd07, type: 3}
       propertyPath: m_Enabled

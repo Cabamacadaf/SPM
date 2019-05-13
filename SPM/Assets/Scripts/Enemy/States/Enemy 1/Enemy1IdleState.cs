@@ -9,4 +9,10 @@ public class Enemy1IdleState : EnemyIdleState
     {
         base.HandleUpdate();
     }
+
+	public override void Enter () 
+	{
+		owner.anim.SetFloat("Enemy1Speed", 0.0f);
+	}
+		
 }

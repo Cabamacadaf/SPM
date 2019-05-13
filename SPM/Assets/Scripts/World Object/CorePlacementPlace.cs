@@ -14,23 +14,28 @@ public class CorePlacementPlace : MonoBehaviour
 
     [SerializeField] private GameObject energiLightsSmall;
     [SerializeField] private GameObject energiLightsBig;
+    private GravityGun gravityGun;
 
     private bool active = true;
     bool finish = false;
 
-    private void Update()
+    private void Awake ()
     {
+        gravityGun = FindObjectOfType<GravityGun>();
     }
 
     private void OnTriggerEnter (Collider other)
     {
-        if (active && other.CompareTag("PowerCore"))
-        {
-            if (active)
-            {
-                StartCoroutine(SetActiveOBJ());
-            }
+        if (active && other.CompareTag("PowerCore")) {
+            StartCoroutine(SetActiveOBJ());
             active = false;
+
+            if (gravityGun.GetCurrentState() is HoldingState) {
+                HoldingState holdingState = (HoldingState)gravityGun.GetCurrentState();
+                holdingState.Drop();
+            }
+
+
             other.transform.position = hit.transform.position;
             other.transform.parent = hit.transform;
             other.transform.rotation = Quaternion.identity;
@@ -42,19 +47,17 @@ public class CorePlacementPlace : MonoBehaviour
             objectiveEvent.ExecuteEvent();
 
             StartCoroutine(ChangeColors());
-
-           
         }
     }
     private IEnumerator ChangeColors ()
     {
-        foreach (Light light in lights){
+        foreach (Light light in lights) {
             light.color = newColor;
             yield return new WaitForSeconds(timeBetweenLights);
         }
     }
 
-    private IEnumerator SetActiveOBJ()
+    private IEnumerator SetActiveOBJ ()
     {
         yield return new WaitForSeconds(timeUntillLightsActivate);
         energiLightsBig.SetActive(true);

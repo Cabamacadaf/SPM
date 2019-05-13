@@ -30,7 +30,7 @@ public class PickUpObject : MonoBehaviour
     void Awake ()
     {
         pullPoint = GameObject.Find("PullPoint").transform;
-        player = FindObjectOfType<Player>().transform;
+        player = FindObjectOfType<PlayerController>().transform;
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
@@ -134,6 +134,7 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
+        Debug.Log(rb.velocity.magnitude);
         if (collision.collider.CompareTag("DestructibleObject") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
         }

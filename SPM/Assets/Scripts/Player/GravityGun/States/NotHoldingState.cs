@@ -33,7 +33,8 @@ public class NotHoldingState : State
             lastPickUpObjectHit.Highlight();
             owner.crosshair.color = Color.green;
         }
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
+
+        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
         {
             owner.crosshair.color = Color.green;
 
@@ -90,7 +91,9 @@ public class NotHoldingState : State
                 Platform platform = hit.collider.gameObject.GetComponent<Platform>();
                 if (!platform.IsActive) {
                     hit.collider.gameObject.GetComponent<Platform>().IsActive = true;
-
+                }
+                else {
+                    hit.collider.gameObject.GetComponent<Platform>().IsActive = false;
                 }
             }
         }

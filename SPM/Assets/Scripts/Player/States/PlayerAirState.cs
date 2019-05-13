@@ -6,22 +6,22 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerBaseState
 {
-    private float speed;
-    private float modifier = 0.01f;
+    //private float speed;
+    //private float modifier = 0.01f;
     public override void Enter()
     {
-        modifier = 0.01f;
-        base.Enter();
-        speed = owner.Movement.GetVelocity().magnitude;
+        //modifier = 0.01f;
+        //base.Enter();
+        //speed = owner.Movement.GetVelocity().magnitude;
     }
 
     public override void HandleUpdate()
     {
         base.HandleUpdate();
 
-        modifier += 0.001f;
+        //modifier += 0.001f;
         //owner.Movement.AddVelocity(Vector2.down * modifier);
-        owner.Movement.AddVelocity(direction * speed * Time.deltaTime);
+        //owner.Movement.AddVelocity(direction * speed * Time.deltaTime);
         //if (owner.Movement.GetVelocity().magnitude > speed)
         //{
 

@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Awake ()
+    {
+        Cursor.visible = true;
+    }
+
     public void PlayGame ()
     {
-        SceneManager.LoadScene("Level1_Whitebox");
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame ()

@@ -38,7 +38,7 @@ public class PlayerMovement : PhysicsComponent
 
         }
         CalculateGroundAngle();
-        Debug.Log(groundAngle);
+        //Debug.Log(groundAngle);
 
         ApplyGravity();
         CheckCollision();

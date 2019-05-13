@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class Enemy : StateMachine
 {
+
+	public Animator anim; 
+
     public AudioClip attackSound;
     public AudioClip aggroSound;
     public AudioClip idleSound;
@@ -31,17 +34,18 @@ public class Enemy : StateMachine
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public Light lightSource;
     public LayerMask wallLayer;
-    [HideInInspector] public Player player;
+    [HideInInspector] public PlayerController player;
 
     protected override void Awake ()
     {
+		anim = GetComponent<Animator>();
         lightSource = GetComponentInChildren<Light>();
         audioSource = GetComponent<AudioSource>();
         rigidBody = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerController>();
         base.Awake();
     }
 }
