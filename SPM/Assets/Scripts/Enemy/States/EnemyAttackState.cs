@@ -14,7 +14,13 @@ public class EnemyAttackState : EnemyBaseState
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
         enemyAttackEvent.ExecuteEvent();
         owner.attackObject.SetActive(true);
-		owner.anim.SetTrigger("Enemy1Attack");
+
+		if (owner is Enemy1) {
+			owner.anim.SetTrigger("Enemy1Attack");
+		} else if (owner is Enemy2) {
+			owner.anim.SetTrigger("Enemy2Attack");
+		}
+
         base.Enter();
     }
 

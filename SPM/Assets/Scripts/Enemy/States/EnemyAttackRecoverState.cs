@@ -11,6 +11,11 @@ public class EnemyAttackRecoverState : EnemyBaseState
     {
         //Debug.Log("Attack Recover State");
         timer = 0.0f;
+		if (owner is Enemy1) {
+			owner.anim.SetFloat("Enemy1Speed", 0.0f);
+		} else if (owner is Enemy2) {
+			owner.anim.SetFloat("Enemy2Speed", 0.0f);
+		}
         base.Enter();
     }
 
