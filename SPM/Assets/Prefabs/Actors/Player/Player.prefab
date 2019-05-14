@@ -5677,18 +5677,22 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: 40e7d3385defe654fa2862a78a08ff28, type: 2}
   - {fileID: 11400000, guid: 371e46e79c666354cbedb232b3358f24, type: 2}
+  - {fileID: 11400000, guid: 59826ea88cda61048b9b24fb067a69f7, type: 2}
   pushRange: 12
   pullRange: 12
   pushForce: 900
   pullForce: 12
-  cameraOffset: 0.35
+  distanceToGrab: 0.1
+  distanceToDrop: 0.2
+  objectRotationSpeed: 2
   raycastCollideLayer:
     serializedVersion: 2
     m_Bits: 10752
   pullLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
   crosshair: {fileID: 0}
+  pullPoint: {fileID: 1856394971495834143}
   holdingObject: {fileID: 0}
   powerUpLength: 10
   powerUpIncreaseRange: 3
