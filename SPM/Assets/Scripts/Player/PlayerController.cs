@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    
+    
     //Speed
     private float speed;
     public float sprintSpeed;
@@ -134,6 +135,26 @@ public class PlayerController : MonoBehaviour
         //HandleMovement();
         HandleMovement();
         CameraRotation();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Respawn();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (hasFlashlight)
+            {
+                if (flashlight.enabled)
+                {
+                    flashlight.enabled = false;
+                }
+                else
+                {
+                    flashlight.enabled = true;
+                }
+            }
+        }
 
     }
 
