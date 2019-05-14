@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5783386443276705252}
   - component: {fileID: 5783386443276705253}
   - component: {fileID: 5783386443276705256}
-  - component: {fileID: 5783386443276705255}
   - component: {fileID: 1204479263051125963}
+  - component: {fileID: 5326294392837653693}
   m_Layer: 13
   m_Name: Sharp Object
   m_TagString: Shootable
@@ -96,28 +96,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5783386443276705255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783386443276705257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af07682a7d98a14ab682dc8a13dbf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  durability: 2
-  holding: 0
-  distanceToGrab: 1
-  impactDamage: 50
-  lowestVelocityToDoDamage: 1
-  holdingOpacity: 0.5
-  regularMaterial: {fileID: 2100000, guid: b233302b4b2184f4fb074d8606bcf89e, type: 2}
-  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
-  rotationSpeed: 4
-  isHighlighted: 0
 --- !u!135 &1204479263051125963
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -131,3 +109,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.21883805
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5326294392837653693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783386443276705257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: 2
+  impactDamage: 50
+  lowestVelocityToDoDamage: 1
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 2100000, guid: b233302b4b2184f4fb074d8606bcf89e, type: 2}
+  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
+  isHighlighted: 0
+  holding: 0
