@@ -1,9 +1,8 @@
-﻿//Main Author: Simon Sundström
-//Secondary Author: Marcus Mellström
-
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosiveObject : PickUpObject
+public class Explosion : MonoBehaviour
 {
     [Header("ParticleEffects")]
     [SerializeField] private GameObject horizontalParticleEffect;
@@ -15,24 +14,21 @@ public class ExplosiveObject : PickUpObject
     [SerializeField] private float radius;
     [Tooltip("Adjustment to the apparent position of the explosion to make it seem to lift objects.")]
     [SerializeField] private float upwardsModifier;
-    private void OnCollisionEnter (Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
-        if (thrown && rigidBody.velocity.magnitude > lowestVelocityToDoDamage) {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
-            foreach (Collider collider in colliders)
-            {
-                AddExplosionForce(collider);
+        foreach (Collider collider in colliders)
+        {
+            AddExplosionForce(collider);
 
-                InstantiateParticleEffects();
+            InstantiateParticleEffects();
 
-                HandleSpecificObjects(collider);
+            HandleSpecificObjects(collider);
 
-            }
-
-            LoseDurability();
         }
+
     }
 
     private void HandleSpecificObjects(Collider collider)
