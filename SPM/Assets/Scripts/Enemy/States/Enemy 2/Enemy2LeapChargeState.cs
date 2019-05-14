@@ -20,6 +20,7 @@ public class Enemy2LeapChargeState : EnemyBaseState
         //Debug.Log("Leap Charge State");
         timer = 0.0f;
         owner2.mouth.gameObject.SetActive(true);
+		owner.anim.SetTrigger("Enemy2JumpAttack");
     }
     public override void HandleUpdate ()
     {

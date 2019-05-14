@@ -21,6 +21,7 @@ public class Enemy2LeapRecoverState : EnemyBaseState
         timer = 0.0f;
         owner2.leapAttackHitbox.SetActive(false);
         owner2.mouth.gameObject.SetActive(false);
+		owner.anim.SetFloat("Enemy2Idle", 0.0f);
     }
     public override void HandleUpdate ()
     {

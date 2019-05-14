@@ -16,6 +16,7 @@ public class Enemy2AggroState : EnemyAggroState
     public override void Enter ()
     {
         base.Enter();
+		owner.anim.SetFloat("Enemy2Speed", 1.0f);
     }
 
     public override void HandleUpdate ()
