@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class GravityGunBaseState : State
 {
-    private float xRotation;
-    private float yRotation;
-    private float zRotation;
+    private float objectXRotation;
 
     protected GravityGun owner;
 
@@ -32,20 +30,14 @@ public class GravityGunBaseState : State
             }
         }
 
-        if (owner.holdingObject != null && owner.holdingObject.transform.rotation != owner.pullPoint.rotation) {
-            owner.holdingObject.transform.rotation = Quaternion.Lerp(owner.holdingObject.transform.rotation, owner.pullPoint.rotation, owner.objectRotationSpeed * Time.deltaTime);
-        }
-
         PullPointRotation();
         base.HandleFixedUpdate();
     }
 
     private void PullPointRotation ()
     {
-        xRotation = 0;
-        yRotation = owner.pullPoint.transform.eulerAngles.y;
-        zRotation = owner.pullPoint.transform.eulerAngles.z;
-        owner.pullPoint.transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+        objectXRotation = -Camera.main.transform.eulerAngles.x;
+        owner.pullPoint.transform.localRotation = Quaternion.Euler(objectXRotation, 0, 0);
     }
 
     public void DropObject ()
