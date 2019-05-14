@@ -39,10 +39,7 @@ public class PlayerController : MonoBehaviour
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
     private float groundAngle;
-
-
-    public GravityGun gravityGun;
-    private Transform healthBar;
+    
     [HideInInspector] public Light flashlight;
     /*[HideInInspector]*/
     public bool hasFlashlight = false;
@@ -54,12 +51,10 @@ public class PlayerController : MonoBehaviour
     public float CrouchColliderHeight = 0.80f;
     public float CrouchColliderCenter = 0.40f;
     public float CrouchCameraHeight;
-    public float CrouchGravityGunHeight;
 
     private void Awake()
     {
         flashlight = GetComponentInChildren<Light>();
-        healthBar = transform.GetChild(2);
         if (SceneController.Instance.RestartedFromLatestCheckpoint)
         {
             RespawnCheckpoint();
@@ -76,7 +71,6 @@ public class PlayerController : MonoBehaviour
     public void Damage(float damage)
     {
         health -= damage;
-        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
         if (health <= 0)
         {
             Respawn();
@@ -94,13 +88,11 @@ public class PlayerController : MonoBehaviour
         {
             health = 100.0f;
         }
-        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
     }
 
     public void Respawn()
     {
         health = startHealth;
-        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
         transform.position = respawnPoint.position;
     }
 
@@ -125,7 +117,6 @@ public class PlayerController : MonoBehaviour
         cameraRotation.x = 0;
         transform.rotation = cameraRotation;
         cameraRotation = playerCamera.transform.rotation;
-        gravityGun.transform.rotation = cameraRotation;
     }
 
     // Update is called once per frame
@@ -186,14 +177,12 @@ public class PlayerController : MonoBehaviour
             capsuleCollider.center = new Vector3(0, CrouchColliderCenter, 0);
             capsuleCollider.height = CrouchColliderHeight;
             GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, CrouchCameraHeight, 0);
-            gravityGun.transform.localPosition = new Vector3(0.44f, CrouchGravityGunHeight, 0.57f);
         }
         else
         {
             capsuleCollider.center = new Vector3(0, 0.93f, 0);
             capsuleCollider.height = 1.86f;
             GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, 1.7f, 0);
-            gravityGun.transform.localPosition = new Vector3(0.44f, 1.34f, 0.57f);
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
