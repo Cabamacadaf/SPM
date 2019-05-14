@@ -17,22 +17,16 @@ public class GravityGun : StateMachine
 
     public Image crosshair;
 
-    [HideInInspector]
-    public PickUpObject holdingObject;
-
-    public float playerPushForce;
-
+    [HideInInspector] public PickUpObject holdingObject;
+    
     //Power up
     [SerializeField] private float powerUpLength;
     [SerializeField] private float powerUpIncreaseRange;
-
-
-
+    
     protected override void Awake()
     {
         base.Awake();
     }
-
 
     private IEnumerator PowerDownRoutine()
     {
