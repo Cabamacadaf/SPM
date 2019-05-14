@@ -13,13 +13,8 @@ public class GravityGunHoldingState : GravityGunBaseState
         base.Enter();
     }
 
-    public override void HandleFixedUpdate ()
+    public override void HandleUpdate ()
     {
-        if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToDrop) {
-            DropObject();
-            return;
-        }
-
         if (Input.GetMouseButtonDown(0)) {
             owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
             DropObject();
@@ -29,6 +24,14 @@ public class GravityGunHoldingState : GravityGunBaseState
             DropObject();
         }
 
+        base.HandleUpdate();
+    }
+
+    public override void HandleFixedUpdate ()
+    {
+        if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToDrop) {
+            //DropObject();
+        }
         base.HandleFixedUpdate();
     }
 }
