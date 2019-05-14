@@ -24,7 +24,7 @@ public class NotHoldingState : State
     public override void HandleUpdate ()
     {
         Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer);
-
+     
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
             if (lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit) {
                 lastPickUpObjectHit.UnHighlight();
@@ -34,7 +34,8 @@ public class NotHoldingState : State
             owner.crosshair.color = Color.green;
         }
 
-        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform")) {
+        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
+        {
             owner.crosshair.color = Color.green;
 
         }
@@ -78,6 +79,7 @@ public class NotHoldingState : State
 
     public void Pull ()
     {
+
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.hitLayer)) {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
                 //hit.collider.attachedRigidbody.isKinematic = true;

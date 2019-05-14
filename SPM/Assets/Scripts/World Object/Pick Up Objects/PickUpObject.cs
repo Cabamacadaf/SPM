@@ -24,6 +24,8 @@ public class PickUpObject : MonoBehaviour
     protected bool thrown = false;
     [HideInInspector] public bool isHighlighted = false;
 
+    //Should probably fix this
+    private int geometry = 9;
 
     void Awake ()
     {
