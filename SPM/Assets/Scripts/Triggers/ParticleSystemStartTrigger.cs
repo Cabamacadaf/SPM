@@ -6,10 +6,13 @@ public class ParticleSystemStartTrigger : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] particleSystems;
 
+    private bool isTriggered;
+
     private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player") && isTriggered == false) {
             ActivateParticleSystems();
+            isTriggered = true;
         }
     }
 

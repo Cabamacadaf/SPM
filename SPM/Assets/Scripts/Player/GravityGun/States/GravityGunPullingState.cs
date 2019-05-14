@@ -13,14 +13,11 @@ public class GravityGunPullingState : GravityGunBaseState
         base.Enter();
     }
 
-    public override void HandleUpdate ()
+    public override void HandleFixedUpdate ()
     {
-        owner.holdingObject.transform.position += (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
-
         if(Vector3.Distance(owner.holdingObject.transform.position, owner.pullPoint.position) < owner.distanceToGrab) {
             owner.Transition<GravityGunHoldingState>();
         }
-
-        base.HandleUpdate();
+        base.HandleFixedUpdate();
     }
 }

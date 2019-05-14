@@ -13,10 +13,10 @@ public class GravityGunNotHoldingState : GravityGunBaseState
         base.Enter();
     }
 
-    public override void HandleUpdate ()
+    public override void HandleFixedUpdate ()
     {
         Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.raycastCollideLayer);
-        
+
         if (hit.collider != null && Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
             if (lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit) {
                 lastPickUpObjectHit.UnHighlight();
@@ -26,8 +26,7 @@ public class GravityGunNotHoldingState : GravityGunBaseState
             owner.crosshair.color = Color.green;
         }
 
-        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
-        {
+        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform")) {
             owner.crosshair.color = Color.green;
         }
 
@@ -45,7 +44,8 @@ public class GravityGunNotHoldingState : GravityGunBaseState
         if (Input.GetMouseButtonDown(1)) {
             Pull();
         }
-        base.HandleUpdate();
+
+        base.HandleFixedUpdate();
     }
 
     public void Push ()
@@ -66,7 +66,6 @@ public class GravityGunNotHoldingState : GravityGunBaseState
 
     public void Pull ()
     {
-
         if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.raycastCollideLayer)) {
             if (Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
                 owner.holdingObject = hit.collider.GetComponent<PickUpObject>();

@@ -42,6 +42,11 @@ public class StateMachine : MonoBehaviour
         currentState.HandleUpdate();
     }
 
+    private void FixedUpdate ()
+    {
+        currentState.HandleFixedUpdate();
+    }
+
     private void OnCollisionEnter (Collision collision)
     {
         currentState.HandleCollision(collision);

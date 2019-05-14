@@ -9,6 +9,7 @@ public abstract class State : ScriptableObject
     public virtual void Enter () { }
     public virtual void Exit () { }
     public virtual void HandleUpdate () { }
+    public virtual void HandleFixedUpdate () { }
     public virtual void HandleCollision (Collision collision) { }
     public virtual void HandleTrigger (Collider collider) { }
 }

@@ -12,7 +12,8 @@ public class GravityGun : StateMachine
     public float pushForce = 900f;
     public float pullForce = 12.0f;
     public float distanceToGrab = 0.1f;
-    public float objectRotationSpeed = 1f;
+    public float distanceToDrop = 1.0f;
+    public float objectRotationSpeed = 2.0f;
 
     public LayerMask raycastCollideLayer;
     public LayerMask pullLayer;

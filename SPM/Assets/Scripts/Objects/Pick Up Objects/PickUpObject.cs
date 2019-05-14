@@ -13,7 +13,6 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] protected int durability = 3;
     [SerializeField] protected float impactDamage = 25f;
     [SerializeField] protected float lowestVelocityToDoDamage = 1.0f;
-    [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] private float holdingOpacity = 0.5f;
     private float pullForce;
 
@@ -30,22 +29,19 @@ public class PickUpObject : MonoBehaviour
     void Awake ()
     {
         originalParent = transform.parent;
-        Debug.Log(originalParent);
         rigidBody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
     public void Holding (Vector3 pullPointPosition, Transform newParent)
     {
-        transform.SetParent(newParent);
-        transform.position = pullPointPosition;
+        transform.SetParent(newParent);       
         rigidBody.velocity = Vector3.zero;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
     }
 
     public void Drop ()
     {
-        Debug.Log(originalParent);
         rigidBody.useGravity = true;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         transform.SetParent(originalParent);
