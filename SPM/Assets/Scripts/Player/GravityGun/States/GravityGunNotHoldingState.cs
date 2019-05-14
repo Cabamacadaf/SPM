@@ -4,17 +4,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/GravityGun/NotHoldingState")]
-public class NotHoldingState : State
+public class GravityGunNotHoldingState : GravityGunBaseState
 {
-    private GravityGun owner;
     private PickUpObject lastPickUpObjectHit;
-    private GravityBlast gravityBlast;
-
-    public override void Initialize (StateMachine owner)
-    {
-        this.owner = (GravityGun)owner;
-        gravityBlast = owner.GetComponent<GravityBlast>();
-    }
 
     public override void Enter ()
     {
@@ -23,9 +15,9 @@ public class NotHoldingState : State
 
     public override void HandleUpdate ()
     {
-        Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer);
-     
-        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
+        Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.raycastCollideLayer);
+        
+        if (hit.collider != null && Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
             if (lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit) {
                 lastPickUpObjectHit.UnHighlight();
             }
@@ -37,7 +29,6 @@ public class NotHoldingState : State
         else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
         {
             owner.crosshair.color = Color.green;
-
         }
 
         else {
@@ -47,10 +38,6 @@ public class NotHoldingState : State
             owner.crosshair.color = Color.red;
         }
 
-        if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
-            owner.crosshair.color = Color.yellow;
-        }
-
         if (Input.GetMouseButtonDown(0)) {
             Push();
         }
@@ -58,14 +45,14 @@ public class NotHoldingState : State
         if (Input.GetMouseButtonDown(1)) {
             Pull();
         }
+        base.HandleUpdate();
     }
 
     public void Push ()
     {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.hitLayer)
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.raycastCollideLayer)
             && hit.collider.attachedRigidbody != null) {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
-                // hit.collider.attachedRigidbody.isKinematic = false;
+            if (Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
                 hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * owner.pushForce * (1 - (hit.distance / owner.pushRange)));
             }
             else if (hit.collider.gameObject.CompareTag("Platform")) {
@@ -80,12 +67,10 @@ public class NotHoldingState : State
     public void Pull ()
     {
 
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * owner.cameraOffset, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.hitLayer)) {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Pick Up Objects")) {
-                //hit.collider.attachedRigidbody.isKinematic = true;
+        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.raycastCollideLayer)) {
+            if (Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
                 owner.holdingObject = hit.collider.GetComponent<PickUpObject>();
-                owner.holdingObject.Pull(owner.pullForce);
-                owner.Transition<HoldingState>();
+                owner.Transition<GravityGunPullingState>();
             }
             else if (hit.collider.gameObject.CompareTag("Platform")) {
                 Platform platform = hit.collider.gameObject.GetComponent<Platform>();

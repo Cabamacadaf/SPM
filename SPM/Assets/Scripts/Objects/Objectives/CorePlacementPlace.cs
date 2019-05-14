@@ -30,8 +30,8 @@ public class CorePlacementPlace : MonoBehaviour
             StartCoroutine(SetActiveOBJ());
             active = false;
 
-            if (gravityGun.GetCurrentState() is HoldingState) {
-                HoldingState holdingState = (HoldingState)gravityGun.GetCurrentState();
+            if (gravityGun.GetCurrentState() is GravityGunHoldingState) {
+                GravityGunHoldingState holdingState = (GravityGunHoldingState)gravityGun.GetCurrentState();
                 holdingState.Drop();
             }
 

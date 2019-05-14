@@ -5682,9 +5682,12 @@ MonoBehaviour:
   pushForce: 900
   pullForce: 12
   cameraOffset: 0.35
-  hitLayer:
+  raycastCollideLayer:
     serializedVersion: 2
     m_Bits: 10752
+  pullLayer:
+    serializedVersion: 2
+    m_Bits: 512
   crosshair: {fileID: 0}
   holdingObject: {fileID: 0}
   powerUpLength: 10
@@ -5879,7 +5882,6 @@ MonoBehaviour:
   skinWidth: 0.05
   groundCheckDistance: 0.05
   capsuleCollider: {fileID: 0}
-  gravityGun: {fileID: 8727586052577491054}
   flashlight: {fileID: 0}
   hasFlashlight: 0
   startHealth: 100
@@ -5888,7 +5890,6 @@ MonoBehaviour:
   CrouchColliderHeight: 0.8
   CrouchColliderCenter: 0.4
   CrouchCameraHeight: 0.5
-  CrouchGravityGunHeight: 0.1
 --- !u!1 &8727586053171767193
 GameObject:
   m_ObjectHideFlags: 0

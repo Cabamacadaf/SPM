@@ -32,7 +32,7 @@ public class GravityBlast : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && gravityGun.GetCurrentState() is NotHoldingState && !cooldown) {
+        if (Input.GetKeyDown(KeyCode.Q) && gravityGun.GetCurrentState() is GravityGunNotHoldingState && !cooldown) {
             particleSystem.Play();
             readyLight.enabled = false;
             cooldown = true;

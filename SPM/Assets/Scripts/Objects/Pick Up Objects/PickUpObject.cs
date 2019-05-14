@@ -6,83 +6,56 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour
 {
-    [SerializeField] protected int durability;
-    protected bool active = false;
-    [HideInInspector] public bool holding = false;
-    private Transform player;
-    private float pullForce;
-    protected Rigidbody rb;
+    private Transform originalParent;
+    protected Rigidbody rigidBody;
     protected MeshRenderer meshRenderer;
-    [SerializeField] private float distanceToGrab = 0.1f;
+
+    [SerializeField] protected int durability = 3;
     [SerializeField] protected float impactDamage = 25f;
-    [SerializeField] protected float lowestVelocityToDoDamage = 5.0f;
+    [SerializeField] protected float lowestVelocityToDoDamage = 1.0f;
+    [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] private float holdingOpacity = 0.5f;
+    private float pullForce;
+
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
-    [SerializeField] private float rotationSpeed = 1f;
-    protected Transform pullPoint;
+
+
     protected bool thrown = false;
     [HideInInspector] public bool isHighlighted = false;
+    [HideInInspector] public bool holding = false;
+    protected bool active = false;
 
-    //Should probably fix this
-    private int geometry = 9;
 
     void Awake ()
     {
-        pullPoint = GameObject.Find("PullPoint").transform;
-        player = FindObjectOfType<PlayerController>().transform;
-        rb = GetComponent<Rigidbody>();
+        originalParent = transform.parent;
+        Debug.Log(originalParent);
+        rigidBody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    void Update ()
+    public void Holding (Vector3 pullPointPosition, Transform newParent)
     {
-        if (active && !holding) {
-            //rb.useGravity = false;
-            //if (!(Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab))
-            //{
-            //    transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
-            //}
-            transform.position += (pullPoint.position - transform.position).normalized * pullForce * Time.deltaTime;
-
-            if (Vector3.Distance(transform.position, pullPoint.position) < distanceToGrab) {
-                //rb.useGravity = false;
-                transform.position = pullPoint.position;
-                rb.isKinematic = true;
-                rb.velocity = Vector3.zero;
-                transform.SetParent(player.GetComponentInChildren<GravityGun>().transform);
-                meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
-
-                holding = true;
-            }
-        }
-    }
-
-    private IEnumerator RotateTowardPullpoint ()
-    {
-        while (transform.rotation != pullPoint.rotation && active) {
-            transform.rotation = Quaternion.Lerp(transform.rotation, pullPoint.rotation, rotationSpeed * Time.deltaTime);
-            yield return null;
-        }
+        transform.SetParent(newParent);
+        transform.position = pullPointPosition;
+        rigidBody.velocity = Vector3.zero;
+        meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
     }
 
     public void Drop ()
     {
-        //rb.useGravity = true;
+        Debug.Log(originalParent);
+        rigidBody.useGravity = true;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
-        rb.isKinematic = false;
-        transform.SetParent(null);
-        active = false;
-        holding = false;
+        transform.SetParent(originalParent);
         thrown = true;
     }
 
-    public void Pull (float pullForce)
+    public void Pull ()
     {
-        this.pullForce = pullForce;
-        active = true;
+        rigidBody.useGravity = false;
         UnHighlight();
-        StartCoroutine(RotateTowardPullpoint());
     }
 
     protected void LoseDurability ()
@@ -116,8 +89,8 @@ public class PickUpObject : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        Debug.Log("Velocity: " + rb.velocity.magnitude);
-        if (rb.velocity.magnitude >= lowestVelocityToDoDamage) {
+        Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
+        if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(impactDamage);
@@ -128,14 +101,15 @@ public class PickUpObject : MonoBehaviour
                 Enemy2 enemy = other.GetComponentInParent<Enemy2>();
                 EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
                 enemyState.Damage(impactDamage * enemy.damageReduction);
+                LoseDurability();
             }
         }
     }
 
     private void OnCollisionEnter (Collision collision)
     {
-        Debug.Log(rb.velocity.magnitude);
-        if (collision.collider.CompareTag("DestructibleObject") && rb.velocity.magnitude >= lowestVelocityToDoDamage) {
+        //Debug.Log(rigidBody.velocity.magnitude);
+        if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
         }
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Geometry")) {

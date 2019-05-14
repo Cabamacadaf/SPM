@@ -7,34 +7,31 @@ using UnityEngine.UI;
 
 public class GravityGun : StateMachine
 {
-    public float pushRange;
-    public float pullRange;
-    public float pushForce;
-    public float pullForce;
-    public float cameraOffset;
+    public float pushRange = 12.0f;
+    public float pullRange = 12.0f;
+    public float pushForce = 900f;
+    public float pullForce = 12.0f;
+    public float distanceToGrab = 0.1f;
+    public float objectRotationSpeed = 1f;
 
-    public LayerMask hitLayer;
+    public LayerMask raycastCollideLayer;
+    public LayerMask pullLayer;
 
     public Image crosshair;
 
-    [HideInInspector]
-    public PickUpObject holdingObject;
-
-    public float playerPushForce;
-
+    public Transform pullPoint;
+    [HideInInspector] public PickUpObject holdingObject;
+    
     //Power up
     [SerializeField] private float powerUpLength;
     [SerializeField] private float powerUpIncreaseRange;
 
-
-
-    protected override void Awake()
+    protected override void Awake ()
     {
         base.Awake();
     }
 
-
-    private IEnumerator PowerDownRoutine()
+    private IEnumerator PowerDownRoutine ()
     {
         yield return new WaitForSeconds(powerUpLength);
 
@@ -42,7 +39,7 @@ public class GravityGun : StateMachine
         pullRange -= powerUpIncreaseRange;
     }
 
-    public void PowerUp()
+    public void PowerUp ()
     {
         pushRange += powerUpIncreaseRange;
         pullRange += powerUpIncreaseRange;

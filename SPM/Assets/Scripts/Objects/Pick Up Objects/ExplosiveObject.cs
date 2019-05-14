@@ -13,8 +13,8 @@ public class ExplosiveObject : PickUpObject
     [SerializeField] private float radius;
     private void OnCollisionEnter (Collision collision)
     {
-        Debug.Log("Velocity: " + rb.velocity.magnitude);
-        if (thrown && rb.velocity.magnitude > lowestVelocityToDoDamage) {
+        Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
+        if (thrown && rigidBody.velocity.magnitude > lowestVelocityToDoDamage) {
             Collider[] colls = Physics.OverlapSphere(transform.position, radius);
 
             foreach (Collider col in colls) {
