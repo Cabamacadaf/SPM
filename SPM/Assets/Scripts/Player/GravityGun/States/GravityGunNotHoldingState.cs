@@ -13,6 +13,19 @@ public class GravityGunNotHoldingState : GravityGunBaseState
         base.Enter();
     }
 
+    public override void HandleUpdate ()
+    {
+        if (Input.GetMouseButtonDown(0)) {
+            Push();
+        }
+
+        if (Input.GetMouseButtonDown(1)) {
+            Pull();
+        }
+
+        base.HandleUpdate();
+    }
+
     public override void HandleFixedUpdate ()
     {
         Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.raycastCollideLayer);
@@ -36,15 +49,6 @@ public class GravityGunNotHoldingState : GravityGunBaseState
             }
             owner.crosshair.color = Color.red;
         }
-
-        if (Input.GetMouseButtonDown(0)) {
-            Push();
-        }
-
-        if (Input.GetMouseButtonDown(1)) {
-            Pull();
-        }
-
         base.HandleFixedUpdate();
     }
 
