@@ -35,7 +35,7 @@ public class PickUpObject : MonoBehaviour
 
     public void Holding (Vector3 pullPointPosition, Transform newParent)
     {
-        //transform.SetParent(newParent);       
+        transform.SetParent(newParent);       
         rigidBody.velocity = Vector3.zero;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
     }
@@ -44,7 +44,7 @@ public class PickUpObject : MonoBehaviour
     {
         rigidBody.useGravity = true;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
-        //transform.SetParent(originalParent);
+        transform.SetParent(originalParent);
         thrown = true;
     }
 
