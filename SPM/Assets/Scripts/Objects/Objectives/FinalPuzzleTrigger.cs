@@ -26,7 +26,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
             HandleLight();
 
             Debug.Log("?????");
-            GameController_2.gameControllerInstance_2.greenCollecting++;
+            GameController.Instance.AddLastPuzzle();
 
         }
     }
@@ -39,7 +39,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
             foreach (Light light in lights) {
                 light.enabled = false;
             }
-            GameController_2.gameControllerInstance_2.greenCollecting--;
+            GameController.Instance.AddLastPuzzle();
 
         }
     }

@@ -20,7 +20,7 @@ public class FinalPuzzelQuest : MonoBehaviour
             other.transform.rotation = Quaternion.identity;
             other.gameObject.layer = 0;
             Destroy(other.GetComponent<Rigidbody>());
-            GameController_2.gameControllerInstance_2.greenCollecting++;
+            GameController.Instance.AddLastPuzzle();
             //StartCoroutine(ChangeColors());
 
             //objectB = other.transform.gameObject;
