@@ -47,9 +47,9 @@ public class GravityGunBaseState : State
             else {
                 owner.holdingObject.transform.position = owner.pullPoint.transform.position;
             }
-            //if (owner.holdingObject.transform.rotation != owner.pullPoint.rotation) {
-            //    owner.holdingObject.transform.rotation = Quaternion.Lerp(owner.holdingObject.transform.rotation, owner.pullPoint.rotation, owner.objectRotationSpeed * Time.deltaTime);
-            //}
+            Debug.Log("Object rotaion: " + owner.holdingObject.transform.localRotation);
+            Debug.Log("Pullpoint rotation: " + owner.pullPoint.transform.localRotation);
+            owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.transform.localRotation, owner.objectRotationSpeed * Time.deltaTime);
         }
 
         base.HandleFixedUpdate();

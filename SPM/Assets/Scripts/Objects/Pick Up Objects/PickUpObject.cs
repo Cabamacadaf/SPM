@@ -112,7 +112,6 @@ public class PickUpObject : MonoBehaviour
         IsColliding = true;
 
         if(isHeld == true) {
-            Debug.Log("Collide");
             transform.SetParent(originalParent);
         }
 
