@@ -7,6 +7,9 @@ using UnityEngine;
 public class GravityGunBaseState : State
 {
     private float objectXRotation;
+    private float collisionPullForceReduction = 0.1f;
+
+    private Vector3 moveToPosition;
 
     protected GravityGun owner;
 
@@ -29,9 +32,15 @@ public class GravityGunBaseState : State
 
     public override void HandleFixedUpdate ()
     {
-        if (owner.holdingObject != null && (owner.GetCurrentState() is GravityGunHoldingState) == false || owner.holdingObject.IsColliding == false) {
+        if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
-                owner.holdingObject.transform.position += (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
+                moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
+
+                if (owner.holdingObject.IsColliding == true) {
+                    moveToPosition *= collisionPullForceReduction;
+                }
+
+                owner.holdingObject.transform.position += moveToPosition;
             }
             else {
                 owner.holdingObject.transform.position = owner.pullPoint.transform.position;
