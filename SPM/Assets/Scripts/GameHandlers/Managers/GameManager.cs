@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public KeyCode RestartSceneButton = KeyCode.P;
-    public KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
-    public Vector3 lastCheckPointPos;
-
-    public bool RestartedFromLatestCheckpoint;
+    [SerializeField] private KeyCode RestartSceneButton = KeyCode.P;
+    [SerializeField] private KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
+    private GameObject player;
+  
+    public Vector3 CurrentCheckPoint { get; set; }
+    public bool RestartedFromLatestCheckpoint { get; set; }
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (instance == null)
         {
             instance = this;
@@ -54,8 +56,8 @@ public class GameManager : Singleton<GameManager>
         RestartedFromLatestCheckpoint = true;
     }
 
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
-
+        player.transform.position = CurrentCheckPoint;
     }
 }

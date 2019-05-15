@@ -42,7 +42,7 @@ public class ExplosiveObject : PickUpObject
         {
             hit = collider.ClosestPoint(transform.position);
 
-            Player player = collider.gameObject.GetComponent<Player>();
+            HealthComponent player = collider.gameObject.GetComponent<HealthComponent>();
             player.Damage(damage - hit.x - hit.z);
         }
 

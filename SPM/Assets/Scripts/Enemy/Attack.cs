@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    private Player player;
+    private HealthComponent playerHealth;
     private Enemy enemy;
     [HideInInspector] public bool hasAttacked;
 
     private void Awake ()
     {
-        player = FindObjectOfType<Player>();
         enemy = GetComponentInParent<Enemy>();
     }
 
@@ -18,7 +17,8 @@ public class Attack : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasAttacked) {
             hasAttacked = true;
-            player.Damage(enemy.attackDamage);
+            playerHealth = other.GetComponent<HealthComponent>();
+            playerHealth.Damage(enemy.attackDamage);
         }
     }
 }

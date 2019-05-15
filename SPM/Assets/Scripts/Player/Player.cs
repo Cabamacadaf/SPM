@@ -52,52 +52,13 @@ public class Player : StateMachine
         flashlight = GetComponentInChildren<Light>();
         healthBar = transform.GetChild(2);
         base.Awake();
-        if (GameManager.Instance.RestartedFromLatestCheckpoint)
-        {
-            RespawnCheckpoint();
-        }
+        //if (GameManager.Instance.RestartedFromLatestCheckpoint)
+        //{
+        //    RespawnCheckpoint();
+        //}
 
     }
 
-    public void Damage(float damage)
-    {
-        health -= damage;
-        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
-        if (health <= 0)
-        {
-            Respawn();
-        }
-        else if (health <= 20)
-        {
-            //Blinka rött;
-        }
-    }
 
-    public void Addhealth(float healthToAdd)
-    {
-        health += healthToAdd;
-        if(health > 100.0f) {
-            health = 100.0f;
-        }
-        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
-    }
-
-    public void Respawn()
-    {
-        health = startHealth;
-        healthBar.localScale = new Vector3(healthBar.localScale.x, health / 100, healthBar.localScale.z);
-        transform.position = respawnPoint.position;
-    }
-
-    public void RespawnCheckpoint()
-    {
-        transform.position = GameManager.Instance.lastCheckPointPos;
-
-    }
-
-    public float GetWalkSpeed()
-    {
-        return walkSpeed;
-    }
 
 }

@@ -10,6 +10,12 @@ public class DestroyListener : MonoBehaviour
         KeycardPickedUpEvent.RegisterListener(OnKeyCardPickedUp);
         ObjectDestroyedEvent.RegisterListener(OnObjectDestroyed);
         ParticleSystemDestroyedEvent.RegisterListener(OnParticleSystemDestroyed);
+        DeathEvent.RegisterListener(OnPlayerDeath);
+    }
+
+    void OnPlayerDeath(DeathEvent deathEvent)
+    {
+        GameManager.Instance.RespawnPlayer();
     }
 
     void OnKeyCardPickedUp (KeycardPickedUpEvent keycardPickedUpEvent)

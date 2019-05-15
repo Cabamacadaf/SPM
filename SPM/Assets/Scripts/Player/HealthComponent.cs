@@ -17,11 +17,10 @@ public class HealthComponent : MonoBehaviour
     {
         Health -= amount;
 
-        //PlayerTakeDamageEvent??
 
         if(Health <= 0)
         {
-            PlayerDeathEvent deathEvent = new PlayerDeathEvent(GameManager.Instance.lastCheckPointPos);
+            DeathEvent deathEvent = new DeathEvent(this.gameObject);
             deathEvent.ExecuteEvent();
         }
     }

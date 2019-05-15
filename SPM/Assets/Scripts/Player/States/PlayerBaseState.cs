@@ -55,7 +55,7 @@ public class PlayerBaseState : State
         CameraRotation();
 
         if (Input.GetKeyDown(KeyCode.K)) {
-            owner.Respawn();
+            //owner.Respawn();
         }
 
         if (Input.GetKeyDown(KeyCode.F)) {

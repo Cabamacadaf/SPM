@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         flashlight = GetComponentInChildren<Light>();
         if (GameManager.Instance.RestartedFromLatestCheckpoint)
         {
-            transform.position = GameManager.Instance.lastCheckPointPos;
+            transform.position = GameManager.Instance.CurrentCheckPoint;
         }
         capsuleCollider = GetComponent<CapsuleCollider>();
         playerCamera = Camera.main;

@@ -41,6 +41,16 @@ public class EnemyDeathEvent : Event<EnemyDeathEvent>
     }
 }
 
+public class DeathEvent : Event<DeathEvent>
+{
+    public GameObject Actor;
+
+    public DeathEvent(GameObject actor)
+    {
+        Actor = actor;
+    }
+}
+
 public class PowerCorePlacedEvent : Event<PowerCorePlacedEvent>
 {
 

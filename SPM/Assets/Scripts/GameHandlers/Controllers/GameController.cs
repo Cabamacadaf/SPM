@@ -8,7 +8,7 @@ public class GameController : Singleton<GameController>
     [SerializeField] private GameObject keyCard;
     [SerializeField] private Transform keySpawnPoint;
     [SerializeField] private GameObject door;
-    [SerializeField] private GameObject[] lights;
+
 
     public bool HasLevel1Keycard { get; set; }
     public bool HasLevel2Keycard { get; set; }
@@ -56,7 +56,7 @@ public class GameController : Singleton<GameController>
             Debug.Log("You have reached your goal");
             OpenDoor();
             lastPuzzleCounter = 0;
-            SetAllLightTrue();
+
         }
     }
 
@@ -73,19 +73,5 @@ public class GameController : Singleton<GameController>
         return;
     }
 
-    private void SetAllLightFalse()
-    {
-        foreach (GameObject light in lights)
-        {
-            light.SetActive(false);
-        }
-    }
 
-    private void SetAllLightTrue()
-    {
-        foreach (GameObject light in lights)
-        {
-            light.SetActive(true);
-        }
-    }
 }
