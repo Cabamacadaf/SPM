@@ -18,7 +18,7 @@ public class ExplosiveObject : PickUpObject
     private void OnCollisionEnter (Collision collision)
     {
         Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
-        if (thrown && rigidBody.velocity.magnitude > lowestVelocityToDoDamage) {
+        if (isThrown && rigidBody.velocity.magnitude > lowestVelocityToDoDamage) {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
             foreach (Collider collider in colliders)

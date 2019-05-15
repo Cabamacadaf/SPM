@@ -7,6 +7,7 @@ using UnityEngine;
 public class GravityGunNotHoldingState : GravityGunBaseState
 {
     private PickUpObject lastPickUpObjectHit;
+    private RaycastHit aimRaycastHit;
 
     public override void Enter ()
     {
@@ -15,31 +16,26 @@ public class GravityGunNotHoldingState : GravityGunBaseState
 
     public override void HandleUpdate ()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            Push();
-        }
-
+        base.HandleUpdate();
         if (Input.GetMouseButtonDown(1)) {
             Pull();
         }
-
-        base.HandleUpdate();
     }
 
     public override void HandleFixedUpdate ()
     {
-        Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.raycastCollideLayer);
+        Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out aimRaycastHit, owner.pushRange, owner.raycastCollideLayer);
 
-        if (hit.collider != null && Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
-            if (lastPickUpObjectHit != null && hit.transform.gameObject != lastPickUpObjectHit) {
+        if (aimRaycastHit.collider != null && Layers.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
+            if (lastPickUpObjectHit != null && aimRaycastHit.transform.gameObject != lastPickUpObjectHit) {
                 lastPickUpObjectHit.UnHighlight();
             }
-            lastPickUpObjectHit = hit.transform.GetComponent<PickUpObject>();
+            lastPickUpObjectHit = aimRaycastHit.transform.GetComponent<PickUpObject>();
             lastPickUpObjectHit.Highlight();
             owner.crosshair.color = Color.green;
         }
 
-        else if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform")) {
+        else if (aimRaycastHit.collider != null && aimRaycastHit.collider.gameObject.CompareTag("Platform")) {
             owner.crosshair.color = Color.green;
         }
 
@@ -52,36 +48,20 @@ public class GravityGunNotHoldingState : GravityGunBaseState
         base.HandleFixedUpdate();
     }
 
-    public void Push ()
-    {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pushRange, owner.raycastCollideLayer)
-            && hit.collider.attachedRigidbody != null) {
-            if (Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
-                hit.collider.attachedRigidbody.AddForce(Camera.main.transform.forward * owner.pushForce * (1 - (hit.distance / owner.pushRange)));
-            }
-            else if (hit.collider.gameObject.CompareTag("Platform")) {
-                Platform platform = hit.collider.gameObject.GetComponent<Platform>();
-                if (platform.IsActive) {
-                    hit.collider.gameObject.GetComponent<Platform>().IsActive = false;
-                }
-            }
-        }
-    }
-
     public void Pull ()
     {
-        if (Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out RaycastHit hit, owner.pullRange, owner.raycastCollideLayer)) {
-            if (Layers.IsInLayerMask(hit.collider.gameObject.layer, owner.pullLayer)) {
-                owner.holdingObject = hit.collider.GetComponent<PickUpObject>();
+        if (aimRaycastHit.collider != null) {
+            if (Layers.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
+                owner.holdingObject = aimRaycastHit.collider.GetComponent<PickUpObject>();
                 owner.Transition<GravityGunPullingState>();
             }
-            else if (hit.collider.gameObject.CompareTag("Platform")) {
-                Platform platform = hit.collider.gameObject.GetComponent<Platform>();
+            else if (aimRaycastHit.collider.gameObject.CompareTag("Platform")) {
+                Platform platform = aimRaycastHit.collider.gameObject.GetComponent<Platform>();
                 if (!platform.IsActive) {
-                    hit.collider.gameObject.GetComponent<Platform>().IsActive = true;
+                    aimRaycastHit.collider.gameObject.GetComponent<Platform>().IsActive = true;
                 }
                 else {
-                    hit.collider.gameObject.GetComponent<Platform>().IsActive = false;
+                    aimRaycastHit.collider.gameObject.GetComponent<Platform>().IsActive = false;
                 }
             }
         }
