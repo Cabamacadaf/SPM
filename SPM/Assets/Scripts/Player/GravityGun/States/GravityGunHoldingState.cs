@@ -8,7 +8,7 @@ public class GravityGunHoldingState : GravityGunBaseState
 {
     public override void Enter ()
     {
-        owner.holdingObject.Holding(owner.pullPoint.position, owner.transform);
+        owner.holdingObject.Hold(owner.pullPoint.position, owner.transform);
         owner.crosshair.color = Color.yellow;
         base.Enter();
     }
@@ -25,13 +25,5 @@ public class GravityGunHoldingState : GravityGunBaseState
         }
 
         base.HandleUpdate();
-    }
-
-    public override void HandleFixedUpdate ()
-    {
-        if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToDrop) {
-            //DropObject();
-        }
-        base.HandleFixedUpdate();
     }
 }
