@@ -8,7 +8,8 @@ public class KillzoneTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerDeathEvent deathEvent = new PlayerDeathEvent(GameManager.Instance.CurrentCheckPoint);
+            Debug.Log("Collided");
+            DeathEvent deathEvent = new DeathEvent(other.gameObject);
             deathEvent.ExecuteEvent();
         }
     }

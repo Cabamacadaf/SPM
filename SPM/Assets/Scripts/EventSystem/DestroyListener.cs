@@ -15,6 +15,7 @@ public class DestroyListener : MonoBehaviour
 
     void OnPlayerDeath(DeathEvent deathEvent)
     {
+        Debug.Log("OnPlayerDeath");
         GameManager.Instance.RespawnPlayer();
     }
 

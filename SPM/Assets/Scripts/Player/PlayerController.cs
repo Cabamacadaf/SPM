@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    
+    [SerializeField] private float margin;
+
+
     //Speed
     private float speed;
     public float sprintSpeed;
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float skinWidth = 0.05f;
     [SerializeField] float groundCheckDistance = 0.05f;
 
+    private bool isCrouching;
+    private bool canStand;
+
     private Vector3 point1;
     private Vector3 point2;
     private Vector3 snapSum;
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         flashlight = GetComponentInChildren<Light>();
+
         if (GameManager.Instance.RestartedFromLatestCheckpoint)
         {
             transform.position = GameManager.Instance.CurrentCheckPoint;
@@ -131,21 +136,38 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-      
+        canStand = Physics.Raycast(transform.position, Vector3.up, margin, walkableMask);
 
+        Debug.Log("IsCrouching: " + isCrouching);
+        Debug.Log("Can Stand: " + canStand);
         //Vector3 movingDirection = GetDirection();
 
-        if (Input.GetKey(KeyCode.V))
+
+        if (Input.GetKey(KeyCode.V) || Input.GetKey(KeyCode.LeftControl))
         {
-            capsuleCollider.center = new Vector3(0, CrouchColliderCenter, 0);
-            capsuleCollider.height = CrouchColliderHeight;
-            GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, CrouchCameraHeight, 0);
+            CrouchSetup();
         }
+
         else
         {
-            capsuleCollider.center = new Vector3(0, 0.93f, 0);
-            capsuleCollider.height = 1.86f;
-            GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, 1.7f, 0);
+           
+            if (isCrouching)
+            {
+               
+                if(canStand == false)
+                {
+                    isCrouching = false;
+                    NormalSetup();
+                }
+  
+          
+            }
+            else
+            {
+                isCrouching = false;
+                NormalSetup();
+
+            }
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -202,6 +224,21 @@ public class PlayerController : MonoBehaviour
 
         //velocity.y = 0;
 
+    }
+
+    private void NormalSetup()
+    {
+        capsuleCollider.center = new Vector3(0, 0.93f, 0);
+        capsuleCollider.height = 1.86f;
+        GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, 1.7f, 0);
+    }
+
+    private void CrouchSetup()
+    {
+        capsuleCollider.center = new Vector3(0, CrouchColliderCenter, 0);
+        capsuleCollider.height = CrouchColliderHeight;
+        GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, CrouchCameraHeight, 0);
+        isCrouching = true;
     }
 
     private void Move()

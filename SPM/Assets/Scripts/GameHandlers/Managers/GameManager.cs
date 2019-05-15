@@ -51,13 +51,24 @@ public class GameManager : Singleton<GameManager>
 
     private void RestartSceneFromLatestCheckpoint()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
         RestartedFromLatestCheckpoint = true;
     }
 
     public void RespawnPlayer()
     {
+        ResetScene();
+        RestartedFromLatestCheckpoint = true;
+    }
+
+    public void ResetScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
+
+    public void RespawnPlayerNoReset()
+    {
         player.transform.position = CurrentCheckPoint;
+
     }
 }
