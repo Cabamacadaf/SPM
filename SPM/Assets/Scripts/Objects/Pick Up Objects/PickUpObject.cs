@@ -23,6 +23,7 @@ public class PickUpObject : MonoBehaviour
     protected bool isThrown = false;
     private bool isHighlighted = false;
     private bool isHeld = false;
+    public bool IsColliding { get; private set; }
 
 
     void Awake ()
@@ -108,8 +109,10 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
+        IsColliding = true;
+
         if(isHeld == true) {
-            //transform.parent.GetComponent<GravityGun>().Transition<GravityGunPullingState>();
+            Debug.Log("Collide");
             transform.SetParent(originalParent);
         }
 
@@ -120,6 +123,8 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionExit (Collision collision)
     {
+        IsColliding = false;
+
         if(isHeld == true) {
             transform.SetParent(currentParent);
         }
