@@ -26,12 +26,4 @@ public class GravityGunHoldingState : GravityGunBaseState
 
         base.HandleUpdate();
     }
-
-    public override void HandleFixedUpdate ()
-    {
-        if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToDrop) {
-            //DropObject();
-        }
-        base.HandleFixedUpdate();
-    }
 }
