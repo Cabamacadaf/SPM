@@ -8,7 +8,7 @@ public class GravityGunHoldingState : GravityGunBaseState
 {
     public override void Enter ()
     {
-        owner.holdingObject.Holding(owner.pullPoint.position, owner.transform);
+        owner.holdingObject.Hold(owner.pullPoint.position, owner.transform);
         owner.crosshair.color = Color.yellow;
         base.Enter();
     }

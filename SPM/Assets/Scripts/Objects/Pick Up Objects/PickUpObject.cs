@@ -7,6 +7,8 @@ using UnityEngine;
 public class PickUpObject : MonoBehaviour
 {
     private Transform originalParent;
+    private Transform currentParent;
+
     protected Rigidbody rigidBody;
     protected MeshRenderer meshRenderer;
 
@@ -14,27 +16,27 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] protected float impactDamage = 25f;
     [SerializeField] protected float lowestVelocityToDoDamage = 1.0f;
     [SerializeField] private float holdingOpacity = 0.5f;
-    private float pullForce;
 
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
-
-
-    protected bool thrown = false;
-    [HideInInspector] public bool isHighlighted = false;
-    [HideInInspector] public bool holding = false;
-    protected bool active = false;
+    
+    protected bool isThrown = false;
+    private bool isHighlighted = false;
+    private bool isHeld = false;
 
 
     void Awake ()
     {
         originalParent = transform.parent;
+        currentParent = originalParent;
         rigidBody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    public void Holding (Vector3 pullPointPosition, Transform newParent)
+    public void Hold (Vector3 pullPointPosition, Transform newParent)
     {
+        isHeld = true;
+        currentParent = newParent;
         transform.SetParent(newParent);       
         rigidBody.velocity = Vector3.zero;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
@@ -42,10 +44,12 @@ public class PickUpObject : MonoBehaviour
 
     public void Drop ()
     {
+        isHeld = false;
         rigidBody.useGravity = true;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
+        currentParent = originalParent;
         transform.SetParent(originalParent);
-        thrown = true;
+        isThrown = true;
     }
 
     public void Pull ()
@@ -65,7 +69,7 @@ public class PickUpObject : MonoBehaviour
 
     public void Highlight ()
     {
-        if (!isHighlighted) {
+        if (isHighlighted == false) {
             isHighlighted = true;
             Color color = meshRenderer.material.color;
             meshRenderer.material = highlightedMaterial;
@@ -75,7 +79,7 @@ public class PickUpObject : MonoBehaviour
 
     public void UnHighlight ()
     {
-        if (isHighlighted) {
+        if (isHighlighted == true) {
             isHighlighted = false;
             Color color = meshRenderer.material.color;
             meshRenderer.material = regularMaterial;
@@ -104,12 +108,20 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
-        //Debug.Log(rigidBody.velocity.magnitude);
+        if(isHeld == true) {
+            //transform.parent.GetComponent<GravityGun>().Transition<GravityGunPullingState>();
+            transform.SetParent(originalParent);
+        }
+
         if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
         }
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Geometry")) {
-            //Debug.Log("Collided with Geometry");
+    }
+
+    private void OnCollisionExit (Collision collision)
+    {
+        if(isHeld == true) {
+            transform.SetParent(currentParent);
         }
     }
 }
