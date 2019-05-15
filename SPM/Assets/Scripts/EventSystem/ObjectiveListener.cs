@@ -12,11 +12,11 @@ public class ObjectiveListener : MonoBehaviour
 
     void OnPowerCorePlaced(PowerCorePlacedEvent powerCorePlacedEvent)
     {
-        GameController.gameControllerInstance.powerCoreCollection++;
+        GameController.Instance.AddPowerCore();
     }
 
     void OnKeycardPickedUp(KeycardPickedUpEvent keycardPickedUpEvent)
     {
-        GameController.gameControllerInstance.hasKeycard = true;
+        GameController.Instance.HasLevel1Keycard = true;
     }
 }

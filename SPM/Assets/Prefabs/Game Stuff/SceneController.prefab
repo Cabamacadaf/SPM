@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2750143250381663531}
-  - component: {fileID: 5140467212016513056}
+  - component: {fileID: 1563358143814386453}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5140467212016513056
+--- !u!114 &1563358143814386453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2750143250381663528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77e82c572329da4482838b15d7b8bbf, type: 3}
+  m_Script: {fileID: 11500000, guid: d989d52e502b31c48b8572773178d69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RestartSceneButton: 112
+  RestartFromLatestCheckpointButton: 111
+  lastCheckPointPos: {x: 0, y: 0, z: 0}
+  RestartedFromLatestCheckpoint: 0
