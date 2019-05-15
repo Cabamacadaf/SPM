@@ -8,7 +8,7 @@ public class CheckpointTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player")) {
             other.GetComponent<Player>().respawnPoint = GetComponentInChildren<Transform>();
-            SceneController.Instance.lastCheckPointPos = GetComponentInChildren<Transform>().position;
+            GameManager.Instance.lastCheckPointPos = GetComponentInChildren<Transform>().position;
         }
     }
 }

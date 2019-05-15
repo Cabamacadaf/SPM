@@ -8,8 +8,8 @@ public class KillzoneTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Player player = other.gameObject.GetComponent<Player>();
-            player.Respawn();
+            PlayerDeathEvent deathEvent = new PlayerDeathEvent(GameManager.Instance.lastCheckPointPos);
+            deathEvent.ExecuteEvent();
         }
     }
 }

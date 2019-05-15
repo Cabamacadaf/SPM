@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] //ni får skriva det här med eran andra version
     public int powerCoreCollection;
 
+
+
     void Start()
     {
         gameControllerInstance = this;
