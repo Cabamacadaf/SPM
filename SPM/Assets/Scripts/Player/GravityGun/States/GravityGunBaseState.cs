@@ -10,6 +10,7 @@ public class GravityGunBaseState : State
     private float collisionPullForceReduction = 0.1f;
 
     private Vector3 moveToPosition;
+    private Vector3 moveDirection;
 
     protected GravityGun owner;
 
@@ -35,8 +36,9 @@ public class GravityGunBaseState : State
         if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
                 moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
+                moveDirection = owner.pullPoint.transform.position - owner.holdingObject.transform.position;
 
-                if (owner.holdingObject.IsColliding == true) {
+                if (Physics.Raycast(owner.holdingObject.transform.position, moveDirection.normalized, moveDirection.magnitude, owner.raycastCollideLayer)) {
                     moveToPosition *= collisionPullForceReduction;
                 }
 

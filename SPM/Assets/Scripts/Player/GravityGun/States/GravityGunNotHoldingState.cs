@@ -24,7 +24,7 @@ public class GravityGunNotHoldingState : GravityGunBaseState
 
     public override void HandleFixedUpdate ()
     {
-        Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward, out aimRaycastHit, owner.pushRange, owner.raycastCollideLayer);
+        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out aimRaycastHit, owner.pushRange, owner.raycastCollideLayer);
 
         if (aimRaycastHit.collider != null && Layers.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
             if (lastPickUpObjectHit != null && aimRaycastHit.transform.gameObject != lastPickUpObjectHit) {
