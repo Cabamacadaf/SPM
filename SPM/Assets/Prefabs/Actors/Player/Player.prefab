@@ -5873,6 +5873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef711fe03fe14744ebe9e38d5ef7f387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  margin: 2
   sprintSpeed: 10
   walkSpeed: 5
   gravityModifier: 1
@@ -5906,7 +5907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6c98da54edb8040b5e42aa47751ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 0
+  startHealth: 100
 --- !u!1 &8727586053171767193
 GameObject:
   m_ObjectHideFlags: 0
@@ -5935,7 +5936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727586053171767193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8727586052577491053}
@@ -5973,7 +5974,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 11063
+    m_Bits: 12087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6005,8 +6006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb5ea3cc596d7d40b001d97d12c0bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minClampValue: -90
-  maxClampValue: 90
+  minClampValue: -80
+  maxClampValue: 80
   mouseSensitivity: 1
   wantedMode: 1
 --- !u!135 &1595054755
