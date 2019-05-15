@@ -20,10 +20,6 @@ public class GravityGunHoldingState : GravityGunBaseState
             DropObject();
         }
 
-        if (Input.GetMouseButtonDown(1)) {
-            DropObject();
-        }
-
         base.HandleUpdate();
     }
 }

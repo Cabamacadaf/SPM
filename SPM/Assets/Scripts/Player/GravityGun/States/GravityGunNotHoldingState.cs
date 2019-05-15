@@ -16,11 +16,10 @@ public class GravityGunNotHoldingState : GravityGunBaseState
 
     public override void HandleUpdate ()
     {
+        base.HandleUpdate();
         if (Input.GetMouseButtonDown(1)) {
             Pull();
         }
-
-        base.HandleUpdate();
     }
 
     public override void HandleFixedUpdate ()
