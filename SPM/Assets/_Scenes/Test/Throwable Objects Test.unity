@@ -689,6 +689,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -713,6 +716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -764,7 +770,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -1041,6 +1047,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3187406670300219124, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
+        type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 10753
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb, type: 3}
 --- !u!1 &458165434
@@ -1247,7 +1258,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -1324,6 +1335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -1508,6 +1522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -1621,7 +1638,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -2474,7 +2491,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -2554,7 +2571,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -2628,7 +2645,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -2702,7 +2719,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -2911,7 +2928,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -3190,7 +3207,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -3554,6 +3571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -3634,6 +3654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -3741,7 +3764,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -3855,7 +3878,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -3932,6 +3955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -3956,6 +3982,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -4220,6 +4249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
@@ -4375,7 +4407,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -4676,7 +4708,7 @@ PrefabInstance:
     - target: {fileID: 1905823645152155405, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905823645152155400, guid: 0402abf9fdc6edc4a8826a8f2b0f3cbb,
         type: 3}
@@ -4929,6 +4961,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   durability: 3
   impactDamage: 25
   lowestVelocityToDoDamage: 1
