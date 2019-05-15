@@ -16,6 +16,18 @@ public class GravityGunBaseState : State
         base.Initialize(owner);
     }
 
+    public override void HandleUpdate ()
+    {
+        if (Input.GetMouseButtonDown(1) && (owner.GetCurrentState() is GravityGunNotHoldingState) == false) {
+            Debug.Log(owner.GetCurrentState());
+            Debug.Log(owner.GetCurrentState() is GravityGunNotHoldingState);
+            Debug.Log("Drop Object");
+            DropObject();
+        }
+
+        base.HandleUpdate();
+    }
+
     public override void HandleFixedUpdate ()
     {
         if (owner.holdingObject != null) {
