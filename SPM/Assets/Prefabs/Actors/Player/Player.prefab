@@ -5683,7 +5683,6 @@ MonoBehaviour:
   pushForce: 900
   pullForce: 12
   distanceToGrab: 0.1
-  distanceToDrop: 0.2
   objectRotationSpeed: 2
   raycastCollideLayer:
     serializedVersion: 2
@@ -5730,6 +5729,7 @@ GameObject:
   - component: {fileID: 893394545}
   - component: {fileID: 8800547237065332889}
   - component: {fileID: 1061659848}
+  - component: {fileID: 2112989151}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -5894,6 +5894,19 @@ MonoBehaviour:
   CrouchColliderHeight: 0.8
   CrouchColliderCenter: 0.4
   CrouchCameraHeight: 0.5
+--- !u!114 &2112989151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6c98da54edb8040b5e42aa47751ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 0
 --- !u!1 &8727586053171767193
 GameObject:
   m_ObjectHideFlags: 0
