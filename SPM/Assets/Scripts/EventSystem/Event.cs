@@ -93,9 +93,9 @@ public class EnemyAttackEvent : Event<EnemyAttackEvent>
 
 public class PlayerDeathEvent : Event<PlayerDeathEvent>
 {
-    public Transform respawnPoint;
+    public Vector3 respawnPoint;
 
-    public PlayerDeathEvent(Transform respawnPoint)
+    public PlayerDeathEvent(Vector3 respawnPoint)
     {
         this.respawnPoint = respawnPoint;
     }

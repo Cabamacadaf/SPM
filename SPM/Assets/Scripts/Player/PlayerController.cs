@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float fallGravityScale;
     public float jumpGravityScale;
     //Direction
+    private Vector3 direction;
     private float vertical;
     private float horizontal;
     public float gravity;
@@ -55,53 +56,23 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         flashlight = GetComponentInChildren<Light>();
-        if (SceneController.Instance.RestartedFromLatestCheckpoint)
+        if (GameManager.Instance.RestartedFromLatestCheckpoint)
         {
-            RespawnCheckpoint();
+            transform.position = GameManager.Instance.lastCheckPointPos;
         }
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        playerCamera = Camera.main;
 
 
-    }
-    public void RespawnCheckpoint()
-    {
-        transform.position = SceneController.Instance.lastCheckPointPos;
 
     }
 
-    public void Damage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Respawn();
-        }
-        else if (health <= 20)
-        {
-            //Blinka rött;
-        }
-    }
-
-    public void Addhealth(float healthToAdd)
-    {
-        health += healthToAdd;
-        if (health > 100.0f)
-        {
-            health = 100.0f;
-        }
-    }
-
-    public void Respawn()
-    {
-        health = startHealth;
-        transform.position = respawnPoint.position;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         playerCamera = Camera.main;
 
-        capsuleCollider = GetComponent<CapsuleCollider>();
         point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
         point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
 
@@ -122,15 +93,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HandleInput
+        HandleInput();
         //HandleMovement();
         HandleMovement();
         CameraRotation();
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Respawn();
-        }
+
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -149,26 +117,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-       
-    }
 
     private void HandleInput()
     {
-        //Get Direction From KeyBoard
-
-        //Set velocity to Direction * Speed * time.deltatime
-
-        //CheckCollision
-
-        //Move Player
+  
+        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        direction = new Vector3(horizontal, 0, vertical);
+        Quaternion cameraRotation = playerCamera.transform.rotation;
+        direction = cameraRotation * direction;
+        direction = GetGroundDirection();
     }
 
     private void HandleMovement()
     {
-        Vector3 direction = GetDirection();
-        Vector3 movingDirection = MoveAlongGround(direction);
+      
 
         //Vector3 movingDirection = GetDirection();
 
@@ -198,7 +161,7 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log(IsGrounded());
             //Vector3 movingDirection = MoveAlongGround(direction);
-            velocity = movingDirection.normalized * speed;
+            velocity = direction.normalized * speed;
             playerJumping = false;
 
             if (Input.GetAxisRaw("Jump") > 0f)
@@ -207,7 +170,7 @@ public class PlayerController : MonoBehaviour
 
                 verticalVelocity = new Vector3(0, jumpForce, 0);
 
-                velocity = movingDirection.normalized * speed + verticalVelocity;
+                velocity = direction.normalized * speed + verticalVelocity;
 
             }
 
@@ -219,29 +182,29 @@ public class PlayerController : MonoBehaviour
 
                 verticalVelocity = new Vector3(0f, (velocity.y + (gravity * jumpGravityScale * Time.deltaTime)), 0f);
 
-                movingDirection.y = 0;
+                direction.y = 0;
 
-                velocity = movingDirection * speed + verticalVelocity;
+                velocity = direction * speed + verticalVelocity;
 
             }
             else
             {
                 verticalVelocity = new Vector3(0f, (velocity.y + (gravity * fallGravityScale * Time.deltaTime)), 0f);
-                movingDirection.y = 0;
-                velocity = movingDirection * speed + verticalVelocity;
+                direction.y = 0;
+                velocity = direction * speed + verticalVelocity;
             }
 
         }
 
         //CC.Move(velocity);
 
-        MoveWithNormalForce();
+        Move();
 
         //velocity.y = 0;
 
     }
 
-    private void MoveWithNormalForce()
+    private void Move()
     {
         CheckCollision();
 
@@ -250,27 +213,7 @@ public class PlayerController : MonoBehaviour
         checkCollisionCounter = 0;
     }
 
-    private void Move()
-    {
-        CheckCollision2();
 
-    }
-
-    private Vector3 GetDirection()
-    {
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        Vector3 keyboardDirection = new Vector3(horizontal, 0, vertical);
-        Quaternion cameraRotation = playerCamera.transform.rotation;
-        return cameraRotation * keyboardDirection;
-    }
-
-    private Vector3 GetKeyboardDirection()
-    {
-        float forward = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        return new Vector3(horizontal, 0, forward).normalized;
-    }
 
     public bool IsGrounded()
     {
@@ -278,8 +221,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public Vector3 MoveAlongGround(Vector3 direction)
+    public Vector3 GetGroundDirection()
     {
+        //Du vill bara kolla det här på marken
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
         {
 
@@ -329,43 +273,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void CheckCollision2()
-    {
-
-        point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-        point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-        RaycastHit hitInfo;
-        if (Physics.CapsuleCast(transform.position + point1, transform.position + point2, capsuleCollider.radius, velocity.normalized, out hitInfo, velocity.magnitude * Time.deltaTime + skinWidth, walkableMask))
-        {
-
-
-            float impactAngle = 90 - Vector2.Angle(velocity.normalized, hitInfo.normal);
-            float hypotenuse = skinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
-
-            if (hitInfo.distance > Mathf.Abs(hypotenuse))
-            {
-                transform.position += velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-            }
-
-            //Vector3 normalForce;
-            //normalForce = CalculateNormalForce(velocity, hitInfo.normal);
-
-            //velocity += normalForce;
-
-            //ApplyFriction(normalForce.magnitude);
-
-            // CheckCollision();
-
-
-        }
-        else
-        {
-            transform.position += velocity * Time.deltaTime;
-
-        }
-
-    }
-
+   
 
 
     public Vector3 CalculateNormalForce(Vector3 velocity, Vector3 normal)

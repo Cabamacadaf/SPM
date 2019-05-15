@@ -52,7 +52,7 @@ public class Player : StateMachine
         flashlight = GetComponentInChildren<Light>();
         healthBar = transform.GetChild(2);
         base.Awake();
-        if (SceneController.Instance.RestartedFromLatestCheckpoint)
+        if (GameManager.Instance.RestartedFromLatestCheckpoint)
         {
             RespawnCheckpoint();
         }
@@ -91,7 +91,7 @@ public class Player : StateMachine
 
     public void RespawnCheckpoint()
     {
-        transform.position = SceneController.Instance.lastCheckPointPos;
+        transform.position = GameManager.Instance.lastCheckPointPos;
 
     }
 
