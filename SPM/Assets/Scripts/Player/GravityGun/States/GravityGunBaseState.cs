@@ -19,30 +19,28 @@ public class GravityGunBaseState : State
     public override void HandleUpdate ()
     {
         if (Input.GetMouseButtonDown(1) && (owner.GetCurrentState() is GravityGunNotHoldingState) == false) {
-            Debug.Log(owner.GetCurrentState());
-            Debug.Log(owner.GetCurrentState() is GravityGunNotHoldingState);
-            Debug.Log("Drop Object");
             DropObject();
         }
+
+        PullPointRotation();
 
         base.HandleUpdate();
     }
 
     public override void HandleFixedUpdate ()
     {
-        if (owner.holdingObject != null) {
+        if (owner.holdingObject != null && (owner.GetCurrentState() is GravityGunHoldingState) == false || owner.holdingObject.IsColliding == false) {
             if (Vector3.Distance(owner.pullPoint.transform.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
                 owner.holdingObject.transform.position += (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
             }
             else {
                 owner.holdingObject.transform.position = owner.pullPoint.transform.position;
             }
-            if (owner.holdingObject.transform.rotation != owner.pullPoint.rotation) {
-                owner.holdingObject.transform.rotation = Quaternion.Lerp(owner.holdingObject.transform.rotation, owner.pullPoint.rotation, owner.objectRotationSpeed * Time.deltaTime);
-            }
+            //if (owner.holdingObject.transform.rotation != owner.pullPoint.rotation) {
+            //    owner.holdingObject.transform.rotation = Quaternion.Lerp(owner.holdingObject.transform.rotation, owner.pullPoint.rotation, owner.objectRotationSpeed * Time.deltaTime);
+            //}
         }
 
-        PullPointRotation();
         base.HandleFixedUpdate();
     }
 
