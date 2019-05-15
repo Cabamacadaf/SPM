@@ -36,18 +36,19 @@ public class GravityGunBaseState : State
         if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
                 moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
+
+
                 moveDirection = owner.pullPoint.position - owner.holdingObject.transform.position;
 
-                if (Physics.Raycast(owner.holdingObject.transform.position, moveDirection.normalized, moveDirection.magnitude, owner.raycastCollideLayer)) {
-                    if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
-                        owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
-                    }
-                    moveToPosition *= collisionPullForceReduction;
-                }
-                else if(owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
-                    owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
-                }
-
+                //if (Physics.Raycast(owner.holdingObject.transform.position, moveDirection.normalized, moveDirection.magnitude, owner.raycastCollideLayer)) {
+                //    if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
+                //        owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
+                //    }
+                //    //moveToPosition *= collisionPullForceReduction;
+                //}
+                //else if(owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
+                //    owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
+                //}
                 owner.holdingObject.transform.position += moveToPosition;
             }
             else {
@@ -55,7 +56,7 @@ public class GravityGunBaseState : State
             }
             //Debug.Log("Object rotaion: " + owner.holdingObject.transform.localRotation);
             //Debug.Log("Pullpoint rotation: " + owner.pullPoint.localRotation);
-            owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.localRotation, owner.objectRotationSpeed * Time.deltaTime);
+            //owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.localRotation, owner.objectRotationSpeed * Time.deltaTime);
         }
 
         base.HandleFixedUpdate();

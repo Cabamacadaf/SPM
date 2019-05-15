@@ -138,8 +138,8 @@ public class PlayerController : MonoBehaviour
     {
         canStand = Physics.Raycast(transform.position, Vector3.up, margin, walkableMask);
 
-        Debug.Log("IsCrouching: " + isCrouching);
-        Debug.Log("Can Stand: " + canStand);
+        //Debug.Log("IsCrouching: " + isCrouching);
+        //Debug.Log("Can Stand: " + canStand);
         //Vector3 movingDirection = GetDirection();
 
 

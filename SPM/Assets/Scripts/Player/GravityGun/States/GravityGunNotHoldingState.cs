@@ -26,7 +26,7 @@ public class GravityGunNotHoldingState : GravityGunBaseState
     {
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out aimRaycastHit, owner.pullRange, owner.raycastCollideLayer);
 
-        if (aimRaycastHit.collider != null && Layers.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
+        if (aimRaycastHit.collider != null && Functions.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
             if (lastPickUpObjectHit != null && aimRaycastHit.transform.gameObject != lastPickUpObjectHit) {
                 lastPickUpObjectHit.UnHighlight();
             }
@@ -51,7 +51,7 @@ public class GravityGunNotHoldingState : GravityGunBaseState
     public void Pull ()
     {
         if (aimRaycastHit.collider != null) {
-            if (Layers.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
+            if (Functions.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
                 owner.holdingObject = aimRaycastHit.collider.GetComponent<PickUpObject>();
                 owner.Transition<GravityGunPullingState>();
             }

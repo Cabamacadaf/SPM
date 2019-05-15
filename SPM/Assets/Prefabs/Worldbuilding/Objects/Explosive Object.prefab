@@ -92,14 +92,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d458c89ef27e104ba87a6b825d3fa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 11777
   durability: 1
   impactDamage: 25
   lowestVelocityToDoDamage: 1
   holdingOpacity: 0.5
   regularMaterial: {fileID: 2100000, guid: 16a4e59491d7b83439dcf7dae41d10ba, type: 2}
   highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
-  isHighlighted: 0
-  holding: 0
   horizontalParticleEffect: {fileID: 0}
   verticalParticaleEffect: {fileID: 0}
   power: 10

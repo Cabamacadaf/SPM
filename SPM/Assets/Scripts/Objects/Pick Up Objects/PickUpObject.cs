@@ -11,6 +11,8 @@ public class PickUpObject : MonoBehaviour
 
     protected Rigidbody rigidBody;
     protected MeshRenderer meshRenderer;
+    private new Collider collider;
+    [SerializeField] private LayerMask collisionMask;
 
     [SerializeField] protected int durability = 3;
     [SerializeField] protected float impactDamage = 25f;
@@ -20,6 +22,10 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
 
+    private Vector3 lastFramePosition;
+    private Vector3 velocity;
+    public Vector3 NormalForce { get; private set; }
+
     protected bool isThrown = false;
     private bool isHighlighted = false;
     private bool isHeld = false;
@@ -28,16 +34,32 @@ public class PickUpObject : MonoBehaviour
 
     private void Awake ()
     {
+        lastFramePosition = transform.position;
         OriginalParent = transform.parent;
         CurrentParent = OriginalParent;
         rigidBody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
+        collider = GetComponent<BoxCollider>();
     }
 
-    private void FixedUpdate ()
+    private void Update ()
     {
-        if (isHeld)
-            Debug.Log("Velocity:" + rigidBody.velocity);
+        velocity = (transform.position - lastFramePosition) / Time.deltaTime;
+        Debug.Log("Velocity: " + velocity);
+        lastFramePosition = transform.position;
+        CheckCollision(0);
+    }
+
+    private void CheckCollision (float count)
+    {
+        if(count > 20) {
+            return;
+        }
+        Physics.BoxCast(collider.bounds.center, transform.localScale, velocity.normalized, out RaycastHit hit, transform.rotation, velocity.magnitude * Time.deltaTime, collisionMask);
+        if(hit.collider != null) {
+            NormalForce = Functions.CalculateNormalForce(velocity, hit.normal);
+            CheckCollision(count+1);
+        }
     }
 
     public void Hold (Vector3 pullPointPosition, Transform newParent)
@@ -53,7 +75,7 @@ public class PickUpObject : MonoBehaviour
     {
         isHeld = false;
         rigidBody.useGravity = true;
-        rigidBody.constraints = RigidbodyConstraints.None;
+        //rigidBody.constraints = RigidbodyConstraints.None;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
@@ -63,7 +85,7 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         rigidBody.useGravity = false;
-        rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+        //rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         UnHighlight();
     }
 
