@@ -6,7 +6,7 @@ public class LightComponent : MonoBehaviour
 {
     [SerializeField] private Light[] lights;
 
-
+    //Från CorePlacement
     [SerializeField] private Color newColor;
     [SerializeField] private float timeBetweenLights;
     [SerializeField] private float timeUntillLightsActivate;
