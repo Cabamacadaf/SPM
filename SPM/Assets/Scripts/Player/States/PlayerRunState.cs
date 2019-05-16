@@ -28,7 +28,7 @@ public class PlayerRunState : PlayerBaseState
 
         //}
 
-        owner.Stamina.Running();
+        owner.Stamina.UseStamina();
 
         if (owner.Stamina.Stamina <= 0 || Input.GetKeyUp(KeyCode.LeftShift))
         {
