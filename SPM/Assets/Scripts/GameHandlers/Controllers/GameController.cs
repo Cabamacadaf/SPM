@@ -12,6 +12,7 @@ public class GameController : Singleton<GameController>
 
     public bool HasLevel1Keycard { get; set; }
     public bool HasLevel2Keycard { get; set; }
+    public bool HasAllPowerCores { get; private set; }
 
     private int powerCoreCounter;
     private int lastPuzzleCounter;
@@ -44,7 +45,8 @@ public class GameController : Singleton<GameController>
 
         if(powerCoreCounter == 4)
         {
-            KeySpawn();
+            //KeySpawn();
+            HasAllPowerCores = true;
             powerCoreCounter = 0;
         }
     }
