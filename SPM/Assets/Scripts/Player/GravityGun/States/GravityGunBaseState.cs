@@ -40,9 +40,6 @@ public class GravityGunBaseState : State
         if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
 
-
-
-
                 if (pullPointDirectionCastHit.collider != null) {
                     Debug.DrawRay(owner.holdingObject.transform.position, pullPointDirection, new Color(255, 100, 0));
                     Debug.DrawLine(owner.holdingObject.transform.position, pullPointDirectionCastHit.point, Color.green);

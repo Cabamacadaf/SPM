@@ -38,6 +38,13 @@ public class PickUpObject : MonoBehaviour
         collider = GetComponent<Collider>();
     }
 
+    private void FixedUpdate ()
+    {
+        if (isThrown == true && rigidBody.velocity.magnitude <= lowestVelocityToDoDamage) {
+            isThrown = false;
+        }
+    }
+
     public void Hold (Vector3 pullPointPosition, Transform newParent)
     {
         isHeld = true;
@@ -51,7 +58,6 @@ public class PickUpObject : MonoBehaviour
     {
         isHeld = false;
         rigidBody.useGravity = true;
-        //rigidBody.constraints = RigidbodyConstraints.None;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
@@ -61,7 +67,6 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         rigidBody.useGravity = false;
-        //rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         UnHighlight();
     }
 
@@ -97,7 +102,7 @@ public class PickUpObject : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
-        if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
+        if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(ImpactDamage);
@@ -117,7 +122,7 @@ public class PickUpObject : MonoBehaviour
     {
         IsColliding = true;
 
-        if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
+        if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= ImpactDamage;
         }
     }

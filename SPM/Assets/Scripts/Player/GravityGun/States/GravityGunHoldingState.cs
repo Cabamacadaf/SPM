@@ -24,7 +24,6 @@ public class GravityGunHoldingState : GravityGunBaseState
     {
         if (UpgradeSettings.instance.HasUpgrade)
         {
-       
             UpgradedGravityGun();
         }
         else
@@ -42,9 +41,6 @@ public class GravityGunHoldingState : GravityGunBaseState
 
     private void UpgradedGravityGun()
     {
-
-        
-       
         if (Input.GetMouseButton(0) &&  timer <= UpgradeSettings.instance.MaxTime)
         {
             owner.holdingObject.ImpactDamage += UpgradeSettings.instance.GrowRate;
@@ -53,14 +49,13 @@ public class GravityGunHoldingState : GravityGunBaseState
             isCharging = true;
 
         }
+
         else if (isCharging)
         {
             Addforce();
             DropObject();
 
         }
-
-
     }
 
     private void Addforce()
@@ -68,6 +63,5 @@ public class GravityGunHoldingState : GravityGunBaseState
         Vector3 direction = Camera.main.transform.forward;
         float force = owner.pushForce;
         owner.holdingObject.GetComponent<Rigidbody>().AddForce(direction * force);
-
     }
 }
