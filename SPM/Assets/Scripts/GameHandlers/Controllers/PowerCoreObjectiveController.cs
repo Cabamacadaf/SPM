@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PowerCoreObjectiveController : MonoBehaviour
 {
-    [SerializeField] private GameObject hit;
+    [SerializeField] private Transform corePosition;
 
     private GravityGun gravityGun;
-    private bool active = true;
-    private bool finish = false;
+    private bool isActive = true;
 
     private void Awake()
     {
@@ -17,15 +16,15 @@ public class PowerCoreObjectiveController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (active && other.CompareTag("PowerCore"))
+        if (isActive && other.CompareTag("PowerCore"))
         {
 
-            active = false;
+            isActive = false;
 
             if (gravityGun.GetCurrentState() is GravityGunBaseState)
             {
-                GravityGunBaseState holdingState = (GravityGunBaseState)gravityGun.GetCurrentState();
-                holdingState.DropObject();
+                GravityGunBaseState gravityGunState = (GravityGunBaseState)gravityGun.GetCurrentState();
+                gravityGunState.DropObject();
             }
 
             TransformObject(other);
@@ -39,8 +38,8 @@ public class PowerCoreObjectiveController : MonoBehaviour
 
     private void TransformObject(Collider other)
     {
-        other.transform.position = hit.transform.position;
-        other.transform.parent = hit.transform;
+        other.transform.position = corePosition.transform.position;
+        other.transform.parent = corePosition.transform;
         other.transform.rotation = Quaternion.identity;
         other.gameObject.layer = 0;
         Destroy(other.GetComponent<Rigidbody>());
