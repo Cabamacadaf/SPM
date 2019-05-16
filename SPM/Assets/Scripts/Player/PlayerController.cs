@@ -6,56 +6,56 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float acceptableStamina = 15;
     [SerializeField] private float margin;
 
     [Header("Movement")]
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float walkSpeed;
+    [SerializeField] private float crouchSpeed;
     [SerializeField] private float gravityModifier;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fallGravityScale;
     [SerializeField] private float jumpGravityScale;
+    [SerializeField] private LayerMask walkableMask;
+    [SerializeField] private float skinWidth = 0.05f;
+    [SerializeField] private float groundCheckDistance = 0.05f;
+    [SerializeField] private float gravity;
+    [SerializeField] private KeyCode crouchKey;
 
     private float speed;
-
-    //Rigidbody
-    private Camera playerCamera;
-    //Direction
     private Vector3 direction;
-    private float vertical;
-    private float horizontal;
-    public float gravity;
     private Vector3 velocity;
     private Vector3 verticalVelocity;
     private bool isGrounded;
     private bool playerJumping;
-
-    [SerializeField] private LayerMask walkableMask;
-    [SerializeField] float skinWidth = 0.05f;
-    [SerializeField] float groundCheckDistance = 0.05f;
-
     private bool isCrouching;
     private bool canStand;
 
+    //Crouch
+    private float CrouchColliderHeight = 0.80f;
+    private float CrouchColliderCenter = 0.40f;
+    private float CrouchCameraHeight = 0.5f;
+
+    private Camera playerCamera;
+
+    //For Collision
     private Vector3 point1;
     private Vector3 point2;
     private Vector3 snapSum;
-    public CapsuleCollider capsuleCollider;
+    [HideInInspector] public CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
     private float groundAngle;
     
     [HideInInspector] public Light flashlight;
-    /*[HideInInspector]*/
     public bool hasFlashlight = false;
-    public float startHealth;
-    [HideInInspector] public float health;
-    public Transform respawnPoint;
-    //private MyCharachterController CC;
 
-    public float CrouchColliderHeight = 0.80f;
-    public float CrouchColliderCenter = 0.40f;
-    public float CrouchCameraHeight;
+    private PlayerStates states;
+    private StaminaComponent staminaComponent;
+
+    float forward;
+    float horizontal;
 
     private void Awake()
     {
@@ -67,68 +67,29 @@ public class PlayerController : MonoBehaviour
         }
         capsuleCollider = GetComponent<CapsuleCollider>();
         playerCamera = Camera.main;
-
-
-
+        staminaComponent = GetComponent<StaminaComponent>();
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerCamera = Camera.main;
-
-        point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-        point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-
-        //CC = GetComponent<MyCharachterController>();
-
-    }
-
-
-    private void CameraRotation()
-    {
-        var cameraRotation = playerCamera.transform.rotation;
-        cameraRotation.z = 0;
-        cameraRotation.x = 0;
-        transform.rotation = cameraRotation;
-        cameraRotation = playerCamera.transform.rotation;
-    }
 
     // Update is called once per frame
     void Update()
     {
         HandleInput();
-        //HandleMovement();
         HandleMovement();
-        CameraRotation();
-
-
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (hasFlashlight)
-            {
-                if (flashlight.enabled)
-                {
-                    flashlight.enabled = false;
-                }
-                else
-                {
-                    flashlight.enabled = true;
-                }
-            }
-        }
+        HandleCameraRotation();
+        HandleFlashLight();
 
     }
+
 
 
     private void HandleInput()
     {
   
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        direction = new Vector3(horizontal, 0, vertical);
+        forward = Input.GetAxisRaw("Vertical");
+        horizontal = Input.GetAxisRaw("Horizontal");
+        direction = new Vector3(horizontal, 0, forward);
         Quaternion cameraRotation = playerCamera.transform.rotation;
         direction = cameraRotation * direction;
         direction = GetGroundDirection();
@@ -136,95 +97,119 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-        canStand = Physics.Raycast(transform.position, Vector3.up, margin, walkableMask);
-
-        //Debug.Log("IsCrouching: " + isCrouching);
-        //Debug.Log("Can Stand: " + canStand);
-        //Vector3 movingDirection = GetDirection();
-
-
-        if (Input.GetKey(KeyCode.V) || Input.GetKey(KeyCode.LeftControl))
-        {
-            CrouchSetup();
-        }
-
-        else
-        {
-           
-            if (isCrouching)
-            {
-               
-                if(canStand == false)
-                {
-                    isCrouching = false;
-                    NormalSetup();
-                }
-  
-          
-            }
-            else
-            {
-                isCrouching = false;
-                NormalSetup();
-
-            }
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = sprintSpeed;
-        }
-        else
-        {
-            speed = walkSpeed;
-        }
 
         if (IsGrounded())
         {
-            //Debug.Log(IsGrounded());
-            //Vector3 movingDirection = MoveAlongGround(direction);
+            switch (states)
+            {
+                case PlayerStates.WALK:
+                    WalkState();
+
+                    break;
+                case PlayerStates.SPRINT:
+                    SprintState();
+                    break;
+                case PlayerStates.CROUCH:
+                    CrouchState();
+                    break;
+
+            }
+
             velocity = direction.normalized * speed;
             playerJumping = false;
 
             if (Input.GetAxisRaw("Jump") > 0f)
             {
-                playerJumping = true;
-
-                verticalVelocity = new Vector3(0, jumpForce, 0);
-
-                velocity = direction.normalized * speed + verticalVelocity;
+                Jump();
 
             }
-
         }
         else
         {
+        
             if (playerJumping)
             {
-
-                verticalVelocity = new Vector3(0f, (velocity.y + (gravity * jumpGravityScale * Time.deltaTime)), 0f);
-
-                direction.y = 0;
-
-                velocity = direction * speed + verticalVelocity;
+                FallFromJump();
 
             }
             else
             {
-                verticalVelocity = new Vector3(0f, (velocity.y + (gravity * fallGravityScale * Time.deltaTime)), 0f);
-                direction.y = 0;
-                velocity = direction * speed + verticalVelocity;
+                FallFromGround();
             }
-
         }
-
-        //CC.Move(velocity);
 
         Move();
 
-        //velocity.y = 0;
-
     }
+
+    private void Jump()
+    {
+        playerJumping = true;
+
+        verticalVelocity = new Vector3(0, jumpForce, 0);
+
+        velocity = direction.normalized * speed + verticalVelocity;
+    }
+
+    private void FallFromGround()
+    {
+        float yValue = velocity.y + gravity * fallGravityScale * Time.deltaTime;
+        verticalVelocity = new Vector3(0f, yValue, 0f);
+        direction.y = 0;
+        velocity = direction * speed + verticalVelocity;
+    }
+
+    private void FallFromJump()
+    {
+        float yValue = velocity.y + gravity * jumpGravityScale * Time.deltaTime;
+        verticalVelocity = new Vector3(0f, yValue, 0f);
+        direction.y = 0;
+
+        velocity = direction * speed + verticalVelocity;
+    }
+
+    private void SprintState()
+    {
+        speed = sprintSpeed;
+        staminaComponent.UseStamina();
+        Debug.Log("Stamina: " + staminaComponent.Stamina);
+        if (Input.GetKey(KeyCode.LeftShift) == false || staminaComponent.Stamina <= 0)
+        {
+            states = PlayerStates.WALK;
+        }
+    }
+
+    private void CrouchState()
+    {
+        CrouchSetup();
+        staminaComponent.RecoverStamina();
+        canStand = Physics.Raycast(transform.position, Vector3.up, margin, walkableMask) == false;
+        speed = crouchSpeed;
+        if ((Input.GetKeyDown(crouchKey) && canStand))
+        {
+            states = PlayerStates.WALK;
+
+            NormalSetup();
+
+        }
+    }
+
+    private void WalkState()
+    {
+        speed = walkSpeed;
+        staminaComponent.RecoverStamina();
+        Debug.Log("Stamina: " + staminaComponent.Stamina);
+
+        if (Input.GetKeyDown(crouchKey))
+        {
+            states = PlayerStates.CROUCH;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && staminaComponent.Stamina >= acceptableStamina)
+        {
+            states = PlayerStates.SPRINT;
+        }
+    }
+
 
     private void NormalSetup()
     {
@@ -261,7 +246,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetGroundDirection()
     {
         //Du vill bara kolla det här på marken
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo) && IsGrounded())
         {
 
             return Vector3.ProjectOnPlane(direction, hitInfo.normal).normalized;
@@ -269,7 +254,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            return direction.normalized;
+            return Vector3.ProjectOnPlane(direction, Vector3.down).normalized;
         }
 
     }
@@ -301,8 +286,6 @@ public class PlayerController : MonoBehaviour
 
                 velocity += normalForce;
 
-                //ApplyFriction(normalForce.magnitude);
-
                 CheckCollision();
 
             }
@@ -310,10 +293,34 @@ public class PlayerController : MonoBehaviour
 
     }
 
-   
+    private void HandleFlashLight()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (hasFlashlight)
+            {
+                if (flashlight.enabled)
+                {
+                    flashlight.enabled = false;
+                }
+                else
+                {
+                    flashlight.enabled = true;
+                }
+            }
+        }
+    }
 
+    private void HandleCameraRotation()
+    {
+        var cameraRotation = playerCamera.transform.rotation;
+        cameraRotation.z = 0;
+        cameraRotation.x = 0;
+        transform.rotation = cameraRotation;
+        cameraRotation = playerCamera.transform.rotation;
+    }
 
-    public Vector3 CalculateNormalForce(Vector3 velocity, Vector3 normal)
+    private Vector3 CalculateNormalForce(Vector3 velocity, Vector3 normal)
     {
         float dotProduct = Vector3.Dot(velocity, normal);
 
@@ -330,4 +337,14 @@ public class PlayerController : MonoBehaviour
 
 
 
+}
+
+public enum PlayerStates
+{
+    WALK,
+    CROUCH,
+    SPRINT,
+    AIR,
+    GROUND
+    
 }

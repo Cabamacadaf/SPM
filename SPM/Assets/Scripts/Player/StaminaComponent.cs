@@ -8,7 +8,7 @@ public class StaminaComponent : MonoBehaviour
     public float MaxStamina { get; set; }
     public float Stamina { get; set; }
 
-    [SerializeField] private float RecoveryRate = 15f;
+    [SerializeField] private float AddStaminaRate = 15f;
     [SerializeField] private float LoseStaminaRate = 15f;
 
     private void Awake()
@@ -17,9 +17,9 @@ public class StaminaComponent : MonoBehaviour
         Stamina = MaxStamina;
     }
 
-    public void Recover()
+    public void RecoverStamina()
     {
-        Stamina += RecoveryRate * Time.deltaTime;
+        Stamina += AddStaminaRate * Time.deltaTime;
         if (Stamina >= MaxStamina)
         {
             Stamina = MaxStamina;
@@ -27,7 +27,7 @@ public class StaminaComponent : MonoBehaviour
 
     }
 
-    public void Running()
+    public void UseStamina()
     {
         Stamina -= LoseStaminaRate * Time.deltaTime;
         if (Stamina <= 0)
