@@ -38,6 +38,13 @@ public class PickUpObject : MonoBehaviour
         collider = GetComponent<Collider>();
     }
 
+    private void FixedUpdate ()
+    {
+        if (isThrown == true && rigidBody.velocity.magnitude <= lowestVelocityToDoDamage) {
+            isThrown = false;
+        }
+    }
+
     public void Hold (Vector3 pullPointPosition, Transform newParent)
     {
         isHeld = true;
@@ -61,6 +68,7 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         rigidBody.useGravity = false;
+        rigidBody.constraints = RigidbodyConstraints.None;
         //rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         UnHighlight();
     }
@@ -97,7 +105,7 @@ public class PickUpObject : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
-        if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
+        if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(ImpactDamage);
@@ -116,14 +124,16 @@ public class PickUpObject : MonoBehaviour
     private void OnCollisionEnter (Collision collision)
     {
         IsColliding = true;
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
 
-        if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
+        if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= ImpactDamage;
         }
     }
 
     private void OnCollisionExit (Collision collision)
     {
+        rigidBody.constraints = RigidbodyConstraints.None;
         IsColliding = false;
     }
 }
