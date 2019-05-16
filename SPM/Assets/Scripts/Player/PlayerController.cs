@@ -8,18 +8,18 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float margin;
 
+    [Header("Movement")]
+    [SerializeField] private float sprintSpeed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float gravityModifier;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float fallGravityScale;
+    [SerializeField] private float jumpGravityScale;
 
-    //Speed
     private float speed;
-    public float sprintSpeed;
-    public float walkSpeed;
-    public float gravityModifier;
-    //Jumpheight
-    public float jumpForce;
+
     //Rigidbody
     private Camera playerCamera;
-    public float fallGravityScale;
-    public float jumpGravityScale;
     //Direction
     private Vector3 direction;
     private float vertical;
