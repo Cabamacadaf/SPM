@@ -58,7 +58,6 @@ public class PickUpObject : MonoBehaviour
     {
         isHeld = false;
         rigidBody.useGravity = true;
-        //rigidBody.constraints = RigidbodyConstraints.None;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
@@ -68,8 +67,6 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         rigidBody.useGravity = false;
-        rigidBody.constraints = RigidbodyConstraints.None;
-        //rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         UnHighlight();
     }
 
@@ -124,7 +121,6 @@ public class PickUpObject : MonoBehaviour
     private void OnCollisionEnter (Collision collision)
     {
         IsColliding = true;
-        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
 
         if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= ImpactDamage;
@@ -133,7 +129,6 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionExit (Collision collision)
     {
-        rigidBody.constraints = RigidbodyConstraints.None;
         IsColliding = false;
     }
 }
