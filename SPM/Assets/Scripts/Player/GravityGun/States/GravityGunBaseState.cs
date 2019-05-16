@@ -7,10 +7,10 @@ using UnityEngine;
 public class GravityGunBaseState : State
 {
     private float objectXRotation;
-    private float collisionPullForceReduction = 0.25f;
 
     private Vector3 moveToPosition;
-    private Vector3 moveDirection;
+    private Vector3 pullPointDirection;
+    private RaycastHit pullPointDirectionCastHit;
 
     protected GravityGun owner;
 
@@ -26,6 +26,10 @@ public class GravityGunBaseState : State
             DropObject();
         }
 
+        if (owner.holdingObject != null) {
+            CheckPullPointRaycast();
+        }
+
         PullPointRotation();
 
         base.HandleUpdate();
@@ -35,31 +39,40 @@ public class GravityGunBaseState : State
     {
         if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
-                moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
 
 
-                moveDirection = owner.pullPoint.position - owner.holdingObject.transform.position;
 
-                //if (Physics.Raycast(owner.holdingObject.transform.position, moveDirection.normalized, moveDirection.magnitude, owner.raycastCollideLayer)) {
-                //    if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
-                //        owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
-                //    }
-                //    //moveToPosition *= collisionPullForceReduction;
-                //}
-                //else if(owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
-                //    owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
-                //}
+
+                if (pullPointDirectionCastHit.collider != null) {
+                    Debug.DrawRay(owner.holdingObject.transform.position, pullPointDirection, new Color(255, 100, 0));
+                    Debug.DrawLine(owner.holdingObject.transform.position, pullPointDirectionCastHit.point, Color.green);
+
+                    if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
+                        owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
+                    }
+                    moveToPosition = (pullPointDirectionCastHit.point - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime; ;
+                }
+
+                else {
+                    if (owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
+                        owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
+                    }
+                    moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
+                }
                 owner.holdingObject.transform.position += moveToPosition;
             }
             else {
                 owner.holdingObject.transform.position = owner.pullPoint.position;
             }
-            //Debug.Log("Object rotaion: " + owner.holdingObject.transform.localRotation);
-            //Debug.Log("Pullpoint rotation: " + owner.pullPoint.localRotation);
-            //owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.localRotation, owner.objectRotationSpeed * Time.deltaTime);
+            owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.localRotation, owner.objectRotationSpeed * Time.deltaTime);
         }
-
         base.HandleFixedUpdate();
+    }
+
+    private void CheckPullPointRaycast ()
+    {
+        pullPointDirection = owner.pullPoint.position - owner.holdingObject.transform.position;
+        Physics.Raycast(owner.holdingObject.transform.position, pullPointDirection.normalized, out pullPointDirectionCastHit, pullPointDirection.magnitude, owner.raycastCollideLayer);
     }
 
     private void PullPointRotation ()

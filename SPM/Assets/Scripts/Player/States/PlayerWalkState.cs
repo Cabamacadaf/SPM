@@ -34,7 +34,7 @@ public class PlayerWalkState : PlayerBaseState
             owner.Transition<PlayerRunState>();
         }
 
-        owner.Stamina.Recover();
+        //owner.Stamina.Recover();
 
 
         //Vector3 groundVel = new Vector3(owner.Movement.GetVelocity().x, 0, owner.Movement.GetVelocity().z);
