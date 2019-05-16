@@ -5823,10 +5823,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.24
+  m_Radius: 0.33
   m_Height: 1.86
   m_Direction: 1
-  m_Center: {x: 0, y: 0.93, z: 0}
+  m_Center: {x: 1.4886356e-10, y: 0.93, z: 0.0357297}
 --- !u!54 &2821774831742086203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5855,7 +5855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95025a071cabe0c45a82d133385c1b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RecoveryRate: 15
+  AddStaminaRate: 15
   LoseStaminaRate: 15
 --- !u!95 &8800547237065332889
 Animator:
@@ -5888,28 +5888,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef711fe03fe14744ebe9e38d5ef7f387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceptableStamina: 15
   margin: 2
   sprintSpeed: 10
   walkSpeed: 5
+  crouchSpeed: 2.05
   gravityModifier: 1
   jumpForce: 7
   fallGravityScale: 1.3
   jumpGravityScale: 2
-  gravity: -10
   walkableMask:
     serializedVersion: 2
     m_Bits: 41472
   skinWidth: 0.05
   groundCheckDistance: 0.05
+  gravity: -10
+  crouchKey: 306
   capsuleCollider: {fileID: 0}
   flashlight: {fileID: 0}
   hasFlashlight: 0
-  startHealth: 100
-  health: 0
-  respawnPoint: {fileID: 0}
-  CrouchColliderHeight: 0.8
-  CrouchColliderCenter: 0.4
-  CrouchCameraHeight: 0.5
 --- !u!114 &2112989151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5951,7 +5948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727586053171767193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.32}
+  m_LocalPosition: {x: 0, y: 0, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8727586052577491053}

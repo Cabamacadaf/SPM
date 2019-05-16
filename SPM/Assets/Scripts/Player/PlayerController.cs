@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
     {
         speed = sprintSpeed;
         staminaComponent.UseStamina();
-        Debug.Log("Stamina: " + staminaComponent.Stamina);
+
         if (Input.GetKey(KeyCode.LeftShift) == false || staminaComponent.Stamina <= 0)
         {
             states = PlayerStates.WALK;
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
     {
         speed = walkSpeed;
         staminaComponent.RecoverStamina();
-        Debug.Log("Stamina: " + staminaComponent.Stamina);
+
 
         if (Input.GetKeyDown(crouchKey))
         {
