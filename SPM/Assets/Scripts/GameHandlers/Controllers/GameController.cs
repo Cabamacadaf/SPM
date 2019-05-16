@@ -7,12 +7,12 @@ public class GameController : Singleton<GameController>
 {
     [SerializeField] private GameObject keyCard;
     [SerializeField] private Transform keySpawnPoint;
-    [SerializeField] private GameObject door;
 
 
     public bool HasLevel1Keycard { get; set; }
     public bool HasLevel2Keycard { get; set; }
     public bool HasAllPowerCores { get; private set; }
+    public bool Level2PuzzleComplete { get; private set; }
 
     private int powerCoreCounter;
     private int lastPuzzleCounter;
@@ -37,6 +37,8 @@ public class GameController : Singleton<GameController>
         HasLevel1Keycard = false;
         lastPuzzleCounter = 0;
         HasLevel2Keycard = true;
+        HasAllPowerCores = false;
+        Level2PuzzleComplete = false;
     }
 
     public void AddPowerCore()
@@ -53,12 +55,13 @@ public class GameController : Singleton<GameController>
 
     public void AddLastPuzzle()
     {
-        if (lastPuzzleCounter == 9)
+        lastPuzzleCounter++;
+        if (lastPuzzleCounter >= 7)
         {
             Debug.Log("You have reached your goal");
-            OpenDoor();
+            
             lastPuzzleCounter = 0;
-
+            Level2PuzzleComplete = true;
         }
     }
 
@@ -66,14 +69,4 @@ public class GameController : Singleton<GameController>
     {
         Instantiate(keyCard, keySpawnPoint.position, Quaternion.identity);
     }
-
-
-    void OpenDoor()
-    {
-        door.GetComponent<SplittingDoor>().Open();
-        Debug.Log("The path is open");
-        return;
-    }
-
-
 }

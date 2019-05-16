@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3197260858136296562}
   - component: {fileID: 3197260858136296561}
   - component: {fileID: 656537071095866508}
-  - component: {fileID: 2529991460384934622}
   - component: {fileID: 1321278283110539190}
+  - component: {fileID: 979064964221728838}
   m_Layer: 13
   m_Name: PuzzleObject
   m_TagString: PuzzleObject
@@ -110,28 +110,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2529991460384934622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3197260858136296575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af07682a7d98a14ab682dc8a13dbf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  durability: 0
-  holding: 0
-  distanceToGrab: 0.1
-  impactDamage: 25
-  lowestVelocityToDoDamage: 5
-  holdingOpacity: 0.5
-  regularMaterial: {fileID: 0}
-  highlightedMaterial: {fileID: 0}
-  rotationSpeed: 1
-  isHighlighted: 0
 --- !u!114 &1321278283110539190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,3 +123,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NR: 0
+--- !u!114 &979064964221728838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197260858136296575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 10753
+  durability: 3
+  impactDamage: 25
+  lowestVelocityToDoDamage: 1
+  holdingOpacity: 0.5
+  regularMaterial: {fileID: 2100000, guid: fa55b71bcb23a684aa1a7198ccec4b5f, type: 2}
+  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
