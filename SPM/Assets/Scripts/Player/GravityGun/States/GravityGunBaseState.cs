@@ -26,7 +26,7 @@ public class GravityGunBaseState : State
             DropObject();
         }
 
-        if(owner.holdingObject != null) {
+        if (owner.holdingObject != null) {
             CheckPullPointRaycast();
         }
 
@@ -39,24 +39,24 @@ public class GravityGunBaseState : State
     {
         if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
-                
-                
+
+
 
 
                 if (pullPointDirectionCastHit.collider != null) {
                     Debug.DrawRay(owner.holdingObject.transform.position, pullPointDirection, new Color(255, 100, 0));
                     Debug.DrawLine(owner.holdingObject.transform.position, pullPointDirectionCastHit.point, Color.green);
 
-                    //if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
-                    //    owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
-                    //}
-                    moveToPosition = (pullPointDirectionCastHit.point - owner.holdingObject.collider.ClosestPoint(pullPointDirectionCastHit.point)).normalized * owner.pullForce * Time.deltaTime; ;
+                    if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
+                        owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
+                    }
+                    moveToPosition = (pullPointDirectionCastHit.point - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime; ;
                 }
 
-                else{
-                    //if (owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
-                    //    owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
-                    //}
+                else {
+                    if (owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
+                        owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
+                    }
                     moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
                 }
                 owner.holdingObject.transform.position += moveToPosition;
