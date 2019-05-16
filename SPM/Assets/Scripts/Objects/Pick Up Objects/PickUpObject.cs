@@ -29,6 +29,9 @@ public class PickUpObject : MonoBehaviour
     private bool isHeld = false;
     public bool IsColliding { get; private set; }
 
+    private float throwTimer = 0;
+    private float thrownTime = 1.0f;
+
     private void Awake ()
     {
         OriginalParent = transform.parent;
@@ -38,10 +41,13 @@ public class PickUpObject : MonoBehaviour
         collider = GetComponent<Collider>();
     }
 
-    private void FixedUpdate ()
+    private void Update ()
     {
-        if (isThrown == true && rigidBody.velocity.magnitude <= lowestVelocityToDoDamage) {
-            isThrown = false;
+        if (isThrown == true) {
+            throwTimer += Time.deltaTime;
+            if(throwTimer >= thrownTime) {
+                isThrown = false;
+            }
         }
     }
 
@@ -101,7 +107,6 @@ public class PickUpObject : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
         if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
