@@ -21,7 +21,7 @@ public class PowerCoreObjectiveController : MonoBehaviour
 
             isActive = false;
 
-            if (gravityGun.GetCurrentState() is GravityGunBaseState)
+            if (gravityGun.holdingObject != null)
             {
                 GravityGunBaseState gravityGunState = (GravityGunBaseState)gravityGun.GetCurrentState();
                 gravityGunState.DropObject();
@@ -38,10 +38,10 @@ public class PowerCoreObjectiveController : MonoBehaviour
 
     private void TransformObject(Collider other)
     {
+        Destroy(other.GetComponent<Rigidbody>());
         other.transform.position = corePosition.transform.position;
         other.transform.parent = corePosition.transform;
         other.transform.rotation = Quaternion.identity;
         other.gameObject.layer = 0;
-        Destroy(other.GetComponent<Rigidbody>());
     }
 }
