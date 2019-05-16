@@ -8,6 +8,8 @@ public class PickUpObject : MonoBehaviour
 {
     public Transform OriginalParent { get; set; }
     public Transform CurrentParent { get; set; }
+    public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
+
 
     protected Rigidbody rigidBody;
     protected MeshRenderer meshRenderer;
@@ -15,7 +17,7 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private LayerMask collisionMask;
 
     [SerializeField] protected int durability = 3;
-    [SerializeField] protected float impactDamage = 25f;
+    [SerializeField] private float impactDamage = 25f;
     [SerializeField] protected float lowestVelocityToDoDamage = 1.0f;
     [SerializeField] private float holdingOpacity = 0.5f;
 
@@ -31,7 +33,6 @@ public class PickUpObject : MonoBehaviour
     private bool isHeld = false;
     public bool IsColliding { get; private set; }
 
-
     private void Awake ()
     {
         lastFramePosition = transform.position;
@@ -45,7 +46,7 @@ public class PickUpObject : MonoBehaviour
     private void Update ()
     {
         velocity = (transform.position - lastFramePosition) / Time.deltaTime;
-        Debug.Log("Velocity: " + velocity);
+        //Debug.Log("Velocity: " + velocity);
         lastFramePosition = transform.position;
         CheckCollision(0);
     }
@@ -55,11 +56,11 @@ public class PickUpObject : MonoBehaviour
         if(count > 20) {
             return;
         }
-        Physics.BoxCast(collider.bounds.center, transform.localScale, velocity.normalized, out RaycastHit hit, transform.rotation, velocity.magnitude * Time.deltaTime, collisionMask);
-        if(hit.collider != null) {
-            NormalForce = Functions.CalculateNormalForce(velocity, hit.normal);
-            CheckCollision(count+1);
-        }
+        //Physics.BoxCast(collider.bounds.center, transform.localScale, velocity.normalized, out RaycastHit hit, transform.rotation, velocity.magnitude * Time.deltaTime, collisionMask);
+        //if(hit.collider != null) {
+        //    NormalForce = Functions.CalculateNormalForce(velocity, hit.normal);
+        //    CheckCollision(count+1);
+        //}
     }
 
     public void Hold (Vector3 pullPointPosition, Transform newParent)
@@ -124,14 +125,14 @@ public class PickUpObject : MonoBehaviour
         if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
-                enemyState.Damage(impactDamage);
+                enemyState.Damage(ImpactDamage);
                 LoseDurability();
             }
 
             if (other.CompareTag("Enemy2Hurtbox")) {
                 Enemy2 enemy = other.GetComponentInParent<Enemy2>();
                 EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
-                enemyState.Damage(impactDamage * enemy.damageReduction);
+                enemyState.Damage(ImpactDamage * enemy.damageReduction);
                 LoseDurability();
             }
         }
@@ -146,7 +147,7 @@ public class PickUpObject : MonoBehaviour
         //}
 
         if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage) {
-            collision.collider.GetComponent<DestructibleObject>().hitPoints -= impactDamage;
+            collision.collider.GetComponent<DestructibleObject>().hitPoints -= ImpactDamage;
         }
     }
 

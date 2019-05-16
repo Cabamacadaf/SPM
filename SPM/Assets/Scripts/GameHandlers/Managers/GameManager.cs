@@ -56,8 +56,9 @@ public class GameManager : Singleton<GameManager>
 
     public void RespawnPlayer()
     {
-        ResetScene();
-        RestartedFromLatestCheckpoint = true;
+        player.transform.position = CurrentCheckPoint;
+        //ResetScene();
+        //RestartedFromLatestCheckpoint = true;
     }
 
     public void ResetScene()
