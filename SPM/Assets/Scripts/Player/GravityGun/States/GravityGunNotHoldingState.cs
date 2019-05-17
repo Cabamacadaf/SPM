@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/GravityGun/NotHoldingState")]
 public class GravityGunNotHoldingState : GravityGunBaseState
 {
-    private PickUpObject lastPickUpObjectHit;
+    private Highlight lastPickUpObjectHitHighlight;
     private RaycastHit aimRaycastHit;
 
     public override void Enter ()
@@ -17,18 +17,16 @@ public class GravityGunNotHoldingState : GravityGunBaseState
     public override void HandleUpdate ()
     {
         base.HandleUpdate();
-        if (Input.GetMouseButtonDown(1)) {
-            Pull();
-        }
-
+        
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out aimRaycastHit, owner.pullRange, owner.raycastCollideLayer);
 
         if (aimRaycastHit.collider != null && Functions.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
-            if (lastPickUpObjectHit != null && aimRaycastHit.transform.gameObject != lastPickUpObjectHit) {
-                lastPickUpObjectHit.UnHighlight();
+            if (lastPickUpObjectHitHighlight != null && aimRaycastHit.transform.gameObject != lastPickUpObjectHitHighlight) {
+                lastPickUpObjectHitHighlight.Deactivate();
             }
-            lastPickUpObjectHit = aimRaycastHit.transform.GetComponent<PickUpObject>();
-            lastPickUpObjectHit.Highlight();
+            lastPickUpObjectHitHighlight = aimRaycastHit.transform.GetComponent<Highlight>();
+            lastPickUpObjectHitHighlight.Activate();
+            Debug.Log("Activate");
             owner.crosshair.color = Color.green;
         }
 
@@ -37,10 +35,14 @@ public class GravityGunNotHoldingState : GravityGunBaseState
         }
 
         else {
-            if (lastPickUpObjectHit != null) {
-                lastPickUpObjectHit.UnHighlight();
+            if (lastPickUpObjectHitHighlight != null) {
+                lastPickUpObjectHitHighlight.Deactivate();
             }
             owner.crosshair.color = Color.red;
+        }
+
+        if (Input.GetMouseButtonDown(1)) {
+            Pull();
         }
     }
 
