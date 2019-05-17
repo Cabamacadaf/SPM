@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float crouchSpeed;
+    [Range(0, 1)][Tooltip("Slow down the movementspeed by a precentage when player is moving backwards")]
     [SerializeField] private float backwardsSpeedModifier;
     [SerializeField] private float gravityModifier;
     [SerializeField] private float jumpForce;
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
             velocity = direction.normalized * speed;
 
-            CheckIfMovingBackwards();
+            //CheckIfMovingBackwards();
 
             playerJumping = false;
 
@@ -175,6 +176,9 @@ public class PlayerController : MonoBehaviour
     private void SprintState()
     {
         speed = sprintSpeed;
+        if (forward < 0) {
+            speed *= backwardsSpeedModifier;
+        }
         staminaComponent.UseStamina();
 
         if (Input.GetKey(KeyCode.LeftShift) == false || staminaComponent.Stamina <= 0)
@@ -201,6 +205,10 @@ public class PlayerController : MonoBehaviour
     private void WalkState()
     {
         speed = walkSpeed;
+        if (forward < 0) {
+            speed *= backwardsSpeedModifier;
+        }
+    
         staminaComponent.RecoverStamina();
 
 
@@ -238,12 +246,12 @@ public class PlayerController : MonoBehaviour
         checkCollisionCounter = 0;
     }
 
-    private void CheckIfMovingBackwards ()
-    {
-        if (Vector3.Dot(velocity, transform.forward) <= -0.9f) {
-            velocity *= backwardsSpeedModifier;
-        }
-    }
+    //private void CheckIfMovingBackwards ()
+    //{
+    //    if (Vector3.Dot(velocity, transform.forward) <= -0.9f) {
+    //        velocity *= backwardsSpeedModifier;
+    //    }
+    //}
 
     public bool IsGrounded()
     {

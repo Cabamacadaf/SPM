@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : StateMachine
 {
-
-	public Animator anim; 
+	[HideInInspector] public Animator animator; 
 
     public AudioClip attackSound;
     public AudioClip aggroSound;
@@ -38,7 +37,7 @@ public class Enemy : StateMachine
 
     protected override void Awake ()
     {
-		anim = GetComponent<Animator>();
+		animator = GetComponent<Animator>();
         lightSource = GetComponentInChildren<Light>();
         audioSource = GetComponent<AudioSource>();
         rigidBody = GetComponent<Rigidbody>();

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7543826323438187457}
   - component: {fileID: 7543826323438187456}
   - component: {fileID: 2883381633301016481}
+  - component: {fileID: 343493697542627586}
   m_Layer: 13
   m_Name: Explosive Object
   m_TagString: Shootable
@@ -99,8 +100,6 @@ MonoBehaviour:
   impactDamage: 25
   lowestVelocityToDoDamage: 1
   holdingOpacity: 0.5
-  regularMaterial: {fileID: 2100000, guid: 16a4e59491d7b83439dcf7dae41d10ba, type: 2}
-  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
   horizontalParticleEffect: {fileID: 0}
   verticalParticaleEffect: {fileID: 0}
   power: 10
@@ -137,3 +136,17 @@ CapsuleCollider:
   m_Height: 0.55983377
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &343493697542627586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543826323438187487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4856ba3b6e7064ca7f04ebfba54121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regularMaterial: {fileID: 2100000, guid: 16a4e59491d7b83439dcf7dae41d10ba, type: 2}
+  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}

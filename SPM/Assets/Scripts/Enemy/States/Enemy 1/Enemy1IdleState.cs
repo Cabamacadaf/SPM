@@ -12,7 +12,7 @@ public class Enemy1IdleState : EnemyIdleState
 
 	public override void Enter () 
 	{
-		owner.anim.SetFloat("Enemy1Speed", 0.0f);
+		owner.animator.SetFloat("Enemy1Speed", 0.0f);
 	}
 		
 }

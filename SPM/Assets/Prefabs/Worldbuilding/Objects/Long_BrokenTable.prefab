@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6107024431316210202}
   - component: {fileID: 6107024431316210201}
   - component: {fileID: 6107024431316210200}
+  - component: {fileID: 7181403818367304188}
   m_Layer: 13
   m_Name: Long_BrokenTable
   m_TagString: Shootable
@@ -128,5 +129,17 @@ MonoBehaviour:
   impactDamage: 25
   lowestVelocityToDoDamage: 1
   holdingOpacity: 0.5
+--- !u!114 &7181403818367304188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107024431316210206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4856ba3b6e7064ca7f04ebfba54121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   regularMaterial: {fileID: 2100000, guid: df899715eb8991a418894b475ec06460, type: 2}
   highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
