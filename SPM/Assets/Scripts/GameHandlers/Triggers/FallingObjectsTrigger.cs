@@ -12,6 +12,7 @@ public class FallingObjectsTrigger : MonoBehaviour
         {
             foreach (Rigidbody thing in objects) {
                 thing.isKinematic = false;
+                thing.gameObject.layer = LayerMask.NameToLayer("Intangible");
             }
         }
     }
