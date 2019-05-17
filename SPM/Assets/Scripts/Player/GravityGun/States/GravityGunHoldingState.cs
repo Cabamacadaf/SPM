@@ -11,7 +11,7 @@ public class GravityGunHoldingState : GravityGunBaseState
 
     private Vector3 wallPassThroughRaycastDirection;
 
-    public override void Enter()
+    public override void Enter ()
     {
         isCharging = false;
         timer = 0;
@@ -20,32 +20,29 @@ public class GravityGunHoldingState : GravityGunBaseState
         base.Enter();
     }
 
-    public override void HandleUpdate()
+    public override void HandleUpdate ()
     {
         CheckPassThroughWallRaycast();
 
-        if (UpgradeSettings.instance.HasUpgrade)
-        {
+        if (UpgradeSettings.instance.HasUpgrade) {
             UpgradedGravityGun();
         }
 
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
-                DropObject();
-            }
+        else if (Input.GetMouseButtonDown(0)) {
+            owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
+            DropObject();
         }
 
+        if (Input.GetKeyDown(KeyCode.R)) {
+            owner.Transition<GravityGunRotatingState>();
+        }
 
         base.HandleUpdate();
     }
 
-    private void UpgradedGravityGun()
+    private void UpgradedGravityGun ()
     {
-        if (Input.GetMouseButton(0) &&  timer <= UpgradeSettings.instance.MaxTime)
-        {
+        if (Input.GetMouseButton(0) && timer <= UpgradeSettings.instance.MaxTime) {
             owner.holdingObject.ImpactDamage += UpgradeSettings.instance.GrowRate;
             owner.pushForce += UpgradeSettings.instance.GrowRate;
             timer += Time.deltaTime;
@@ -53,11 +50,9 @@ public class GravityGunHoldingState : GravityGunBaseState
 
         }
 
-        else if (isCharging)
-        {
+        else if (isCharging) {
             Addforce();
             DropObject();
-
         }
     }
 
@@ -71,7 +66,7 @@ public class GravityGunHoldingState : GravityGunBaseState
         }
     }
 
-    private void Addforce()
+    private void Addforce ()
     {
         Vector3 direction = Camera.main.transform.forward;
         float force = owner.pushForce;
