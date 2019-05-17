@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float crouchSpeed;
+    [SerializeField] private float backwardsSpeedModifier;
     [SerializeField] private float gravityModifier;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fallGravityScale;
@@ -116,6 +117,9 @@ public class PlayerController : MonoBehaviour
             }
 
             velocity = direction.normalized * speed;
+
+            CheckIfMovingBackwards();
+
             playerJumping = false;
 
             if (Input.GetAxisRaw("Jump") > 0f)
@@ -229,13 +233,17 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         CheckCollision();
-
         transform.position += velocity * Time.deltaTime - snapSum;
         snapSum = Vector3.zero;
         checkCollisionCounter = 0;
     }
 
-
+    private void CheckIfMovingBackwards ()
+    {
+        if (Vector3.Dot(velocity, transform.forward) <= -0.9f) {
+            velocity *= backwardsSpeedModifier;
+        }
+    }
 
     public bool IsGrounded()
     {
