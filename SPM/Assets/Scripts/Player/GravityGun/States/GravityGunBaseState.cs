@@ -28,6 +28,7 @@ public class GravityGunBaseState : State
 
         if (owner.holdingObject != null) {
             CheckPullPointRaycast();
+            owner.holdingObject.LastFramePosition = owner.holdingObject.transform.position;
         }
 
         PullPointRotation();
@@ -68,6 +69,7 @@ public class GravityGunBaseState : State
 
     private void CheckPullPointRaycast ()
     {
+        Debug.Log(owner.holdingObject.transform);
         pullPointDirection = owner.pullPoint.position - owner.holdingObject.transform.position;
         Physics.Raycast(owner.holdingObject.transform.position, pullPointDirection.normalized, out pullPointDirectionCastHit, pullPointDirection.magnitude, owner.raycastCollideLayer);
     }

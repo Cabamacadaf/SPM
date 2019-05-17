@@ -8,8 +8,9 @@ public class PickUpObject : MonoBehaviour
 {
     public Transform OriginalParent { get; set; }
     public Transform CurrentParent { get; set; }
-    public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
 
+    public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
+    public Vector3 LastFramePosition { get; set; }
 
     protected Rigidbody rigidBody;
     protected MeshRenderer meshRenderer;
@@ -54,6 +55,7 @@ public class PickUpObject : MonoBehaviour
     public void Hold (Vector3 pullPointPosition, Transform newParent)
     {
         isHeld = true;
+        gameObject.layer = LayerMask.NameToLayer("HoldingObject");
         CurrentParent = newParent;
         transform.SetParent(newParent);
         rigidBody.velocity = Vector3.zero;
@@ -63,6 +65,7 @@ public class PickUpObject : MonoBehaviour
     public void Drop ()
     {
         isHeld = false;
+        gameObject.layer = LayerMask.NameToLayer("Pick Up Objects");
         rigidBody.useGravity = true;
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
@@ -72,6 +75,7 @@ public class PickUpObject : MonoBehaviour
 
     public void Pull ()
     {
+        LastFramePosition = transform.position;
         rigidBody.useGravity = false;
         UnHighlight();
     }
