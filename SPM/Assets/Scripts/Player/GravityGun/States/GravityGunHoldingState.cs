@@ -6,10 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/GravityGun/HoldingState")]
 public class GravityGunHoldingState : GravityGunBaseState
 {
-
-
     private bool isCharging;
     private float timer;
+
+    private Vector3 wallPassThroughRaycastDirection;
 
     public override void Enter()
     {
@@ -22,10 +22,13 @@ public class GravityGunHoldingState : GravityGunBaseState
 
     public override void HandleUpdate()
     {
+        CheckPassThroughWallRaycast();
+
         if (UpgradeSettings.instance.HasUpgrade)
         {
             UpgradedGravityGun();
         }
+
         else
         {
             if (Input.GetMouseButtonDown(0))
@@ -55,6 +58,16 @@ public class GravityGunHoldingState : GravityGunBaseState
             Addforce();
             DropObject();
 
+        }
+    }
+
+    private void CheckPassThroughWallRaycast ()
+    {
+        wallPassThroughRaycastDirection = owner.holdingObject.transform.position - owner.holdingObject.LastFramePosition;
+        Physics.Raycast(owner.holdingObject.LastFramePosition, wallPassThroughRaycastDirection.normalized, out RaycastHit hit, wallPassThroughRaycastDirection.magnitude, owner.raycastCollideLayer);
+        if (hit.collider != null) {
+            owner.holdingObject.transform.position = owner.holdingObject.LastFramePosition;
+            DropObject();
         }
     }
 
