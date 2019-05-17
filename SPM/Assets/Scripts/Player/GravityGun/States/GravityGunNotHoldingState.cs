@@ -20,10 +20,7 @@ public class GravityGunNotHoldingState : GravityGunBaseState
         if (Input.GetMouseButtonDown(1)) {
             Pull();
         }
-    }
 
-    public override void HandleFixedUpdate ()
-    {
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out aimRaycastHit, owner.pullRange, owner.raycastCollideLayer);
 
         if (aimRaycastHit.collider != null && Functions.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, owner.pullLayer)) {
@@ -45,7 +42,6 @@ public class GravityGunNotHoldingState : GravityGunBaseState
             }
             owner.crosshair.color = Color.red;
         }
-        base.HandleFixedUpdate();
     }
 
     public void Pull ()
