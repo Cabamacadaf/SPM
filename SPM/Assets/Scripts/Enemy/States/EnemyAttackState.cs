@@ -16,9 +16,9 @@ public class EnemyAttackState : EnemyBaseState
         owner.attackObject.SetActive(true);
 
 		if (owner is Enemy1) {
-			owner.anim.SetTrigger("Enemy1Attack");
+			owner.animator.SetTrigger("Enemy1Attack");
 		} else if (owner is Enemy2) {
-			owner.anim.SetTrigger("Enemy2Attack");
+			owner.animator.SetTrigger("Enemy2Attack");
 		}
 
         base.Enter();
