@@ -40,14 +40,15 @@ public class GravityGunBaseState : State
     {
         if (owner.holdingObject != null) {
             if (Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToGrab) {
-
                 if (pullPointDirectionCastHit.collider != null) {
-                    Debug.DrawRay(owner.holdingObject.transform.position, pullPointDirection, new Color(255, 100, 0));
-                    Debug.DrawLine(owner.holdingObject.transform.position, pullPointDirectionCastHit.point, Color.green);
-
                     if (owner.holdingObject.transform.parent == owner.holdingObject.CurrentParent) {
                         owner.holdingObject.transform.SetParent(owner.holdingObject.OriginalParent);
                     }
+
+                    if(Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToDrop){
+                        DropObject();
+                    }
+
                     moveToPosition = (pullPointDirectionCastHit.point - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime; ;
                 }
 
@@ -55,6 +56,7 @@ public class GravityGunBaseState : State
                     if (owner.holdingObject.transform.parent == owner.holdingObject.OriginalParent) {
                         owner.holdingObject.transform.SetParent(owner.holdingObject.CurrentParent);
                     }
+
                     moveToPosition = (owner.pullPoint.position - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime;
                 }
                 owner.holdingObject.transform.position += moveToPosition;
@@ -62,8 +64,14 @@ public class GravityGunBaseState : State
             else {
                 owner.holdingObject.transform.position = owner.pullPoint.position;
             }
+
             if ((owner.GetCurrentState() is GravityGunRotatingState) == false) {
-                owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.localRotation, owner.objectRotationSpeed * Time.deltaTime);
+                if (owner.isRotated == false) {
+                    owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.pullPoint.localRotation, owner.objectRotationSpeed * Time.deltaTime);
+                }
+                else {
+                    owner.holdingObject.transform.localRotation = Quaternion.Lerp(owner.holdingObject.transform.localRotation, owner.objectRotation, owner.objectRotationSpeed * Time.deltaTime);
+                }
             }
         }
         base.HandleFixedUpdate();
