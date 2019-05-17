@@ -13,6 +13,8 @@ public class GravityGun : StateMachine
     public float distanceToGrab = 0.1f;
     public float distanceToDrop = 1.0f;
     public float objectRotationSpeed = 2.0f;
+    public bool isRotated = false;
+    public Quaternion objectRotation;
 
     public LayerMask raycastCollideLayer;
     public LayerMask pullLayer;

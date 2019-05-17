@@ -21,7 +21,8 @@ public class GravityGunRotatingState : GravityGunBaseState
     {
         rotationX = owner.holdingObject.transform.localEulerAngles.x;
         rotationY = owner.holdingObject.transform.localEulerAngles.y;
-        cameraController.enabled = false;
+        owner.isRotated = true;
+        cameraController.MouseControlOn = false;
         base.Enter();
     }
 
@@ -32,13 +33,14 @@ public class GravityGunRotatingState : GravityGunBaseState
         }
         rotationX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         rotationY += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-        owner.holdingObject.transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        owner.objectRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        owner.holdingObject.transform.localRotation = owner.objectRotation;
         base.HandleUpdate();
     }
 
     public override void Exit ()
     {
-        cameraController.enabled = true;
+        cameraController.MouseControlOn = true;
         base.Exit();
     }
 }
