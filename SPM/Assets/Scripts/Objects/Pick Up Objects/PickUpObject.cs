@@ -4,6 +4,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Highlight))]
 public class PickUpObject : MonoBehaviour
 {
     public Transform OriginalParent { get; set; }
@@ -14,19 +15,15 @@ public class PickUpObject : MonoBehaviour
 
     protected Rigidbody rigidBody;
     protected MeshRenderer meshRenderer;
+    protected Highlight highlight;
     public new Collider collider { get; private set; }
-    [SerializeField] private LayerMask collisionMask;
 
     [SerializeField] protected int durability = 3;
     [SerializeField] private float impactDamage = 25f;
     [SerializeField] protected float lowestVelocityToDoDamage = 1.0f;
     [SerializeField] private float holdingOpacity = 0.5f;
-
-    [SerializeField] private Material regularMaterial;
-    [SerializeField] private Material highlightedMaterial;
-
+    
     protected bool isThrown = false;
-    private bool isHighlighted = false;
     private bool isHeld = false;
     public bool IsColliding { get; private set; }
 
@@ -40,6 +37,7 @@ public class PickUpObject : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         collider = GetComponent<Collider>();
+        highlight = GetComponent<Highlight>();
     }
 
     private void Update ()
@@ -76,8 +74,9 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         LastFramePosition = transform.position;
+        highlight.Deactivate();
+        Debug.Log("Deactivate");
         rigidBody.useGravity = false;
-        UnHighlight();
     }
 
     protected void LoseDurability ()
@@ -86,26 +85,6 @@ public class PickUpObject : MonoBehaviour
         if (durability <= 0) {
             ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
             objectDestroyedEvent.ExecuteEvent();
-        }
-    }
-
-    public void Highlight ()
-    {
-        if (isHighlighted == false) {
-            isHighlighted = true;
-            Color color = meshRenderer.material.color;
-            meshRenderer.material = highlightedMaterial;
-            meshRenderer.material.color = color;
-        }
-    }
-
-    public void UnHighlight ()
-    {
-        if (isHighlighted == true) {
-            isHighlighted = false;
-            Color color = meshRenderer.material.color;
-            meshRenderer.material = regularMaterial;
-            meshRenderer.material.color = color;
         }
     }
 

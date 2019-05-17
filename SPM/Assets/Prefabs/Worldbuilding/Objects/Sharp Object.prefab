@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5783386443276705256}
   - component: {fileID: 1204479263051125963}
   - component: {fileID: 5326294392837653693}
+  - component: {fileID: 4914499503447158193}
   m_Layer: 13
   m_Name: Sharp Object
   m_TagString: Shootable
@@ -121,12 +122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 11777
   durability: 2
   impactDamage: 50
   lowestVelocityToDoDamage: 1
   holdingOpacity: 0.5
+--- !u!114 &4914499503447158193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783386443276705257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4856ba3b6e7064ca7f04ebfba54121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   regularMaterial: {fileID: 2100000, guid: b233302b4b2184f4fb074d8606bcf89e, type: 2}
   highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}

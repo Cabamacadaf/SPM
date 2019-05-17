@@ -40,6 +40,11 @@ public class GravityGunHoldingState : GravityGunBaseState
         base.HandleUpdate();
     }
 
+    public override void HandleFixedUpdate ()
+    {
+        base.HandleFixedUpdate ();
+    }
+
     private void UpgradedGravityGun ()
     {
         if (Input.GetMouseButton(0) && timer <= UpgradeSettings.instance.MaxTime) {
