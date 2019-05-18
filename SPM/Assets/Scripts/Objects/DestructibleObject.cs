@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DestructibleObject : MonoBehaviour
 {
-    public float hitPoints = 20.0f;
+    [SerializeField] private float hitPoints = 20.0f;
+    public float HitPoints { get => hitPoints; set => hitPoints = value; }
 
     private void Update ()
     {
-        if(hitPoints <= 0.0f) {
+        if(HitPoints <= 0.0f) {
             Destroy(gameObject);
         }
     }

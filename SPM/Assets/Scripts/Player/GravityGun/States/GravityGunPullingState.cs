@@ -9,14 +9,14 @@ public class GravityGunPullingState : GravityGunBaseState
 {
     public override void Enter ()
     {
-        owner.holdingObject.Pull();
+        Owner.HoldingObject.Pull();
         base.Enter();
     }
 
     public override void HandleFixedUpdate ()
     {
-        if(Vector3.Distance(owner.holdingObject.transform.position, owner.pullPoint.position) < owner.distanceToGrab) {
-            owner.Transition<GravityGunHoldingState>();
+        if(Vector3.Distance(Owner.HoldingObject.transform.position, Owner.PullPoint.position) < Owner.DistanceToGrab) {
+            Owner.Transition<GravityGunHoldingState>();
         }
         base.HandleFixedUpdate();
     }

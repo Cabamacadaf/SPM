@@ -21,7 +21,7 @@ public class PowerCoreObjectiveController : MonoBehaviour
 
             isActive = false;
 
-            if (gravityGun.holdingObject != null)
+            if (gravityGun.HoldingObject != null)
             {
                 GravityGunBaseState gravityGunState = (GravityGunBaseState)gravityGun.GetCurrentState();
                 gravityGunState.DropObject(false);

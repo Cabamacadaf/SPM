@@ -15,8 +15,8 @@ public class GravityGunHoldingState : GravityGunBaseState
     {
         isCharging = false;
         timer = 0;
-        owner.holdingObject.Hold(owner.pullPoint.position, owner.transform);
-        owner.crosshair.color = Color.yellow;
+        Owner.HoldingObject.Hold(Owner.PullPoint.position, Owner.transform);
+        Owner.Crosshair.color = Color.yellow;
         base.Enter();
     }
 
@@ -29,12 +29,12 @@ public class GravityGunHoldingState : GravityGunBaseState
         }
 
         else if (Input.GetMouseButtonDown(0)) {
-            owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
+            Owner.HoldingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * Owner.PushForce);
             DropObject(true);
         }
 
         if (Input.GetKeyDown(KeyCode.R)) {
-            owner.Transition<GravityGunRotatingState>();
+            Owner.Transition<GravityGunRotatingState>();
         }
 
         base.HandleUpdate();
@@ -48,8 +48,8 @@ public class GravityGunHoldingState : GravityGunBaseState
     private void UpgradedGravityGun ()
     {
         if (Input.GetMouseButton(0) && timer <= UpgradeSettings.instance.MaxTime) {
-            owner.holdingObject.ImpactDamage += UpgradeSettings.instance.GrowRate;
-            owner.pushForce += UpgradeSettings.instance.GrowRate;
+            Owner.HoldingObject.ImpactDamage += UpgradeSettings.instance.GrowRate;
+            Owner.PushForce += UpgradeSettings.instance.GrowRate;
             timer += Time.deltaTime;
             isCharging = true;
 
@@ -63,10 +63,10 @@ public class GravityGunHoldingState : GravityGunBaseState
 
     private void CheckPassThroughWallRaycast ()
     {
-        wallPassThroughRaycastDirection = owner.holdingObject.transform.position - owner.holdingObject.LastFramePosition;
-        Physics.Raycast(owner.holdingObject.LastFramePosition, wallPassThroughRaycastDirection.normalized, out RaycastHit hit, wallPassThroughRaycastDirection.magnitude, owner.raycastCollideLayer);
+        wallPassThroughRaycastDirection = Owner.HoldingObject.transform.position - Owner.HoldingObject.LastFramePosition;
+        Physics.Raycast(Owner.HoldingObject.LastFramePosition, wallPassThroughRaycastDirection.normalized, out RaycastHit hit, wallPassThroughRaycastDirection.magnitude, Owner.RaycastCollideLayer);
         if (hit.collider != null) {
-            owner.holdingObject.transform.position = owner.holdingObject.LastFramePosition;
+            Owner.HoldingObject.transform.position = Owner.HoldingObject.LastFramePosition;
             DropObject(false);
         }
     }
@@ -74,7 +74,7 @@ public class GravityGunHoldingState : GravityGunBaseState
     private void Addforce ()
     {
         Vector3 direction = Camera.main.transform.forward;
-        float force = owner.pushForce;
-        owner.holdingObject.GetComponent<Rigidbody>().AddForce(direction * force);
+        float force = Owner.PushForce;
+        Owner.HoldingObject.GetComponent<Rigidbody>().AddForce(direction * force);
     }
 }
