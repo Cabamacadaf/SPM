@@ -43,26 +43,9 @@ public class GravityGun : StateMachine
     public PickUpObject HoldingObject { get; set; }
     #endregion
 
-    //Power up
-    [SerializeField] private float powerUpLength;
-    [SerializeField] private float powerUpIncreaseRange;
-
     protected override void Awake ()
     {
         Crosshair = FindObjectOfType<Canvas>().transform.Find("Crosshair").GetComponent<Image>();
         base.Awake();
-    }
-
-    private IEnumerator PowerDownRoutine ()
-    {
-        yield return new WaitForSeconds(powerUpLength);
-        
-        PullRange -= powerUpIncreaseRange;
-    }
-
-    public void PowerUp ()
-    {
-        PullRange += powerUpIncreaseRange;
-        StartCoroutine(PowerDownRoutine());
     }
 }
