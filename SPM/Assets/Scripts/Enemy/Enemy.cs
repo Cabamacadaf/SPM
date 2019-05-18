@@ -62,7 +62,7 @@ public abstract class Enemy : StateMachine
     public float IdleSoundMaxTime { get => idleSoundMaxTime; private set => idleSoundMaxTime = value; }
 
     public SkinnedMeshRenderer MeshRenderer { get; private set; }
-    public BoxCollider BoxCollider { get; private set; }
+    public Collider Collider { get; private set; }
     public Rigidbody RigidBody { get; private set; }
     public AudioSource AudioSource { get; private set; }
     public Light LightSource { get; private set; }
@@ -77,7 +77,7 @@ public abstract class Enemy : StateMachine
         LightSource = GetComponentInChildren<Light>();
         AudioSource = GetComponent<AudioSource>();
         RigidBody = GetComponent<Rigidbody>();
-        BoxCollider = GetComponent<BoxCollider>();
+        Collider = GetComponent<Collider>();
         Agent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Player = FindObjectOfType<PlayerController>();

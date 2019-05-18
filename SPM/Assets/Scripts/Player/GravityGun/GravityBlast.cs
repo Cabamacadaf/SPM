@@ -16,7 +16,7 @@ public class GravityBlast : MonoBehaviour
 
     private StateMachine gravityGun;
 
-    public float BlastForce { get; private set; }
+    public float BlastForce { get => blastForce; private set => blastForce = value; }
 
     private void Awake ()
     {
