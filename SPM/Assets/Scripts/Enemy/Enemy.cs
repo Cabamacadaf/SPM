@@ -7,6 +7,7 @@ public abstract class Enemy : StateMachine
 {
     #region Private Fields
     [SerializeField] private float hitPoints = 50.0f;
+    private float maxHitPoints;
 
     [SerializeField] private float attackDamage = 25.0f;
     [SerializeField] private float attackDistance = 1.0f;
@@ -35,6 +36,7 @@ public abstract class Enemy : StateMachine
 
     #region Properties
     public float HitPoints { get => hitPoints; set => hitPoints = value; }
+    public float MaxHitPoints { get; set; }
 
     public float AttackDamage { get => attackDamage; private set => attackDamage = value; }
     public float AttackDistance { get => attackDistance; private set => attackDistance = value; }
@@ -80,6 +82,7 @@ public abstract class Enemy : StateMachine
         Agent = GetComponent<NavMeshAgent>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Player = FindObjectOfType<PlayerController>();
+        MaxHitPoints = hitPoints;
         base.Awake();
     }
 }

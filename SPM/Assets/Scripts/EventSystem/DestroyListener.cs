@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyListener : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         EnemyDeathEvent.RegisterListener(OnEnemyDeath);
         KeycardPickedUpEvent.RegisterListener(OnKeyCardPickedUp);
@@ -13,28 +13,28 @@ public class DestroyListener : MonoBehaviour
         DeathEvent.RegisterListener(OnPlayerDeath);
     }
 
-    void OnPlayerDeath(DeathEvent deathEvent)
+    private void OnPlayerDeath (DeathEvent deathEvent)
     {
         Debug.Log("OnPlayerDeath");
         GameManager.Instance.RespawnPlayer();
     }
 
-    void OnKeyCardPickedUp (KeycardPickedUpEvent keycardPickedUpEvent)
+    private void OnKeyCardPickedUp (KeycardPickedUpEvent keycardPickedUpEvent)
     {
         Destroy(keycardPickedUpEvent.gameObject);
     }
 
-    void OnEnemyDeath (EnemyDeathEvent enemyDeathEvent)
+    private void OnEnemyDeath (EnemyDeathEvent enemyDeathEvent)
     {
         Destroy(enemyDeathEvent.gameObject);
     }
 
-    void OnObjectDestroyed(ObjectDestroyedEvent objectDestroyedEvent)
+    private void OnObjectDestroyed (ObjectDestroyedEvent objectDestroyedEvent)
     {
         Destroy(objectDestroyedEvent.gameObject);
     }
 
-    void OnParticleSystemDestroyed(ParticleSystemDestroyedEvent particleSystemDestroyedEvent)
+    private void OnParticleSystemDestroyed (ParticleSystemDestroyedEvent particleSystemDestroyedEvent)
     {
         Destroy(particleSystemDestroyedEvent.gameObject);
     }

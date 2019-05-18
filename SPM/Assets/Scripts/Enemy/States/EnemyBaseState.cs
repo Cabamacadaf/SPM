@@ -27,13 +27,13 @@ public abstract class EnemyBaseState : State
         if (Owner.HitPoints <= 0) {
             Kill();
         }
-        Owner.MeshRenderer.material.color = Owner.MeshRenderer.material.color * Owner.HitPoints / 100;
+        Owner.MeshRenderer.material.color = Owner.MeshRenderer.material.color * Owner.HitPoints / Owner.MaxHitPoints;
     }
 
     public void Kill ()
     {
         EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent(Owner.gameObject);
-        enemyDeathEvent.eventDescription = "Enemy " + Owner.gameObject.name + " has died.";
+        enemyDeathEvent.EventDescription = "Enemy " + Owner.gameObject.name + " has died.";
         enemyDeathEvent.ExecuteEvent();
     }
 

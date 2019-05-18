@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class FlashlightPickup : InteractiveObject
 {
-    private Text messageText;
     [SerializeField] private float timeToShowMessage = 5.0f;
+
+    private Text messageText;
 
     private new void Awake ()
     {
@@ -17,7 +18,7 @@ public class FlashlightPickup : InteractiveObject
 
     private void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.E) && interactive) {
+        if(Input.GetKeyDown(KeyCode.E) && IsInteractive) {
             PickUpFlashlight();
         }
     }
@@ -28,7 +29,7 @@ public class FlashlightPickup : InteractiveObject
         GetComponent<MeshRenderer>().enabled = false;
         GetComponentInChildren<BoxCollider>().enabled = false;
         GetComponentInChildren<Light>().enabled = false;
-        interactText.enabled = false;
+        InteractText.enabled = false;
         StartCoroutine(DisplayHelpMessage());
     }
 

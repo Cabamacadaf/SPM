@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] protected GameObject objectToSpawn;
+    [SerializeField] private GameObject objectToSpawn;
+    protected GameObject ObjectToSpawn { get => objectToSpawn; private set => objectToSpawn = value; }
+
     public GameObject Spawn ()
     {
-        return Instantiate(objectToSpawn, transform);
+        return Instantiate(ObjectToSpawn, transform);
     }
 }

@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Main Author: Simon Sundström
+//Secondary Author: Marcus Mellström
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,5 +71,6 @@ public class CameraController : MonoBehaviour
     private void LockCursor ()
     {
         Cursor.lockState = wantedMode;
+        Cursor.visible = false;
     }
 }

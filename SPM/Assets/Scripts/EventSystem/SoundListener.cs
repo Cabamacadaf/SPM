@@ -10,12 +10,12 @@ public class SoundListener : MonoBehaviour
         EnemyAggroEvent.RegisterListener(OnEnemyAggro);
     }
 
-    void OnEnemyAttack(EnemyAttackEvent enemyAttackEvent)
+    private void OnEnemyAttack(EnemyAttackEvent enemyAttackEvent)
     {
         enemyAttackEvent.audioSource.PlayOneShot(enemyAttackEvent.audioClip);
     }
 
-    void OnEnemyAggro(EnemyAggroEvent enemyAggroEvent)
+    private void OnEnemyAggro(EnemyAggroEvent enemyAggroEvent)
     {
         enemyAggroEvent.audioSource.PlayOneShot(enemyAggroEvent.audioClip);
     }

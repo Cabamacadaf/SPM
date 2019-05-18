@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Marcus Mellström
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,28 +10,26 @@ public class FlickeringLight : MonoBehaviour
     [SerializeField] private float maxFlickerSpeed = 0.5f;
 
     new private Light light;
-    private bool running = false;
+
+    private float flickerTimer = 0.0f;
+    private float flickerTime;
 
     private void Awake ()
     {
         light = GetComponent<Light>();
-        StartCoroutine(Flicker());
+        flickerTime = Random.Range(minFlickerSpeed, maxFlickerSpeed);
     }
 
     private void Update ()
     {
-        if (!running) {
-            StartCoroutine(Flicker());
+        if(flickerTimer >= flickerTime) {
+            if(light.enabled == true) {
+                light.enabled = false;
+            }
+            else {
+                light.enabled = true;
+            }
+            flickerTimer = 0;
         }
-    }
-
-    private IEnumerator Flicker()
-    {
-        running = true;
-        light.enabled = true;
-        yield return new WaitForSeconds (Random.Range(minFlickerSpeed, maxFlickerSpeed));
-        light.enabled = false;
-        yield return new WaitForSeconds(Random.Range(minFlickerSpeed, maxFlickerSpeed));
-        running = false;
     }
 }

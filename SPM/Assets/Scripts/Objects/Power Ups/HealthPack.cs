@@ -14,12 +14,12 @@ public class HealthPack : InteractiveObject
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactive && other.CompareTag("Player"))
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && other.CompareTag("Player"))
         {
             playerHealth = other.GetComponent<HealthComponent>();
             playerHealth.Addhealth(healthToAdd);
-            interactText.text = "";
-            interactText.enabled = false;
+            InteractText.text = "";
+            InteractText.enabled = false;
             ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
             objectDestroyedEvent.ExecuteEvent();
         }

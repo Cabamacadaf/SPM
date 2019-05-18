@@ -9,6 +9,7 @@ public class AudioLog : InteractiveObject
     [SerializeField] private string[] audioLogText;
     [SerializeField] private float delayBeforeStartPlaying = 0.5f;
     [SerializeField] private float timeBetweenText = 2.0f;
+
     private AudioSource audioSource;
 
     [SerializeField] private AudioClip audioLogClip;
@@ -26,9 +27,9 @@ public class AudioLog : InteractiveObject
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactive && !played) {
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && !played) {
             played = true;
-            interactText.enabled = false;
+            InteractText.enabled = false;
             GetComponentInChildren<BoxCollider>().enabled = false;
             StartCoroutine(PlayAudioLogMessage());
         }

@@ -7,24 +7,25 @@ using UnityEngine;
 [RequireComponent(typeof(Highlight))]
 public class PickUpObject : MonoBehaviour
 {
-    public Transform OriginalParent { get; set; }
-    public Transform CurrentParent { get; set; }
+    [SerializeField] private float impactDamage = 25f;
+    [SerializeField] private int durability = 3;
+    [SerializeField] private float holdingOpacity = 0.5f;
 
     public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
-    public Vector3 LastFramePosition { get; set; }
-
-    protected Rigidbody rigidBody;
-    protected MeshRenderer meshRenderer;
-    protected Highlight highlight;
-    public new Collider collider { get; private set; }
-
-    [SerializeField] protected int durability = 3;
-    [SerializeField] private float impactDamage = 25f;
-    [SerializeField] private float holdingOpacity = 0.5f;
+    protected int Durability { get => durability; set => durability = value; }
     
-    protected bool isThrown = false;
-    private bool isHeld = false;
+    public Vector3 LastFramePosition { get; set; }
+    
+    protected bool isThrown { get; set; }
     public bool IsColliding { get; private set; }
+
+    protected Highlight Highlight { get; private set; }
+    protected Rigidbody RigidBody { get; private set; }
+    protected MeshRenderer MeshRenderer { get; private set; }
+    public Collider Collider { get; private set; }
+
+    public Transform OriginalParent { get; set; }
+    public Transform CurrentParent { get; set; }
 
     private float throwTimer = 0;
     private float thrownTime = 3.0f;
@@ -33,10 +34,10 @@ public class PickUpObject : MonoBehaviour
     {
         OriginalParent = transform.parent;
         CurrentParent = OriginalParent;
-        rigidBody = GetComponent<Rigidbody>();
-        meshRenderer = GetComponent<MeshRenderer>();
-        collider = GetComponent<Collider>();
-        highlight = GetComponent<Highlight>();
+        RigidBody = GetComponent<Rigidbody>();
+        MeshRenderer = GetComponent<MeshRenderer>();
+        Collider = GetComponent<Collider>();
+        Highlight = GetComponent<Highlight>();
     }
 
     private void Update ()
@@ -51,20 +52,18 @@ public class PickUpObject : MonoBehaviour
 
     public void Hold (Vector3 pullPointPosition, Transform newParent)
     {
-        isHeld = true;
         gameObject.layer = LayerMask.NameToLayer("HoldingObject");
         CurrentParent = newParent;
         transform.SetParent(newParent);
-        rigidBody.velocity = Vector3.zero;
-        meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
+        RigidBody.velocity = Vector3.zero;
+        MeshRenderer.material.color = new Color(MeshRenderer.material.color.r, MeshRenderer.material.color.g, MeshRenderer.material.color.b, holdingOpacity);
     }
 
     public void Drop (bool isThrown)
     {
-        isHeld = false;
         gameObject.layer = LayerMask.NameToLayer("Pick Up Objects");
-        rigidBody.useGravity = true;
-        meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
+        RigidBody.useGravity = true;
+        MeshRenderer.material.color = new Color(MeshRenderer.material.color.r, MeshRenderer.material.color.g, MeshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
         this.isThrown = isThrown;
@@ -73,14 +72,14 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         LastFramePosition = transform.position;
-        highlight.Deactivate();
-        rigidBody.useGravity = false;
+        Highlight.Deactivate();
+        RigidBody.useGravity = false;
     }
 
     protected void LoseDurability ()
     {
-        durability--;
-        if (durability <= 0) {
+        Durability--;
+        if (Durability <= 0) {
             ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
             objectDestroyedEvent.ExecuteEvent();
         }

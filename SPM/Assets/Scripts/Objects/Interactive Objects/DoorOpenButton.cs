@@ -8,11 +8,11 @@ public class DoorOpenButton : InteractiveObject
 
     private void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactive) {
-            if (door.closed) {
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive) {
+            if (door.IsClosed) {
                 door.Open();
             }
-            else if (door.open) {
+            else if (door.IsOpen) {
                 door.Close();
             }
         }

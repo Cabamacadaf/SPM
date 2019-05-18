@@ -16,11 +16,11 @@ public class HeavyDoor : Door
 
     private void Awake ()
     {
-        if (closed) {
+        if (IsClosed) {
             leftDoor.localPosition = Vector3.zero;
             rightDoor.localPosition = Vector3.zero;
         }
-        else if (open) {
+        else if (IsOpen) {
             leftDoor.localPosition = leftMaxDistance;
             rightDoor.localPosition = rightMaxDistance;
         }
@@ -28,13 +28,13 @@ public class HeavyDoor : Door
 
     public override void Open ()
     {
-        closed = false;
+        IsClosed = false;
         StartCoroutine(Opening());
     }
 
     public override void Close ()
     {
-        open = false;
+        IsOpen = false;
         StartCoroutine(Closing());
     }
 
@@ -53,7 +53,7 @@ public class HeavyDoor : Door
             rightDoor.localPosition = Vector3.Lerp(Vector3.zero, rightMaxDistance, doorSpeed * timer);
             yield return null;
         }
-        open = true;
+        IsOpen = true;
         isMoving = false;
     }
 
@@ -72,7 +72,7 @@ public class HeavyDoor : Door
             rightDoor.localPosition = Vector3.Lerp(rightMaxDistance, Vector3.zero, doorSpeed * timer);
             yield return null;
         }
-        closed = true;
+        IsClosed = true;
         isMoving = false;
     }
 }

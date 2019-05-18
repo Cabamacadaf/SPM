@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿//Author: Marcus Mellström
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LightButton : InteractiveObject
 {
     [SerializeField] private Light[] lights;
-    public Light ButtonLight;
+
+    [SerializeField] private Light ButtonLight;
 
     private void Start ()
     {
@@ -16,7 +19,7 @@ public class LightButton : InteractiveObject
     }
     private void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.E) && interactive) {
+        if(Input.GetKeyDown(KeyCode.E) && IsInteractive) {
             TurnOnLights();
             ButtonLight.enabled = false;
         }

@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class LightTrigger : MonoBehaviour
 {
+    [SerializeField] private Light roomLight;
+    [SerializeField] private Light buttonLight;
 
-    public Light roomLight;
-    public Light buttonLight;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         roomLight.enabled = false;
         buttonLight.enabled = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter (Collider other)

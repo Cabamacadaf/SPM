@@ -8,11 +8,11 @@ public class Level2PuzzleDoorOpenButton : InteractiveObject
 
     private void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactive && GameController.Instance.Level2PuzzleComplete) {
-            if (door.closed) {
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && GameController.Instance.Level2PuzzleComplete) {
+            if (door.IsClosed) {
                 door.Open();
             }
-            else if (door.open) {
+            else if (door.IsOpen) {
                 door.Close();
             }
         }

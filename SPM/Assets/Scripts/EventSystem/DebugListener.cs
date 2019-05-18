@@ -11,18 +11,18 @@ public class DebugListener : MonoBehaviour
         KeycardPickedUpEvent.RegisterListener(OnKeyCardPickedUp);
     }
 
-    void OnPowerCorePlaced (PowerCorePlacedEvent powerCorePlacedEvent)
+    private void OnPowerCorePlaced (PowerCorePlacedEvent powerCorePlacedEvent)
     {
-        Debug.Log(powerCorePlacedEvent.eventDescription);
+        Debug.Log(powerCorePlacedEvent.EventDescription);
     }
 
-    void OnEnemyDeath (EnemyDeathEvent enemyDeathEvent)
+    private void OnEnemyDeath (EnemyDeathEvent enemyDeathEvent)
     {
-        Debug.Log(enemyDeathEvent.eventDescription);
+        Debug.Log(enemyDeathEvent.EventDescription);
     }
 
-    void OnKeyCardPickedUp (KeycardPickedUpEvent keycardPickedUpEvent)
+    private void OnKeyCardPickedUp (KeycardPickedUpEvent keycardPickedUpEvent)
     {
-        Debug.Log(keycardPickedUpEvent.eventDescription);
+        Debug.Log(keycardPickedUpEvent.EventDescription);
     }
 }

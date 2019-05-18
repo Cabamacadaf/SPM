@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Event<T> where T : Event<T>
 {
-    public string eventDescription;
+    public string EventDescription { get; set; }
 
     private bool hasExecuted;
 

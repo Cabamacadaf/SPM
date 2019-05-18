@@ -6,9 +6,9 @@ public class KeycardPickup : InteractiveObject
 {
     private void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.E) && interactive) {
+        if(Input.GetKeyDown(KeyCode.E) && IsInteractive) {
             KeycardPickedUpEvent keycardPickedUpEvent = new KeycardPickedUpEvent(gameObject);
-            keycardPickedUpEvent.eventDescription = "Keycard picked up";
+            keycardPickedUpEvent.EventDescription = "Keycard picked up";
             keycardPickedUpEvent.ExecuteEvent();
         }
     }

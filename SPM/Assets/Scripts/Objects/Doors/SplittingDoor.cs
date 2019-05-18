@@ -18,12 +18,12 @@ public class SplittingDoor : Door
 
     private void Awake ()
     {
-        if (closed) {
+        if (IsClosed) {
             leftDoor.localPosition = Vector3.zero;
             rightDoor.localPosition = Vector3.zero;
             topDoor.localPosition = Vector3.zero;
         }
-        else if (open) {
+        else if (IsOpen) {
             leftDoor.localPosition = leftMaxDistance;
             rightDoor.localPosition = rightMaxDistance;
             topDoor.localPosition = topMaxDistance;
@@ -32,13 +32,13 @@ public class SplittingDoor : Door
 
     public override void Open ()
     {
-        closed = false;
+        IsClosed = false;
         StartCoroutine(Opening());
     }
 
     public override void Close ()
     {
-        open = false;
+        IsOpen = false;
         StartCoroutine(Closing());
     }
 
@@ -58,7 +58,7 @@ public class SplittingDoor : Door
             topDoor.localPosition = Vector3.Lerp(Vector3.zero, topMaxDistance, doorSpeed * timer);
             yield return null;
         }
-        open = true;
+        IsOpen = true;
         isMoving = false;
     }
 
@@ -78,7 +78,7 @@ public class SplittingDoor : Door
             topDoor.localPosition = Vector3.Lerp(topMaxDistance, Vector3.zero, doorSpeed * timer);
             yield return null;
         }
-        closed = true;
+        IsClosed = true;
         isMoving = false;
     }
 }

@@ -10,12 +10,12 @@ public class ObjectiveListener : MonoBehaviour
         KeycardPickedUpEvent.RegisterListener(OnKeycardPickedUp);
     }
 
-    void OnPowerCorePlaced(PowerCorePlacedEvent powerCorePlacedEvent)
+    private void OnPowerCorePlaced(PowerCorePlacedEvent powerCorePlacedEvent)
     {
         GameController.Instance.AddPowerCore();
     }
 
-    void OnKeycardPickedUp(KeycardPickedUpEvent keycardPickedUpEvent)
+    private void OnKeycardPickedUp(KeycardPickedUpEvent keycardPickedUpEvent)
     {
         GameController.Instance.HasLevel1Keycard = true;
     }

@@ -30,7 +30,7 @@ public class PowerCoreObjectiveController : MonoBehaviour
             TransformObject(other);
 
             PowerCorePlacedEvent objectiveEvent = new PowerCorePlacedEvent();
-            objectiveEvent.eventDescription = "Power Core placed.";
+            objectiveEvent.EventDescription = "Power Core placed.";
             objectiveEvent.ExecuteEvent();
 
         }

@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿//Author: Marcus Mellström
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingObjectsTrigger : MonoBehaviour
 {
-    public Rigidbody[] objects;
+    [SerializeField] private Rigidbody[] objects;
     
     private void OnTriggerEnter(Collider other)
     {

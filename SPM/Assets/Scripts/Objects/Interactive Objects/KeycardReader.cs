@@ -6,12 +6,13 @@ public class KeycardReader : InteractiveObject
 {
     [SerializeField] private new Light light;
     [SerializeField] private Color onColor;
-    private bool lightChanged = false;
     [SerializeField] private Door door;
+
+    private bool lightChanged = false;
 
     private new void Awake ()
     {
-        textToSet = "You need a Keycard to open this door";
+        TextToSet = "You need a Keycard to open this door";
         base.Awake();
     }
 
@@ -19,15 +20,15 @@ public class KeycardReader : InteractiveObject
     {
         if (!lightChanged && GameController.Instance.HasLevel1Keycard && GameController.Instance.HasAllPowerCores) {
             light.color = onColor;
-            textToSet = "Press E to interact";
+            TextToSet = "Press E to interact";
             lightChanged = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && interactive && GameController.Instance.HasLevel1Keycard && GameController.Instance.HasAllPowerCores) {
-            if (door.closed) {
+        if(Input.GetKeyDown(KeyCode.E) && IsInteractive && GameController.Instance.HasLevel1Keycard && GameController.Instance.HasAllPowerCores) {
+            if (door.IsClosed) {
                 door.Open();
             }
-            else if (door.open) {
+            else if (door.IsOpen) {
                 door.Close();
             }
         }
