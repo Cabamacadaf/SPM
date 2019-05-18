@@ -9,7 +9,7 @@ public class EnemyBlastedState : EnemyBaseState
 
     public override void Enter ()
     {
-        //Debug.Log("Blasted State");
+        Debug.Log("Blasted State");
         timer = 0.0f;
         Owner.Agent.enabled = false;
         Owner.RigidBody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;

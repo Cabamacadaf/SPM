@@ -40,6 +40,7 @@ public abstract class GravityGunBaseState : State
     {
         if (Owner.HoldingObject != null) {
             if (Vector3.Distance(Owner.PullPoint.position, Owner.HoldingObject.transform.position) > Owner.DistanceToGrab) {
+                //If object is trying to move through a wall
                 if (pullPointDirectionCastHit.collider != null) {
                     if (Owner.HoldingObject.transform.parent == Owner.HoldingObject.CurrentParent) {
                         Owner.HoldingObject.transform.SetParent(Owner.HoldingObject.OriginalParent);
