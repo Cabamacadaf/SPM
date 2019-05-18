@@ -6,15 +6,17 @@ using UnityEngine;
 public class GravityBlast : MonoBehaviour
 {
     [SerializeField] private Collider blastRadius;
-    [SerializeField] private Renderer meshRenderer;
     [SerializeField] private Light readyLight;
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private float cooldownTime = 10.0f;
+    [SerializeField] private float blastForce = 2000f;
+
     private float cooldownTimer = 0.0f;
     private bool cooldown = false;
+
     private StateMachine gravityGun;
 
-    public float blastForce = 50000.0f;
+    public float BlastForce { get; private set; }
 
     private void Awake ()
     {
@@ -47,10 +49,8 @@ public class GravityBlast : MonoBehaviour
 
     IEnumerator EnableTrigger ()
     {
-        meshRenderer.enabled = true;
         blastRadius.enabled = true;
         yield return 0;
-        meshRenderer.enabled = false;
         blastRadius.enabled = false;
     }
 }

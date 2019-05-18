@@ -108,7 +108,7 @@ public class PickUpObject : MonoBehaviour
         IsColliding = true;
 
         if (collision.collider.CompareTag("DestructibleObject") && isThrown) {
-            collision.collider.GetComponent<DestructibleObject>().hitPoints -= ImpactDamage;
+            collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
         }
     }
 

@@ -7,7 +7,6 @@ public abstract class Enemy : StateMachine
 {
     #region Private Fields
     [SerializeField] private float hitPoints = 50.0f;
-    private float maxHitPoints;
 
     [SerializeField] private float attackDamage = 25.0f;
     [SerializeField] private float attackDistance = 1.0f;

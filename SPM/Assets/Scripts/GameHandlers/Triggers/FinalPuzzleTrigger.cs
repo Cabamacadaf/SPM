@@ -25,7 +25,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
             Debug.Log("Collided");
 
             isActive = false;
-            if (gravityGun.holdingObject != null)
+            if (gravityGun.HoldingObject != null)
             {
                 GravityGunBaseState gravityGunState = (GravityGunBaseState)gravityGun.GetCurrentState();
                 gravityGunState.DropObject(false);
