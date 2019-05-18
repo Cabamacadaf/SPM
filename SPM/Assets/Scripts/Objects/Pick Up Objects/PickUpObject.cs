@@ -75,7 +75,6 @@ public class PickUpObject : MonoBehaviour
     {
         LastFramePosition = transform.position;
         highlight.Deactivate();
-        Debug.Log("Deactivate");
         rigidBody.useGravity = false;
     }
 

@@ -25,7 +25,7 @@ public class Enemy : StateMachine
     public float acceleration = 10.0f;
     public float rotationSpeed = 5.0f;
     public float blastRecoveryTime = 2.0f;
-    [HideInInspector] public MeshRenderer meshRenderer;
+    [HideInInspector] public SkinnedMeshRenderer meshRenderer;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public BoxCollider boxCollider;
     public GameObject attackObject;
@@ -43,7 +43,7 @@ public class Enemy : StateMachine
         rigidBody = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         player = FindObjectOfType<PlayerController>();
         base.Awake();
     }

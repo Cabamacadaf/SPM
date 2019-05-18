@@ -26,7 +26,6 @@ public class GravityGunNotHoldingState : GravityGunBaseState
             }
             lastPickUpObjectHitHighlight = aimRaycastHit.transform.GetComponent<Highlight>();
             lastPickUpObjectHitHighlight.Activate();
-            Debug.Log("Activate");
             owner.crosshair.color = Color.green;
         }
 
