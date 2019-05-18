@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBlastedState : EnemyBaseState
 {
     private float timer;
+
     public override void Enter ()
     {
         //Debug.Log("Blasted State");

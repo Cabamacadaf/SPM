@@ -5,15 +5,15 @@ using UnityEngine;
 public class Enemy2 : Enemy
 {
     #region Private Fields
-    [SerializeField] private float damageReduction = 0.5f;
+    [SerializeField] private float damageReduction = 0.17f;
 
     [SerializeField] private float leapDamage = 50.0f;
-    [SerializeField] private float leapSpeed = 2.0f;
-    [SerializeField] private float leapHeight = 5.0f;
+    [SerializeField] private float leapSpeed = 1.5f;
+    [SerializeField] private float leapHeight = 3.0f;
     [SerializeField] private float leapTime = 1.0f;
 
-    [SerializeField] private float minLeapRange = 20.0f;
-    [SerializeField] private float maxLeapRange = 40.0f;
+    [SerializeField] private float minLeapRange = 5.0f;
+    [SerializeField] private float maxLeapRange = 10.0f;
 
     [SerializeField] private float leapChargeTime = 1.0f;
     [SerializeField] private float leapCooldown = 1.0f;
