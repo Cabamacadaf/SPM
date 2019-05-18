@@ -5,20 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Enemy/AttackState")]
 public class EnemyAttackState : EnemyBaseState
 {
-    protected float timer = 0.0f;
+    protected float AttackTimer { get; set; }
 
     public override void Enter ()
     {
         //Debug.Log("Attack State");
-        timer = 0.0f;
-        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.AttackSound, owner.AudioSource);
+        AttackTimer = 0.0f;
+        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(Owner.AttackSound, Owner.AudioSource);
         enemyAttackEvent.ExecuteEvent();
-        owner.AttackObject.SetActive(true);
+        Owner.AttackObject.SetActive(true);
 
-		if (owner is Enemy1) {
-			owner.Animator.SetTrigger("Enemy1Attack");
-		} else if (owner is Enemy2) {
-			owner.Animator.SetTrigger("Enemy2Attack");
+		if (Owner is Enemy1) {
+			Owner.Animator.SetTrigger("Enemy1Attack");
+		} else if (Owner is Enemy2) {
+			Owner.Animator.SetTrigger("Enemy2Attack");
 		}
 
         base.Enter();
@@ -26,20 +26,20 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
-        if (timer >= owner.AttackTime) {
-            owner.Transition<EnemyAttackRecoverState>();
+        if (AttackTimer >= Owner.AttackTime) {
+            Owner.Transition<EnemyAttackRecoverState>();
         }
 
-        owner.AttackObject.transform.position += owner.AttackObject.transform.forward * Time.deltaTime * owner.AttackAnimationSpeed;
-        timer += Time.deltaTime;
+        Owner.AttackObject.transform.position += Owner.AttackObject.transform.forward * Time.deltaTime * Owner.AttackAnimationSpeed;
+        AttackTimer += Time.deltaTime;
         base.HandleUpdate();
     }
 
     public override void Exit ()
     {
         base.Exit();
-        owner.AttackObject.transform.position = owner.transform.position;
-        owner.GetComponentInChildren<Attack>().hasAttacked = false;
-        owner.AttackObject.SetActive(false);
+        Owner.AttackObject.transform.position = Owner.transform.position;
+        Owner.GetComponentInChildren<Attack>().hasAttacked = false;
+        Owner.AttackObject.SetActive(false);
     }
 }

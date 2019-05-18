@@ -18,21 +18,21 @@ public class Enemy2LeapRecoverState : EnemyBaseState
     {
         //Debug.Log("Leap Recover State");
         base.Enter();
-        owner.RigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+        Owner.RigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         timer = 0.0f;
         owner2.LeapAttackHitbox.SetActive(false);
         owner2.Mouth.gameObject.SetActive(false);
-		owner.Animator.SetFloat("Enemy2Speed", 0.0f);
+		Owner.Animator.SetFloat("Enemy2Speed", 0.0f);
     }
 
     public override void HandleUpdate ()
     {
-        owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.Player.transform.position - owner.transform.position, owner2.RotationSpeed * Time.deltaTime, 0.0f));
+        Owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(Owner.transform.forward, Owner.Player.transform.position - Owner.transform.position, owner2.RotationSpeed * Time.deltaTime, 0.0f));
 
         timer += Time.deltaTime;
 
         if (timer >= owner2.LeapCooldown) {
-            owner.Transition<Enemy2AggroState>();
+            Owner.Transition<Enemy2AggroState>();
         }
 
         base.HandleUpdate();
@@ -40,7 +40,7 @@ public class Enemy2LeapRecoverState : EnemyBaseState
 
     public override void Exit ()
     {
-        owner.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        Owner.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         base.Exit();
     }
 }

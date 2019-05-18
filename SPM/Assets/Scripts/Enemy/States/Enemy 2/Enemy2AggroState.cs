@@ -16,25 +16,25 @@ public class Enemy2AggroState : EnemyAggroState
     public override void Enter ()
     {
         base.Enter();
-		owner.Animator.SetFloat("Enemy2Speed", 1.0f);
+		Owner.Animator.SetFloat("Enemy2Speed", 1.0f);
     }
 
     public override void HandleUpdate ()
     {
-        if (owner.Agent.isOnNavMesh) {
-            owner.Agent.SetDestination(owner.Player.transform.position);
+        if (Owner.Agent.isOnNavMesh) {
+            Owner.Agent.SetDestination(Owner.Player.transform.position);
         }
 
-        Vector3 raycastDirection = owner.transform.position - owner.Player.capsuleCollider.bounds.center;
-        if (!Physics.Raycast(owner.Player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.WallLayer)) {
-            if (Vector3.Distance(owner.Player.transform.position, owner.transform.position) <= owner2.MaxLeapRange && Vector3.Distance(owner.Player.transform.position, owner.transform.position) >= owner2.MinLeapRange) {
-                owner.Agent.enabled = false;
-                owner.Transition<Enemy2LeapChargeState>();
+        Vector3 raycastDirection = Owner.transform.position - Owner.Player.capsuleCollider.bounds.center;
+        if (!Physics.Raycast(Owner.Player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, Owner.WallLayer)) {
+            if (Vector3.Distance(Owner.Player.transform.position, Owner.transform.position) <= owner2.MaxLeapRange && Vector3.Distance(Owner.Player.transform.position, Owner.transform.position) >= owner2.MinLeapRange) {
+                Owner.Agent.enabled = false;
+                Owner.Transition<Enemy2LeapChargeState>();
             }
 
-            if (Vector3.Distance(owner.Player.transform.position, owner.transform.position) <= owner.AttackDistance) {
-                owner.Agent.enabled = false;
-                owner.Transition<EnemyAttackState>();
+            if (Vector3.Distance(Owner.Player.transform.position, Owner.transform.position) <= Owner.AttackDistance) {
+                Owner.Agent.enabled = false;
+                Owner.Transition<EnemyAttackState>();
             }
         }
         base.HandleUpdate();

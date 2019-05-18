@@ -20,15 +20,15 @@ public class Enemy2LeapChargeState : EnemyBaseState
         //Debug.Log("Leap Charge State");
         timer = 0.0f;
         owner2.Mouth.gameObject.SetActive(true);
-		owner.Animator.SetTrigger("Enemy2JumpAttack");
+		Owner.Animator.SetTrigger("Enemy2JumpAttack");
     }
     public override void HandleUpdate ()
     {
-        owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(owner.transform.forward, owner.Player.transform.position - owner.transform.position, owner.RotationSpeed * Time.deltaTime, 0.0f));
+        Owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(Owner.transform.forward, Owner.Player.transform.position - Owner.transform.position, Owner.RotationSpeed * Time.deltaTime, 0.0f));
 
         timer += Time.deltaTime;
         if(timer >= owner2.LeapChargeTime) {
-            owner.Transition<Enemy2LeapState>();
+            Owner.Transition<Enemy2LeapState>();
         }
         base.HandleUpdate();
     }

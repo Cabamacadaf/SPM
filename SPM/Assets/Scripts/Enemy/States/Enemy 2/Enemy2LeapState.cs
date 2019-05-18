@@ -15,13 +15,13 @@ public class Enemy2LeapState : EnemyBaseState
     public override void Enter ()
     {
         //Debug.Log("Leap State");
-        owner2 = (Enemy2)owner;
+        owner2 = (Enemy2)Owner;
         timer = 0.0f;
-        startPosition = owner.transform.position;
-        endPosition = owner.Player.transform.position;
+        startPosition = Owner.transform.position;
+        endPosition = Owner.Player.transform.position;
         midPosition = startPosition + (endPosition - startPosition) / 2 + Vector3.up * owner2.LeapHeight;
         owner2.LeapAttackHitbox.SetActive(true);
-        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner2.LeapSound, owner.AudioSource);
+        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner2.LeapSound, Owner.AudioSource);
         enemyAttackEvent.ExecuteEvent();
         base.Enter();
     }
@@ -32,10 +32,10 @@ public class Enemy2LeapState : EnemyBaseState
 
         Vector3 m1 = Vector3.Lerp(startPosition, midPosition, timer);
         Vector3 m2 = Vector3.Lerp(midPosition, endPosition, timer);
-        owner.transform.position = Vector3.Lerp(m1, m2, timer);
+        Owner.transform.position = Vector3.Lerp(m1, m2, timer);
 
         if (timer >= owner2.LeapTime) {
-            owner.Transition<Enemy2LeapRecoverState>();
+            Owner.Transition<Enemy2LeapRecoverState>();
         }
         base.HandleUpdate();
     }
@@ -43,12 +43,12 @@ public class Enemy2LeapState : EnemyBaseState
     public override void HandleCollision (Collision collision)
     {
         base.HandleCollision(collision);
-        owner.Transition<Enemy2LeapRecoverState>();
+        Owner.Transition<Enemy2LeapRecoverState>();
     }
 
     public override void Exit ()
     {
         base.Exit();
-        owner.GetComponentInChildren<Attack>().hasAttacked = false;
+        Owner.GetComponentInChildren<Attack>().hasAttacked = false;
     }
 }

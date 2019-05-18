@@ -3,7 +3,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyIdleState : EnemyBaseState
+public abstract class EnemyIdleState : EnemyBaseState
 {
     public override void Enter ()
     {
@@ -18,22 +18,22 @@ public class EnemyIdleState : EnemyBaseState
     public override void Initialize (StateMachine owner)
     {
         base.Initialize(owner);
-        timeUntilSound = Random.Range(this.owner.IdleSoundMinTime, this.owner.IdleSoundMaxTime);
+        timeUntilSound = Random.Range(this.Owner.IdleSoundMinTime, this.Owner.IdleSoundMaxTime);
     }
 
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
         if (timer >= timeUntilSound && !playing) {
-            owner.AudioSource.PlayOneShot(owner.IdleSound);
+            Owner.AudioSource.PlayOneShot(Owner.IdleSound);
             playing = true;
             timer = 0.0f;
         }
 
-        if (playing && timer > owner.IdleSound.length) {
+        if (playing && timer > Owner.IdleSound.length) {
             playing = false;
             timer = 0.0f;
-            timeUntilSound = Random.Range(owner.IdleSoundMinTime, owner.IdleSoundMaxTime);
+            timeUntilSound = Random.Range(Owner.IdleSoundMinTime, Owner.IdleSoundMaxTime);
         }
 
         base.HandleUpdate();
@@ -41,7 +41,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Exit ()
     {
-        owner.AudioSource.Stop();
+        Owner.AudioSource.Stop();
         base.Exit();
     }
 }

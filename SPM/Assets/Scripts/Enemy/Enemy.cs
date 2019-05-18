@@ -3,7 +3,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : StateMachine
+public abstract class Enemy : StateMachine
 {
     #region Private Fields
     [SerializeField] private float hitPoints = 50.0f;

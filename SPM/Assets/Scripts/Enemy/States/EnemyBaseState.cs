@@ -2,10 +2,10 @@
 
 using UnityEngine;
 
-public class EnemyBaseState : State
+public abstract class EnemyBaseState : State
 {
 
-    protected Enemy owner;
+    protected Enemy Owner { get; set; }
 
     public override void Enter ()
     {
@@ -14,31 +14,31 @@ public class EnemyBaseState : State
 
     public override void Initialize (StateMachine owner)
     {
-        this.owner = (Enemy)owner;
+        Owner = (Enemy)owner;
     }
 
     public void Damage (float damage)
     {
-        if ((owner is Enemy2 && owner.GetCurrentState() is Enemy2IdleState) || (owner is Enemy1 && owner.GetCurrentState() is Enemy1IdleState)) {
-            owner.GetComponentInChildren<EnemyAggro>().Aggro();
+        if ((Owner is Enemy2 && Owner.GetCurrentState() is Enemy2IdleState) || (Owner is Enemy1 && Owner.GetCurrentState() is Enemy1IdleState)) {
+            Owner.GetComponentInChildren<EnemyAggro>().Aggro();
         }
         
-        owner.HitPoints -= damage;
-        if (owner.HitPoints <= 0) {
+        Owner.HitPoints -= damage;
+        if (Owner.HitPoints <= 0) {
             Kill();
         }
-        owner.MeshRenderer.material.color = owner.MeshRenderer.material.color * owner.HitPoints / 100;
+        Owner.MeshRenderer.material.color = Owner.MeshRenderer.material.color * Owner.HitPoints / 100;
     }
 
     public void Kill ()
     {
-        EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent(owner.gameObject);
-        enemyDeathEvent.eventDescription = "Enemy " + owner.gameObject.name + " has died.";
+        EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent(Owner.gameObject);
+        enemyDeathEvent.eventDescription = "Enemy " + Owner.gameObject.name + " has died.";
         enemyDeathEvent.ExecuteEvent();
     }
 
     public void PlaySpawnSound ()
     {
-        owner.AudioSource.PlayOneShot(owner.SpawnSound);
+        Owner.AudioSource.PlayOneShot(Owner.SpawnSound);
     }
 }
