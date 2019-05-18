@@ -20,7 +20,6 @@ public class PickUpObject : MonoBehaviour
 
     [SerializeField] protected int durability = 3;
     [SerializeField] private float impactDamage = 25f;
-    [SerializeField] protected float lowestVelocityToDoDamage = 1.0f;
     [SerializeField] private float holdingOpacity = 0.5f;
     
     protected bool isThrown = false;
@@ -28,7 +27,7 @@ public class PickUpObject : MonoBehaviour
     public bool IsColliding { get; private set; }
 
     private float throwTimer = 0;
-    private float thrownTime = 1.0f;
+    private float thrownTime = 3.0f;
 
     private void Awake ()
     {
@@ -60,7 +59,7 @@ public class PickUpObject : MonoBehaviour
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, holdingOpacity);
     }
 
-    public void Drop ()
+    public void Drop (bool isThrown)
     {
         isHeld = false;
         gameObject.layer = LayerMask.NameToLayer("Pick Up Objects");
@@ -68,7 +67,7 @@ public class PickUpObject : MonoBehaviour
         meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
-        isThrown = true;
+        this.isThrown = isThrown;
     }
 
     public void Pull ()
@@ -89,7 +88,7 @@ public class PickUpObject : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
+        if (isThrown) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(ImpactDamage);
@@ -99,7 +98,7 @@ public class PickUpObject : MonoBehaviour
             if (other.CompareTag("Enemy2Hurtbox")) {
                 Enemy2 enemy = other.GetComponentInParent<Enemy2>();
                 EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
-                enemyState.Damage(ImpactDamage * enemy.damageReduction);
+                enemyState.Damage(ImpactDamage * enemy.DamageReduction);
                 LoseDurability();
             }
         }
@@ -109,7 +108,7 @@ public class PickUpObject : MonoBehaviour
     {
         IsColliding = true;
 
-        if (collision.collider.CompareTag("DestructibleObject") && rigidBody.velocity.magnitude >= lowestVelocityToDoDamage && isThrown) {
+        if (collision.collider.CompareTag("DestructibleObject") && isThrown) {
             collision.collider.GetComponent<DestructibleObject>().hitPoints -= ImpactDamage;
         }
     }

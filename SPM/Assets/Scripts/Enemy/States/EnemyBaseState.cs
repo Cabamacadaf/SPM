@@ -22,13 +22,12 @@ public class EnemyBaseState : State
         if ((owner is Enemy2 && owner.GetCurrentState() is Enemy2IdleState) || (owner is Enemy1 && owner.GetCurrentState() is Enemy1IdleState)) {
             owner.GetComponentInChildren<EnemyAggro>().Aggro();
         }
-
-        Debug.Log(damage);
-        owner.hitPoints -= damage;
-        if (owner.hitPoints <= 0) {
+        
+        owner.HitPoints -= damage;
+        if (owner.HitPoints <= 0) {
             Kill();
         }
-        owner.meshRenderer.material.color = owner.meshRenderer.material.color * owner.hitPoints / 100;
+        owner.MeshRenderer.material.color = owner.MeshRenderer.material.color * owner.HitPoints / 100;
     }
 
     public void Kill ()
@@ -40,6 +39,6 @@ public class EnemyBaseState : State
 
     public void PlaySpawnSound ()
     {
-        owner.audioSource.PlayOneShot(owner.spawnSound);
+        owner.AudioSource.PlayOneShot(owner.SpawnSound);
     }
 }

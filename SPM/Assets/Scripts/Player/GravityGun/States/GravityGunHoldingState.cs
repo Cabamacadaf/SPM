@@ -30,7 +30,7 @@ public class GravityGunHoldingState : GravityGunBaseState
 
         else if (Input.GetMouseButtonDown(0)) {
             owner.holdingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * owner.pushForce);
-            DropObject();
+            DropObject(true);
         }
 
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -57,7 +57,7 @@ public class GravityGunHoldingState : GravityGunBaseState
 
         else if (isCharging) {
             Addforce();
-            DropObject();
+            DropObject(true);
         }
     }
 
@@ -67,7 +67,7 @@ public class GravityGunHoldingState : GravityGunBaseState
         Physics.Raycast(owner.holdingObject.LastFramePosition, wallPassThroughRaycastDirection.normalized, out RaycastHit hit, wallPassThroughRaycastDirection.magnitude, owner.raycastCollideLayer);
         if (hit.collider != null) {
             owner.holdingObject.transform.position = owner.holdingObject.LastFramePosition;
-            DropObject();
+            DropObject(false);
         }
     }
 

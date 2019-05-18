@@ -19,7 +19,7 @@ public class BlastRadius : MonoBehaviour
             if (!Physics.Raycast(other.transform.position, raycastDirection.normalized, out RaycastHit hit, raycastDirection.magnitude, wallLayer)) {
                 Enemy enemy = other.GetComponent<Enemy>();
                 enemy.Transition<EnemyBlastedState>();
-                enemy.rigidBody.AddForce((enemy.transform.position - enemy.player.transform.position).normalized * gravityBlast.blastForce);
+                enemy.RigidBody.AddForce((enemy.transform.position - enemy.Player.transform.position).normalized * gravityBlast.blastForce);
             }
         }
     }

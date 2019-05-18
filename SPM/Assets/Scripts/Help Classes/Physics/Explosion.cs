@@ -57,7 +57,7 @@ public class Explosion : MonoBehaviour
             Enemy2 enemy = collider.GetComponentInParent<Enemy2>();
             EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
 
-            enemyState.Damage(damage * enemy.damageReduction);
+            enemyState.Damage(damage * enemy.DamageReduction);
         }
     }
 

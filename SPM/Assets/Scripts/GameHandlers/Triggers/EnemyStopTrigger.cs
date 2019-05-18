@@ -17,7 +17,7 @@ public class EnemyStopTrigger : MonoBehaviour
                     enemy.Transition<Enemy1IdleState>();
                 }
             }
-            enemy.agent.SetDestination(other.transform.position);
+            enemy.Agent.SetDestination(other.transform.position);
         }
     }
 }

@@ -18,22 +18,22 @@ public class EnemyIdleState : EnemyBaseState
     public override void Initialize (StateMachine owner)
     {
         base.Initialize(owner);
-        timeUntilSound = Random.Range(this.owner.idleSoundMinTime, this.owner.idleSoundMaxTime);
+        timeUntilSound = Random.Range(this.owner.IdleSoundMinTime, this.owner.IdleSoundMaxTime);
     }
 
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
         if (timer >= timeUntilSound && !playing) {
-            owner.audioSource.PlayOneShot(owner.idleSound);
+            owner.AudioSource.PlayOneShot(owner.IdleSound);
             playing = true;
             timer = 0.0f;
         }
 
-        if (playing && timer > owner.idleSound.length) {
+        if (playing && timer > owner.IdleSound.length) {
             playing = false;
             timer = 0.0f;
-            timeUntilSound = Random.Range(owner.idleSoundMinTime, owner.idleSoundMaxTime);
+            timeUntilSound = Random.Range(owner.IdleSoundMinTime, owner.IdleSoundMaxTime);
         }
 
         base.HandleUpdate();
@@ -41,7 +41,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Exit ()
     {
-        owner.audioSource.Stop();
+        owner.AudioSource.Stop();
         base.Exit();
     }
 }

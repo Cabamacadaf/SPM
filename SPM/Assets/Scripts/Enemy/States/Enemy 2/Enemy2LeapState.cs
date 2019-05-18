@@ -18,23 +18,23 @@ public class Enemy2LeapState : EnemyBaseState
         owner2 = (Enemy2)owner;
         timer = 0.0f;
         startPosition = owner.transform.position;
-        endPosition = owner.player.transform.position;
-        midPosition = startPosition + (endPosition - startPosition) / 2 + Vector3.up * owner2.leapHeight;
-        owner2.leapAttackHitbox.SetActive(true);
-        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner2.leapSound, owner.audioSource);
+        endPosition = owner.Player.transform.position;
+        midPosition = startPosition + (endPosition - startPosition) / 2 + Vector3.up * owner2.LeapHeight;
+        owner2.LeapAttackHitbox.SetActive(true);
+        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner2.LeapSound, owner.AudioSource);
         enemyAttackEvent.ExecuteEvent();
         base.Enter();
     }
 
     public override void HandleUpdate ()
     {
-        timer += Time.deltaTime * owner2.leapSpeed;
+        timer += Time.deltaTime * owner2.LeapSpeed;
 
         Vector3 m1 = Vector3.Lerp(startPosition, midPosition, timer);
         Vector3 m2 = Vector3.Lerp(midPosition, endPosition, timer);
         owner.transform.position = Vector3.Lerp(m1, m2, timer);
 
-        if (timer >= owner2.leapTime) {
+        if (timer >= owner2.LeapTime) {
             owner.Transition<Enemy2LeapRecoverState>();
         }
         base.HandleUpdate();

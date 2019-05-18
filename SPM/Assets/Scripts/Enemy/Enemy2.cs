@@ -4,17 +4,43 @@ using UnityEngine;
 
 public class Enemy2 : Enemy
 {
-    public AudioClip leapSound;
+    #region Private Fields
+    [SerializeField] private float damageReduction = 0.5f;
 
-    public float maxLeapRange = 40.0f;
-    public float minLeapRange = 20.0f;
-    public float leapChargeTime = 1.0f;
-    public float leapHeight = 5.0f;
-    public float leapTime = 1.0f;
-    public float leapCooldown = 1.0f;
-    public float leapDamage = 50.0f;
-    public Transform mouth;
-    public GameObject leapAttackHitbox;
-    public float leapSpeed = 2.0f;
-    public float damageReduction = 0.5f;
+    [SerializeField] private float leapDamage = 50.0f;
+    [SerializeField] private float leapSpeed = 2.0f;
+    [SerializeField] private float leapHeight = 5.0f;
+    [SerializeField] private float leapTime = 1.0f;
+
+    [SerializeField] private float minLeapRange = 20.0f;
+    [SerializeField] private float maxLeapRange = 40.0f;
+
+    [SerializeField] private float leapChargeTime = 1.0f;
+    [SerializeField] private float leapCooldown = 1.0f;
+
+    [SerializeField] private Transform mouth;
+    [SerializeField] private GameObject leapAttackHitbox;
+
+    [SerializeField] private AudioClip leapSound;
+    #endregion
+
+    #region Properties
+    public float DamageReduction { get => damageReduction; private set => damageReduction = value; }
+
+    public float LeapDamage { get => leapDamage; private set => leapDamage = value; }
+    public float LeapSpeed { get => leapSpeed; private set => leapSpeed = value; }
+    public float LeapHeight { get => leapHeight; private set => leapHeight = value; }
+    public float LeapTime { get => leapTime; private set => leapTime = value; }
+
+    public float MinLeapRange { get => minLeapRange; private set => minLeapRange = value; }
+    public float MaxLeapRange { get => maxLeapRange; private set => maxLeapRange = value; }
+
+    public float LeapChargeTime { get => leapChargeTime; private set => leapChargeTime = value; }
+    public float LeapCooldown { get => leapCooldown; private set => leapCooldown = value; }
+
+    public Transform Mouth { get => mouth; private set => mouth = value; }
+    public GameObject LeapAttackHitbox { get => leapAttackHitbox; private set => leapAttackHitbox = value; }
+
+    public AudioClip LeapSound { get => leapSound; private set => leapSound = value; }
+    #endregion
 }

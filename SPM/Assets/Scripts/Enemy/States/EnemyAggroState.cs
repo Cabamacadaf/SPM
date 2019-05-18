@@ -5,10 +5,10 @@ public class EnemyAggroState : EnemyBaseState
     public override void Enter ()
     {
         //Debug.Log("Aggro State");
-        owner.lightSource.enabled = true;
-        owner.agent.enabled = true;
-        owner.agent.speed = owner.movementSpeed;
-        owner.agent.acceleration = owner.acceleration;
+        owner.LightSource.enabled = true;
+        owner.Agent.enabled = true;
+        owner.Agent.speed = owner.MovementSpeed;
+        owner.Agent.acceleration = owner.Acceleration;
         base.Enter();
     }
 

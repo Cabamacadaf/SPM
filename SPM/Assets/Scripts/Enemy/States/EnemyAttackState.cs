@@ -11,14 +11,14 @@ public class EnemyAttackState : EnemyBaseState
     {
         //Debug.Log("Attack State");
         timer = 0.0f;
-        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.attackSound, owner.audioSource);
+        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner.AttackSound, owner.AudioSource);
         enemyAttackEvent.ExecuteEvent();
-        owner.attackObject.SetActive(true);
+        owner.AttackObject.SetActive(true);
 
 		if (owner is Enemy1) {
-			owner.animator.SetTrigger("Enemy1Attack");
+			owner.Animator.SetTrigger("Enemy1Attack");
 		} else if (owner is Enemy2) {
-			owner.animator.SetTrigger("Enemy2Attack");
+			owner.Animator.SetTrigger("Enemy2Attack");
 		}
 
         base.Enter();
@@ -26,11 +26,11 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
-        if (timer >= owner.attackTime) {
+        if (timer >= owner.AttackTime) {
             owner.Transition<EnemyAttackRecoverState>();
         }
 
-        owner.attackObject.transform.position += owner.attackObject.transform.forward * Time.deltaTime * owner.attackAnimationSpeed;
+        owner.AttackObject.transform.position += owner.AttackObject.transform.forward * Time.deltaTime * owner.AttackAnimationSpeed;
         timer += Time.deltaTime;
         base.HandleUpdate();
     }
@@ -38,8 +38,8 @@ public class EnemyAttackState : EnemyBaseState
     public override void Exit ()
     {
         base.Exit();
-        owner.attackObject.transform.position = owner.transform.position;
+        owner.AttackObject.transform.position = owner.transform.position;
         owner.GetComponentInChildren<Attack>().hasAttacked = false;
-        owner.attackObject.SetActive(false);
+        owner.AttackObject.SetActive(false);
     }
 }

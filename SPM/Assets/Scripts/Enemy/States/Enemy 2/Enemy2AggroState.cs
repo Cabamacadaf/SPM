@@ -16,24 +16,24 @@ public class Enemy2AggroState : EnemyAggroState
     public override void Enter ()
     {
         base.Enter();
-		owner.animator.SetFloat("Enemy2Speed", 1.0f);
+		owner.Animator.SetFloat("Enemy2Speed", 1.0f);
     }
 
     public override void HandleUpdate ()
     {
-        if (owner.agent.isOnNavMesh) {
-            owner.agent.SetDestination(owner.player.transform.position);
+        if (owner.Agent.isOnNavMesh) {
+            owner.Agent.SetDestination(owner.Player.transform.position);
         }
 
-        Vector3 raycastDirection = owner.transform.position - owner.player.capsuleCollider.bounds.center;
-        if (!Physics.Raycast(owner.player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.wallLayer)) {
-            if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner2.maxLeapRange && Vector3.Distance(owner.player.transform.position, owner.transform.position) >= owner2.minLeapRange) {
-                owner.agent.enabled = false;
+        Vector3 raycastDirection = owner.transform.position - owner.Player.capsuleCollider.bounds.center;
+        if (!Physics.Raycast(owner.Player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.WallLayer)) {
+            if (Vector3.Distance(owner.Player.transform.position, owner.transform.position) <= owner2.MaxLeapRange && Vector3.Distance(owner.Player.transform.position, owner.transform.position) >= owner2.MinLeapRange) {
+                owner.Agent.enabled = false;
                 owner.Transition<Enemy2LeapChargeState>();
             }
 
-            if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner.attackDistance) {
-                owner.agent.enabled = false;
+            if (Vector3.Distance(owner.Player.transform.position, owner.transform.position) <= owner.AttackDistance) {
+                owner.Agent.enabled = false;
                 owner.Transition<EnemyAttackState>();
             }
         }

@@ -10,16 +10,16 @@ public class EnemyBlastedState : EnemyBaseState
     {
         //Debug.Log("Blasted State");
         timer = 0.0f;
-        owner.agent.enabled = false;
-        owner.rigidBody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+        owner.Agent.enabled = false;
+        owner.RigidBody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
         base.Enter();
     }
 
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
-        owner.agent.enabled = true;
-        if (timer >= owner.blastRecoveryTime && owner.agent.isOnNavMesh) {
+        owner.Agent.enabled = true;
+        if (timer >= owner.BlastRecoveryTime && owner.Agent.isOnNavMesh) {
             if(owner is Enemy1) {
                 owner.Transition<Enemy1AggroState>();
             }
@@ -28,13 +28,13 @@ public class EnemyBlastedState : EnemyBaseState
             }
         }
         else {
-            owner.agent.enabled = false;
+            owner.Agent.enabled = false;
         }
         base.HandleUpdate();
     }
     public override void Exit ()
     {
-        owner.rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        owner.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         base.Exit();
     }
 }

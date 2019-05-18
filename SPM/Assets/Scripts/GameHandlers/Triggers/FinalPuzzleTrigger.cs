@@ -28,7 +28,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
             if (gravityGun.holdingObject != null)
             {
                 GravityGunBaseState gravityGunState = (GravityGunBaseState)gravityGun.GetCurrentState();
-                gravityGunState.DropObject();
+                gravityGunState.DropObject(false);
             }
 
             TransformObject(other);

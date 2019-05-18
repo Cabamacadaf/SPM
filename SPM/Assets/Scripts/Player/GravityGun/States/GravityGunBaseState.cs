@@ -23,7 +23,7 @@ public class GravityGunBaseState : State
     public override void HandleUpdate ()
     {
         if (Input.GetMouseButtonDown(1) && (owner.GetCurrentState() is GravityGunNotHoldingState) == false) {
-            DropObject();
+            DropObject(false);
         }
 
         if (owner.holdingObject != null) {
@@ -46,7 +46,7 @@ public class GravityGunBaseState : State
                     }
 
                     if(Vector3.Distance(owner.pullPoint.position, owner.holdingObject.transform.position) > owner.distanceToDrop){
-                        DropObject();
+                        DropObject(false);
                     }
 
                     moveToPosition = (pullPointDirectionCastHit.point - owner.holdingObject.transform.position).normalized * owner.pullForce * Time.deltaTime; ;
@@ -89,9 +89,9 @@ public class GravityGunBaseState : State
         owner.pullPoint.localRotation = Quaternion.Euler(objectXRotation, 0, 0);
     }
 
-    public void DropObject ()
+    public void DropObject (bool isThrown)
     {
-        owner.holdingObject.Drop();
+        owner.holdingObject.Drop(isThrown);
         owner.holdingObject = null;
         owner.Transition<GravityGunNotHoldingState>();
     }

@@ -8,16 +8,16 @@ public class Enemy1AggroState : EnemyAggroState
     public override void Enter ()
     {
         base.Enter();
-        owner.animator.SetFloat("Enemy1Speed", 1.0f);
+        owner.Animator.SetFloat("Enemy1Speed", 1.0f);
     }
 
     public override void HandleUpdate ()
     {
-        owner.agent.SetDestination(owner.player.transform.position);
-        Vector3 raycastDirection = owner.transform.position - owner.player.capsuleCollider.bounds.center;
-        if (!Physics.Raycast(owner.player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.wallLayer)) {
-            if (Vector3.Distance(owner.player.transform.position, owner.transform.position) <= owner.attackDistance) {
-                owner.agent.enabled = false;
+        owner.Agent.SetDestination(owner.Player.transform.position);
+        Vector3 raycastDirection = owner.transform.position - owner.Player.capsuleCollider.bounds.center;
+        if (!Physics.Raycast(owner.Player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, owner.WallLayer)) {
+            if (Vector3.Distance(owner.Player.transform.position, owner.transform.position) <= owner.AttackDistance) {
+                owner.Agent.enabled = false;
                 owner.Transition<EnemyAttackState>();
             }
         }

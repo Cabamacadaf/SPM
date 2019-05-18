@@ -18,7 +18,7 @@ public class ExplosiveObject : PickUpObject
     private void OnCollisionEnter (Collision collision)
     {
         Debug.Log("Velocity: " + rigidBody.velocity.magnitude);
-        if (isThrown && rigidBody.velocity.magnitude > lowestVelocityToDoDamage) {
+        if (isThrown) {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
             foreach (Collider collider in colliders)
@@ -61,7 +61,7 @@ public class ExplosiveObject : PickUpObject
             Enemy2 enemy = collider.GetComponentInParent<Enemy2>();
             EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
 
-            enemyState.Damage(damage * enemy.damageReduction);
+            enemyState.Damage(damage * enemy.DamageReduction);
         }
     }
 
