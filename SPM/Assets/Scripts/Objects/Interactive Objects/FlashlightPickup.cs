@@ -10,7 +10,7 @@ public class FlashlightPickup : InteractiveObject
 
     private Text messageText;
 
-    private new void Awake ()
+    protected override void Awake ()
     {
         messageText = FindObjectOfType<Canvas>().transform.Find("Message Text").GetComponent<Text>();
         base.Awake();

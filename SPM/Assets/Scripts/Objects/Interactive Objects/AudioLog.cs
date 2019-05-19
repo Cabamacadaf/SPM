@@ -6,45 +6,31 @@ using UnityEngine.UI;
 
 public class AudioLog : InteractiveObject
 {
+    [SerializeField] private AudioClip audioLogClip;
+
     [SerializeField] private string[] audioLogText;
     [SerializeField] private float delayBeforeStartPlaying = 0.5f;
     [SerializeField] private float timeBetweenText = 2.0f;
 
-    private AudioSource audioSource;
+    private BoxCollider boxCollider;
+    private PlayAudioMessage playAudioMessage;
 
-    [SerializeField] private AudioClip audioLogClip;
+    private bool hasTriggered = false;
 
-    private Text messageText;
-
-    private bool played = false;
-    
-    private new void Awake()
+    protected override void Awake ()
     {
-        audioSource = GetComponent<AudioSource>();
-        messageText = FindObjectOfType<Canvas>().transform.Find("Message Text").GetComponent<Text>();
+        boxCollider = GetComponentInChildren<BoxCollider>();
+        playAudioMessage = GetComponent<PlayAudioMessage>();
         base.Awake();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && !played) {
-            played = true;
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && hasTriggered == false) {
+            hasTriggered = true;
             InteractText.enabled = false;
-            GetComponentInChildren<BoxCollider>().enabled = false;
-            StartCoroutine(PlayAudioLogMessage());
+            boxCollider.enabled = false;
+            playAudioMessage.PlayMessage(audioLogClip, audioLogText, delayBeforeStartPlaying, timeBetweenText);
         }
-    }
-
-    private IEnumerator PlayAudioLogMessage ()
-    {
-        yield return new WaitForSeconds(delayBeforeStartPlaying);
-        audioSource.PlayOneShot(audioLogClip);
-        messageText.enabled = true;
-        foreach (string text in audioLogText){
-            messageText.text = text;
-            yield return new WaitForSeconds(timeBetweenText);
-        }
-        messageText.text = "";
-        messageText.enabled = false;
     }
 }

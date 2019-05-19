@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
     private Camera playerCamera;
 
+    public PlayAudioMessage PlayAudioMessage { get; private set; } 
+
     //For Collision
     private Vector3 point1;
     private Vector3 point2;
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        PlayAudioMessage = GetComponent<PlayAudioMessage>();
         flashlight = GetComponentInChildren<Light>();
 
         if (GameManager.Instance.RestartedFromLatestCheckpoint)

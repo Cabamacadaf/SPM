@@ -10,13 +10,15 @@ public class LightButton : InteractiveObject
 
     [SerializeField] private Light ButtonLight;
 
-    private void Start ()
+    protected override void Awake ()
     {
+        base.Awake();
         ButtonLight.enabled = true;
         foreach (Light light in lights) {
             light.enabled = false;
         }
     }
+
     private void Update ()
     {
         if(Input.GetKeyDown(KeyCode.E) && IsInteractive) {

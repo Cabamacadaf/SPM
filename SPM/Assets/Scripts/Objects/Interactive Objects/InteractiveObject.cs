@@ -3,13 +3,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InteractiveObject : MonoBehaviour
+public abstract class InteractiveObject : MonoBehaviour
 {
     protected string TextToSet { get; set; }
     protected Text InteractText { get; set; }
     protected bool IsInteractive { get; set; }
 
-    protected void Awake ()
+    protected virtual void Awake ()
     {
         InteractText = FindObjectOfType<Canvas>().transform.Find("Interaction Text").GetComponent<Text>();
         TextToSet = "Press E to interact";

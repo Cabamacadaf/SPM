@@ -10,7 +10,7 @@ public class KeycardReader : InteractiveObject
 
     private bool lightChanged = false;
 
-    private new void Awake ()
+    protected override void Awake ()
     {
         TextToSet = "You need a Keycard to open this door";
         base.Awake();
