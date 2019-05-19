@@ -5,12 +5,13 @@ using UnityEngine;
 public class SpawnTrigger : MonoBehaviour
 {
     [SerializeField] private Spawner[] spawners;
-    private bool wasEntered = false;
+    private bool hasBeenEntered = false;
 
     private void OnTriggerEnter (Collider other)
     {
-        if (!wasEntered && other.CompareTag("Player")) {
-            wasEntered = true;
+        Debug.Log("Fisk");
+        if (!hasBeenEntered && other.CompareTag("Player")) {
+            hasBeenEntered = true;
             SpawnTriggerEvent spawnTriggerEvent = new SpawnTriggerEvent(spawners);
             spawnTriggerEvent.ExecuteEvent();
         }
