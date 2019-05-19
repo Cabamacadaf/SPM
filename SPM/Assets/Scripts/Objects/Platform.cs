@@ -53,7 +53,8 @@ public class Platform : MonoBehaviour
 
             if (canMove(targetPosition))
             {
-                Move(targetPosition);
+                //Move(targetPosition);
+                //OnMouseDrag();
             }
 
         }
@@ -64,9 +65,23 @@ public class Platform : MonoBehaviour
         }
 
     }
+    private void OnMouseDrag()
+    {
+        Vector3 point = Camera.main.ScreenToWorldPoint(
+            new Vector3(
+                Input.mousePosition.x,
+                (transform.position.y - Camera.main.transform.position.y),
+                (transform.position.z - Camera.main.transform.position.z)));
+
+        point.y = transform.position.y;
+        point.z = transform.position.z;
+        transform.position = Vector3.Lerp(transform.position, point, SmootherMovementValue);
+        //transform.position = point;
+    }
 
     private void Move(Vector3 targetPosition)
     {
+        //Vector3 worldPoint = Camera.main.WorldToScreenPoint(transform.position);
         transform.position = Vector3.Lerp(transform.position, targetPosition, SmootherMovementValue);
     }
 
