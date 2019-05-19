@@ -9,7 +9,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
     private bool isActive = true;
 
     [SerializeField] private float throwForce = 100.0f;
-    [SerializeField] private float rotationSpeed = 2.0f;
+    [SerializeField] private float rotationSpeed = 10.0f;
 
     private Vector3 rotationDirection;
 
@@ -17,6 +17,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
     private Transform attachedPowerCube;
     private Rigidbody attachedPowerCubeRigidBody;
 
+    [SerializeField] private Light[] lights;
 
     private GravityGun gravityGun;
 
@@ -25,6 +26,13 @@ public class FinalPuzzleTrigger : MonoBehaviour
         FinalPuzzleFailEvent.RegisterListener(ObjectiveFailed);
         gravityGun = FindObjectOfType<GravityGun>();
         id = GetComponent<ID>().NR;
+    }
+
+    private void Update ()
+    {
+        if(attachedPowerCube != null){
+            attachedPowerCube.Rotate(rotationDirection * rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter (Collider other)
@@ -45,6 +53,8 @@ public class FinalPuzzleTrigger : MonoBehaviour
 
     private void AttachObject (Collider other)
     {
+        rotationDirection = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+
         attachedPowerCubeRigidBody = other.attachedRigidbody;
         attachedPowerCubeRigidBody.isKinematic = true;
 
@@ -53,6 +63,10 @@ public class FinalPuzzleTrigger : MonoBehaviour
         powerCubeOriginalParent = attachedPowerCube.parent;
         attachedPowerCube.parent = transform;
         attachedPowerCube.gameObject.layer = 0;
+
+        foreach(Light light in lights) {
+            light.enabled = true;
+        }
     }
 
     private void ObjectiveFailed (FinalPuzzleFailEvent finalPuzzleFailEvent)
@@ -66,6 +80,10 @@ public class FinalPuzzleTrigger : MonoBehaviour
             attachedPowerCubeRigidBody.isKinematic = false;
             attachedPowerCubeRigidBody.AddForce(new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f)).normalized * throwForce);
             attachedPowerCubeRigidBody = null;
+
+            foreach (Light light in lights) {
+                light.enabled = false;
+            }
         }
     }
 }

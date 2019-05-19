@@ -13,6 +13,8 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
 
     private int[] collectionOrder = { 4, 7, 6, 2, 5, 1, 3 };
 
+    [SerializeField] private Light[] lights;
+
     private void Awake ()
     {
         FinalPuzzleComplete = false;
@@ -24,6 +26,9 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
             finalPuzzleCounter++;
             if (finalPuzzleCounter >= cubesToCollect) {
                 FinalPuzzleComplete = true;
+                foreach(Light light in lights) {
+                    light.enabled = true;
+                }
             }
         }
         else {
