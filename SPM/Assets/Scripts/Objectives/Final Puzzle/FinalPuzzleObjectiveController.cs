@@ -2,27 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalPuzzleObjectiveController : MonoBehaviour
+public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveController>
 {
-    private bool active = true;
+    public bool FinalPuzzleComplete { get; private set; }
 
-    private void OnTriggerEnter(Collider other)
+    private int finalPuzzleCounter = 0;
+    private int cubesToCollect = 7;
+
+    private void Awake ()
     {
-        if (active && other.CompareTag("PuzzleObject"))
-        {
-            active = false;
-            TransformObject(other);
-            GameController.Instance.AddLastPuzzle();
-
-        }
+        FinalPuzzleComplete = false;
     }
 
-    private void TransformObject(Collider other)
+    public void AddPowerCube ()
     {
-        other.transform.position = transform.position;
-        other.transform.parent = transform;
-        other.transform.rotation = Quaternion.identity;
-        other.gameObject.layer = 0;
-        Destroy(other.GetComponent<Rigidbody>());
+        finalPuzzleCounter++;
+        if (finalPuzzleCounter >= cubesToCollect) {
+            FinalPuzzleComplete = true;
+        }
     }
 }

@@ -8,7 +8,7 @@ public class FinalPuzzleDoorOpenButton : InteractiveObject
 
     private void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && GameController.Instance.Level2PuzzleComplete) {
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && FinalPuzzleObjectiveController.Instance.FinalPuzzleComplete == true) {
             if (door.IsClosed) {
                 door.Open();
             }

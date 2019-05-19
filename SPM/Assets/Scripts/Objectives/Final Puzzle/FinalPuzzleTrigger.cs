@@ -3,13 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class FinalPuzzleTrigger : MonoBehaviour
 {
     private bool isActive = true;
-
-
+    
     private GravityGun gravityGun;
 
     private void Awake()
@@ -22,9 +19,8 @@ public class FinalPuzzleTrigger : MonoBehaviour
      
         if (isActive && other.CompareTag("PuzzleObject") && other.GetComponent<ID>().NR == GetComponent<ID>().NR)
         {
-            Debug.Log("Collided");
-
             isActive = false;
+
             if (gravityGun.HoldingObject != null)
             {
                 GravityGunBaseState gravityGunState = (GravityGunBaseState)gravityGun.GetCurrentState();
@@ -33,28 +29,16 @@ public class FinalPuzzleTrigger : MonoBehaviour
 
             TransformObject(other);
 
-            GameController.Instance.AddLastPuzzle();
-
+            FinalPuzzleObjectiveController.Instance.AddPowerCube();
         }
     }
 
-    //private void OnTriggerExit (Collider other)
-    //{
-    //    if (other.CompareTag("PuzzleObject") && other.GetComponent<ID>().NR == GetComponent<ID>().NR) {
-
-    //        GameController.Instance.AddLastPuzzle();
-
-    //    }
-    //}
-
     private void TransformObject(Collider other)
     {
-  
         Destroy(other.GetComponent<Rigidbody>());
         other.transform.position = transform.position;
         other.transform.parent = transform;
         other.transform.rotation = Quaternion.identity;
         other.gameObject.layer = 0;
-
     }
 }
