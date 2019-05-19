@@ -130,3 +130,8 @@ public class ParticleSystemDestroyedEvent : Event<ParticleSystemDestroyedEvent>
         this.gameObject = gameObject;
     }
 }
+
+public class FinalPuzzleFailEvent : Event<FinalPuzzleFailEvent>
+{
+
+}
