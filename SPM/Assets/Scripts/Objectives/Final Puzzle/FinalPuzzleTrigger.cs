@@ -17,7 +17,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
     private Transform attachedPowerCube;
     private Rigidbody attachedPowerCubeRigidBody;
 
-    [SerializeField] private Light[] lights;
+    [SerializeField] private GameObject lights;
 
     private GravityGun gravityGun;
 
@@ -53,7 +53,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
 
     private void AttachObject (Collider other)
     {
-        rotationDirection = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+        rotationDirection = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
 
         attachedPowerCubeRigidBody = other.attachedRigidbody;
         attachedPowerCubeRigidBody.isKinematic = true;
@@ -64,9 +64,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
         attachedPowerCube.parent = transform;
         attachedPowerCube.gameObject.layer = 0;
 
-        foreach(Light light in lights) {
-            light.enabled = true;
-        }
+        lights.SetActive(true);
     }
 
     private void ObjectiveFailed (FinalPuzzleFailEvent finalPuzzleFailEvent)
@@ -81,9 +79,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
             attachedPowerCubeRigidBody.AddForce(new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f)).normalized * throwForce);
             attachedPowerCubeRigidBody = null;
 
-            foreach (Light light in lights) {
-                light.enabled = false;
-            }
+            lights.SetActive(false);
         }
     }
 }

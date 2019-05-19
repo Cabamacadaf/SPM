@@ -13,7 +13,7 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
 
     private int[] collectionOrder = { 4, 7, 6, 2, 5, 1, 3 };
 
-    [SerializeField] private Light[] lights;
+    [SerializeField] private GameObject lights;
 
     private void Awake ()
     {
@@ -26,9 +26,7 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
             finalPuzzleCounter++;
             if (finalPuzzleCounter >= cubesToCollect) {
                 FinalPuzzleComplete = true;
-                foreach(Light light in lights) {
-                    light.enabled = true;
-                }
+                lights.SetActive(true);
             }
         }
         else {
