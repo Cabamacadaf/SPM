@@ -9,7 +9,6 @@ public class GravityGunNotHoldingState : GravityGunBaseState
     private Highlight lastPickUpObjectHitHighlight;
     private RaycastHit aimRaycastHit;
 
-    private Platform currentPlatform;
 
     public override void Enter ()
     {
@@ -66,14 +65,8 @@ public class GravityGunNotHoldingState : GravityGunBaseState
                 Owner.Transition<GravityGunPullingState>();
             }
             else if (aimRaycastHit.collider.gameObject.CompareTag("Platform")) {
-                Platform platform = aimRaycastHit.collider.gameObject.GetComponent<Platform>();
-                currentPlatform = platform;
-                if (!platform.IsActive) {
-                    aimRaycastHit.collider.gameObject.GetComponent<Platform>().IsActive = true;
-                }
-                else {
-                    aimRaycastHit.collider.gameObject.GetComponent<Platform>().IsActive = false;
-                }
+                Owner.ActivePlatform = aimRaycastHit.collider.gameObject.GetComponent<Platform>();
+                Owner.Transition<GravityGunManipulateState>();
             }
         }
     }

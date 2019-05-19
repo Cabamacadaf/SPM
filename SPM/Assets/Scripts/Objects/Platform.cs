@@ -26,6 +26,9 @@ public class Platform : MonoBehaviour
     private delegate bool CanMove(Vector3 targetPosition);
     private CanMove canMove;
 
+    public float maxDistanceDelta;
+    private bool locked;
+
 
     //Methods
     void Start()
@@ -51,38 +54,44 @@ public class Platform : MonoBehaviour
             Vector3 targetPosition = getTargetPosition();
 
 
-            if (canMove(targetPosition))
-            {
-                //Move(targetPosition);
-                //OnMouseDrag();
-            }
+            //if (canMove(targetPosition))
+            //{
+            //    Move(targetPosition);
+            //    //OnMouseDrag();
+            //}
+            Move(targetPosition);
 
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            IsActive = false;
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    IsActive = false;
+        //}
 
     }
-    private void OnMouseDrag()
+
+    private void OnMouseDown()
     {
-        Vector3 point = Camera.main.ScreenToWorldPoint(
-            new Vector3(
-                Input.mousePosition.x,
-                (transform.position.y - Camera.main.transform.position.y),
-                (transform.position.z - Camera.main.transform.position.z)));
+        if (!locked)
+        {
 
-        point.y = transform.position.y;
-        point.z = transform.position.z;
-        transform.position = Vector3.Lerp(transform.position, point, SmootherMovementValue);
-        //transform.position = point;
+        }
     }
+
 
     private void Move(Vector3 targetPosition)
     {
-        //Vector3 worldPoint = Camera.main.WorldToScreenPoint(transform.position);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, SmootherMovementValue);
+        Vector3 worldPoint = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 point = Camera.main.ScreenToWorldPoint(
+    new Vector3(
+        Input.mousePosition.x,
+        (transform.position.y - Camera.main.transform.position.y),
+        (transform.position.z - Camera.main.transform.position.z)));
+
+        point.y = transform.position.y;
+        point.z = transform.position.z;
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, SmootherMovementValue);
+        transform.position = Vector3.MoveTowards(transform.position, point, maxDistanceDelta);
     }
 
     private Vector3 GetTargetPositionX()
