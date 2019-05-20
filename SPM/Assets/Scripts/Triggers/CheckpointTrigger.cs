@@ -13,10 +13,8 @@ public class CheckpointTrigger : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Player")) {
-            //other.GetComponent<Player>().respawnPoint = GetComponentInChildren<Transform>();
+        if (other.CompareTag("Player") && GameManager.Instance != null) {
             GameManager.Instance.CurrentCheckPoint = respawnPoint.position;
-            Debug.Log("New CheckPoint");
         }
     }
 }

@@ -30,18 +30,16 @@ public class Manipulate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("ISACTIVE: " + IsActive);
+
         if (IsActive)
         {
            
             if (reachEndPoint && canReturn)
             {
-                Debug.Log("Move to Start");
                 MoveToStartPosition();
             }
             else
             {
-                Debug.Log("Move TO end");
                 MoveToEndPosition();
             }
         }
