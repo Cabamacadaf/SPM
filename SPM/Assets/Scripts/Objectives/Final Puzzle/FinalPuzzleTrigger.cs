@@ -1,4 +1,4 @@
-﻿//Author: Simon Sundström
+﻿//Author: Simon Sundström & Marcus Mellström
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +25,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
     {
         FinalPuzzleFailEvent.RegisterListener(ObjectiveFailed);
         gravityGun = FindObjectOfType<GravityGun>();
-        id = GetComponent<ID>().NR;
+        id = GetComponentInParent<ID>().NR;
     }
 
     private void Update ()
