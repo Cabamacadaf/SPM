@@ -15,6 +15,10 @@ public class GravityGunPullingState : GravityGunBaseState
 
     public override void HandleFixedUpdate ()
     {
+        if(Owner.HoldingObject == null) {
+            Owner.Transition<GravityGunNotHoldingState>();
+        }
+
         if(Vector3.Distance(Owner.HoldingObject.transform.position, Owner.PullPoint.position) < Owner.DistanceToGrab) {
             Owner.Transition<GravityGunHoldingState>();
         }

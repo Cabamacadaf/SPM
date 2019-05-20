@@ -6,6 +6,10 @@ public class Highlight : MonoBehaviour
 {
     private bool isHighlighted = false;
     private MeshRenderer meshRenderer;
+    private Color color;
+    private Texture texture;
+    private float metallic;
+    private float smoothness;
 
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
@@ -13,20 +17,21 @@ public class Highlight : MonoBehaviour
     private void Awake ()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        Color color = meshRenderer.material.color;
-        Texture texture = meshRenderer.material.GetTexture("_MainTex");
-        float metallic = meshRenderer.material.GetFloat("_Metallic");
-        float smoothness = meshRenderer.material.GetFloat("_Glossiness");
-        highlightedMaterial.color = color;
-        highlightedMaterial.SetTexture("_MainTex", texture);
-        highlightedMaterial.SetFloat("_Metallic", metallic);
-        highlightedMaterial.SetFloat("_Glossiness", smoothness);
+        color = meshRenderer.material.color;
+        Debug.Log(color);
+        texture = meshRenderer.material.GetTexture("_MainTex");
+        metallic = meshRenderer.material.GetFloat("_Metallic");
+        smoothness = meshRenderer.material.GetFloat("_Glossiness");
     }
 
     public void Activate ()
     {
         if (isHighlighted == false) {
             isHighlighted = true;
+            highlightedMaterial.color = color;
+            highlightedMaterial.SetTexture("_MainTex", texture);
+            highlightedMaterial.SetFloat("_Metallic", metallic);
+            highlightedMaterial.SetFloat("_Glossiness", smoothness);
             meshRenderer.material = highlightedMaterial;
         }
     }
