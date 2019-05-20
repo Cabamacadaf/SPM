@@ -13,7 +13,7 @@ public class PowerCoreObjectiveController : MonoBehaviour
     {
         lightComponent = GetComponent<LightComponent>();
         gravityGun = FindObjectOfType<GravityGun>();
-        lightComponent.DisableLights();
+        //lightComponent.DisableLights();
     }
 
     private void OnTriggerEnter(Collider other)
