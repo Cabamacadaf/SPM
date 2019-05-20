@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Marcus Mellström
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +15,7 @@ public class PlayAudioMessage : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private Text messageText;
+    private Text subtitleText;
 
     private bool startPlaying = false;
     private bool hasStartedPlaying = false;
@@ -25,7 +27,7 @@ public class PlayAudioMessage : MonoBehaviour
     private void Awake ()
     {
         audioSource = GetComponent<AudioSource>();
-        messageText = FindObjectOfType<Canvas>().transform.Find("Message Text").GetComponent<Text>();
+        subtitleText = FindObjectOfType<Canvas>().transform.Find("Subtitle Text").GetComponent<Text>();
     }
 
     private void Update ()
@@ -36,7 +38,7 @@ public class PlayAudioMessage : MonoBehaviour
             if (playTimer >= delayBeforeStartPlaying && hasStartedPlaying == false) {
                 hasStartedPlaying = true;
                 audioSource.PlayOneShot(audioClip);
-                messageText.enabled = true;
+                subtitleText.enabled = true;
                 NextMessageText();
             }
 
@@ -45,8 +47,8 @@ public class PlayAudioMessage : MonoBehaviour
                     NextMessageText();
                 }
                 else {
-                    messageText.text = "";
-                    messageText.enabled = false;
+                    subtitleText.text = "";
+                    subtitleText.enabled = false;
                     hasFinishedPlaying = true;
                 }
             }
@@ -55,7 +57,7 @@ public class PlayAudioMessage : MonoBehaviour
 
     private void NextMessageText ()
     {
-        messageText.text = subtitles[currentSubtitle];
+        subtitleText.text = subtitles[currentSubtitle];
         currentSubtitle++;
         playTimer = 0.0f;
     }
