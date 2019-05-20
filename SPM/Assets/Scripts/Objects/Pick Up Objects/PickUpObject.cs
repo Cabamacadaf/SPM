@@ -93,13 +93,6 @@ public class PickUpObject : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (IsThrown) {
-            if (other.CompareTag("Damageable")) {
-                Debug.Log("Damage:" + ImpactDamage);
-                EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
-                enemyState.Damage(ImpactDamage);
-                LoseDurability();
-            }
-
             if (other.CompareTag("Enemy2Hurtbox")) {
                 Enemy2 enemy = other.GetComponentInParent<Enemy2>();
                 EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
@@ -113,8 +106,26 @@ public class PickUpObject : MonoBehaviour
     {
         IsColliding = true;
 
-        if (collision.collider.CompareTag("DestructibleObject") && IsThrown) {
-            collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
+        if (IsThrown) {
+            Debug.Log("Hit "+ collision.collider.gameObject);
+            if (collision.collider.CompareTag("Enemy")) {
+                Debug.Log("Hit Enemy");
+                EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponentInParent<Enemy>().GetCurrentState();
+                enemyState.Damage(ImpactDamage);
+                LoseDurability();
+            }
+
+            if (collision.collider.CompareTag("DestructibleObject")){
+                collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
+                LoseDurability();
+            }
+
+            if (collision.collider.CompareTag("Enemy2Hurtbox")) {
+                Enemy2 enemy = collision.collider.GetComponentInParent<Enemy2>();
+                EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
+                enemyState.Damage(ImpactDamage * enemy.DamageReduction);
+                LoseDurability();
+            }
         }
     }
 
