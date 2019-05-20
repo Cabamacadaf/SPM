@@ -48,9 +48,10 @@ public abstract class GravityGunBaseState : State
 
                     if(Vector3.Distance(Owner.PullPoint.position, Owner.HoldingObject.transform.position) > Owner.DistanceToDrop){
                         DropObject(false);
+                        return;
                     }
 
-                    moveToPosition = (pullPointDirectionCastHit.point - Owner.HoldingObject.transform.position).normalized * Owner.PullForce * Time.deltaTime; ;
+                    moveToPosition = (pullPointDirectionCastHit.point - Owner.HoldingObject.transform.position).normalized * Owner.PullForce * Time.deltaTime;
                 }
 
                 else {
