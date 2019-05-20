@@ -6,14 +6,22 @@ public class FinalPuzzleTimer : MonoBehaviour
 {
     [SerializeField] private float objectiveTimer = 180.0f;
     [SerializeField] private TextMesh text;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip alarmSound;
 
-    int minutes;
-    int seconds;
+    private int minutes;
+    private int seconds;
     private string textToSet;
+    private bool hasStarted = false;
 
     private void Update ()
     {
         if (FinalPuzzleObjectiveController.Instance.IsTimerStarted) {
+            if (hasStarted == false) {
+                hasStarted = true;
+                audioSource.PlayOneShot(alarmSound);
+            }
+
             objectiveTimer -= Time.deltaTime;
 
             SetTimerText();
