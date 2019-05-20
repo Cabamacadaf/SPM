@@ -13,14 +13,14 @@ public class GravityGunManipulateState : GravityGunBaseState
 
     public override void HandleUpdate()
     {
-        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit aimRaycastHit, Owner.PullRange, Owner.RaycastCollideLayer);
-        if(aimRaycastHit.collider != null)
-        {
-            isHovering = aimRaycastHit.collider.gameObject.Equals(Owner.ActivePlatform.gameObject);
+        //Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit aimRaycastHit, Owner.PullRange, Owner.RaycastCollideLayer);
+        //if(aimRaycastHit.collider != null)
+        //{
+        //    isHovering = aimRaycastHit.collider.gameObject.Equals(Owner.ActivePlatform.gameObject);
 
-        }
+        //}
 
-        if (Input.GetMouseButtonDown(1) || isHovering == false)
+        if (Input.GetMouseButtonDown(1))
         {
             Owner.ActivePlatform.IsActive = false;
             Owner.ActivePlatform = null;

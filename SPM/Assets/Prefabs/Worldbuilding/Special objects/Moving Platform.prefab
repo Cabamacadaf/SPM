@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 447966593700687606}
   - component: {fileID: 447966593700687607}
   - component: {fileID: 447966593700687608}
-  - component: {fileID: 447966593700687609}
+  - component: {fileID: 3836901624481690417}
   m_Layer: 9
   m_Name: Moving Platform
   m_TagString: Platform
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &447966593700687609
+--- !u!114 &3836901624481690417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,14 +121,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 447966593700687610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dd40b7309e844d4a80faafe97033951, type: 3}
+  m_Script: {fileID: 11500000, guid: 644339666f59f164a8f53b95d71613c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndPosition: {fileID: 7640970384857039212}
-  Player: {fileID: 8727586053112546443, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-  movingAxes: 0
-  SmootherMovementValue: 1
-  maxDistanceDelta: 0.5
+  endObject: {fileID: 7640970384857039212}
+  speed: 50
+  returnSpeed: 2
+  canReturn: 1
 --- !u!1 &1883592224438367644
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883592224438367644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.769, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 447966593700687604}
