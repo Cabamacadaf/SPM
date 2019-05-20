@@ -86,10 +86,15 @@ public class Platform : MonoBehaviour
     new Vector3(
         Input.mousePosition.x,
         (transform.position.y - Camera.main.transform.position.y),
-        (transform.position.z - Camera.main.transform.position.z)));
+        (Vector3.Distance(transform.position, Camera.main.transform.position))));
+
+
+        Debug.DrawLine(Player.transform.position, point);
 
         point.y = transform.position.y;
         point.z = transform.position.z;
+        //point.x *= -1;
+        Debug.Log("Point: " + point);
         //transform.position = Vector3.Lerp(transform.position, targetPosition, SmootherMovementValue);
         transform.position = Vector3.MoveTowards(transform.position, point, maxDistanceDelta);
     }
