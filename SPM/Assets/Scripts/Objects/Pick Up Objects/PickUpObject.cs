@@ -16,7 +16,7 @@ public class PickUpObject : MonoBehaviour
     
     public Vector3 LastFramePosition { get; set; }
     
-    protected bool isThrown { get; set; }
+    protected bool IsThrown { get; set; }
     public bool IsColliding { get; private set; }
 
     protected Highlight Highlight { get; private set; }
@@ -42,10 +42,10 @@ public class PickUpObject : MonoBehaviour
 
     private void Update ()
     {
-        if (isThrown == true) {
+        if (IsThrown == true) {
             throwTimer += Time.deltaTime;
             if(throwTimer >= thrownTime) {
-                isThrown = false;
+                IsThrown = false;
             }
         }
     }
@@ -66,7 +66,7 @@ public class PickUpObject : MonoBehaviour
         MeshRenderer.material.color = new Color(MeshRenderer.material.color.r, MeshRenderer.material.color.g, MeshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
-        this.isThrown = isThrown;
+        this.IsThrown = isThrown;
     }
 
     public void Pull ()
@@ -87,7 +87,7 @@ public class PickUpObject : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (isThrown) {
+        if (IsThrown) {
             if (other.CompareTag("Damageable")) {
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(ImpactDamage);
@@ -107,7 +107,7 @@ public class PickUpObject : MonoBehaviour
     {
         IsColliding = true;
 
-        if (collision.collider.CompareTag("DestructibleObject") && isThrown) {
+        if (collision.collider.CompareTag("DestructibleObject") && IsThrown) {
             collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
         }
     }

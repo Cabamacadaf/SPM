@@ -6,6 +6,9 @@ public class Highlight : MonoBehaviour
 {
     private bool isHighlighted = false;
     private MeshRenderer meshRenderer;
+    private Color color;
+    private float metallic;
+    private float smoothness;
 
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
@@ -19,9 +22,13 @@ public class Highlight : MonoBehaviour
     {
         if (isHighlighted == false) {
             isHighlighted = true;
-            Color color = meshRenderer.material.color;
+            color = meshRenderer.material.color;
+            metallic = meshRenderer.material.GetFloat("_Metallic");
+            smoothness = meshRenderer.material.GetFloat("_Glossiness");
             meshRenderer.material = highlightedMaterial;
             meshRenderer.material.color = color;
+            meshRenderer.material.SetFloat("_Metallic", metallic);
+            meshRenderer.material.SetFloat("_Glossiness", smoothness);
         }
     }
 
@@ -29,9 +36,7 @@ public class Highlight : MonoBehaviour
     {
         if (isHighlighted == true) {
             isHighlighted = false;
-            Color color = meshRenderer.material.color;
             meshRenderer.material = regularMaterial;
-            meshRenderer.material.color = color;
         }
     }
 }
