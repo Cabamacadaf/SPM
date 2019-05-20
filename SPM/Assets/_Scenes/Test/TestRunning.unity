@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &18395781 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3936150290655123666, guid: 46e0a9eb2b18db94f8e21539ba789f86,
-    type: 3}
-  m_PrefabInstance: {fileID: 622868227}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &21324089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7958473696572126454, guid: 5a7116e9405dff544894b94370070518,
@@ -574,42 +562,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: states.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 18395781}
-    - target: {fileID: 8727586052577491054, guid: 483391c0130292745ae859d3cd322aae,
-        type: 3}
-      propertyPath: states.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 12cc94426646b7b4fbdfe844bf90f9b5,
-        type: 2}
-    - target: {fileID: 1061659848, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: crouchSpeed
-      value: 2.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061659848, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: crouchKey
-      value: 306
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061659848, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: backwardsSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061659848, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: backwardsSpeedModifier
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061659848, guid: 483391c0130292745ae859d3cd322aae, type: 3}
-      propertyPath: gravityModifier
-      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483391c0130292745ae859d3cd322aae, type: 3}

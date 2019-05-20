@@ -17,6 +17,8 @@ public class Attack : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasAttacked) {
             hasAttacked = true;
+            Debug.Log("Attack Player");
+            Debug.Log("Damage: " + enemy.AttackDamage);
             playerHealth = other.GetComponent<HealthComponent>();
             playerHealth.Damage(enemy.AttackDamage);
         }
