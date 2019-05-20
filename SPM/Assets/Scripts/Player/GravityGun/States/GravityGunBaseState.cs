@@ -92,7 +92,7 @@ public abstract class GravityGunBaseState : State
 
     public void DropObject (bool isThrown)
     {
-        Owner.HoldingObject.Drop(isThrown);
+        Owner.HoldingObject.Drop(isThrown, Owner.ThrowForce);
         Owner.HoldingObject = null;
         Owner.Transition<GravityGunNotHoldingState>();
     }

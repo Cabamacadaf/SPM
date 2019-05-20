@@ -20,7 +20,7 @@ public class PickUpObject : MonoBehaviour
     public bool IsColliding { get; private set; }
 
     protected Highlight Highlight { get; private set; }
-    protected Rigidbody RigidBody { get; private set; }
+    public Rigidbody RigidBody { get; private set; }
     protected MeshRenderer MeshRenderer { get; private set; }
     public Collider Collider { get; private set; }
 
@@ -59,18 +59,23 @@ public class PickUpObject : MonoBehaviour
         MeshRenderer.material.color = new Color(MeshRenderer.material.color.r, MeshRenderer.material.color.g, MeshRenderer.material.color.b, holdingOpacity);
     }
 
-    public void Drop (bool isThrown)
+    public void Drop (bool isThrown, float throwForce)
     {
         gameObject.layer = LayerMask.NameToLayer("Pick Up Objects");
         RigidBody.useGravity = true;
+        RigidBody.velocity = Vector3.zero;
         MeshRenderer.material.color = new Color(MeshRenderer.material.color.r, MeshRenderer.material.color.g, MeshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
-        this.IsThrown = isThrown;
+        IsThrown = isThrown;
+        if (isThrown) {
+            RigidBody.AddForce(Camera.main.transform.forward * throwForce);
+        }
     }
 
     public void Pull ()
     {
+        IsThrown = false;
         LastFramePosition = transform.position;
         Highlight.Deactivate();
         RigidBody.useGravity = false;
@@ -89,6 +94,7 @@ public class PickUpObject : MonoBehaviour
     {
         if (IsThrown) {
             if (other.CompareTag("Damageable")) {
+                Debug.Log("Damage:" + ImpactDamage);
                 EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(ImpactDamage);
                 LoseDurability();
