@@ -43,7 +43,7 @@ public class GravityGun : StateMachine
 
     public Transform PullPoint { get => pullPoint; private set => pullPoint = value; }
     public PickUpObject HoldingObject { get; set; }
-    public Platform ActivePlatform { get; set; }
+    public Manipulate ActivePlatform { get; set; }
     #endregion
 
     protected override void Awake ()

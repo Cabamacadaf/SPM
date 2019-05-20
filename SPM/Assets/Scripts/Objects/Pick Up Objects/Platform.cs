@@ -70,14 +70,6 @@ public class Platform : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
-    {
-        if (!locked)
-        {
-
-        }
-    }
-
 
     private void Move(Vector3 targetPosition)
     {
@@ -207,9 +199,5 @@ public class Platform : MonoBehaviour
 
 
 }
-[System.Serializable]
-public enum MovingAxes
-{
-    X, Y, Z
-}
+
 

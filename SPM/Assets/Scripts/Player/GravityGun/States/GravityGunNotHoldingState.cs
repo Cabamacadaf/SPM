@@ -81,8 +81,8 @@ public class GravityGunNotHoldingState : GravityGunBaseState
                 Owner.Transition<GravityGunPullingState>();
             }
             else if (aimRaycastHit.collider.gameObject.CompareTag("Platform")) {
-                Owner.ActivePlatform = aimRaycastHit.collider.gameObject.GetComponent<Platform>();
-                Owner.Transition<GravityGunManipulateState>();
+                Owner.ActivePlatform = aimRaycastHit.collider.gameObject.GetComponent<Manipulate>();
+                Owner.ActivePlatform.IsActive = true;
             }
         }
     }
