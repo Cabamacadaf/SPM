@@ -19,7 +19,7 @@ public class GravityGunManipulateState : GravityGunBaseState
             isHovering = aimRaycastHit.collider.gameObject.Equals(Owner.ActivePlatform.gameObject);
 
         }
-        Debug.Log("IsHovering: " + isHovering);
+
         if (Input.GetMouseButtonDown(1) || isHovering == false)
         {
             Owner.ActivePlatform.IsActive = false;
