@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6107024431316210206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.881, y: 7.669, z: 20.182}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,12 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e122d09bb440240aa97c5a49235856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 11777
-  durability: 3
   impactDamage: 25
-  lowestVelocityToDoDamage: 1
+  durability: 3
   holdingOpacity: 0.5
 --- !u!114 &7181403818367304188
 MonoBehaviour:
