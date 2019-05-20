@@ -50,7 +50,7 @@ public abstract class GravityGunBaseState : State
                         DropObject(false);
                     }
 
-                    moveToPosition = (pullPointDirectionCastHit.point - Owner.HoldingObject.transform.position).normalized * Owner.PullForce * Time.deltaTime; ;
+                    moveToPosition = (pullPointDirectionCastHit.point - Owner.HoldingObject.transform.position).normalized * Owner.PullForce * Time.deltaTime;
                 }
 
                 else {
