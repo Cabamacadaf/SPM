@@ -6,6 +6,7 @@ public abstract class EnemyAggroState : EnemyBaseState
     {
         //Debug.Log("Aggro State");
         Owner.LightSource.enabled = true;
+        Owner.Obstacle.enabled = false;
         Owner.Agent.enabled = true;
         Owner.Agent.speed = Owner.MovementSpeed;
         Owner.Agent.acceleration = Owner.Acceleration;

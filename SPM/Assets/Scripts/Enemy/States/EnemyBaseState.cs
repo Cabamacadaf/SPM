@@ -9,6 +9,9 @@ public abstract class EnemyBaseState : State
 
     public override void Enter ()
     {
+        if(Owner.GetCurrentState() is EnemyAggroState == false) {
+            Owner.Obstacle.enabled = true;
+        }
         base.Enter();
     }
 

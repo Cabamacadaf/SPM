@@ -68,6 +68,7 @@ public abstract class Enemy : StateMachine
     public Light LightSource { get; private set; }
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
+    public NavMeshObstacle Obstacle { get; private set; }
     public PlayerController Player { get; private set; }
     #endregion
 
@@ -79,6 +80,7 @@ public abstract class Enemy : StateMachine
         RigidBody = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
         Agent = GetComponent<NavMeshAgent>();
+        Obstacle = GetComponent<NavMeshObstacle>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         Player = FindObjectOfType<PlayerController>();
         MaxHitPoints = hitPoints;
