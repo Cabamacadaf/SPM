@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class GravityBlast : MonoBehaviour
 {
-    [SerializeField] private Collider blastRadius;
+    [SerializeField] private GameObject blastRadius;
     [SerializeField] private Light readyLight;
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private float cooldownTime = 10.0f;
     [SerializeField] private float blastForce = 2000f;
 
     private float cooldownTimer = 0.0f;
-    private bool cooldown = false;
+    private bool isOnCooldown = false;
 
     private StateMachine gravityGun;
 
@@ -25,32 +25,25 @@ public class GravityBlast : MonoBehaviour
 
     private void Update ()
     {
-        if (cooldown) {
+        if (isOnCooldown == true) {
             cooldownTimer += Time.deltaTime;
             if(cooldownTimer >= cooldownTime) {
-                cooldown = false;
+                isOnCooldown = false;
                 cooldownTimer = 0.0f;
                 readyLight.enabled = true;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && gravityGun.GetCurrentState() is GravityGunNotHoldingState && !cooldown) {
+        if (Input.GetKeyDown(KeyCode.Q) && gravityGun.GetCurrentState() is GravityGunNotHoldingState && isOnCooldown == false) {
             particleSystem.Play();
             readyLight.enabled = false;
-            cooldown = true;
+            isOnCooldown = true;
             Blast();
         }
     }
 
     public void Blast ()
     {
-        StartCoroutine(EnableTrigger());
-    }
-
-    IEnumerator EnableTrigger ()
-    {
-        blastRadius.enabled = true;
-        yield return 0;
-        blastRadius.enabled = false;
+        blastRadius.SetActive(true);
     }
 }
