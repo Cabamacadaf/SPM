@@ -9,7 +9,8 @@ public class GravityGun : StateMachine
 {
     #region Private Fields
     [SerializeField] private float pullRange = 12.0f;
-    [SerializeField] private float pushForce = 900f;
+    [SerializeField] private float throwForce = 900f;
+    [SerializeField] private float pushForce = 100f;
     [SerializeField] private float pullForce = 12.0f;
     [SerializeField] private float distanceToGrab = 0.1f;
     [SerializeField] private float distanceToDrop = 1.0f;
@@ -24,6 +25,7 @@ public class GravityGun : StateMachine
 
     #region Properties
     public float PullRange { get => pullRange; private set => pullRange = value; }
+    public float ThrowForce { get => throwForce; set => throwForce = value; }
     public float PushForce { get => pushForce; set => pushForce = value; }
     public float PullForce { get => pullForce; private set => pullForce = value; }
     public float DistanceToGrab { get => distanceToGrab; private set => distanceToGrab = value; }

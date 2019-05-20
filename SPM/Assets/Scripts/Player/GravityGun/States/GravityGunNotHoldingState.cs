@@ -9,6 +9,7 @@ public class GravityGunNotHoldingState : GravityGunBaseState
     private Highlight lastPickUpObjectHitHighlight;
     private RaycastHit aimRaycastHit;
 
+    private Vector3 pushDirection;
 
     public override void Enter ()
     {
@@ -45,6 +46,10 @@ public class GravityGunNotHoldingState : GravityGunBaseState
             Pull();
         }
 
+        if (Input.GetMouseButtonDown(0)) {
+            Push();
+        }
+
         //if(currentPlatform != null)
         //{
             
@@ -57,7 +62,18 @@ public class GravityGunNotHoldingState : GravityGunBaseState
 
     }
 
-    public void Pull ()
+    private void Push ()
+    {
+        if (aimRaycastHit.collider != null) {
+            if (Functions.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, Owner.PullLayer)) {
+                pushDirection = Camera.main.transform.forward;
+                pushDirection = new Vector3(pushDirection.x, 0.0f, pushDirection.z).normalized;
+                aimRaycastHit.collider.attachedRigidbody.AddForce(pushDirection * Owner.PushForce);
+            }
+        }
+    }
+
+    private void Pull ()
     {
         if (aimRaycastHit.collider != null) {
             if (Functions.IsInLayerMask(aimRaycastHit.collider.gameObject.layer, Owner.PullLayer)) {

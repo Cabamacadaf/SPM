@@ -29,7 +29,6 @@ public class GravityGunHoldingState : GravityGunBaseState
         }
 
         else if (Input.GetMouseButtonDown(0)) {
-            Owner.HoldingObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * Owner.PushForce);
             DropObject(true);
         }
 
@@ -49,14 +48,12 @@ public class GravityGunHoldingState : GravityGunBaseState
     {
         if (Input.GetMouseButton(0) && timer <= UpgradeSettings.instance.MaxTime) {
             Owner.HoldingObject.ImpactDamage += UpgradeSettings.instance.GrowRate;
-            Owner.PushForce += UpgradeSettings.instance.GrowRate;
+            Owner.ThrowForce += UpgradeSettings.instance.GrowRate;
             timer += Time.deltaTime;
             isCharging = true;
-
         }
 
         else if (isCharging) {
-            Addforce();
             DropObject(true);
         }
     }
@@ -69,12 +66,5 @@ public class GravityGunHoldingState : GravityGunBaseState
             Owner.HoldingObject.transform.position = Owner.HoldingObject.LastFramePosition;
             DropObject(false);
         }
-    }
-
-    private void Addforce ()
-    {
-        Vector3 direction = Camera.main.transform.forward;
-        float force = Owner.PushForce;
-        Owner.HoldingObject.GetComponent<Rigidbody>().AddForce(direction * force);
     }
 }
