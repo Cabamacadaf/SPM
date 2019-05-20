@@ -10,11 +10,12 @@ public class LightComponent : MonoBehaviour
     [SerializeField] private Color newColor;
     [SerializeField] private float timeBetweenLights;
     [SerializeField] private float timeUntillLightsActivate;
-    [SerializeField] private GameObject energiLightsSmall;
-    [SerializeField] private GameObject energiLightsBig;
+    //[SerializeField] private GameObject energiLightsSmall;
+    //[SerializeField] private GameObject energiLightsBig;
 
 
-    private void EnableLights()
+
+    public void EnableLights()
     {
         foreach (Light light in lights)
         {
@@ -22,7 +23,7 @@ public class LightComponent : MonoBehaviour
         }
     }
 
-    private void DisableLights()
+    public void DisableLights()
     {
         foreach (Light light in lights)
         {
@@ -30,7 +31,7 @@ public class LightComponent : MonoBehaviour
         }
     }
 
-    private IEnumerator ChangeColors()
+    public IEnumerator ChangeColors()
     {
         foreach (Light light in lights)
         {
@@ -39,10 +40,10 @@ public class LightComponent : MonoBehaviour
         }
     }
 
-    private IEnumerator SetActiveOBJ()
-    {
-        yield return new WaitForSeconds(timeUntillLightsActivate);
-        energiLightsBig.SetActive(true);
-        energiLightsSmall.SetActive(true);
-    }
+    //public IEnumerator SetActiveOBJ()
+    //{
+    //    yield return new WaitForSeconds(timeUntillLightsActivate);
+    //    energiLightsBig.SetActive(true);
+    //    energiLightsSmall.SetActive(true);
+    //}
 }

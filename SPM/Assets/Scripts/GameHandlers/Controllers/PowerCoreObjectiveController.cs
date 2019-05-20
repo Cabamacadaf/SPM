@@ -5,13 +5,15 @@ using UnityEngine;
 public class PowerCoreObjectiveController : MonoBehaviour
 {
     [SerializeField] private Transform corePosition;
-
+    private LightComponent lightComponent;
     private GravityGun gravityGun;
     private bool isActive = true;
 
     private void Awake()
     {
+        lightComponent = GetComponent<LightComponent>();
         gravityGun = FindObjectOfType<GravityGun>();
+        lightComponent.DisableLights();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +34,9 @@ public class PowerCoreObjectiveController : MonoBehaviour
             PowerCorePlacedEvent objectiveEvent = new PowerCorePlacedEvent();
             objectiveEvent.EventDescription = "Power Core placed.";
             objectiveEvent.ExecuteEvent();
+
+            lightComponent.EnableLights();
+            StartCoroutine(lightComponent.ChangeColors());
 
         }
     }

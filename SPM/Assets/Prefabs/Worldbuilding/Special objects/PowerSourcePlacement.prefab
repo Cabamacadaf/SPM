@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3398750072591368009
 Transform:
@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 5314815650017982874}
   - component: {fileID: 5314815650017982875}
   - component: {fileID: 1265286011247344900}
+  - component: {fileID: 8836050417117378059}
   m_Layer: 9
   m_Name: PowerSourcePlacement
   m_TagString: Untagged
@@ -151,6 +152,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corePosition: {fileID: 2838298870866130037}
+--- !u!114 &8836050417117378059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314815650017982873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6cf4f68c1ccd245aa4c18a86fc3be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights: []
+  newColor: {r: 0, g: 0, b: 0, a: 0}
+  timeBetweenLights: 1
+  timeUntillLightsActivate: 1
 --- !u!1 &5383974032828304906
 GameObject:
   m_ObjectHideFlags: 0
