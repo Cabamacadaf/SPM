@@ -61,8 +61,10 @@ public class PlayerController : MonoBehaviour
     float forward;
     float horizontal;
 
+
     private void Awake()
     {
+        GameManager.Instance.CurrentCheckPoint = transform.position;
         PlayAudioMessage = GetComponent<PlayAudioMessage>();
         flashlight = GetComponentInChildren<Light>();
 
