@@ -12,12 +12,10 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private float holdingOpacity = 0.5f;
 
     public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
-    protected int Durability { get => durability; set => durability = value; }
     
     public Vector3 LastFramePosition { get; set; }
     
     protected bool IsThrown { get; set; }
-    public bool IsColliding { get; private set; }
 
     protected Highlight Highlight { get; private set; }
     public Rigidbody RigidBody { get; private set; }
@@ -27,7 +25,7 @@ public class PickUpObject : MonoBehaviour
     public Transform OriginalParent { get; set; }
     public Transform CurrentParent { get; set; }
 
-    private float throwTimer = 0;
+    private float throwTimer = 0.0f;
     private float thrownTime = 3.0f;
 
     private void Awake ()
@@ -42,15 +40,13 @@ public class PickUpObject : MonoBehaviour
 
     private void Update ()
     {
-        //if (IsThrown == true)
-        //{
-        //    throwTimer += Time.deltaTime;
-        //    if (throwTimer >= thrownTime)
-        //    {
-        //        IsThrown = false;
-        //    }
-        //}
-
+        if (IsThrown == true) {
+            throwTimer += Time.deltaTime;
+            if(throwTimer >= thrownTime) {
+                IsThrown = false;
+                throwTimer = 0.0f;
+            }
+        }
     }
 
     public void Hold (Vector3 pullPointPosition, Transform newParent)
@@ -79,50 +75,31 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         IsThrown = false;
+        throwTimer = 0.0f;
         LastFramePosition = transform.position;
         Highlight.Deactivate();
         RigidBody.useGravity = false;
     }
 
-    protected void LoseDurability ()
-    {
-        Durability--;
-        if (Durability <= 0) {
-            ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
-            objectDestroyedEvent.ExecuteEvent();
-        }
-    }
-
-    private void OnTriggerEnter (Collider other)
-    {
-        if (IsThrown) {
-            if (other.CompareTag("Damageable")) {
-                Debug.Log("Damage:" + ImpactDamage);
-                EnemyBaseState enemyState = (EnemyBaseState)other.GetComponentInParent<Enemy>().GetCurrentState();
-                enemyState.Damage(ImpactDamage);
-                LoseDurability();
-            }
-
-            if (other.CompareTag("Enemy2Hurtbox")) {
-                Enemy2 enemy = other.GetComponentInParent<Enemy2>();
-                EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
-                enemyState.Damage(ImpactDamage * enemy.DamageReduction);
-                LoseDurability();
-            }
-        }
-    }
-
     private void OnCollisionEnter (Collision collision)
     {
-        IsColliding = true;
+        if (IsThrown) {
+            Debug.Log("Hit "+ collision.collider.gameObject);
+            if (collision.collider.CompareTag("Enemy")) {
+                Debug.Log("Hit Enemy");
+                EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponentInParent<Enemy>().GetCurrentState();
+                enemyState.Damage(ImpactDamage);
+            }
 
-        if (collision.collider.CompareTag("DestructibleObject") && IsThrown) {
-            collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
+            if (collision.collider.CompareTag("DestructibleObject")){
+                collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
+            }
+
+            if (collision.collider.CompareTag("Enemy2Hurtbox")) {
+                Enemy2 enemy = collision.collider.GetComponentInParent<Enemy2>();
+                EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
+                enemyState.Damage(ImpactDamage * enemy.DamageReduction);
+            }
         }
-    }
-
-    private void OnCollisionExit (Collision collision)
-    {
-        IsColliding = false;
     }
 }

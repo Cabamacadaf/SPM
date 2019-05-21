@@ -27,10 +27,7 @@ public class ExplosiveObject : PickUpObject
                 InstantiateParticleEffects();
 
                 HandleSpecificObjects(collider);
-
             }
-
-            LoseDurability();
         }
     }
 

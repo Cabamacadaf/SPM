@@ -15,9 +15,8 @@ public class EnemyAggro : MonoBehaviour
     private void OnTriggerStay (Collider other)
     {
         if (other.CompareTag("Player")) {
-            Debug.DrawLine(other.bounds.center, enemy.transform.position, Color.yellow, 2);
-            Vector3 raycastDirection = enemy.transform.position - other.bounds.center;
-            if (!Physics.Raycast(other.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, wallLayer)) {
+            Vector3 raycastDirection = enemy.Collider.bounds.center - other.bounds.center;
+            if (Physics.Raycast(other.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, wallLayer) == false) {
                 if ((enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) || (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState)) {
                     Aggro();
                 }
@@ -28,6 +27,7 @@ public class EnemyAggro : MonoBehaviour
 
     public void Aggro ()
     {
+        Debug.Log("Aggro");
         if (enemy is Enemy1) {
             enemy.Transition<Enemy1AggroState>();
         }

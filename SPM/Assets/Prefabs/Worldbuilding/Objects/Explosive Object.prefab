@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 7543826323438187461}
   - component: {fileID: 7543826323438187460}
   - component: {fileID: 7543826323438187459}
-  - component: {fileID: 7543826323438187457}
   - component: {fileID: 7543826323438187456}
-  - component: {fileID: 2883381633301016481}
-  - component: {fileID: 343493697542627586}
-  m_Layer: 13
+  - component: {fileID: 8517839908013054177}
+  - component: {fileID: 8507713743289178502}
+  m_Layer: 9
   m_Name: Explosive Object
   m_TagString: Shootable
   m_Icon: {fileID: 0}
@@ -43,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7543826323438187487}
-  m_Mesh: {fileID: 4300000, guid: 69170572216f1b947ab020051034cb39, type: 3}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &7543826323438187459
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81,27 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7543826323438187457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7543826323438187487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d458c89ef27e104ba87a6b825d3fa01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactDamage: 25
-  durability: 1
-  holdingOpacity: 0.5
-  horizontalParticleEffect: {fileID: 0}
-  verticalParticaleEffect: {fileID: 0}
-  power: 10
-  damage: 0
-  radius: 10
-  upwardsModifier: 0
 --- !u!54 &7543826323438187456
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -118,21 +96,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!136 &2883381633301016481
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7543826323438187487}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.108354956
-  m_Height: 0.55983377
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &343493697542627586
+--- !u!114 &8517839908013054177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,8 +105,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7543826323438187487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4856ba3b6e7064ca7f04ebfba54121, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c81152a95265a14993ce0713ecf37be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regularMaterial: {fileID: 2100000, guid: 16a4e59491d7b83439dcf7dae41d10ba, type: 2}
-  highlightedMaterial: {fileID: 2100000, guid: 466e764900accdd4592542c600364ce3, type: 2}
+  horizontalParticleEffect: {fileID: 2032767768531018655, guid: b2922bc602723b64b820e89128aada85,
+    type: 3}
+  verticalParticaleEffect: {fileID: 5251145782221235652, guid: acf93958653fa844880eaa8cf5e49ad3,
+    type: 3}
+  power: 20
+  damage: 50
+  radius: 5
+  upwardsModifier: 1
+--- !u!65 &8507713743289178502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543826323438187487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
