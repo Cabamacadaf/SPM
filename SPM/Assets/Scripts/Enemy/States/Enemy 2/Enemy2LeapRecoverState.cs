@@ -20,8 +20,6 @@ public class Enemy2LeapRecoverState : EnemyBaseState
         base.Enter();
         Owner.RigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         timer = 0.0f;
-        owner2.LeapAttackHitbox.SetActive(false);
-        owner2.Mouth.gameObject.SetActive(false);
 		Owner.Animator.SetFloat("Enemy2Speed", 0.0f);
     }
 
@@ -40,6 +38,8 @@ public class Enemy2LeapRecoverState : EnemyBaseState
 
     public override void Exit ()
     {
+        owner2.LeapAttackHitbox.SetActive(false);
+        owner2.Mouth.gameObject.SetActive(false);
         Owner.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         base.Exit();
     }

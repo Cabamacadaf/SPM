@@ -65,6 +65,7 @@ public class PickUpObject : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Pick Up Objects");
         RigidBody.useGravity = true;
         RigidBody.velocity = Vector3.zero;
+        RigidBody.angularVelocity = Vector3.zero;
         MeshRenderer.material.color = new Color(MeshRenderer.material.color.r, MeshRenderer.material.color.g, MeshRenderer.material.color.b, 1);
         CurrentParent = OriginalParent;
         transform.SetParent(OriginalParent);
@@ -92,27 +93,29 @@ public class PickUpObject : MonoBehaviour
 
     private void DamageEnemy (Collider collider, float damage)
     {
-        if (!enemiesHit.Contains(collider.gameObject)) {
-            enemiesHit.Add(collider.gameObject);
-            EnemyBaseState enemyState = (EnemyBaseState)collider.GetComponentInParent<Enemy>().GetCurrentState();
-            enemyState.Damage(damage);
-        }
+        enemiesHit.Add(collider.gameObject);
+        EnemyBaseState enemyState = (EnemyBaseState)collider.GetComponentInParent<Enemy>().GetCurrentState();
+        enemyState.Damage(damage);
     }
 
     private void OnCollisionStay (Collision collision)
     {
         if (IsThrown) {
-            if (collision.collider.CompareTag("Enemy")) {
-                DamageEnemy(collision.collider, ImpactDamage);
+            if (!enemiesHit.Contains(collision.collider.gameObject)) {
+                if (collision.collider.CompareTag("EnemyMouth")) {
+                    Debug.Log("Mouth Hit");
+                    Enemy2 enemy = collision.collider.GetComponentInParent<Enemy2>();
+                    DamageEnemy(collision.collider, ImpactDamage * enemy.MouthDamageMultiplier);
+                }
+
+                if (collision.collider.CompareTag("Enemy")) {
+                    Debug.Log("Body Hit");
+                    DamageEnemy(collision.collider, ImpactDamage);
+                }
             }
 
             if (collision.collider.CompareTag("DestructibleObject")) {
                 collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
-            }
-
-            if (collision.collider.CompareTag("Enemy2Hurtbox")) {
-                Enemy2 enemy = collision.collider.GetComponentInParent<Enemy2>();
-                DamageEnemy(collision.collider, ImpactDamage * enemy.DamageReduction);
             }
         }
     }

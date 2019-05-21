@@ -583,7 +583,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 697373800994241273}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &697373800982637529
 SkinnedMeshRenderer:
@@ -714,9 +714,9 @@ Transform:
   - {fileID: 4740992149328932139}
   - {fileID: 4740992150469090767}
   - {fileID: 4740992148769206617}
+  - {fileID: 1212145951081751408}
   - {fileID: 697373800994241271}
   - {fileID: 697373800994241371}
-  - {fileID: 1212145951081751408}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -760,7 +760,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7be9f70fbad2a274bb14f13d02031d47, type: 2}
   - {fileID: 11400000, guid: 9a50e24b28e51fd49b6f691d02c67e35, type: 2}
   - {fileID: 11400000, guid: 397eb62e95f4ad944a218a23b3cba9cb, type: 2}
-  hitPoints: 25
+  hitPoints: 75
   attackDamage: 35
   attackDistance: 1
   attackTime: 0.1
@@ -782,7 +782,7 @@ MonoBehaviour:
   idleSoundMaxTime: 5
   color: {r: 0.2231666, g: 0.347388, b: 0.8018868, a: 1}
   collider: {fileID: 2989622708848967621}
-  damageReduction: 0.17
+  mouthDamageMultiplier: 3
   leapDamage: 50
   leapSpeed: 1.5
   leapHeight: 3
@@ -1167,7 +1167,7 @@ Transform:
   - {fileID: 697373800994241381}
   - {fileID: 697373800994241369}
   m_Father: {fileID: 697373800994241273}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697373800994137917
 GameObject:
@@ -1735,7 +1735,7 @@ GameObject:
   - component: {fileID: 2989622708848967621}
   m_Layer: 0
   m_Name: Enemy2Collider
-  m_TagString: Enemy2Hurtbox
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1748,11 +1748,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212145951081267024}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.464, z: 0.227}
+  m_LocalPosition: {x: 0, y: 0.464, z: 0.227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 697373800994241273}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &2989622708848967621
 MeshCollider:
@@ -1851,11 +1851,11 @@ GameObject:
   - component: {fileID: 4740992149072837510}
   m_Layer: 11
   m_Name: MouthHitbox
-  m_TagString: Enemy
+  m_TagString: EnemyMouth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4740992149072837509
 Transform:
   m_ObjectHideFlags: 0
@@ -1864,8 +1864,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4740992149072837508}
   m_LocalRotation: {x: 0.5368844, y: -0.8436559, z: -0, w: 0}
-  m_LocalPosition: {x: -0.007, y: -0.008, z: -0.123}
-  m_LocalScale: {x: 0.3137951, y: 0.30137503, z: 0.15442203}
+  m_LocalPosition: {x: -0.013, y: -0.005, z: -0.3}
+  m_LocalScale: {x: 0.34202746, y: 0.33935297, z: 0.2684992}
   m_Children: []
   m_Father: {fileID: 697373800994241245}
   m_RootOrder: 5
