@@ -7,6 +7,8 @@
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
+		_EmissionColor("Color", Color) = (0,0,0)
+
 		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
 
 		_BlurRadius("Outline Blur Radius", Range(0.0, 20.0)) = 1
@@ -52,6 +54,7 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+		fixed4 _EmissionColor;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -69,6 +72,7 @@
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
+			o.Emission = _EmissionColor;
         }
         ENDCG
     }

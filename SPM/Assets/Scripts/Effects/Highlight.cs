@@ -10,6 +10,7 @@ public class Highlight : MonoBehaviour
     private Texture texture;
     private float metallic;
     private float smoothness;
+    private Color emissionColor;
 
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
@@ -21,6 +22,7 @@ public class Highlight : MonoBehaviour
         texture = meshRenderer.material.GetTexture("_MainTex");
         metallic = meshRenderer.material.GetFloat("_Metallic");
         smoothness = meshRenderer.material.GetFloat("_Glossiness");
+        emissionColor = meshRenderer.material.GetColor("_EmissionColor");
     }
 
     public void Activate ()
@@ -31,6 +33,7 @@ public class Highlight : MonoBehaviour
             highlightedMaterial.SetTexture("_MainTex", texture);
             highlightedMaterial.SetFloat("_Metallic", metallic);
             highlightedMaterial.SetFloat("_Glossiness", smoothness);
+            highlightedMaterial.SetColor("_EmissionColor", emissionColor);
             meshRenderer.material = highlightedMaterial;
         }
     }
