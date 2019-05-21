@@ -27,7 +27,6 @@ public class EnemyAggro : MonoBehaviour
 
     public void Aggro ()
     {
-        Debug.Log("Aggro");
         if (enemy is Enemy1) {
             enemy.Transition<Enemy1AggroState>();
         }

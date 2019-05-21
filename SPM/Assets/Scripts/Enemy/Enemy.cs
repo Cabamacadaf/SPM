@@ -19,7 +19,7 @@ public abstract class Enemy : StateMachine
     [SerializeField] private float rotationSpeed = 5.0f;
 
     [SerializeField] private float blastRecoveryTime = 2.0f;
- 
+
     [SerializeField] private GameObject attackObject;
 
     [SerializeField] private LayerMask wallLayer;
@@ -32,7 +32,8 @@ public abstract class Enemy : StateMachine
     [SerializeField] private float idleSoundMinTime;
     [SerializeField] private float idleSoundMaxTime;
 
-    [SerializeField] private Collider collider;
+    [SerializeField] private Color color;
+    [SerializeField] private new Collider collider;
     #endregion
 
     #region Properties
@@ -63,6 +64,7 @@ public abstract class Enemy : StateMachine
     public float IdleSoundMinTime { get => idleSoundMinTime; private set => idleSoundMinTime = value; }
     public float IdleSoundMaxTime { get => idleSoundMaxTime; private set => idleSoundMaxTime = value; }
 
+    public Color Color { get => color; private set => color = value; }
     public Collider Collider { get => collider; private set => collider = value; }
 
     public SkinnedMeshRenderer MeshRenderer { get; private set; }
@@ -77,13 +79,14 @@ public abstract class Enemy : StateMachine
 
     protected override void Awake ()
     {
-		Animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
         LightSource = GetComponentInChildren<Light>();
         AudioSource = GetComponent<AudioSource>();
         RigidBody = GetComponent<Rigidbody>();
         Agent = GetComponent<NavMeshAgent>();
         Obstacle = GetComponent<NavMeshObstacle>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        MeshRenderer.material.color = Color;
         Player = FindObjectOfType<PlayerController>();
         MaxHitPoints = hitPoints;
         base.Awake();
