@@ -5,12 +5,19 @@ using UnityEngine;
 public class Highlight : MonoBehaviour
 {
     private bool isHighlighted = false;
+
     private MeshRenderer meshRenderer;
     private Color color;
     private Texture texture;
     private float metallic;
     private float smoothness;
     private Color emissionColor;
+
+    private Color originalHighlightColor;
+    private Texture originalHighlightTexture;
+    private float originalHighlightMetallic;
+    private float originalHighlightSmoothness;
+    private Color originalHighlightEmissionColor;
 
     [SerializeField] private Material regularMaterial;
     [SerializeField] private Material highlightedMaterial;
@@ -23,6 +30,12 @@ public class Highlight : MonoBehaviour
         metallic = meshRenderer.material.GetFloat("_Metallic");
         smoothness = meshRenderer.material.GetFloat("_Glossiness");
         emissionColor = meshRenderer.material.GetColor("_EmissionColor");
+
+        originalHighlightColor = highlightedMaterial.color;
+        originalHighlightTexture = highlightedMaterial.GetTexture("_MainTex");
+        originalHighlightMetallic = highlightedMaterial.GetFloat("_Metallic");
+        originalHighlightSmoothness = highlightedMaterial.GetFloat("_Glossiness");
+        originalHighlightEmissionColor = highlightedMaterial.GetColor("_EmissionColor");
     }
 
     public void Activate ()
@@ -42,7 +55,17 @@ public class Highlight : MonoBehaviour
     {
         if (isHighlighted == true) {
             isHighlighted = false;
+            RestoreHighlightMaterial();
             meshRenderer.material = regularMaterial;
         }
+    }
+
+    private void RestoreHighlightMaterial ()
+    {
+        highlightedMaterial.color = originalHighlightColor;
+        highlightedMaterial.SetTexture("_MainTex", originalHighlightTexture);
+        highlightedMaterial.SetFloat("_Metallic", originalHighlightMetallic);
+        highlightedMaterial.SetFloat("_Glossiness", originalHighlightSmoothness);
+        highlightedMaterial.SetColor("_EmissionColor", originalHighlightEmissionColor);
     }
 }

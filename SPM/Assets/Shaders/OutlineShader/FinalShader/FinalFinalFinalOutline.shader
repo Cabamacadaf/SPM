@@ -7,7 +7,7 @@
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
-		_EmissionColor("Color", Color) = (0,0,0)
+		_EmissionColor("Emission Color", Color) = (0,0,0)
 
 		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
 
