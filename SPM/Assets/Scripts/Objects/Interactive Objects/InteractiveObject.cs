@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public abstract class InteractiveObject : MonoBehaviour
 {
+    [SerializeField] private string textToSet = "Press E to interact";
+
     protected string TextToSet { get; set; }
     protected Text InteractText { get; set; }
     protected bool IsInteractive { get; set; }
@@ -12,7 +14,6 @@ public abstract class InteractiveObject : MonoBehaviour
     protected virtual void Awake ()
     {
         InteractText = FindObjectOfType<Canvas>().transform.Find("Interaction Text").GetComponent<Text>();
-        TextToSet = "Press E to interact";
         IsInteractive = false;
     }
 
