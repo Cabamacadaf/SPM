@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 4005171470647854209}
   - component: {fileID: 4005171470644462759}
   - component: {fileID: 4005171470645560935}
-  - component: {fileID: 6426605404020405053}
   - component: {fileID: 5441839164328287053}
   m_Layer: 9
   m_Name: Door_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4005171470647854209
 Transform:
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &6426605404020405053
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4005171470647498913}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.75000006, y: 1.5000001, z: 0.05}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.75000006, y: 0, z: 0}
-  m_TimeToStationary: 0.1
 --- !u!65 &5441839164328287053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -234,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abec1bf441617143a39c9a4dbc85898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  open: 0
-  closed: 0
+  isOpen: 0
+  isClosed: 0
   doorSpeed: 1
   leftDoor: {fileID: 4005171470647854215}
   rightDoor: {fileID: 4005171470647854209}
@@ -251,14 +234,13 @@ GameObject:
   - component: {fileID: 4005171470647854215}
   - component: {fileID: 4005171470644462757}
   - component: {fileID: 4005171470645560933}
-  - component: {fileID: 6426605404882589754}
   - component: {fileID: 1209123677040334581}
   m_Layer: 9
   m_Name: Door_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4005171470647854215
 Transform:
@@ -319,22 +301,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &6426605404882589754
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4005171470647498919}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.75000006, y: 1.5000001, z: 0.05}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.75000006, y: 0, z: 0}
-  m_TimeToStationary: 0.1
 --- !u!65 &1209123677040334581
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -355,11 +321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4005171470647854213}
     m_Modifications:
-    - target: {fileID: 5906804010513756798, guid: fdb262310e9a1a84d8148716db8f098a,
-        type: 3}
-      propertyPath: m_Name
-      value: PS_UnInteractiveDoor_Electricity_Sparkling (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5906804010513756787, guid: fdb262310e9a1a84d8148716db8f098a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,6 +376,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5906804010513756798, guid: fdb262310e9a1a84d8148716db8f098a,
+        type: 3}
+      propertyPath: m_Name
+      value: PS_UnInteractiveDoor_Electricity_Sparkling (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdb262310e9a1a84d8148716db8f098a, type: 3}
 --- !u!4 &5529877052602531902 stripped
@@ -430,11 +396,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4005171470647854213}
     m_Modifications:
-    - target: {fileID: 5906804010513756798, guid: fdb262310e9a1a84d8148716db8f098a,
-        type: 3}
-      propertyPath: m_Name
-      value: PS_UnInteractiveDoor_Electricity_Sparkling
-      objectReference: {fileID: 0}
     - target: {fileID: 5906804010513756787, guid: fdb262310e9a1a84d8148716db8f098a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -490,6 +451,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5906804010513756798, guid: fdb262310e9a1a84d8148716db8f098a,
+        type: 3}
+      propertyPath: m_Name
+      value: PS_UnInteractiveDoor_Electricity_Sparkling
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdb262310e9a1a84d8148716db8f098a, type: 3}
 --- !u!4 &7979999858629494390 stripped
@@ -505,11 +471,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4005171470647854213}
     m_Modifications:
-    - target: {fileID: 5906804010513756798, guid: fdb262310e9a1a84d8148716db8f098a,
-        type: 3}
-      propertyPath: m_Name
-      value: PS_UnInteractiveDoor_Electricity_Sparkling (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 5906804010513756787, guid: fdb262310e9a1a84d8148716db8f098a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -564,6 +525,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906804010513756798, guid: fdb262310e9a1a84d8148716db8f098a,
+        type: 3}
+      propertyPath: m_Name
+      value: PS_UnInteractiveDoor_Electricity_Sparkling (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdb262310e9a1a84d8148716db8f098a, type: 3}
