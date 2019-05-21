@@ -17,17 +17,23 @@ public class Explosion : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-
-        foreach (Collider collider in colliders)
+        if (collision.gameObject.CompareTag("Shootable"))
         {
-            AddExplosionForce(collider);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
-            InstantiateParticleEffects();
+            foreach (Collider collider in colliders)
+            {
+                AddExplosionForce(collider);
 
-            HandleSpecificObjects(collider);
+                InstantiateParticleEffects();
 
+                HandleSpecificObjects(collider);
+
+                Destroy(this.gameObject);
+
+            }
         }
+
 
     }
 
@@ -42,7 +48,7 @@ public class Explosion : MonoBehaviour
             player.Damage(damage - hit.x - hit.z);
         }
 
-        if (collider.CompareTag("Damageable"))
+        if (collider.CompareTag("Enemy"))
         {
             hit = collider.ClosestPoint(transform.position);
 
