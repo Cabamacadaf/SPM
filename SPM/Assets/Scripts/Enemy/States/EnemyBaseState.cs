@@ -22,7 +22,7 @@ public abstract class EnemyBaseState : State
 
     public void Damage (float damage)
     {
-        if ((Owner is Enemy2 && Owner.GetCurrentState() is Enemy2IdleState) || (Owner is Enemy1 && Owner.GetCurrentState() is Enemy1IdleState)) {
+        if (Owner.GetCurrentState() is EnemyIdleState) {
             Owner.GetComponentInChildren<EnemyAggro>().Aggro();
         }
         
@@ -30,7 +30,7 @@ public abstract class EnemyBaseState : State
         if (Owner.HitPoints <= 0) {
             Kill();
         }
-        Owner.MeshRenderer.material.color = Owner.MeshRenderer.material.color * Owner.HitPoints / Owner.MaxHitPoints;
+        Owner.MeshRenderer.material.color = Owner.Color * Owner.HitPoints / Owner.MaxHitPoints;
     }
 
     public void Kill ()
