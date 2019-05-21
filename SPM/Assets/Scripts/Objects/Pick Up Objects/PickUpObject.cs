@@ -42,12 +42,15 @@ public class PickUpObject : MonoBehaviour
 
     private void Update ()
     {
-        if (IsThrown == true) {
-            throwTimer += Time.deltaTime;
-            if(throwTimer >= thrownTime) {
-                IsThrown = false;
-            }
-        }
+        //if (IsThrown == true)
+        //{
+        //    throwTimer += Time.deltaTime;
+        //    if (throwTimer >= thrownTime)
+        //    {
+        //        IsThrown = false;
+        //    }
+        //}
+
     }
 
     public void Hold (Vector3 pullPointPosition, Transform newParent)

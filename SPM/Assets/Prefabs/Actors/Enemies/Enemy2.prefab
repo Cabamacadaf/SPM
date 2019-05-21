@@ -407,45 +407,38 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 397eb62e95f4ad944a218a23b3cba9cb, type: 2}
   - {fileID: 11400000, guid: 560e73669cd133744974f86d3ba17ea8, type: 2}
   - {fileID: 11400000, guid: 050668ac7cc5f274fbe5dd703da34c16, type: 2}
+  hitPoints: 25
+  attackDamage: 35
+  attackDistance: 1
+  attackTime: 0.1
+  attackCooldown: 1
+  attackAnimationSpeed: 5
+  movementSpeed: 3
+  acceleration: 10
+  rotationSpeed: 5
+  blastRecoveryTime: 2
+  attackObject: {fileID: 5042641000813597089}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: edb780fbd7a20a84cb327c73e3d01a1a, type: 3}
   aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
   idleSound: {fileID: 8300000, guid: f9655384cf7bae2448644e38fd737bb3, type: 3}
   spawnSound: {fileID: 8300000, guid: 11f059c7b05be2a4b852cab21e0073c2, type: 3}
   idleSoundMinTime: 1
   idleSoundMaxTime: 5
-  attackDistance: 1
-  attackTime: 0.1
-  attackCooldown: 1
-  attackAnimationSpeed: 5
-  attackDamage: 35
-  hitPoints: 25
-  movementSpeed: 2.5
-  acceleration: 10
-  rotationSpeed: 5
-  blastRecoveryTime: 2
-  meshRenderer: {fileID: 0}
-  agent: {fileID: 0}
-  boxCollider: {fileID: 0}
-  attackObject: {fileID: 5042641000813597089}
-  rigidBody: {fileID: 0}
-  audioSource: {fileID: 0}
-  lightSource: {fileID: 0}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  player: {fileID: 0}
-  leapSound: {fileID: 8300000, guid: ae6e0e91dd827a54ab9d17892852f94d, type: 3}
-  maxLeapRange: 10
-  minLeapRange: 5
-  leapChargeTime: 1
+  damageReduction: 0.17
+  leapDamage: 50
+  leapSpeed: 1.5
   leapHeight: 3
   leapTime: 1
+  minLeapRange: 5
+  maxLeapRange: 10
+  leapChargeTime: 1
   leapCooldown: 1
-  leapDamage: 50
   mouth: {fileID: 4796941380208481792}
   leapAttackHitbox: {fileID: 6091103897953174290}
-  leapSpeed: 1.5
-  damageReduction: 0.17
+  leapSound: {fileID: 8300000, guid: ae6e0e91dd827a54ab9d17892852f94d, type: 3}
 --- !u!195 &1148960109065948758
 NavMeshAgent:
   m_ObjectHideFlags: 0
