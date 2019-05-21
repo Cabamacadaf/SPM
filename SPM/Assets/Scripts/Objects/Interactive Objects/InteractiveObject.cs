@@ -7,7 +7,7 @@ public abstract class InteractiveObject : MonoBehaviour
 {
     [SerializeField] private string textToSet = "Press E to interact";
 
-    protected string TextToSet { get; set; }
+    protected string TextToSet { get => textToSet; set => textToSet = value; }
     protected Text InteractText { get; set; }
     protected bool IsInteractive { get; set; }
 
