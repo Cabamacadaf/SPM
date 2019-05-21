@@ -70,6 +70,6 @@ public class GameManager : Singleton<GameManager>
     public void RespawnPlayerNoReset()
     {
         player.transform.position = CurrentCheckPoint;
-        player.GetComponent<HealthComponent>().Health = 100;
+        //player.GetComponent<HealthComponent>().Health = 100;
     }
 }
