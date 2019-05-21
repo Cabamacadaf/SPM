@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
             playerJumping = false;
 
-            if (Input.GetAxisRaw("Jump") > 0f)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
 
