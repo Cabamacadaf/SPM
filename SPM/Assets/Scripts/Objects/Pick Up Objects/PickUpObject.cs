@@ -12,12 +12,10 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private float holdingOpacity = 0.5f;
 
     public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
-    protected int Durability { get => durability; set => durability = value; }
     
     public Vector3 LastFramePosition { get; set; }
     
     protected bool IsThrown { get; set; }
-    public bool IsColliding { get; private set; }
 
     protected Highlight Highlight { get; private set; }
     public Rigidbody RigidBody { get; private set; }
@@ -83,56 +81,25 @@ public class PickUpObject : MonoBehaviour
         RigidBody.useGravity = false;
     }
 
-    protected void LoseDurability ()
-    {
-        Durability--;
-        if (Durability <= 0) {
-            ObjectDestroyedEvent objectDestroyedEvent = new ObjectDestroyedEvent(gameObject);
-            objectDestroyedEvent.ExecuteEvent();
-        }
-    }
-
-    private void OnTriggerEnter (Collider other)
-    {
-        if (IsThrown) {
-            if (other.CompareTag("Enemy2Hurtbox")) {
-                Enemy2 enemy = other.GetComponentInParent<Enemy2>();
-                EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
-                enemyState.Damage(ImpactDamage * enemy.DamageReduction);
-                LoseDurability();
-            }
-        }
-    }
-
     private void OnCollisionEnter (Collision collision)
     {
-        IsColliding = true;
-
         if (IsThrown) {
             Debug.Log("Hit "+ collision.collider.gameObject);
             if (collision.collider.CompareTag("Enemy")) {
                 Debug.Log("Hit Enemy");
                 EnemyBaseState enemyState = (EnemyBaseState)collision.collider.GetComponentInParent<Enemy>().GetCurrentState();
                 enemyState.Damage(ImpactDamage);
-                LoseDurability();
             }
 
             if (collision.collider.CompareTag("DestructibleObject")){
                 collision.collider.GetComponent<DestructibleObject>().HitPoints -= ImpactDamage;
-                LoseDurability();
             }
 
             if (collision.collider.CompareTag("Enemy2Hurtbox")) {
                 Enemy2 enemy = collision.collider.GetComponentInParent<Enemy2>();
                 EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
                 enemyState.Damage(ImpactDamage * enemy.DamageReduction);
-                LoseDurability();
             }
         }
-    }
-
-    private void OnCollisionExit (Collision collision)
-    {
-        IsColliding = false;
     }
 }
