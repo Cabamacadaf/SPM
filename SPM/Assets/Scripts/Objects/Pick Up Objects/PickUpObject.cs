@@ -77,6 +77,7 @@ public class PickUpObject : MonoBehaviour
     public void Pull ()
     {
         EndThrow();
+        RigidBody.velocity = Vector3.zero;
         LastFramePosition = transform.position;
         Highlight.Deactivate();
         RigidBody.useGravity = false;
