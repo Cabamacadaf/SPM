@@ -52,12 +52,12 @@ public class ExplosiveObject : PickUpObject
             enemyState.Damage(damage);
         }
 
-        if (collider.CompareTag("Enemy2Hurtbox"))
+        if (collider.CompareTag("EnemyMouth"))
         {
             Enemy2 enemy = collider.GetComponentInParent<Enemy2>();
             EnemyBaseState enemyState = (EnemyBaseState)enemy.GetCurrentState();
 
-            enemyState.Damage(damage * enemy.DamageReduction);
+            enemyState.Damage(damage * enemy.MouthDamageMultiplier);
         }
     }
 

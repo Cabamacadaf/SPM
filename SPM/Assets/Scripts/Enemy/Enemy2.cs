@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy2 : Enemy
 {
     #region Private Fields
-    [SerializeField] private float damageReduction = 0.17f;
+    [SerializeField] private float mouthDamageMultiplier = 3.0f;
 
     [SerializeField] private float leapDamage = 50.0f;
     [SerializeField] private float leapSpeed = 1.5f;
@@ -25,7 +25,7 @@ public class Enemy2 : Enemy
     #endregion
 
     #region Properties
-    public float DamageReduction { get => damageReduction; private set => damageReduction = value; }
+    public float MouthDamageMultiplier { get => mouthDamageMultiplier; private set => mouthDamageMultiplier = value; }
 
     public float LeapDamage { get => leapDamage; private set => leapDamage = value; }
     public float LeapSpeed { get => leapSpeed; private set => leapSpeed = value; }
