@@ -12,7 +12,7 @@ public class HealthComponent : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     public float Health { get; set; }
 
-    void Start()
+    void Awake()
     {
         Health = startHealth;
         UpdateHealthSlider();

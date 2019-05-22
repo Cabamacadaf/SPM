@@ -10,6 +10,7 @@ public class SpawnTrigger : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (!hasBeenEntered && other.CompareTag("Player")) {
+            Debug.Log("Triggered " + gameObject);
             hasBeenEntered = true;
             SpawnTriggerEvent spawnTriggerEvent = new SpawnTriggerEvent(spawners);
             spawnTriggerEvent.ExecuteEvent();
