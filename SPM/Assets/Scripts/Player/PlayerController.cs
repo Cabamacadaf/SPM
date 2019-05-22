@@ -30,9 +30,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 verticalVelocity;
     private bool isGrounded;
+    private bool lastFrameGrounded;
     private bool playerJumping;
     private bool isCrouching;
     private bool canStand;
+    [SerializeField] private float jumpMargin;
+    private float jumpTimer;
+    private bool hasStartedJumpTimer;
+
 
     //Crouch
     private float CrouchColliderHeight = 0.80f;
@@ -107,78 +112,64 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
 
-        if (IsGrounded())
+        ApplyGravity();
+        GroundCheck();
+
+        if(hasStartedJumpTimer == true)
         {
-            switch (states)
-            {
-                case PlayerStates.WALK:
-                    WalkState();
-
-                    break;
-                case PlayerStates.SPRINT:
-                    SprintState();
-                    break;
-                case PlayerStates.CROUCH:
-                    CrouchState();
-                    break;
-
-            }
-
-            velocity = direction.normalized * speed;
-
-            //CheckIfMovingBackwards();
-
-            playerJumping = false;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump();
-
-            }
+            jumpTimer--;
         }
-        else
+
+        switch (states)
         {
-        
-            if (playerJumping)
-            {
-                FallFromJump();
+            case PlayerStates.WALK:
+                WalkState();
 
-            }
-            else
-            {
-                FallFromGround();
-            }
+                break;
+            case PlayerStates.SPRINT:
+                SprintState();
+                break;
+            case PlayerStates.CROUCH:
+                CrouchState();
+                break;
+
         }
+
+        Debug.Log(isGrounded);
+
+        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || jumpTimer > 0))
+        {
+            Jump();
+
+        }
+
+
+
+        velocity.x = direction.x * speed;
+        velocity.z = direction.z * speed;
+ 
+
+
+
 
         Move();
+    }
 
+
+    private void ApplyGravity()
+    {
+        velocity.y -=  gravity  * Time.deltaTime;
+        
     }
 
     private void Jump()
     {
-        playerJumping = true;
 
-        verticalVelocity = new Vector3(0, jumpForce, 0);
 
-        velocity = direction.normalized * speed + verticalVelocity;
+        velocity.y +=  jumpForce;
     }
 
-    private void FallFromGround()
-    {
-        float yValue = velocity.y + gravity * fallGravityScale * Time.deltaTime;
-        verticalVelocity = new Vector3(0f, yValue, 0f);
-        direction.y = 0;
-        velocity = direction * speed + verticalVelocity;
-    }
 
-    private void FallFromJump()
-    {
-        float yValue = velocity.y + gravity * jumpGravityScale * Time.deltaTime;
-        verticalVelocity = new Vector3(0f, yValue, 0f);
-        direction.y = 0;
-
-        velocity = direction * speed + verticalVelocity;
-    }
 
     private void SprintState()
     {
@@ -200,7 +191,6 @@ public class PlayerController : MonoBehaviour
         staminaComponent.RecoverStamina();
         canStand = Physics.Raycast(transform.position, Vector3.up, margin, walkableMask) == false;
         speed = crouchSpeed;
-        Debug.Log("Crouch");
         if ((Input.GetKeyUp(crouchKey) && canStand))
         {
             states = PlayerStates.WALK;
@@ -264,6 +254,25 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         return Physics.SphereCast(transform.position + point2, capsuleCollider.radius, Vector3.down, out RaycastHit groundHitInfo, groundCheckDistance + skinWidth, walkableMask);
+    }
+
+    private void GroundCheck()
+    {
+        if (IsGrounded())
+        {
+            hasStartedJumpTimer = false;
+            isGrounded = true;
+        }
+        else
+        {
+            if(hasStartedJumpTimer == false)
+            {
+                jumpTimer = jumpMargin;
+                hasStartedJumpTimer = true;
+
+            }
+            isGrounded = false;
+        }
     }
 
 
@@ -358,6 +367,23 @@ public class PlayerController : MonoBehaviour
         return -projection;
     }
 
+
+    //private void FallFromGround()
+    //{
+    //    float yValue = velocity.y + gravity * fallGravityScale * Time.deltaTime;
+    //    verticalVelocity = new Vector3(0f, yValue, 0f);
+    //    direction.y = 0;
+    //    velocity -= verticalVelocity;
+    //}
+
+    //private void FallFromJump()
+    //{
+    //    float yValue = velocity.y + gravity * jumpGravityScale * Time.deltaTime;
+    //    verticalVelocity = new Vector3(0f, yValue, 0f);
+    //    direction.y = 0;
+
+    //    velocity -= verticalVelocity;
+    //}
 
 
 

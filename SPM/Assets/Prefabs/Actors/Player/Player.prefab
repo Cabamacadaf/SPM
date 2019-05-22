@@ -5820,7 +5820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AddStaminaRate: 15
-  LoseStaminaRate: 30
+  LoseStaminaRate: 25
 --- !u!95 &8800547237065332889
 Animator:
   serializedVersion: 3
@@ -5866,9 +5866,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 43520
   skinWidth: 0.05
-  groundCheckDistance: 0.05
-  gravity: -10
+  groundCheckDistance: 0.15
+  gravity: 15
   crouchKey: 306
+  jumpMargin: 5
   capsuleCollider: {fileID: 0}
   flashlight: {fileID: 0}
   hasFlashlight: 0
