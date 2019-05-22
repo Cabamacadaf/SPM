@@ -6,11 +6,12 @@ public class SpawnListener : MonoBehaviour
 {
     private void Start()
     {
-        SpawnTriggerEvent.RegisterListener(OnSpawnTrigger);
+        //SpawnTriggerEvent.RegisterListener(OnSpawnTrigger);
     }
 
     private void OnSpawnTrigger (SpawnTriggerEvent spawnTriggerEvent)
     {
+        Debug.Log("Spawners triggered");
         //want to avoid foreach, don't know if possible
         foreach (Spawner spawner in spawnTriggerEvent.spawners) {
             if (spawner is EnemySpawner) {

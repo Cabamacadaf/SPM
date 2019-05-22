@@ -15,7 +15,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         if (instance == null)
         {
             instance = this;
@@ -71,5 +70,10 @@ public class GameManager : Singleton<GameManager>
     {
         player.transform.position = CurrentCheckPoint;
         //player.GetComponent<HealthComponent>().Health = 100;
+    }
+
+    public void SetPlayer(GameObject player)
+    {
+        this.player = player;
     }
 }

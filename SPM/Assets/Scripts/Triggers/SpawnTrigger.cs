@@ -7,12 +7,29 @@ public class SpawnTrigger : MonoBehaviour
     [SerializeField] private Spawner[] spawners;
     private bool hasBeenEntered = false;
 
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!hasBeenEntered && other.CompareTag("Player")) {
+        if (!hasBeenEntered && other.CompareTag("Player"))
+        {
+            Debug.Log("Triggered " + gameObject);
             hasBeenEntered = true;
-            SpawnTriggerEvent spawnTriggerEvent = new SpawnTriggerEvent(spawners);
-            spawnTriggerEvent.ExecuteEvent();
+            Spawn();
+        }
+    }
+
+    private void Spawn()
+    {
+        foreach (Spawner spawner in spawners)
+        {
+            if (spawner is EnemySpawner)
+            {
+                EnemySpawner enemySpawner = (EnemySpawner)spawner;
+                enemySpawner.Spawn();
+            }
+            else
+            {
+                spawner.Spawn();
+            }
         }
     }
 }
