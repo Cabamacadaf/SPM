@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private float startHealth;
-    //[SerializeField] private Slider slider;
+    private Slider slider;
     public float Health { get; set; }
     // Start is called before the first frame update
     void Start()
