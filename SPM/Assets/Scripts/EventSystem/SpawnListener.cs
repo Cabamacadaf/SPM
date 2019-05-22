@@ -6,8 +6,7 @@ public class SpawnListener : MonoBehaviour
 {
     private void Start()
     {
-        SpawnTriggerEvent.RegisterListener(OnSpawnTrigger);
-        SpawnTriggerEvent.RegisterListener(OnSpawnTrigger);
+        //SpawnTriggerEvent.RegisterListener(OnSpawnTrigger);
     }
 
     private void OnSpawnTrigger (SpawnTriggerEvent spawnTriggerEvent)
