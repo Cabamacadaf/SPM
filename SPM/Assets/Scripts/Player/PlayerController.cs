@@ -200,7 +200,8 @@ public class PlayerController : MonoBehaviour
         staminaComponent.RecoverStamina();
         canStand = Physics.Raycast(transform.position, Vector3.up, margin, walkableMask) == false;
         speed = crouchSpeed;
-        if ((Input.GetKeyDown(crouchKey) && canStand))
+        Debug.Log("Crouch");
+        if ((Input.GetKeyUp(crouchKey) && canStand))
         {
             states = PlayerStates.WALK;
 
