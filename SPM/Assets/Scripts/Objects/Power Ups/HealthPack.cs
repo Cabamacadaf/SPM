@@ -11,7 +11,6 @@ public class HealthPack : InteractiveObject
         base.Awake();
     }
 
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && IsInteractive )
