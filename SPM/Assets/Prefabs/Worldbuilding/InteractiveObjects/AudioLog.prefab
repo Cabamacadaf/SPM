@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5541616607550410415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.8244, y: 2.5969, z: 7.761197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8926481441510048275}
   m_RootOrder: 1
@@ -42,7 +42,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8926481441510048300
 GameObject:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcf7fcb3ca05844ab9a49ed067320c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToSet: Press E to interact
+  textToSet: Press E to interact Audiologg
   audioLogClip: {fileID: 8300000, guid: 1260af75fc2eefc42a6b2f5ee8d78c69, type: 3}
   audioLogText: []
   delayBeforeStartPlaying: 0.5
@@ -289,11 +289,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8926481441510048275}
     m_Modifications:
-    - target: {fileID: 1330359353182319259, guid: a5b1a4d80f69df34081558ec0b41b190,
-        type: 3}
-      propertyPath: m_Name
-      value: Green_Light
-      objectReference: {fileID: 0}
     - target: {fileID: 2891311457588309823, guid: a5b1a4d80f69df34081558ec0b41b190,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,10 +344,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1330359353182319259, guid: a5b1a4d80f69df34081558ec0b41b190,
+        type: 3}
+      propertyPath: m_Name
+      value: Green_Light
+      objectReference: {fileID: 0}
     - target: {fileID: 4717346999368087069, guid: a5b1a4d80f69df34081558ec0b41b190,
         type: 3}
       propertyPath: m_Range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4717346999368087069, guid: a5b1a4d80f69df34081558ec0b41b190,
         type: 3}
