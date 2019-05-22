@@ -10,7 +10,8 @@ public class HealthComponent : MonoBehaviour
     public float Health { get; set; }
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        slider.value = startHealth;
         Health = startHealth;
     }
 
