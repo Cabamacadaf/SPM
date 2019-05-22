@@ -7,8 +7,9 @@ public abstract class InteractiveObject : MonoBehaviour
 {
     [SerializeField] private string textToSet = "Press E to interact";
 
-    protected string TextToSet { get => textToSet; set => textToSet = value; }
+    protected Transform Player { get; set; }
     protected Text InteractText { get; set; }
+    protected string TextToSet { get => textToSet; set => textToSet = value; }
     protected bool IsInteractive { get; set; }
 
     protected virtual void Awake ()
@@ -20,6 +21,7 @@ public abstract class InteractiveObject : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Player")) {
+            Player = other.transform;
             InteractText.enabled = true;
             IsInteractive = true;
             InteractText.text = TextToSet;

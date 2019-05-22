@@ -12,11 +12,11 @@ public class HealthPack : InteractiveObject
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsInteractive && other.CompareTag("Player"))
+        if (Input.GetKeyDown(KeyCode.E) && IsInteractive )
         {
-            playerHealth = other.GetComponent<HealthComponent>();
+            playerHealth = Player.GetComponent<HealthComponent>();
             playerHealth.Addhealth(healthToAdd);
             InteractText.text = "";
             InteractText.enabled = false;
