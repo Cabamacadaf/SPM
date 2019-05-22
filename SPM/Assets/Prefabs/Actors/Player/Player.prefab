@@ -5820,7 +5820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AddStaminaRate: 15
-  LoseStaminaRate: 15
+  LoseStaminaRate: 30
 --- !u!95 &8800547237065332889
 Animator:
   serializedVersion: 3
@@ -5852,10 +5852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef711fe03fe14744ebe9e38d5ef7f387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptableStamina: 15
+  acceptableStamina: 30
   margin: 2
-  sprintSpeed: 2
-  walkSpeed: 5
+  sprintSpeed: 6.5
+  walkSpeed: 4
   crouchSpeed: 2
   backwardsSpeedModifier: 0.5
   gravityModifier: 1.2
@@ -5885,7 +5885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  slider: {fileID: 0}
+  healthSlider: {fileID: 0}
 --- !u!82 &7531939185015473815
 AudioSource:
   m_ObjectHideFlags: 0
