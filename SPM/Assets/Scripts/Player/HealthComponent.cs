@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Main Author: Simon Sundström
+//Secondary Author: Marcus Mellström
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,27 +9,25 @@ using UnityEngine.UI;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private float startHealth;
-    [SerializeField] private Slider slider;
+    [SerializeField] private Slider healthSlider;
     public float Health { get; set; }
-    // Start is called before the first frame update
+
     void Start()
     {
-        slider.value = startHealth;
         Health = startHealth;
+        UpdateHealthSlider();
     }
 
     public void Damage(float amount)
     {
         Health -= amount;
-        slider.value -= amount;
         if(Health <= 0)
         {
             DeathEvent deathEvent = new DeathEvent(this.gameObject);
             deathEvent.ExecuteEvent();
-            Health = 100;
-            slider.value = Health;
-
+            Health = startHealth;
         }
+        UpdateHealthSlider();
     }
 
     public void Addhealth(float healthToAdd)
@@ -35,7 +36,12 @@ public class HealthComponent : MonoBehaviour
         if (Health > 100.0f)
         {
             Health = 100.0f;
-            slider.value = Health;
         }
+        UpdateHealthSlider();
+    }
+
+    private void UpdateHealthSlider()
+    {
+        healthSlider.value = Health;
     }
 }
