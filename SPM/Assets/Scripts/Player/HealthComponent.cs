@@ -24,6 +24,7 @@ public class HealthComponent : MonoBehaviour
             DeathEvent deathEvent = new DeathEvent(this.gameObject);
             deathEvent.ExecuteEvent();
             Health = 100;
+            slider.value = 100;
 
         }
     }
@@ -34,6 +35,7 @@ public class HealthComponent : MonoBehaviour
         if (Health > 100.0f)
         {
             Health = 100.0f;
+            slider.value = 100.0f;
         }
     }
 }
