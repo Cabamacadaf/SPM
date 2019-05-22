@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private float startHealth;
-    [SerializeField] private Slider slider;
+    //[SerializeField] private Slider slider;
     public float Health { get; set; }
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,7 @@ public class HealthComponent : MonoBehaviour
             DeathEvent deathEvent = new DeathEvent(this.gameObject);
             deathEvent.ExecuteEvent();
             Health = 100;
+            slider.value = Health;
 
         }
     }
@@ -34,6 +35,7 @@ public class HealthComponent : MonoBehaviour
         if (Health > 100.0f)
         {
             Health = 100.0f;
+            slider.value = Health;
         }
     }
 }
