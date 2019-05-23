@@ -8,30 +8,31 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerBaseState
 {
+    private float timeToJumpAfterLeavingGround = 0.5f;
     private float timer;
     private bool timerRunning;
     public override void Enter()
     {
         base.Enter();
+        timerRunning = false;
         Debug.Log("Enter Ground State");
     }
 
     public override void HandleUpdate()
     {
-        if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo))
-        {
-            Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
-        }
+        base.HandleUpdate();
+       
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
+
         else if (IsGrounded() == false)
         {
             if(timerRunning == false)
             {
-                timer = 0.5f;
+                timer = timeToJumpAfterLeavingGround;
                 timerRunning = true;
 
             }
@@ -39,9 +40,8 @@ public class PlayerGroundState : PlayerBaseState
             {
                 Owner.Transition<PlayerAirState>();
             }
+            timer -= Time.deltaTime;
         }
-        timer -= Time.deltaTime;
-        base.HandleUpdate();
     }
 
     private void Jump ()
@@ -52,6 +52,6 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void Exit()
     {
-        Debug.Log("Exit Ground State");
+        base.Exit();
     }
 }

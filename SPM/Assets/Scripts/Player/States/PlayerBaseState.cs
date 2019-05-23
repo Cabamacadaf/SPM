@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerBaseState : State
 {
+    #region vibbens kod-tips
+    //protected Vector3 Velocity { get { return Owner.Velocity; } set { Owner.Velocity = value; } }
+    #endregion
+
     //Attributes
     protected Player Owner;
     protected Vector3 Direction { get; set; }
@@ -40,9 +44,9 @@ public class PlayerBaseState : State
         ApplyGravity();
         SetVelocity();
 
-        CheckCollision();
+        CheckCollision(Owner.Velocity * Time.deltaTime);
 
-        Move();
+        //Move();
         ResetValues();
     }
 
@@ -62,6 +66,12 @@ public class PlayerBaseState : State
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
         Direction = cameraRotation * Direction;
 
+        if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
+            Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
+        }
+        else {
+            Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+        }
     }
 
     private void Move()
@@ -111,36 +121,67 @@ public class PlayerBaseState : State
     #endregion
 
     #region Collision/Groundcheck
-    private void CheckCollision()
+    private void CheckCollision(Vector3 movement)
     {
         point1 = Owner.Collider.center + Vector3.up * ((Owner.Collider.height / 2) - Owner.Collider.radius);
         point2 = Owner.Collider.center + Vector3.down * ((Owner.Collider.height / 2) - Owner.Collider.radius);
-        checkCollisionCounter++;
-        if (maxLoopValue > checkCollisionCounter)
-        {
-            RaycastHit hitInfo;
-            if (Physics.CapsuleCast(Owner.transform.position + point1, Owner.transform.position + point2, Owner.Collider.radius, Owner.Velocity.normalized, out hitInfo, Owner.Velocity.magnitude * Time.deltaTime + Owner.SkinWidth, Owner.WalkableMask))
-            {
-                float impactAngle = 90 - Vector2.Angle(Owner.Velocity.normalized, hitInfo.normal);
-                float hypotenuse = Owner.SkinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
 
-                if (hitInfo.distance > Mathf.Abs(hypotenuse))
-                {
-                    snapSum += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-                    Owner.transform.position += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-                }
+        RaycastHit hitInfo;
+        if (Physics.CapsuleCast(Owner.transform.position + point1, Owner.transform.position + point2, Owner.Collider.radius, Owner.Velocity.normalized, out hitInfo, Mathf.Infinity, Owner.WalkableMask)) {
+            float impactAngle = Vector3.Angle(movement.normalized, hitInfo.normal) - 90;
+            float hypotenuse = Owner.SkinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
 
-                Vector3 normalForce;
-                normalForce = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
-
-                Owner.Velocity += normalForce;
-                //Debug.Log("Owner.Velocity: " + Owner.Velocity);
-
-                //ApplyFriction(normalForce.magnitude);
-
-                CheckCollision();
-
+            if(Mathf.Approximately(Mathf.Sin(impactAngle * Mathf.Deg2Rad), 0.0f)) {
+                hypotenuse = Owner.SkinWidth;
             }
+
+            #region Vibben har sönder er fysiksimulering
+
+            Vector3 snapMovement = movement.normalized * (hitInfo.distance - hypotenuse);
+            snapMovement = Vector3.ClampMagnitude(snapMovement, movement.magnitude);
+
+            movement -= snapMovement;
+
+            Vector3 hitNormalForceMovement = Functions.CalculateNormalForce(movement, hitInfo.normal);
+            movement += hitNormalForceMovement;
+
+            if(hitNormalForceMovement.sqrMagnitude > 0.00001f) {
+                Vector3 hitNormalForceVelocity = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
+                Owner.Velocity += hitNormalForceVelocity;
+            }
+
+            Owner.transform.position += snapMovement;
+
+            if(movement.sqrMagnitude > 0.00001f && checkCollisionCounter < maxLoopValue) {
+                checkCollisionCounter++;
+                CheckCollision(movement);
+            }
+
+            #endregion
+
+
+
+
+
+            //if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
+            //    snapSum += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+            //    Owner.transform.position += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+            //}
+
+            //Vector3 normalForce;
+            //normalForce = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
+            //Owner.Velocity += normalForce;
+
+            ////Debug.Log("Owner.Velocity: " + Owner.Velocity);
+
+            ////ApplyFriction(normalForce.magnitude);
+
+            //CheckCollision(movement);
+
+        }
+        else if(movement.sqrMagnitude > 0.00001f)
+        {
+            Owner.transform.position += movement;
         }
 
     }

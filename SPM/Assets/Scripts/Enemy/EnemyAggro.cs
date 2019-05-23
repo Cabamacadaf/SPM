@@ -17,8 +17,9 @@ public class EnemyAggro : MonoBehaviour
         if (other.CompareTag("Player")) {
             Vector3 raycastDirection = enemy.Collider.bounds.center - other.bounds.center;
             if (Physics.Raycast(other.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, wallLayer) == false) {
-                if ((enemy is Enemy2 && enemy.GetCurrentState() is Enemy2IdleState) || (enemy is Enemy1 && enemy.GetCurrentState() is Enemy1IdleState)) {
-                    Aggro();
+                if ((enemy.GetCurrentState() is EnemyIdleState)) {
+                    EnemyIdleState enemyIdleState = (EnemyIdleState)enemy.GetCurrentState();
+                    enemyIdleState.Aggro();
                 }
                 gameObject.SetActive(false);
             }
