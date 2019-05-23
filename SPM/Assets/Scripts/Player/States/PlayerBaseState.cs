@@ -17,7 +17,7 @@ public class PlayerBaseState : State
 
     private float speed;
     private bool canStand;
-    private bool isCrouching;
+    protected bool IsCrouching { get; private set; }
 
     //Collision Check
     private Vector3 point1;
@@ -43,9 +43,9 @@ public class PlayerBaseState : State
         HandleInput();
         ApplyGravity();
         SetVelocity();
-
+        
         CheckCollision(Owner.Velocity * Time.deltaTime);
-
+        Debug.Log("Velocity: " + Owner.Velocity);
         //Move();
         ResetValues();
     }
@@ -64,7 +64,7 @@ public class PlayerBaseState : State
         Direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
-        Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
+        Direction = cameraRotation * Direction;
 
         if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
             Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
@@ -72,6 +72,7 @@ public class PlayerBaseState : State
         else {
             Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
         }
+        //Direction = new Vector3(Direction.x, 0, Direction.z);
     }
 
     private void Move()
@@ -228,7 +229,7 @@ public class PlayerBaseState : State
     protected void SetVelocity ()
     {
         //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
-        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && isCrouching == false) {
+        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState) {
             speed = Owner.SprintSpeed;
             Owner.Stamina.UseStamina();
         }
@@ -236,31 +237,32 @@ public class PlayerBaseState : State
             Owner.Stamina.RecoverStamina();
             canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
 
-            if (Input.GetKey(KeyCode.LeftControl)) {
-                isCrouching = true;
+            if (Input.GetKey(KeyCode.LeftControl) && Owner.GetCurrentState() is PlayerGroundState) {
+                IsCrouching = true;
                 Owner.CrouchSetup();
                 //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
                 speed = Owner.CrouchSpeed;
             }
-            else if (Input.GetKey(KeyCode.LeftControl) == false && isCrouching && canStand == false) {
+            else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand == false) {
                 speed = Owner.CrouchSpeed;
 
             }
-            else if (Input.GetKey(KeyCode.LeftControl) == false && isCrouching && canStand) {
+            else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand) {
 
                 Owner.NormalSetup();
                 speed = Owner.WalkSpeed;
-                isCrouching = false;
+                IsCrouching = false;
             }
             else {
                 speed = Owner.WalkSpeed;
-                isCrouching = false;
+                IsCrouching = false;
             }
 
 
         }
         //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
         Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
+        
     }
 
     private void CameraRotation()
