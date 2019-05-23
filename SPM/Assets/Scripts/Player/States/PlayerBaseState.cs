@@ -36,8 +36,6 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate ()
     {
-
-   
         HandleInput();
         ApplyGravity();
         SetVelocity();
@@ -189,7 +187,7 @@ public class PlayerBaseState : State
     protected void SetVelocity ()
     {
         //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
-        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0) {
+        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && isCrouching == false) {
             speed = Owner.SprintSpeed;
             Owner.Stamina.UseStamina();
         }
