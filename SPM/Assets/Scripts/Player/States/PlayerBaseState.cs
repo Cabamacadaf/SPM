@@ -62,6 +62,12 @@ public class PlayerBaseState : State
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
         Direction = cameraRotation * Direction;
 
+        if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
+            Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
+        }
+        else {
+            Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+        }
     }
 
     private void Move()

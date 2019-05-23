@@ -18,10 +18,8 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo))
-        {
-            Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
-        }
+        base.HandleUpdate();
+       
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -41,7 +39,6 @@ public class PlayerGroundState : PlayerBaseState
             }
         }
         timer -= Time.deltaTime;
-        base.HandleUpdate();
     }
 
     private void Jump ()

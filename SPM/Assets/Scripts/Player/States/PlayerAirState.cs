@@ -22,9 +22,6 @@ public class PlayerAirState : PlayerBaseState
         if (IsGrounded()) {
             Owner.Transition<PlayerGroundState>();
         }
-
-        Direction =  Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
-
         //if (IsGrounded() && timer <= 0) {
         //    Debug.Log("Trans");
         //    Owner.Transition<PlayerGroundState>();
