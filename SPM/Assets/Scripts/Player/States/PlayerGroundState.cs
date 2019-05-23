@@ -14,6 +14,7 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void Enter()
     {
+        base.Enter();
         Debug.Log("Enter Ground State");
     }
 

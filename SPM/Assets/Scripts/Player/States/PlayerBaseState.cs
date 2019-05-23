@@ -14,9 +14,8 @@ public class PlayerBaseState : State
 
     //Collision Check
     private Vector3 point1;
-    private Vector3 point2;
+    protected Vector3 point2;
     private Vector3 snapSum;
-    private CapsuleCollider capsuleCollider;
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
 
@@ -24,14 +23,20 @@ public class PlayerBaseState : State
     {
         this.Owner = (Player)owner;
 
-        capsuleCollider = owner.GetComponent<CapsuleCollider>();
-        point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-        point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
+ 
+    }
+    public override void Enter()
+    {
+    
+        point1 = Owner.Collider.center + Vector3.up * ((Owner.Collider.height / 2) - Owner.Collider.radius);
+        point2 = Owner.Collider.center + Vector3.down * ((Owner.Collider.height / 2) - Owner.Collider.radius);
     }
 
     public override void HandleUpdate ()
     {
-        GroundCheck();
+        //GroundCheck();
+        Debug.DrawRay(Owner.transform.position + point2, Vector3.down * (Owner.GroundCheckDistance + Owner.SkinWidth), Color.red);
+
         //Debug.Log("Is grounded: " + isGrounded);
         //Debug.Log("Velocity Normalized: " + Velocity.normalized);
         HandleInput();
@@ -111,13 +116,13 @@ public class PlayerBaseState : State
     #region Collision/Groundcheck
     private void CheckCollision()
     {
-        point1 = capsuleCollider.center + Vector3.up * ((capsuleCollider.height / 2) - capsuleCollider.radius);
-        point2 = capsuleCollider.center + Vector3.down * ((capsuleCollider.height / 2) - capsuleCollider.radius);
+        point1 = Owner.Collider.center + Vector3.up * ((Owner.Collider.height / 2) - Owner.Collider.radius);
+        point2 = Owner.Collider.center + Vector3.down * ((Owner.Collider.height / 2) - Owner.Collider.radius);
         checkCollisionCounter++;
         if (maxLoopValue > checkCollisionCounter)
         {
             RaycastHit hitInfo;
-            if (Physics.CapsuleCast(Owner.transform.position + point1, Owner.transform.position + point2, capsuleCollider.radius, Velocity.normalized, out hitInfo, Velocity.magnitude * Time.deltaTime + Owner.SkinWidth, Owner.WalkableMask))
+            if (Physics.CapsuleCast(Owner.transform.position + point1, Owner.transform.position + point2, Owner.Collider.radius, Velocity.normalized, out hitInfo, Velocity.magnitude * Time.deltaTime + Owner.SkinWidth, Owner.WalkableMask))
             {
                 float impactAngle = 90 - Vector2.Angle(Velocity.normalized, hitInfo.normal);
                 float hypotenuse = Owner.SkinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
@@ -145,7 +150,7 @@ public class PlayerBaseState : State
 
     public void GroundCheck()
     {
-        if(Physics.SphereCast(Owner.transform.position + point2, capsuleCollider.radius, Vector3.down, out RaycastHit groundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask))
+        if(Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.down, out RaycastHit groundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask))
         {
             isGrounded = true;
         }
@@ -156,7 +161,8 @@ public class PlayerBaseState : State
     }
     public bool IsGrounded()
     {
-        return Physics.SphereCast(Owner.transform.position + point2, capsuleCollider.radius, Vector3.down, out RaycastHit groundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask);
+        Debug.DrawRay(Owner.transform.position + Owner.Collider.center, Vector3.down, Color.red);
+        return Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.down, out RaycastHit groundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask);
 
     }
     #endregion

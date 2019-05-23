@@ -7,22 +7,31 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerBaseState
 {
+    private float timer;
 
     public override void Enter()
     {
+        base.Enter();
+        timer = 15f;
         Debug.Log("Enter Air State");
     }
 
     public override void HandleUpdate()
     {
-        base.HandleUpdate();
-        Direction =  Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
-       
         if (IsGrounded())
         {
-            Debug.Log("Trans");
             Owner.Transition<PlayerGroundState>();
         }
+
+        base.HandleUpdate();
+        Direction =  Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+        
+        //if (IsGrounded() && timer <= 0)
+        //{
+        //    Debug.Log("Trans");
+        //    Owner.Transition<PlayerGroundState>();
+        //}
+        //timer--;
     }
 
     public override void Exit()
