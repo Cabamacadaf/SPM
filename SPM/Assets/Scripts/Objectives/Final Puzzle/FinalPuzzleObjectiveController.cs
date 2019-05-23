@@ -12,9 +12,10 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
     public bool IsTimerStarted { get; private set; }
 
     private int finalPuzzleCounter = 0;
-    private int cubesToCollect = 7;
 
-    private int[] collectionOrder = { 4, 7, 6, 2, 5, 1, 3 };
+    [SerializeField] private int cubesToCollect = 4;
+
+    [SerializeField] private int[] collectionOrder = { 4, 7, 6, 2 };
     
 
     private void Awake ()
