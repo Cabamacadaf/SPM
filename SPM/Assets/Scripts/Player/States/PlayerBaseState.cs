@@ -64,7 +64,7 @@ public class PlayerBaseState : State
         Direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
-        Direction = cameraRotation * Direction;
+        Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
 
         if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
             Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
