@@ -13,11 +13,10 @@ public class PlayerBaseState : State
     protected Player Owner;
     protected Vector3 Direction { get; set; }
     protected float SkinWidth { get; private set; }
-    protected bool isGrounded;
 
     private float speed;
     private bool canStand;
-    protected bool IsCrouching { get; private set; }
+    protected bool IsCrouching { get; set; }
 
     //Collision Check
     private Vector3 point1;
@@ -43,9 +42,9 @@ public class PlayerBaseState : State
         HandleInput();
         ApplyGravity();
         SetVelocity();
-        
+
         CheckCollision(Owner.Velocity * Time.deltaTime);
-        Debug.Log("Velocity: " + Owner.Velocity);
+
         //Move();
         ResetValues();
     }
@@ -64,7 +63,7 @@ public class PlayerBaseState : State
         Direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
-        Direction = cameraRotation * Direction;
+        Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
 
         if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
             Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
@@ -72,7 +71,7 @@ public class PlayerBaseState : State
         else {
             Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
         }
-        //Direction = new Vector3(Direction.x, 0, Direction.z);
+        Direction = new Vector3(Direction.x, 0, Direction.z);
     }
 
     private void Move()
@@ -187,17 +186,6 @@ public class PlayerBaseState : State
 
     }
 
-    public void GroundCheck()
-    {
-        if(Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.down, out RaycastHit groundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
     public bool IsGrounded()
     {
         Debug.DrawRay(Owner.transform.position + Owner.Collider.center, Vector3.down, Color.red);
@@ -262,7 +250,6 @@ public class PlayerBaseState : State
         }
         //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
         Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
-        
     }
 
     private void CameraRotation()
