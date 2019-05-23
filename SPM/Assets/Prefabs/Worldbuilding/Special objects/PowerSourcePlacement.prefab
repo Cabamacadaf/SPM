@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 3398750072589073833}
   - component: {fileID: 3398750072591328106}
   - component: {fileID: 3206384437856018499}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerSourceMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,6 +277,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5314815650017982874}
     m_Modifications:
+    - target: {fileID: 5956268637494081921, guid: 26d38ae379267044da62e9738dc355e8,
+        type: 3}
+      propertyPath: m_Name
+      value: PS_Energy_To_CorePlacement(Smaller)
+      objectReference: {fileID: 0}
     - target: {fileID: 5956268637494081932, guid: 26d38ae379267044da62e9738dc355e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -331,11 +336,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956268637494081921, guid: 26d38ae379267044da62e9738dc355e8,
-        type: 3}
-      propertyPath: m_Name
-      value: PS_Energy_To_CorePlacement(Smaller)
       objectReference: {fileID: 0}
     - target: {fileID: 5956268637035489731, guid: 26d38ae379267044da62e9738dc355e8,
         type: 3}
@@ -412,6 +412,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5956268638417798955, guid: 26d38ae379267044da62e9738dc355e8,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5956268637799723750, guid: 26d38ae379267044da62e9738dc355e8,
         type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
@@ -436,11 +441,6 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.minColor.b
       value: 0.9716981
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956268638417798955, guid: 26d38ae379267044da62e9738dc355e8,
-        type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d38ae379267044da62e9738dc355e8, type: 3}
