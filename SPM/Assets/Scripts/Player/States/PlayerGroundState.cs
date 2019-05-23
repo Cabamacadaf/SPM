@@ -8,11 +8,13 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerBaseState
 {
+    private float timeToJumpAfterLeavingGround = 0.5f;
     private float timer;
     private bool timerRunning;
     public override void Enter()
     {
         base.Enter();
+        timerRunning = false;
         Debug.Log("Enter Ground State");
     }
 
@@ -25,11 +27,12 @@ public class PlayerGroundState : PlayerBaseState
         {
             Jump();
         }
+
         else if (IsGrounded() == false)
         {
             if(timerRunning == false)
             {
-                timer = 0.5f;
+                timer = timeToJumpAfterLeavingGround;
                 timerRunning = true;
 
             }
@@ -37,8 +40,8 @@ public class PlayerGroundState : PlayerBaseState
             {
                 Owner.Transition<PlayerAirState>();
             }
+            timer -= Time.deltaTime;
         }
-        timer -= Time.deltaTime;
     }
 
     private void Jump ()
