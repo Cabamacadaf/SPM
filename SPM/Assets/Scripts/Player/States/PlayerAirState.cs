@@ -11,27 +11,29 @@ public class PlayerAirState : PlayerBaseState
 
     public override void Enter()
     {
+        //Velocity.y += Owner.JumpHeight;
         base.Enter();
-        timer = 15f;
+        timer = 1f;
         Debug.Log("Enter Air State");
     }
 
     public override void HandleUpdate()
     {
-        if (IsGrounded())
-        {
-            Owner.Transition<PlayerGroundState>();
-        }
-
-        base.HandleUpdate();
-        Direction =  Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
-        
-        //if (IsGrounded() && timer <= 0)
+        //if (IsGrounded())
         //{
-        //    Debug.Log("Trans");
         //    Owner.Transition<PlayerGroundState>();
         //}
-        //timer--;
+
+        Direction =  Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+
+        if (IsGrounded() && timer <= 0) {
+            Debug.Log("Trans");
+            Owner.Transition<PlayerGroundState>();
+            timer = 1f;
+        }
+        timer -= Time.deltaTime;
+
+        base.HandleUpdate();
     }
 
     public override void Exit()

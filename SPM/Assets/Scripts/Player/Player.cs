@@ -9,6 +9,7 @@ public class Player : StateMachine
     public StaminaComponent Stamina { get; set; }
     public float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
     public float Acceleration { get => acceleration; set => acceleration = value; }
+    public Vector3 Velocity { get; set; }
     public Camera mainCamera { get; set; }
     public float SkinWidth { get => skinWidth; set => skinWidth = value; }
     public LayerMask WalkableMask { get => walkableMask; set => walkableMask = value; }

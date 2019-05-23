@@ -8,9 +8,12 @@ public class PlayerBaseState : State
     //Attributes
     protected Player Owner;
     protected Vector3 Direction { get; set; }
-    protected Vector3 Velocity;
     protected float SkinWidth { get; private set; }
     protected bool isGrounded;
+
+    private float speed;
+    private bool canStand;
+    private bool isCrouching;
 
     //Collision Check
     private Vector3 point1;
@@ -22,9 +25,8 @@ public class PlayerBaseState : State
     public override void Initialize (StateMachine owner)
     {
         this.Owner = (Player)owner;
-
- 
     }
+
     public override void Enter()
     {
     
@@ -34,13 +36,15 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate ()
     {
+        Debug.Log(Owner.Velocity.y);
         //GroundCheck();
         Debug.DrawRay(Owner.transform.position + point2, Vector3.down * (Owner.GroundCheckDistance + Owner.SkinWidth), Color.red);
 
         //Debug.Log("Is grounded: " + isGrounded);
-        //Debug.Log("Velocity Normalized: " + Velocity.normalized);
+        //Debug.Log("Owner.Velocity Normalized: " + Owner.Velocity.normalized);
         HandleInput();
         ApplyGravity();
+        SetVelocity();
 
         CheckCollision();
         //ApplyAirResistance();
@@ -69,7 +73,7 @@ public class PlayerBaseState : State
 
     private void Move()
     {
-        Owner.transform.position += Velocity * Time.deltaTime - snapSum;
+        Owner.transform.position += Owner.Velocity * Time.deltaTime - snapSum;
     }
 
     private void ResetValues()
@@ -82,23 +86,23 @@ public class PlayerBaseState : State
     #region Physics
     private void ApplyGravity()
     {
-        Velocity.y -= Owner.Gravity * Time.deltaTime;
+        Owner.Velocity -=  Vector3.up * Owner.Gravity * Time.deltaTime;
     }
 
     private void ApplyAirResistance()
     {
-        Velocity *= Mathf.Pow(Owner.AirResistanceCoefficient, Time.deltaTime);
+        Owner.Velocity *= Mathf.Pow(Owner.AirResistanceCoefficient, Time.deltaTime);
     }
 
     private void ApplyFriction(float normalForceMagnitude)
     {
-        if (Velocity.magnitude < CalculateStaticFriction(normalForceMagnitude))
+        if (Owner.Velocity.magnitude < CalculateStaticFriction(normalForceMagnitude))
         {
-            Velocity = Vector3.zero;
+            Owner.Velocity = Vector3.zero;
         }
         else
         {
-            Velocity += -Velocity.normalized * CalculateDynamicFriction(normalForceMagnitude);
+            Owner.Velocity += -Owner.Velocity.normalized * CalculateDynamicFriction(normalForceMagnitude);
         }
     }
 
@@ -122,22 +126,22 @@ public class PlayerBaseState : State
         if (maxLoopValue > checkCollisionCounter)
         {
             RaycastHit hitInfo;
-            if (Physics.CapsuleCast(Owner.transform.position + point1, Owner.transform.position + point2, Owner.Collider.radius, Velocity.normalized, out hitInfo, Velocity.magnitude * Time.deltaTime + Owner.SkinWidth, Owner.WalkableMask))
+            if (Physics.CapsuleCast(Owner.transform.position + point1, Owner.transform.position + point2, Owner.Collider.radius, Owner.Velocity.normalized, out hitInfo, Owner.Velocity.magnitude * Time.deltaTime + Owner.SkinWidth, Owner.WalkableMask))
             {
-                float impactAngle = 90 - Vector2.Angle(Velocity.normalized, hitInfo.normal);
+                float impactAngle = 90 - Vector2.Angle(Owner.Velocity.normalized, hitInfo.normal);
                 float hypotenuse = Owner.SkinWidth / Mathf.Sin(impactAngle * Mathf.Deg2Rad);
 
                 if (hitInfo.distance > Mathf.Abs(hypotenuse))
                 {
-                    snapSum += Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-                    Owner.transform.position += Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+                    snapSum += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
+                    Owner.transform.position += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
                 }
 
                 Vector3 normalForce;
-                normalForce = Functions.CalculateNormalForce(Velocity, hitInfo.normal);
+                normalForce = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
 
-                Velocity += normalForce;
-                //Debug.Log("Velocity: " + Velocity);
+                Owner.Velocity += normalForce;
+                //Debug.Log("Owner.Velocity: " + Owner.Velocity);
 
                 //ApplyFriction(normalForce.magnitude);
 
@@ -187,6 +191,43 @@ public class PlayerBaseState : State
     }
     #endregion
 
+    protected void SetVelocity ()
+    {
+        //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
+        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0) {
+            speed = Owner.SprintSpeed;
+            Owner.Stamina.UseStamina();
+        }
+        else {
+            Owner.Stamina.RecoverStamina();
+            canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
+
+            if (Input.GetKey(KeyCode.LeftControl)) {
+                isCrouching = true;
+                Owner.CrouchSetup();
+                //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
+                speed = Owner.CrouchSpeed;
+            }
+            else if (Input.GetKey(KeyCode.LeftControl) == false && isCrouching && canStand == false) {
+                speed = Owner.CrouchSpeed;
+
+            }
+            else if (Input.GetKey(KeyCode.LeftControl) == false && isCrouching && canStand) {
+
+                Owner.NormalSetup();
+                speed = Owner.WalkSpeed;
+                isCrouching = false;
+            }
+            else {
+                speed = Owner.WalkSpeed;
+                isCrouching = false;
+            }
+
+
+        }
+        //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
+        Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
+    }
 
     private void CameraRotation()
     {

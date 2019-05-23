@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerBaseState
 {
-    private float speed;
-    private bool canStand;
-    private bool isCrouching;
-
     public override void Enter()
     {
         base.Enter();
@@ -20,8 +16,6 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        base.HandleUpdate();
-
         if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo))
         {
             Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
@@ -32,62 +26,19 @@ public class PlayerGroundState : PlayerBaseState
             Debug.Log("Jump");
             Jump();
         }
+
         //else if(IsGrounded())
         //{
         //    Owner.Transition<PlayerAirState>();
-
         //}
-        SetVelocity();
+        base.HandleUpdate();
     }
 
-    private void Jump()
+    private void Jump ()
     {
-        Velocity.y += Owner.JumpHeight;
+        Debug.Log("Jumping");
+        Owner.Velocity += Vector3.up * Owner.JumpHeight;
         Owner.Transition<PlayerAirState>();
-    }
-
-    private void SetVelocity()
-    {
-        //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
-        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0)
-        {
-            speed = Owner.SprintSpeed;
-            Owner.Stamina.UseStamina();
-        }
-        else
-        {
-            Owner.Stamina.RecoverStamina();
-            canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
-
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                isCrouching = true;
-                Owner.CrouchSetup();
-                //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
-                speed = Owner.CrouchSpeed;
-            }
-            else if(Input.GetKey(KeyCode.LeftControl) == false && isCrouching && canStand == false){
-                speed = Owner.CrouchSpeed;
-
-            }
-            else if (Input.GetKey(KeyCode.LeftControl) == false && isCrouching  && canStand)
-            {
-
-                Owner.NormalSetup();
-                speed = Owner.WalkSpeed;
-                isCrouching = false;
-            }
-            else
-            {
-                speed = Owner.WalkSpeed;
-                isCrouching = false;
-            }
-
-
-        }
-        //Velocity += Direction * Owner.Acceleration * Time.deltaTime;
-        Velocity.x = Direction.x * speed;
-        Velocity.z = Direction.z * speed;
     }
 
     public override void Exit()
