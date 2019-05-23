@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerBaseState
 {
+    private float timer;
+    private bool timerRunning;
     public override void Enter()
     {
         base.Enter();
@@ -23,20 +25,27 @@ public class PlayerGroundState : PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Jump");
             Jump();
         }
+        else if (IsGrounded() == false)
+        {
+            if(timerRunning == false)
+            {
+                timer = 0.5f;
+                timerRunning = true;
 
-        //else if(IsGrounded())
-        //{
-        //    Owner.Transition<PlayerAirState>();
-        //}
+            }
+            if (timer <= 0)
+            {
+                Owner.Transition<PlayerAirState>();
+            }
+        }
+        timer -= Time.deltaTime;
         base.HandleUpdate();
     }
 
     private void Jump ()
     {
-        Debug.Log("Jumping");
         Owner.Velocity += Vector3.up * Owner.JumpHeight;
         Owner.Transition<PlayerAirState>();
     }

@@ -36,18 +36,13 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate ()
     {
-        Debug.Log(Owner.Velocity.y);
-        //GroundCheck();
-        Debug.DrawRay(Owner.transform.position + point2, Vector3.down * (Owner.GroundCheckDistance + Owner.SkinWidth), Color.red);
 
-        //Debug.Log("Is grounded: " + isGrounded);
-        //Debug.Log("Owner.Velocity Normalized: " + Owner.Velocity.normalized);
+   
         HandleInput();
         ApplyGravity();
         SetVelocity();
 
         CheckCollision();
-        //ApplyAirResistance();
 
         Move();
         ResetValues();
