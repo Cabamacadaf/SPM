@@ -25,7 +25,7 @@ public class FlashlightPickup : InteractiveObject
 
     private void PickUpFlashlight ()
     {
-        FindObjectOfType<PlayerController>().hasFlashlight = true;
+        FindObjectOfType<Player>().HasFlashlight = true;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponentInChildren<BoxCollider>().enabled = false;
         GetComponentInChildren<Light>().enabled = false;

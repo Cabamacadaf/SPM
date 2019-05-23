@@ -74,7 +74,7 @@ public abstract class Enemy : StateMachine
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
     public NavMeshObstacle Obstacle { get; private set; }
-    public PlayerController Player { get; private set; }
+    public Player Player { get; private set; }
     #endregion
 
     protected override void Awake ()
@@ -87,7 +87,7 @@ public abstract class Enemy : StateMachine
         Obstacle = GetComponent<NavMeshObstacle>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         MeshRenderer.material.color = Color;
-        Player = FindObjectOfType<PlayerController>();
+        Player = FindObjectOfType<Player>();
         MaxHitPoints = hitPoints;
         base.Awake();
     }

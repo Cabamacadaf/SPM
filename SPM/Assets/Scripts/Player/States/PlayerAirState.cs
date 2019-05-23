@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Author: Simon Sundström
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,42 +7,26 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerBaseState
 {
-    //private float speed;
-    //private float modifier = 0.01f;
+
     public override void Enter()
     {
-        //modifier = 0.01f;
-        //base.Enter();
-        //speed = owner.Movement.GetVelocity().magnitude;
+        Debug.Log("Enter Air State");
     }
 
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-
-        //modifier += 0.001f;
-        //owner.Movement.AddVelocity(Vector2.down * modifier);
-        //owner.Movement.AddVelocity(direction * speed * Time.deltaTime);
-        //if (owner.Movement.GetVelocity().magnitude > speed)
-        //{
-
-
-        //    owner.Movement.SetVelocity(owner.Movement.GetVelocity().normalized * speed);
-
-
-        //}
-        if (owner.Movement.IsGrounded())
+        Direction =  Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+       
+        if (IsGrounded())
         {
-            
-            owner.Transition<PlayerIdleState>();
+            Debug.Log("Trans");
+            Owner.Transition<PlayerGroundState>();
         }
-
-
     }
 
     public override void Exit()
     {
-
-
+        Debug.Log("Exit Air State");
     }
 }

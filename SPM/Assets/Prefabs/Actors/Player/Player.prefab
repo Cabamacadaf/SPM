@@ -5702,11 +5702,11 @@ GameObject:
   - component: {fileID: 8727586053112546446}
   - component: {fileID: 3076318624375485830}
   - component: {fileID: 9013354550664442613}
-  - component: {fileID: 2821774831742086203}
-  - component: {fileID: 893394545}
-  - component: {fileID: 8800547237065332889}
-  - component: {fileID: 1061659848}
+  - component: {fileID: 1662203270}
   - component: {fileID: 2112989151}
+  - component: {fileID: 893394545}
+  - component: {fileID: 2821774831742086203}
+  - component: {fileID: 8800547237065332889}
   - component: {fileID: 7531939185015473815}
   - component: {fileID: 5160716238235233241}
   m_Layer: 10
@@ -5791,6 +5791,66 @@ CapsuleCollider:
   m_Height: 1.86
   m_Direction: 1
   m_Center: {x: 1.4886356e-10, y: 0.93, z: 0.0357297}
+--- !u!114 &1662203270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed041333b49399c49b14ab9f98506ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - {fileID: 11400000, guid: 781aa33cba385034d80425f930223363, type: 2}
+  - {fileID: 11400000, guid: 4a8f0adcbeec9da4b9236f350e46b3c1, type: 2}
+  jumpHeight: 10
+  walkSpeed: 4
+  sprintSpeed: 6
+  crouchSpeed: 2
+  acceptableStamina: 15
+  crouchMargin: 1.5
+  airResistanceCoefficient: 0.5
+  staticFrictionCoefficient: 0.7
+  dynamicFrictionCoefficient: 0.4
+  gravity: 13
+  skinWidth: 0.05
+  walkableMask:
+    serializedVersion: 2
+    m_Bits: 8704
+  groundCheckDistance: 0.02
+  hasFlashlight: 0
+  gravityGun: {fileID: 8727586052577491052}
+--- !u!114 &2112989151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6c98da54edb8040b5e42aa47751ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 100
+  healthSlider: {fileID: 0}
+--- !u!114 &893394545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727586053112546443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95025a071cabe0c45a82d133385c1b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddStaminaRate: 15
+  LoseStaminaRate: 25
 --- !u!54 &2821774831742086203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5807,20 +5867,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &893394545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727586053112546443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95025a071cabe0c45a82d133385c1b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AddStaminaRate: 15
-  LoseStaminaRate: 25
 --- !u!95 &8800547237065332889
 Animator:
   serializedVersion: 3
@@ -5840,53 +5886,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1061659848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727586053112546443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef711fe03fe14744ebe9e38d5ef7f387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceptableStamina: 30
-  margin: 2
-  sprintSpeed: 6.5
-  walkSpeed: 4
-  crouchSpeed: 2
-  backwardsSpeedModifier: 0.5
-  gravityModifier: 1.2
-  jumpForce: 7
-  fallGravityScale: 1.3
-  jumpGravityScale: 2
-  walkableMask:
-    serializedVersion: 2
-    m_Bits: 43520
-  skinWidth: 0.05
-  groundCheckDistance: 0.15
-  gravity: 15
-  crouchKey: 306
-  jumpMargin: 5
-  capsuleCollider: {fileID: 0}
-  flashlight: {fileID: 0}
-  hasFlashlight: 0
---- !u!114 &2112989151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727586053112546443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca6c98da54edb8040b5e42aa47751ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHealth: 100
-  healthSlider: {fileID: 0}
 --- !u!82 &7531939185015473815
 AudioSource:
   m_ObjectHideFlags: 0

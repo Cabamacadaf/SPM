@@ -19,8 +19,6 @@ public class PlayerMovement : PhysicsComponent
 
     private RaycastHit groundHitInfo;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +30,12 @@ public class PlayerMovement : PhysicsComponent
     // Update is called once per frame
     void Update()
     {
-        if (groundAngle >= 95 && groundAngle <= 85 && groundAngle != 0)
-        {
-            velocity = velocity.normalized * 5;
+        //if (groundAngle >= 95 && groundAngle <= 85 && groundAngle != 0)
+        //{
+        //    velocity = velocity.normalized * 5;
 
-        }
-        CalculateGroundAngle();
+        //}
+        //CalculateGroundAngle();
         //Debug.Log(groundAngle);
 
         ApplyGravity();

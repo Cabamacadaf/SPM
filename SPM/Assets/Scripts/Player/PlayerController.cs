@@ -87,20 +87,15 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {      
         HandleInput();
         HandleMovement();
         HandleCameraRotation();
         HandleFlashLight();
-
     }
-
-
 
     private void HandleInput()
     {
-  
         forward = Input.GetAxisRaw("Vertical");
         horizontal = Input.GetAxisRaw("Horizontal");
         direction = new Vector3(horizontal, 0, forward);
@@ -111,20 +106,16 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-
         ApplyGravity();
         GroundCheck();
-
         if(hasStartedJumpTimer == true)
         {
             jumpTimer--;
         }
-
         switch (states)
         {
             case PlayerStates.WALK:
                 WalkState();
-
                 break;
             case PlayerStates.SPRINT:
                 SprintState();
@@ -147,9 +138,6 @@ public class PlayerController : MonoBehaviour
 
         velocity.x = direction.x * speed;
         velocity.z = direction.z * speed;
- 
-
-
 
 
         Move();

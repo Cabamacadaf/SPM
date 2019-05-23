@@ -25,8 +25,8 @@ public class Enemy2AggroState : EnemyAggroState
             Owner.Agent.SetDestination(Owner.Player.transform.position);
         }
 
-        Vector3 raycastDirection = Owner.transform.position - Owner.Player.capsuleCollider.bounds.center;
-        if (!Physics.Raycast(Owner.Player.capsuleCollider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, Owner.WallLayer)) {
+        Vector3 raycastDirection = Owner.transform.position - Owner.Player.Collider.bounds.center;
+        if (!Physics.Raycast(Owner.Player.Collider.bounds.center, raycastDirection.normalized, raycastDirection.magnitude, Owner.WallLayer)) {
             if (Vector3.Distance(Owner.Player.transform.position, Owner.transform.position) <= owner2.MaxLeapRange && Vector3.Distance(Owner.Player.transform.position, Owner.transform.position) >= owner2.MinLeapRange) {
                 Owner.Agent.enabled = false;
                 Owner.Transition<Enemy2LeapChargeState>();
