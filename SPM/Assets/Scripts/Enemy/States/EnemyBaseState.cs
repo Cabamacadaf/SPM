@@ -23,7 +23,8 @@ public abstract class EnemyBaseState : State
     public void Damage (float damage)
     {
         if (Owner.GetCurrentState() is EnemyIdleState) {
-            Owner.GetComponentInChildren<EnemyAggro>().Aggro();
+            EnemyIdleState enemyIdleState = (EnemyIdleState)Owner.GetCurrentState();
+            enemyIdleState.Aggro();
         }
         
         Owner.HitPoints -= damage;
@@ -43,5 +44,18 @@ public abstract class EnemyBaseState : State
     public void PlaySpawnSound ()
     {
         Owner.AudioSource.PlayOneShot(Owner.SpawnSound);
+    }
+
+    public void Aggro ()
+    {
+        if (Owner is Enemy1) {
+            Owner.Transition<Enemy1AggroState>();
+        }
+
+        if (Owner is Enemy2) {
+            Owner.Transition<Enemy2AggroState>();
+        }
+        EnemyAggroEvent enemyAggroEvent = new EnemyAggroEvent(Owner.AggroSound, Owner.AudioSource);
+        enemyAggroEvent.ExecuteEvent();
     }
 }

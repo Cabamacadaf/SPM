@@ -11,7 +11,6 @@ public class PlayerAirState : PlayerBaseState
 
     public override void Enter()
     {
-        //Velocity.y += Owner.JumpHeight;
         base.Enter();
         //timer = 0.1f;
         Debug.Log("Enter Air State");
@@ -19,21 +18,21 @@ public class PlayerAirState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        if (IsGrounded()) {
-            Owner.Transition<PlayerGroundState>();
-        }
         //if (IsGrounded() && timer <= 0) {
-        //    Debug.Log("Trans");
         //    Owner.Transition<PlayerGroundState>();
         //    timer = 0.1f;
         //}
         //timer -= Time.deltaTime;
 
         base.HandleUpdate();
+
+        if (IsGrounded()) {
+            Owner.Transition<PlayerGroundState>();
+        }
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Air State");
+        base.Exit();
     }
 }

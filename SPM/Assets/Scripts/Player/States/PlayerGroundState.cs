@@ -52,6 +52,6 @@ public class PlayerGroundState : PlayerBaseState
 
     public override void Exit()
     {
-        Debug.Log("Exit Ground State");
+        base.Exit();
     }
 }
