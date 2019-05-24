@@ -10,7 +10,6 @@ public class PlayerAirState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter Air State");
     }
 
     public override void HandleUpdate()

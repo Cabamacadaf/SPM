@@ -65,8 +65,7 @@ public class PlayerBaseState : State
 
         if (Owner.GetCurrentState() is PlayerGroundState)
         {
-            Debug.Log("Here");
-            Debug.Log(GroundHitInfo.normal);
+
             Direction = Vector3.ProjectOnPlane(Direction, GroundHitInfo.normal).normalized;
         }
         else
@@ -82,7 +81,10 @@ public class PlayerBaseState : State
         if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState)
         {
             speed = Owner.SprintSpeed;
-            Owner.Stamina.UseStamina();
+            if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
+                Owner.Stamina.UseStamina();
+
+            }
         }
         else
         {
@@ -117,7 +119,7 @@ public class PlayerBaseState : State
 
         }
  
-        Debug.Log("Velocity: " + Owner.Velocity);
+
         if(Owner.GetCurrentState() is PlayerGroundState) {
             if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             {

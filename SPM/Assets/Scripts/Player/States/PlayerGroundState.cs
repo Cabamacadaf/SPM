@@ -15,7 +15,6 @@ public class PlayerGroundState : PlayerBaseState
     {
         base.Enter();
         timerRunning = false;
-        Debug.Log("Enter Ground State");
     }
 
     public override void HandleUpdate()
