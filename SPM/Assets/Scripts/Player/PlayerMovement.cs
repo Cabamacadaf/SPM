@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : PhysicsComponent
 {
+    //ANVÄNDS INTE
+
     [SerializeField] private LayerMask walkableMask;
     [SerializeField] float skinWidth = 0.05f;
     [SerializeField] float groundCheckDistance = 0.05f;
-    
+
+    #region vibbens kod-tips
+    //protected Vector3 Velocity { get { return Owner.Velocity; } set { Owner.Velocity = value; } }
+    #endregion
     private Vector3 direction;
     private Vector3 point1;
     private Vector3 point2;

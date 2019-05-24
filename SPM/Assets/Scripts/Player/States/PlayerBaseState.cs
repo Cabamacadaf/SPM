@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class PlayerBaseState : State
 {
-    #region vibbens kod-tips
-    //protected Vector3 Velocity { get { return Owner.Velocity; } set { Owner.Velocity = value; } }
-    #endregion
+
 
     //Attributes
     protected Player Owner;
@@ -74,9 +72,64 @@ public class PlayerBaseState : State
         Direction = new Vector3(Direction.x, 0, Direction.z);
     }
 
+    protected void SetVelocity()
+    {
+        //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
+        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState)
+        {
+            speed = Owner.SprintSpeed;
+            Owner.Stamina.UseStamina();
+        }
+        else
+        {
+            Owner.Stamina.RecoverStamina();
+            canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
+
+            if (Input.GetKey(KeyCode.LeftControl) && Owner.GetCurrentState() is PlayerGroundState)
+            {
+                IsCrouching = true;
+                Owner.CrouchSetup();
+                //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
+                speed = Owner.CrouchSpeed;
+            }
+            else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand == false)
+            {
+                speed = Owner.CrouchSpeed;
+
+            }
+            else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand)
+            {
+
+                Owner.NormalSetup();
+                speed = Owner.WalkSpeed;
+                IsCrouching = false;
+            }
+            else
+            {
+                speed = Owner.WalkSpeed;
+                IsCrouching = false;
+            }
+
+
+        }
+        //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
+        Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
+    }
+
     private void Move()
     {
         Owner.transform.position += Owner.Velocity * Time.deltaTime - snapSum;
+    }
+
+    //Roterar spelaren
+    private void CameraRotation()
+    {
+        var cameraRotation = Owner.mainCamera.transform.rotation;
+        cameraRotation.z = 0;
+        cameraRotation.x = 0;
+        Owner.transform.rotation = cameraRotation;
+        //Owner.GravityGunObject.transform.rotation = cameraRotation;
+        cameraRotation = Owner.mainCamera.transform.rotation;
     }
 
     private void ResetValues()
@@ -134,9 +187,6 @@ public class PlayerBaseState : State
             if(Mathf.Approximately(Mathf.Sin(impactAngle * Mathf.Deg2Rad), 0.0f)) {
                 hypotenuse = Owner.SkinWidth;
             }
-
-            #region Vibben har sönder er fysiksimulering
-
             Vector3 snapMovement = movement.normalized * (hitInfo.distance - hypotenuse);
             snapMovement = Vector3.ClampMagnitude(snapMovement, movement.magnitude);
 
@@ -157,27 +207,6 @@ public class PlayerBaseState : State
                 CheckCollision(movement);
             }
 
-            #endregion
-
-
-
-
-
-            //if (hitInfo.distance > Mathf.Abs(hypotenuse)) {
-            //    snapSum += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-            //    Owner.transform.position += Owner.Velocity.normalized * (hitInfo.distance - Mathf.Abs(hypotenuse));
-            //}
-
-            //Vector3 normalForce;
-            //normalForce = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
-            //Owner.Velocity += normalForce;
-
-            ////Debug.Log("Owner.Velocity: " + Owner.Velocity);
-
-            ////ApplyFriction(normalForce.magnitude);
-
-            //CheckCollision(movement);
-
         }
         else if(movement.sqrMagnitude > 0.00001f)
         {
@@ -194,7 +223,7 @@ public class PlayerBaseState : State
     }
     #endregion
 
-    #region Inventory
+    #region Key Items
     private void HandleFlashLight()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -214,53 +243,9 @@ public class PlayerBaseState : State
     }
     #endregion
 
-    protected void SetVelocity ()
-    {
-        //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
-        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState) {
-            speed = Owner.SprintSpeed;
-            Owner.Stamina.UseStamina();
-        }
-        else {
-            Owner.Stamina.RecoverStamina();
-            canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
-
-            if (Input.GetKey(KeyCode.LeftControl) && Owner.GetCurrentState() is PlayerGroundState) {
-                IsCrouching = true;
-                Owner.CrouchSetup();
-                //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
-                speed = Owner.CrouchSpeed;
-            }
-            else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand == false) {
-                speed = Owner.CrouchSpeed;
-
-            }
-            else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand) {
-
-                Owner.NormalSetup();
-                speed = Owner.WalkSpeed;
-                IsCrouching = false;
-            }
-            else {
-                speed = Owner.WalkSpeed;
-                IsCrouching = false;
-            }
 
 
-        }
-        //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
-        Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
-    }
 
-    private void CameraRotation()
-    {
-        var cameraRotation = Owner.mainCamera.transform.rotation;
-        cameraRotation.z = 0;
-        cameraRotation.x = 0;
-        Owner.transform.rotation = cameraRotation;
-        //Owner.GravityGunObject.transform.rotation = cameraRotation;
-        cameraRotation = Owner.mainCamera.transform.rotation;
-    }
 
 
 
