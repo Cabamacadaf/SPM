@@ -1,7 +1,10 @@
 ﻿//Author: Marcus Mellström
 
+using UnityEngine;
+
 public abstract class EnemyAggroState : EnemyBaseState
 {
+    protected Vector3 RaycastDirection { get; set; }
     public override void Enter ()
     {
         //Debug.Log("Aggro State");
@@ -15,6 +18,10 @@ public abstract class EnemyAggroState : EnemyBaseState
 
     public override void HandleUpdate ()
     {
+        if (Owner.Agent.isOnNavMesh) {
+            Owner.Agent.SetDestination(Owner.Player.transform.position);
+        }
+        RaycastDirection = Owner.transform.position - Owner.Player.Collider.bounds.center;
         base.HandleUpdate();
     }
 }

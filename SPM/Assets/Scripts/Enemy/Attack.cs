@@ -6,7 +6,7 @@ public class Attack : MonoBehaviour
 {
     private HealthComponent playerHealth;
     private Enemy enemy;
-    [HideInInspector] public bool hasAttacked;
+    public bool HasAttacked { get; set; }
 
     private void Awake ()
     {
@@ -15,8 +15,8 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Player") && !hasAttacked) {
-            hasAttacked = true;
+        if (other.CompareTag("Player") && HasAttacked == false) {
+            HasAttacked = true;
             playerHealth = other.GetComponent<HealthComponent>();
             playerHealth.Damage(enemy.AttackDamage);
         }

@@ -39,7 +39,7 @@ public class EnemyAttackState : EnemyBaseState
     {
         base.Exit();
         Owner.AttackObject.transform.position = Owner.transform.position;
-        Owner.GetComponentInChildren<Attack>().hasAttacked = false;
+        Owner.GetComponentInChildren<Attack>().HasAttacked = false;
         Owner.AttackObject.SetActive(false);
     }
 }
