@@ -23,10 +23,6 @@ public class PlayerGroundState : PlayerBaseState
         base.HandleUpdate();
         Direction = Vector3.ProjectOnPlane(Direction, GroundHitInfo.normal).normalized;
 
-        Debug.Log(Owner.Velocity.magnitude);
-        if(Owner.Velocity.magnitude < 1.0f) {
-            Owner.Velocity = Vector3.zero;
-        }
 
         //Vector3 GroundCross = Vector3.Cross(GroundHitInfo.normal, Direction);
         //Debug.Log(GroundCross);

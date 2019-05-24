@@ -114,6 +114,9 @@ public class PlayerBaseState : State
         }
         //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
         Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
+        if(Owner.GetCurrentState() is PlayerGroundState && Owner.Velocity.magnitude < 1.0f) {
+            Owner.Velocity = Vector3.zero;
+        }
     }
 
     //Roterar spelaren
