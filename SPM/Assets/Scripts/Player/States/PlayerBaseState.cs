@@ -24,6 +24,7 @@ public class PlayerBaseState : State
     private int maxLoopValue = 30;
 
     protected RaycastHit GroundHitInfo;
+    protected float GroundAngle;
 
     public override void Initialize (StateMachine owner)
     {
@@ -58,9 +59,9 @@ public class PlayerBaseState : State
     {
 
         Direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
         Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
+
 
         //if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
         //    Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
@@ -134,7 +135,7 @@ public class PlayerBaseState : State
     #endregion
 
     #region Physics
-    private void ApplyGravity()
+    public void ApplyGravity()
     {
         Owner.Velocity -=  Vector3.up * Owner.Gravity * Time.deltaTime;
     }
@@ -146,18 +147,21 @@ public class PlayerBaseState : State
 
     private void ApplyFriction(float normalForceMagnitude)
     {
+        Debug.Log("AppylFriction");
         if (Owner.Velocity.magnitude < CalculateStaticFriction(normalForceMagnitude))
         {
+            Debug.Log("Zero");
             Owner.Velocity = Vector3.zero;
         }
-        else
-        {
-            Owner.Velocity += -Owner.Velocity.normalized * CalculateDynamicFriction(normalForceMagnitude);
-        }
+        //else
+        //{
+        //    Owner.Velocity += -Owner.Velocity.normalized * CalculateDynamicFriction(normalForceMagnitude);
+        //}
     }
 
     private float CalculateStaticFriction(float normalForceMagnitude)
     {
+        Debug.Log("StaticFrictionCoefficient: " + Owner.StaticFrictionCoefficient);
         return Functions.CalculateFriction(normalForceMagnitude, Owner.StaticFrictionCoefficient);
     }
 
@@ -187,12 +191,15 @@ public class PlayerBaseState : State
             movement -= snapMovement;
 
             Vector3 hitNormalForceMovement = Functions.CalculateNormalForce(movement, hitInfo.normal);
+
             movement += hitNormalForceMovement;
 
             if(hitNormalForceMovement.sqrMagnitude > 0.00001f) {
                 Vector3 hitNormalForceVelocity = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
                 Owner.Velocity += hitNormalForceVelocity;
             }
+            //ApplyFriction(Owner.Velocity.magnitude);
+
 
             Owner.transform.position += snapMovement;
 
@@ -204,6 +211,7 @@ public class PlayerBaseState : State
         }
         else if(movement.sqrMagnitude > 0.00001f)
         {
+            //ApplyFriction(Owner.Velocity.magnitude);
             Owner.transform.position += movement;
         }
 

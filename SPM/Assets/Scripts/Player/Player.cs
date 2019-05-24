@@ -50,6 +50,7 @@ public class Player : StateMachine
     [Header("Collision/Groundcheck")]
     [SerializeField] private float skinWidth;
     [SerializeField] private LayerMask walkableMask;
+    
     [SerializeField] private float groundCheckDistance;
 
     [Header("Inventory")]
