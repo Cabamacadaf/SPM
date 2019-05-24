@@ -88,18 +88,22 @@ public class PlayerBaseState : State
         if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState && canSprint)
         {
             speed = Owner.SprintSpeed;
+            Owner.Stamina.UseStamina();
 
-            if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
-                Owner.Stamina.UseStamina();
-                if(Owner.Stamina.Stamina <= 0)
-                {
-                    canSprint = false;
-                }
-            }
-            else
+            if (Owner.Stamina.Stamina <= 0)
             {
-                Owner.Stamina.UseStamina();
+                Debug.Log("cannot sprint");
+                canSprint = false;
             }
+            //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
+            //    Owner.Stamina.UseStamina();
+
+            //}
+            //else
+            //{
+            //    Owner.Stamina.RecoverStamina();
+
+            //}
         }
         else
         {
