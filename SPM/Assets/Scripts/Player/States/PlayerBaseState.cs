@@ -23,6 +23,8 @@ public class PlayerBaseState : State
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
 
+    private bool canSprint = true;
+
     protected RaycastHit GroundHitInfo;
     protected float GroundAngle;
 
@@ -36,6 +38,7 @@ public class PlayerBaseState : State
     
         point1 = Owner.Collider.center + Vector3.up * ((Owner.Collider.height / 2) - Owner.Collider.radius);
         point2 = Owner.Collider.center + Vector3.down * ((Owner.Collider.height / 2) - Owner.Collider.radius);
+        
     }
 
     public override void HandleUpdate ()
@@ -78,17 +81,34 @@ public class PlayerBaseState : State
     protected void SetVelocity()
     {
         //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
-        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState)
+        if(canSprint == false && Owner.Stamina.Stamina > 30)
+        {
+            canSprint = true;
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState && canSprint)
         {
             speed = Owner.SprintSpeed;
-            if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
-                Owner.Stamina.UseStamina();
+            Owner.Stamina.UseStamina();
 
+            if (Owner.Stamina.Stamina <= 0)
+            {
+                Debug.Log("cannot sprint");
+                canSprint = false;
             }
+            //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
+            //    Owner.Stamina.UseStamina();
+
+            //}
+            //else
+            //{
+            //    Owner.Stamina.RecoverStamina();
+
+            //}
         }
         else
         {
             Owner.Stamina.RecoverStamina();
+            
             canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
 
             if (Input.GetKey(KeyCode.LeftControl) && Owner.GetCurrentState() is PlayerGroundState)
