@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class PlayerGroundState : PlayerBaseState
 {
-    private float timeToJumpAfterLeavingGround = 0.5f;
+    private float timeToJumpAfterLeavingGround = 0.1f;
     private float timer;
     private bool timerRunning;
     public override void Enter()
