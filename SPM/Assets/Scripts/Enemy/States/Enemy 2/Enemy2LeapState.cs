@@ -23,6 +23,7 @@ public class Enemy2LeapState : EnemyBaseState
         owner2.LeapAttackHitbox.SetActive(true);
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(owner2.LeapSound, Owner.AudioSource);
         enemyAttackEvent.ExecuteEvent();
+        Owner.Animator.SetTrigger("Enemy2InAir");
         base.Enter();
     }
 
