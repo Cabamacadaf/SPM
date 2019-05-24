@@ -21,7 +21,8 @@ public class PlayerGroundState : PlayerBaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-       
+        Direction = Vector3.ProjectOnPlane(Direction, GroundHitInfo.normal).normalized;
+
 
         if (Input.GetKeyDown(KeyCode.Space) && IsCrouching == false)
         {

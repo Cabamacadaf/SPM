@@ -23,6 +23,8 @@ public class PlayerBaseState : State
     private int checkCollisionCounter = 0;
     private int maxLoopValue = 30;
 
+    protected RaycastHit GroundHitInfo;
+
     public override void Initialize (StateMachine owner)
     {
         this.Owner = (Player)owner;
@@ -40,10 +42,7 @@ public class PlayerBaseState : State
         HandleInput();
         ApplyGravity();
         SetVelocity();
-
         CheckCollision(Owner.Velocity * Time.deltaTime);
-
-        //Move();
         ResetValues();
     }
 
@@ -63,13 +62,13 @@ public class PlayerBaseState : State
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
         Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
 
-        if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
-            Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
-        }
-        else {
-            Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
-        }
-        Direction = new Vector3(Direction.x, 0, Direction.z);
+        //if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
+        //    Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
+        //}
+        //else {
+        //    Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+        //}
+        //Direction = new Vector3(Direction.x, 0, Direction.z);
     }
 
     protected void SetVelocity()
@@ -114,11 +113,6 @@ public class PlayerBaseState : State
         }
         //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
         Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
-    }
-
-    private void Move()
-    {
-        Owner.transform.position += Owner.Velocity * Time.deltaTime - snapSum;
     }
 
     //Roterar spelaren
@@ -218,7 +212,7 @@ public class PlayerBaseState : State
     public bool IsGrounded()
     {
         Debug.DrawRay(Owner.transform.position + Owner.Collider.center, Vector3.down, Color.red);
-        return Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.down, out RaycastHit groundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask);
+        return Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.down, out  GroundHitInfo, Owner.GroundCheckDistance + Owner.SkinWidth, Owner.WalkableMask);
 
     }
     #endregion
