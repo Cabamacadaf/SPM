@@ -63,12 +63,16 @@ public class PlayerBaseState : State
         Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
 
 
-        //if (Physics.Raycast(Owner.transform.position, Vector3.down, out RaycastHit hitInfo)) {
-        //    Direction = Vector3.ProjectOnPlane(Direction, hitInfo.normal).normalized;
-        //}
-        //else {
-        //    Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
-        //}
+        if (Owner.GetCurrentState() is PlayerGroundState)
+        {
+            Debug.Log("Here");
+            Debug.Log(GroundHitInfo.normal);
+            Direction = Vector3.ProjectOnPlane(Direction, GroundHitInfo.normal).normalized;
+        }
+        else
+        {
+            Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+        }
         //Direction = new Vector3(Direction.x, 0, Direction.z);
     }
 
@@ -112,10 +116,29 @@ public class PlayerBaseState : State
 
 
         }
-        //Owner.Velocity += Direction * Owner.Acceleration * Time.deltaTime;
-        Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
-        if(Owner.GetCurrentState() is PlayerGroundState && Owner.Velocity.magnitude < 1.0f) {
-            Owner.Velocity = Vector3.zero;
+ 
+        Debug.Log("Velocity: " + Owner.Velocity);
+        if(Owner.GetCurrentState() is PlayerGroundState) {
+            if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+            {
+                Owner.Velocity = new Vector3(Direction.x * speed, 0, Direction.z * speed);
+
+            }
+            else
+            {
+                Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
+
+            }
+
+            if (Owner.Velocity.magnitude < 1.0f){
+                Owner.Velocity = Vector3.zero;
+
+            }
+        }
+        else
+        {
+            Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
+
         }
     }
 

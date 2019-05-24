@@ -17,7 +17,7 @@ public class PlayerAirState : PlayerBaseState
     {
         base.HandleUpdate();
 
-        Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
+        //Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
 
 
         if (IsGrounded()) {

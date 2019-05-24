@@ -21,21 +21,6 @@ public class PlayerGroundState : PlayerBaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-        Direction = Vector3.ProjectOnPlane(Direction, GroundHitInfo.normal).normalized;
-
-
-        //Vector3 GroundCross = Vector3.Cross(GroundHitInfo.normal, Direction);
-        //Debug.Log(GroundCross);
-
-        //GroundAngle = Vector3.Angle(GroundHitInfo.normal, Owner.transform.forward);
-        //Debug.Log(GroundHitInfo.normal.y != 1);
-        //Debug.Log("Forward: " + (Owner.transform.forward));
-        //if(GroundHitInfo.normal.y != 1 && Owner.transform.forward == Vector3.zero && Owner.transform.right == Vector3.zero)
-        //{
-        //    Debug.Log("Hello");
-        //    Owner.Velocity = Vector3.zero;
-        //}
-        //Debug.Log("Ground Angle: " + (180 - GroundAngle));
         
    
         if (Input.GetKeyDown(KeyCode.Space) && IsCrouching == false)
