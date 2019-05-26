@@ -26,7 +26,7 @@ public class Player : StateMachine
     public float CrouchSpeed { get => crouchSpeed; set => crouchSpeed = value; }
     public float AcceptableStamina { get => acceptableStamina; set => acceptableStamina = value; }
     public GameObject GravityGunObject { get => gravityGun; set => gravityGun = value; }
-    public PlayAudioMessage PlayAudioMessage { get; private set; }
+    public PlayAudioMessage PlayVoiceLine { get; private set; }
     public float CrouchMargin { get => crouchMargin; set => crouchMargin = value; }
 
     #endregion
@@ -69,7 +69,7 @@ public class Player : StateMachine
     {
         GameManager.Instance.CurrentCheckPoint = transform.position;
         GameManager.Instance.SetPlayer(gameObject);
-        PlayAudioMessage = GetComponent<PlayAudioMessage>();
+        PlayVoiceLine = GetComponent<PlayVoiceLine>();
         if (GameManager.Instance.RestartedFromLatestCheckpoint)
         {
             transform.position = GameManager.Instance.CurrentCheckPoint;

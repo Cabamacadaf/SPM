@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayAudioMessage : MonoBehaviour
+public abstract class PlayAudioMessage : MonoBehaviour
 {
     private AudioClip audioClip;
 
@@ -17,9 +17,9 @@ public class PlayAudioMessage : MonoBehaviour
 
     private Text subtitleText;
 
-    private bool startPlaying = false;
-    private bool hasStartedPlaying = false;
-    private bool hasFinishedPlaying = false;
+    protected bool StartPlaying { get; private set; }
+    protected bool HasStartedPlaying { get; private set; }
+    protected bool HasFinishedPlaying { get; private set; }
 
     private float playTimer = 0.0f;
     private int currentSubtitle;
@@ -28,29 +28,30 @@ public class PlayAudioMessage : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         subtitleText = FindObjectOfType<Canvas>().transform.Find("Subtitle Text").GetComponent<Text>();
+
+        StartPlaying = false;
+        HasStartedPlaying = false;
+        HasFinishedPlaying = false;
     }
 
-    private void Update ()
+    protected virtual void Update ()
     {
-        if (startPlaying == true && hasFinishedPlaying == false) {
-            playTimer += Time.deltaTime;
+        playTimer += Time.deltaTime;
 
-            if (playTimer >= delayBeforeStartPlaying && hasStartedPlaying == false) {
-                hasStartedPlaying = true;
-                audioSource.PlayOneShot(audioClip);
-                subtitleText.enabled = true;
+        if (playTimer >= delayBeforeStartPlaying && HasStartedPlaying == false) {
+            HasStartedPlaying = true;
+            HasFinishedPlaying = false;
+            audioSource.PlayOneShot(audioClip);
+            subtitleText.enabled = true;
+            NextMessageText();
+        }
+
+        if (playTimer >= timeBetweenText && HasStartedPlaying == true) {
+            if (currentSubtitle < subtitles.Length) {
                 NextMessageText();
             }
-
-            if (playTimer >= timeBetweenText && hasStartedPlaying == true) {
-                if (currentSubtitle < subtitles.Length) {
-                    NextMessageText();
-                }
-                else {
-                    subtitleText.text = "";
-                    subtitleText.enabled = false;
-                    hasFinishedPlaying = true;
-                }
+            else {
+                ResetAudioMessage();
             }
         }
     }
@@ -62,12 +63,27 @@ public class PlayAudioMessage : MonoBehaviour
         playTimer = 0.0f;
     }
 
+    private void ResetAudioMessage ()
+    {
+        subtitleText.text = "";
+        subtitleText.enabled = false;
+        currentSubtitle = 0;
+
+        StartPlaying = false;
+        HasFinishedPlaying = true;
+        HasStartedPlaying = false;
+
+        audioSource.Stop();
+        playTimer = 0.0f;
+    }
+
     public void PlayMessage (AudioClip audioClip, string[] subtitles, float delayBeforeStartPlaying, float timeBetweenText)
     {
         this.audioClip = audioClip;
         this.subtitles = subtitles;
         this.delayBeforeStartPlaying = delayBeforeStartPlaying;
         this.timeBetweenText = timeBetweenText;
-        startPlaying = true;
+        ResetAudioMessage();
+        StartPlaying = true;
     }
 }

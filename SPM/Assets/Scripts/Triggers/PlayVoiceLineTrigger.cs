@@ -19,7 +19,7 @@ public class PlayVoiceLineTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && hasTriggered == false) {
             hasTriggered = true;
-            other.GetComponent<Player>().PlayAudioMessage.PlayMessage(voiceLine, voiceLineText, delayBeforeStartPlaying, timeBetweenText);
+            other.GetComponent<Player>().PlayVoiceLine.PlayMessage(voiceLine, voiceLineText, delayBeforeStartPlaying, timeBetweenText);
         }
     }
 }
