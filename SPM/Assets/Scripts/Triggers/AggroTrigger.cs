@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AggroTrigger : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy;
+    [SerializeField] private Enemy[] enemies;
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Player")) {
-            if ((enemy.GetCurrentState() is EnemyIdleState)) {
-                EnemyIdleState enemyIdleState = (EnemyIdleState)enemy.GetCurrentState();
-                enemyIdleState.Aggro();
+            foreach (Enemy enemy in enemies) {
+                if ((enemy.GetCurrentState() is EnemyIdleState)) {
+                    EnemyIdleState enemyIdleState = (EnemyIdleState)enemy.GetCurrentState();
+                    enemyIdleState.Aggro();
+                }
             }
             gameObject.SetActive(false);
         }
