@@ -52,6 +52,7 @@ public abstract class PlayAudioMessage : MonoBehaviour
             }
             else {
                 ResetAudioMessage();
+                HasFinishedPlaying = true;
             }
         }
     }
@@ -70,7 +71,7 @@ public abstract class PlayAudioMessage : MonoBehaviour
         currentSubtitle = 0;
 
         StartPlaying = false;
-        HasFinishedPlaying = true;
+        HasFinishedPlaying = false;
         HasStartedPlaying = false;
 
         audioSource.Stop();
