@@ -12,7 +12,7 @@ public class FlashlightPickup : InteractiveObject
 
     protected override void Awake ()
     {
-        messageText = GameManager.CanvasInstance.transform.Find("Message Text").GetComponent<Text>();
+        messageText = GameManager.CanvasInstance.transform.Find("Tutorial Text").GetComponent<Text>();
         base.Awake();
     }
 

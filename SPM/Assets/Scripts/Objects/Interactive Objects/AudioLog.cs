@@ -13,17 +13,19 @@ public class AudioLog : InteractiveObject
     [SerializeField] private float timeBetweenText = 2.0f;
     
     private PlayAudioMessage playAudioLogMessage;
+    private Text subtitleText;
 
     protected override void Awake ()
     {
         playAudioLogMessage = GetComponent<PlayAudioLogMessage>();
+        subtitleText = GameManager.CanvasInstance.transform.Find("Voice Line Subtitle Text").GetComponent<Text>();
         base.Awake();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && IsInteractive) {
-            playAudioLogMessage.PlayMessage(audioLogClip, audioLogText, delayBeforeStartPlaying, timeBetweenText);
+            playAudioLogMessage.PlayMessage(audioLogClip, subtitleText, audioLogText, delayBeforeStartPlaying, timeBetweenText);
         }
     }
 }

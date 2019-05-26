@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayVoiceLineOnPlayerStayTrigger : MonoBehaviour
 {
@@ -18,19 +19,25 @@ public class PlayVoiceLineOnPlayerStayTrigger : MonoBehaviour
     [SerializeField] private float stayTimeBeforeVoiceLinePlays = 180f;
 
     private Player player;
+    private Text subtitleText;
 
     private float playerStayTimer = 0.0f;
     private bool playerIsInArea = false;
 
     private bool hasTriggered;
 
+    private void Awake ()
+    {
+        player = GameManager.PlayerInstance;
+        subtitleText = GameManager.CanvasInstance.transform.Find("Voice Line Subtitle Text").GetComponent<Text>();
+    }
     private void Update ()
     {
         if (playerIsInArea && hasTriggered == false) {
             playerStayTimer += Time.deltaTime;
             if (playerStayTimer >= stayTimeBeforeVoiceLinePlays ) {
                 hasTriggered = true;
-                player.PlayVoiceLine.PlayMessage(voiceLine, voiceLineText, delayBeforeStartPlaying, timeBetweenText);
+                player.PlayVoiceLine.PlayMessage(voiceLine, subtitleText, voiceLineText, delayBeforeStartPlaying, timeBetweenText);
             }
         }
     }
@@ -38,9 +45,6 @@ public class PlayVoiceLineOnPlayerStayTrigger : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Player")) {
-            if (player == null) {
-                player = other.GetComponent<Player>();
-            }
             playerIsInArea = true;
         }
     }

@@ -27,7 +27,6 @@ public abstract class PlayAudioMessage : MonoBehaviour
     private void Awake ()
     {
         audioSource = GetComponent<AudioSource>();
-        subtitleText = GameManager.CanvasInstance.transform.Find("Subtitle Text").GetComponent<Text>();
 
         StartPlaying = false;
         HasStartedPlaying = false;
@@ -80,8 +79,9 @@ public abstract class PlayAudioMessage : MonoBehaviour
         playTimer = 0.0f;
     }
 
-    public void PlayMessage (AudioClip audioClip, string[] subtitles, float delayBeforeStartPlaying, float timeBetweenText)
+    public void PlayMessage (AudioClip audioClip, Text subtitleText, string[] subtitles, float delayBeforeStartPlaying, float timeBetweenText)
     {
+        this.subtitleText = subtitleText;
         this.audioClip = audioClip;
         this.subtitles = subtitles;
         this.delayBeforeStartPlaying = delayBeforeStartPlaying;
