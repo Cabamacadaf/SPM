@@ -1,4 +1,5 @@
-﻿//Author: Simon Sundström
+﻿//Main Author: Simon Sundström
+//Secondary Author: Marcus Mellström
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private KeyCode RestartSceneButton = KeyCode.P;
     [SerializeField] private KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
+    [SerializeField] private KeyCode nextLevelButton = KeyCode.L;
     private GameObject player;
   
     public Vector3 CurrentCheckPoint { get; set; }
@@ -21,8 +23,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        PlayerInstance = playerInstance;
-        CanvasInstance = canvasInstance;
+        PlayerInstance = FindObjectOfType<Player>();
+        CanvasInstance = FindObjectOfType<Canvas>();
 
         if (instance == null)
         {
@@ -46,6 +48,9 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(RestartFromLatestCheckpointButton))
         {
             RestartSceneFromLatestCheckpoint();
+        }
+        if (Input.GetKeyDown(nextLevelButton)) {
+            StartNextLevel();
         }
     }
 
@@ -79,6 +84,19 @@ public class GameManager : Singleton<GameManager>
     {
         player.transform.position = CurrentCheckPoint;
         //player.GetComponent<HealthComponent>().Health = 100;
+    }
+
+    private void StartNextLevel ()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 1){
+            SceneManager.LoadScene(2);
+        }
+        else if(SceneManager.GetActiveScene().buildIndex == 2){
+            SceneManager.LoadScene(0);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 0) {
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void SetPlayer(GameObject player)
