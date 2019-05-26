@@ -27,7 +27,7 @@ public abstract class PlayAudioMessage : MonoBehaviour
     private void Awake ()
     {
         audioSource = GetComponent<AudioSource>();
-        subtitleText = FindObjectOfType<Canvas>().transform.Find("Subtitle Text").GetComponent<Text>();
+        subtitleText = GameManager.CanvasInstance.transform.Find("Subtitle Text").GetComponent<Text>();
 
         StartPlaying = false;
         HasStartedPlaying = false;
@@ -43,7 +43,9 @@ public abstract class PlayAudioMessage : MonoBehaviour
             HasFinishedPlaying = false;
             audioSource.PlayOneShot(audioClip);
             subtitleText.enabled = true;
-            NextMessageText();
+            if (currentSubtitle < subtitles.Length) {
+                NextMessageText();
+            }
         }
 
         if (playTimer >= timeBetweenText && HasStartedPlaying == true) {

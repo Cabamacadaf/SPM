@@ -30,7 +30,7 @@ public class PlayerBaseState : State
 
     public override void Initialize (StateMachine owner)
     {
-        this.Owner = (Player)owner;
+        Owner = (Player)owner;
     }
 
     public override void Enter()

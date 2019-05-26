@@ -15,7 +15,7 @@ public class HealthPack : InteractiveObject
     {
         if (Input.GetKeyDown(KeyCode.E) && IsInteractive )
         {
-            playerHealth = Player.GetComponent<HealthComponent>();
+            playerHealth = PlayerTransform.GetComponent<HealthComponent>();
             playerHealth.Addhealth(healthToAdd);
             InteractText.text = "";
             InteractText.enabled = false;

@@ -87,7 +87,7 @@ public abstract class Enemy : StateMachine
         Obstacle = GetComponent<NavMeshObstacle>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         MeshRenderer.material.color = Color;
-        Player = FindObjectOfType<Player>();
+        Player = GameManager.PlayerInstance;
         MaxHitPoints = hitPoints;
         base.Awake();
     }

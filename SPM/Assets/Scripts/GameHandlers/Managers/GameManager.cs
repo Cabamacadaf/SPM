@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public static Player PlayerInstance { get; private set; }
+    [SerializeField] private Player playerInstance;
+
+    public static Canvas CanvasInstance { get; private set; }
+    [SerializeField] private Canvas canvasInstance;
+
     [SerializeField] private KeyCode RestartSceneButton = KeyCode.P;
     [SerializeField] private KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
     private GameObject player;
@@ -15,6 +21,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        PlayerInstance = playerInstance;
+        CanvasInstance = canvasInstance;
+
         if (instance == null)
         {
             instance = this;

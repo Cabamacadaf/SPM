@@ -48,7 +48,7 @@ public class GravityGun : StateMachine
 
     protected override void Awake ()
     {
-        Crosshair = FindObjectOfType<Canvas>().transform.Find("Crosshair").GetComponent<Image>();
+        Crosshair = GameManager.CanvasInstance.transform.Find("Crosshair").GetComponent<Image>();
         base.Awake();
     }
 }

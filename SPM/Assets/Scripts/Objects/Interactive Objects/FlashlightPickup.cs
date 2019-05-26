@@ -12,7 +12,7 @@ public class FlashlightPickup : InteractiveObject
 
     protected override void Awake ()
     {
-        messageText = FindObjectOfType<Canvas>().transform.Find("Message Text").GetComponent<Text>();
+        messageText = GameManager.CanvasInstance.transform.Find("Message Text").GetComponent<Text>();
         base.Awake();
     }
 
@@ -25,7 +25,7 @@ public class FlashlightPickup : InteractiveObject
 
     private void PickUpFlashlight ()
     {
-        FindObjectOfType<Player>().HasFlashlight = true;
+        GameManager.PlayerInstance.HasFlashlight = true;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponentInChildren<BoxCollider>().enabled = false;
         GetComponentInChildren<Light>().enabled = false;

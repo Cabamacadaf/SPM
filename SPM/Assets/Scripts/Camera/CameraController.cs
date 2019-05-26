@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
     private void Awake ()
     {
         MouseControlOn = true;
-        Player player = FindObjectOfType<Player>();
+        Player player = GameManager.PlayerInstance;
         rotationX = player.transform.eulerAngles.x;
         rotationY = player.transform.eulerAngles.y;
         LockCursor();
