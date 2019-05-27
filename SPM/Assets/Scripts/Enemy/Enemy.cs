@@ -87,6 +87,9 @@ public abstract class Enemy : StateMachine
     public NavMeshAgent Agent { get; private set; }
     public NavMeshObstacle Obstacle { get; private set; }
     public Player Player { get; private set; }
+
+    //public Transform Spawner { get; private set; }
+    //public Collider PatrolArea { get; private set; }
     #endregion
 
     protected override void Awake ()
@@ -101,6 +104,12 @@ public abstract class Enemy : StateMachine
         MeshRenderer.material.color = Color;
         Player = GameManager.PlayerInstance;
         MaxHitPoints = hitPoints;
+
+        //Spawner = transform.parent;
+        //if(Spawner != null) {
+        //    PatrolArea = Spawner.Find("PatrolArea").GetComponent<Collider>();
+        //}
+
         base.Awake();
     }
 }

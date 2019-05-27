@@ -11,32 +11,44 @@ public abstract class EnemyIdleState : EnemyBaseState
         base.Enter();
     }
 
-    private float timer = 0.0f;
+    private float soundTimer = 0.0f;
     private float timeUntilSound;
-    private bool playing = false;
+    private bool soundIsPlaying = false;
 
     public override void Initialize (StateMachine owner)
     {
         base.Initialize(owner);
-        timeUntilSound = Random.Range(this.Owner.IdleSoundMinTime, this.Owner.IdleSoundMaxTime);
+        timeUntilSound = Random.Range(Owner.IdleSoundMinTime, Owner.IdleSoundMaxTime);
     }
 
     public override void HandleUpdate ()
     {
-        timer += Time.deltaTime;
-        if (timer >= timeUntilSound && !playing) {
+        HandleSound();
+        //Patrol();
+        base.HandleUpdate();
+    }
+
+    //private void Patrol ()
+    //{
+    //    Debug.Log(Owner.PatrolArea.bounds.size);
+    //    Vector3 randomPosition = new Vector3(Random.Range(0, Owner.PatrolArea.bounds.size.x), Random.Range(0, Owner.PatrolArea.bounds.size.y), Random.Range(0, Owner.PatrolArea.bounds.size.z));
+
+    //}
+
+    private void HandleSound ()
+    {
+        soundTimer += Time.deltaTime;
+        if (soundTimer >= timeUntilSound && !soundIsPlaying) {
             Owner.AudioSource.PlayOneShot(Owner.IdleSound);
-            playing = true;
-            timer = 0.0f;
+            soundIsPlaying = true;
+            soundTimer = 0.0f;
         }
 
-        if (playing && timer > Owner.IdleSound.length) {
-            playing = false;
-            timer = 0.0f;
+        if (soundIsPlaying && soundTimer > Owner.IdleSound.length) {
+            soundIsPlaying = false;
+            soundTimer = 0.0f;
             timeUntilSound = Random.Range(Owner.IdleSoundMinTime, Owner.IdleSoundMaxTime);
         }
-
-        base.HandleUpdate();
     }
 
     public override void Exit ()
