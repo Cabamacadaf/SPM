@@ -9,7 +9,7 @@ AnimatorController:
   m_Name: Enemy2Controller
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Enemy2Speed
+  - m_Name: EnemySpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -83,7 +83,7 @@ BlendTree:
     m_DirectBlendParameter: Enemy2Speed
     m_Mirror: 0
   m_BlendParameter: Enemy2Direction
-  m_BlendParameterY: Enemy2Speed
+  m_BlendParameterY: EnemySpeed
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
