@@ -20,7 +20,6 @@ public class Enemy2LeapRecoverState : EnemyBaseState
         base.Enter();
         Owner.RigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         timer = 0.0f;
-        Owner.Animator.SetFloat("Enemy2Speed", 0.0f);
     }
 
     public override void HandleUpdate ()

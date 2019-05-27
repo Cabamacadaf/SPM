@@ -18,6 +18,8 @@ public abstract class Enemy : StateMachine
     [SerializeField] private float acceleration = 10.0f;
     [SerializeField] private float rotationSpeed = 5.0f;
 
+    [SerializeField] private float velocityInterpolation = 0.75f;
+
     [SerializeField] private float blastRecoveryTime = 2.0f;
     [SerializeField] private float knockbackRecoveryTime = 0.5f;
 
@@ -41,7 +43,6 @@ public abstract class Enemy : StateMachine
 
     #region Properties
     public float HitPoints { get => hitPoints; set => hitPoints = value; }
-    public float MaxHitPoints { get; set; }
 
     public float AttackDamage { get => attackDamage; private set => attackDamage = value; }
     public float AttackDistance { get => attackDistance; private set => attackDistance = value; }
@@ -52,6 +53,8 @@ public abstract class Enemy : StateMachine
     public float MovementSpeed { get => movementSpeed; private set => movementSpeed = value; }
     public float Acceleration { get => acceleration; private set => acceleration = value; }
     public float RotationSpeed { get => rotationSpeed; private set => rotationSpeed = value; }
+
+    public float VelocityInterpolation { get => velocityInterpolation; private set => velocityInterpolation = value; }
 
     public float BlastRecoveryTime { get => blastRecoveryTime; private set => blastRecoveryTime = value; }
     public float KnockbackRecoveryTime { get => knockbackRecoveryTime; private set => knockbackRecoveryTime = value; }
@@ -72,6 +75,9 @@ public abstract class Enemy : StateMachine
 
     public Color Color { get => color; private set => color = value; }
     public Collider Collider { get => collider; private set => collider = value; }
+
+    public float MaxHitPoints { get; private set; }
+    public float CurrentVelocity { get; set; }
 
     public SkinnedMeshRenderer MeshRenderer { get; private set; }
     public Rigidbody RigidBody { get; private set; }

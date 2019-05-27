@@ -4,12 +4,13 @@ using UnityEngine;
 
 public abstract class EnemyBaseState : State
 {
-
     protected Enemy Owner { get; set; }
+
+    private Vector3 lastFramePosition;
 
     public override void Enter ()
     {
-        if(Owner.GetCurrentState() is EnemyAggroState == false) {
+        if (Owner.GetCurrentState() is EnemyAggroState == false) {
             Owner.Obstacle.enabled = true;
         }
         base.Enter();
@@ -18,6 +19,15 @@ public abstract class EnemyBaseState : State
     public override void Initialize (StateMachine owner)
     {
         Owner = (Enemy)owner;
+        lastFramePosition = Owner.transform.position;
+    }
+
+    public override void HandleUpdate ()
+    {
+        Owner.CurrentVelocity = Mathf.Lerp(Owner.CurrentVelocity, (Owner.transform.position - lastFramePosition).magnitude / Time.deltaTime, Owner.VelocityInterpolation);
+        lastFramePosition = Owner.transform.position;
+        Owner.Animator.SetFloat("EnemySpeed", Owner.CurrentVelocity / Owner.MovementSpeed);
+        base.HandleUpdate();
     }
 
     public void Damage (float damage)

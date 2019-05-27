@@ -8,7 +8,6 @@ public class Enemy1AggroState : EnemyAggroState
     public override void Enter ()
     {
         base.Enter();
-        Owner.Animator.SetFloat("Enemy1Speed", 1.0f);
     }
 
     public override void HandleUpdate ()
