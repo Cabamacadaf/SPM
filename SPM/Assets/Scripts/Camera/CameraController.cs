@@ -23,19 +23,26 @@ public class CameraController : MonoBehaviour
     private float rotationX;
     private float rotationY;
 
+    public static CameraController instance;
+    private bool registerCameraInput;
+
     private void Awake ()
     {
         MouseControlOn = true;
         Player player = GameManager.PlayerInstance;
         rotationX = player.transform.eulerAngles.x;
         rotationY = player.transform.eulerAngles.y;
+        instance = this;
         LockCursor();
     }
 
     // Update is called once per frame
     void Update ()
     {
-        CameraRotation();
+      
+          CameraRotation();
+        
+
     }
 
     ///<summary>
@@ -54,6 +61,7 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Euler(rotationXCLamped, rotationY, 0);
     }
 
+    
     ///<summary>
     ///Sets the rotation value to be equal to the clamp value in case the player move the mouse more then
     ///the minimum or maximum clampvalue
@@ -68,9 +76,21 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void LockCursor ()
+    public void LockCursor ()
     {
+        //registerCameraInput = true;
+        MouseControlOn = true;
         Cursor.lockState = wantedMode;
         Cursor.visible = false;
+    }
+
+    public void UnLockCursor()
+    {
+        MouseControlOn = false;
+        Debug.Log("Unlock");
+        //registerCameraInput = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        Cursor.visible = true;
     }
 }
