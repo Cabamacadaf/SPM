@@ -22,12 +22,12 @@ public abstract class EnemyBaseState : State
 
     public void Damage (float damage)
     {
-        if (Owner.GetCurrentState() is EnemyIdleState) {
-            EnemyIdleState enemyIdleState = (EnemyIdleState)Owner.GetCurrentState();
-            enemyIdleState.Aggro();
-        }
-        
+        Owner.Transition<EnemyKnockbackState>();
+        EnemyKnockbackState knockbackState = (EnemyKnockbackState)Owner.GetCurrentState();
+        knockbackState.KnockBack(Owner.KnockbackForce, Owner.KnockbackRecoveryTime);
+
         Owner.HitPoints -= damage;
+
         if (Owner.HitPoints <= 0) {
             Kill();
         }

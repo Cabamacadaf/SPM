@@ -35,8 +35,9 @@ public class BlastRadius : MonoBehaviour
             Vector3 raycastDirection = firePoint.position - other.transform.position;
             if (!Physics.Raycast(other.transform.position, raycastDirection.normalized, out RaycastHit hit, raycastDirection.magnitude, wallLayer)) {
                 Enemy enemy = other.GetComponentInParent<Enemy>();
-                enemy.Transition<EnemyBlastedState>();
-                enemy.RigidBody.AddForce((enemy.Collider.bounds.center - enemy.Player.transform.position).normalized * gravityBlast.BlastForce);
+                enemy.Transition<EnemyKnockbackState>();
+                EnemyKnockbackState knockbackState = (EnemyKnockbackState)enemy.GetCurrentState();
+                knockbackState.KnockBack(gravityBlast.BlastForce, enemy.BlastRecoveryTime);
             }
         }
     }

@@ -19,6 +19,9 @@ public abstract class Enemy : StateMachine
     [SerializeField] private float rotationSpeed = 5.0f;
 
     [SerializeField] private float blastRecoveryTime = 2.0f;
+    [SerializeField] private float knockbackRecoveryTime = 0.5f;
+
+    [SerializeField] private float knockbackForce = 100f;
 
     [SerializeField] private GameObject attackObject;
 
@@ -51,6 +54,9 @@ public abstract class Enemy : StateMachine
     public float RotationSpeed { get => rotationSpeed; private set => rotationSpeed = value; }
 
     public float BlastRecoveryTime { get => blastRecoveryTime; private set => blastRecoveryTime = value; }
+    public float KnockbackRecoveryTime { get => knockbackRecoveryTime; private set => knockbackRecoveryTime = value; }
+
+    public float KnockbackForce { get => knockbackForce; private set => knockbackForce = value; }
 
     public GameObject AttackObject { get => attackObject; private set => attackObject = value; }
 
