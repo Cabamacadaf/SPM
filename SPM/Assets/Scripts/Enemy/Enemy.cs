@@ -14,7 +14,8 @@ public abstract class Enemy : StateMachine
     [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private float attackAnimationSpeed = 5.0f;
 
-    [SerializeField] private float movementSpeed = 2.5f;
+    [SerializeField] private float aggroMovementSpeed = 4.0f;
+    [SerializeField] private float idleMovementSpeed = 2.0f;
     [SerializeField] private float acceleration = 10.0f;
     [SerializeField] private float rotationSpeed = 5.0f;
 
@@ -50,7 +51,8 @@ public abstract class Enemy : StateMachine
     public float AttackCooldown { get => attackCooldown; private set => attackCooldown = value; }
     public float AttackAnimationSpeed { get => attackAnimationSpeed; private set => attackAnimationSpeed = value; }
 
-    public float MovementSpeed { get => movementSpeed; private set => movementSpeed = value; }
+    public float AggroMovementSpeed { get => aggroMovementSpeed; private set => aggroMovementSpeed = value; }
+    public float IdleMovementSpeed { get => idleMovementSpeed; private set => idleMovementSpeed = value; }
     public float Acceleration { get => acceleration; private set => acceleration = value; }
     public float RotationSpeed { get => rotationSpeed; private set => rotationSpeed = value; }
 
@@ -88,8 +90,8 @@ public abstract class Enemy : StateMachine
     public NavMeshObstacle Obstacle { get; private set; }
     public Player Player { get; private set; }
 
-    //public Transform Spawner { get; private set; }
-    //public Collider PatrolArea { get; private set; }
+    public Transform Spawner { get; private set; }
+    public Collider PatrolArea { get; private set; }
     #endregion
 
     protected override void Awake ()
@@ -105,10 +107,10 @@ public abstract class Enemy : StateMachine
         Player = GameManager.PlayerInstance;
         MaxHitPoints = hitPoints;
 
-        //Spawner = transform.parent;
-        //if(Spawner != null) {
-        //    PatrolArea = Spawner.Find("PatrolArea").GetComponent<Collider>();
-        //}
+        Spawner = transform.parent;
+        if (Spawner.GetComponent<Spawner>() != null) {
+            PatrolArea = Spawner.Find("PatrolArea").GetComponent<Collider>();
+        }
 
         base.Awake();
     }

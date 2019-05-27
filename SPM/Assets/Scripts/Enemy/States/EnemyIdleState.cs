@@ -5,9 +5,18 @@ using UnityEngine;
 
 public abstract class EnemyIdleState : EnemyBaseState
 {
+    private Vector3 randomPosition;
+    private float minDistanceToDestination = 0.5f;
+    private bool destinationReached = true;
+
     public override void Enter ()
     {
         //Debug.Log("Idle State");
+        if (Owner.PatrolArea != null) {
+            Owner.Agent.enabled = true;
+            Owner.Agent.speed = Owner.IdleMovementSpeed;
+            Owner.Agent.acceleration = Owner.Acceleration;
+        }
         base.Enter();
     }
 
@@ -24,16 +33,27 @@ public abstract class EnemyIdleState : EnemyBaseState
     public override void HandleUpdate ()
     {
         HandleSound();
-        //Patrol();
+        if (Owner.PatrolArea != null) {
+            Patrol();
+        }
         base.HandleUpdate();
     }
 
-    //private void Patrol ()
-    //{
-    //    Debug.Log(Owner.PatrolArea.bounds.size);
-    //    Vector3 randomPosition = new Vector3(Random.Range(0, Owner.PatrolArea.bounds.size.x), Random.Range(0, Owner.PatrolArea.bounds.size.y), Random.Range(0, Owner.PatrolArea.bounds.size.z));
+    private void Patrol ()
+    {
+        if (destinationReached == true) {
+            destinationReached = false;
+            randomPosition = new Vector3(Random.Range(Owner.PatrolArea.bounds.min.x, Owner.PatrolArea.bounds.max.x),
+                Random.Range(Owner.PatrolArea.bounds.min.y, Owner.PatrolArea.bounds.max.y),
+                Random.Range(Owner.PatrolArea.bounds.min.z, Owner.PatrolArea.bounds.max.z));
+            Owner.Agent.SetDestination(randomPosition);
+        }
 
-    //}
+        if (Vector3.Distance(Owner.transform.position, randomPosition) <= minDistanceToDestination){
+            Debug.Log("Destination reached");
+            destinationReached = true;
+        }
+    }
 
     private void HandleSound ()
     {
