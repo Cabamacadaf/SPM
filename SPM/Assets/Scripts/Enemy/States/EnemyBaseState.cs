@@ -26,7 +26,7 @@ public abstract class EnemyBaseState : State
     {
         Owner.CurrentVelocity = Mathf.Lerp(Owner.CurrentVelocity, (Owner.transform.position - lastFramePosition).magnitude / Time.deltaTime, Owner.VelocityInterpolation);
         lastFramePosition = Owner.transform.position;
-        Owner.Animator.SetFloat("EnemySpeed", Owner.CurrentVelocity / Owner.MovementSpeed);
+        Owner.Animator.SetFloat("EnemySpeed", Owner.CurrentVelocity / Owner.AggroMovementSpeed);
         base.HandleUpdate();
     }
 

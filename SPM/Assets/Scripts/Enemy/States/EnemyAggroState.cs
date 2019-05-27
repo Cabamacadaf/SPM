@@ -11,7 +11,7 @@ public abstract class EnemyAggroState : EnemyBaseState
         Owner.LightSource.enabled = true;
         Owner.Obstacle.enabled = false;
         Owner.Agent.enabled = true;
-        Owner.Agent.speed = Owner.MovementSpeed;
+        Owner.Agent.speed = Owner.AggroMovementSpeed;
         Owner.Agent.acceleration = Owner.Acceleration;
         base.Enter();
     }
