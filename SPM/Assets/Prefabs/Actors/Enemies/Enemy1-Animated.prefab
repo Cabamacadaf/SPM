@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3eb1cb8459c3f54e9462bcf2085dd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasAttacked: 0
 --- !u!1 &2536812602769541751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1130,10 @@ MonoBehaviour:
   movementSpeed: 4
   acceleration: 10
   rotationSpeed: 5
+  velocityInterpolation: 0.75
   blastRecoveryTime: 2
+  knockbackRecoveryTime: 0.5
+  knockbackForce: 100
   attackObject: {fileID: 4211817371601398087}
   wallLayer:
     serializedVersion: 2
