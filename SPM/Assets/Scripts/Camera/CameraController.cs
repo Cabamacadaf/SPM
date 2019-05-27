@@ -87,7 +87,7 @@ public class CameraController : MonoBehaviour
     public void UnLockCursor()
     {
         MouseControlOn = false;
-        Debug.Log("Unlock");
+
         //registerCameraInput = false;
         Cursor.lockState = CursorLockMode.Confined;
 
