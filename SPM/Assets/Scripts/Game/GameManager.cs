@@ -151,7 +151,6 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.SetFloat("CameraRotationY", mainCamera.transform.rotation.eulerAngles.y);
         PlayerPrefs.SetFloat("CameraRotationZ", mainCamera.transform.rotation.eulerAngles.z);
 
-        PlayerPrefs.SetFloat("PlayerHealth: ", playe)
 
         if(HasFlashlight == true)
         {
