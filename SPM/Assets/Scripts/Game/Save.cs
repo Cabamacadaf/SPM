@@ -16,7 +16,7 @@ public class Save
 {
 
     //Fiende och spelarens positioner och rotationer
-    public Transform PlayerTransform;
+    public int PlayerTransform;
     //public List<int> livingTargetPositions = new List<int>();
     //public List<int> livingTargetsTypes = new List<int>();
 
