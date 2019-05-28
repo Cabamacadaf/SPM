@@ -13,7 +13,7 @@ public class GameController : Singleton<GameController>
     public bool HasLevel2Keycard { get; set; }
     public bool HasAllPowerCores { get; private set; }
 
-    private int powerCoreCounter;
+    public int PowerCoreCounter { get; set; }
 
 
     private void Awake()
@@ -29,7 +29,7 @@ public class GameController : Singleton<GameController>
             Destroy(gameObject);
         }
 
-        powerCoreCounter = 0;
+        PowerCoreCounter = 0;
         HasLevel1Keycard = false;
         HasLevel2Keycard = true;
         HasAllPowerCores = false;
@@ -37,13 +37,13 @@ public class GameController : Singleton<GameController>
 
     public void AddPowerCore()
     {
-        powerCoreCounter++;
+        PowerCoreCounter++;
 
-        if(powerCoreCounter >= 4)
+        if(PowerCoreCounter >= 4)
         {
             //KeySpawn();
             HasAllPowerCores = true;
-            powerCoreCounter = 0;
+            PowerCoreCounter = 0;
         }
     }
 
@@ -51,4 +51,6 @@ public class GameController : Singleton<GameController>
     {
         Instantiate(keyCard, keySpawnPoint.position, Quaternion.identity);
     }
+
+
 }

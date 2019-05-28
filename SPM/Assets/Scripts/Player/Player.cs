@@ -20,7 +20,6 @@ public class Player : StateMachine
     public float GroundCheckDistance { get => groundCheckDistance; set => groundCheckDistance = value; }
     public CapsuleCollider Collider { get; private set; }
     public bool HasFlashlight { get => hasFlashlight; set => hasFlashlight = value; }
-    public Light Flashlight { get; set; }
     public float WalkSpeed { get => walkSpeed; set => walkSpeed = value; }
     public float SprintSpeed { get => sprintSpeed; set => sprintSpeed = value; }
     public float CrouchSpeed { get => crouchSpeed; set => crouchSpeed = value; }
@@ -67,16 +66,15 @@ public class Player : StateMachine
 
     protected override void Awake()
     {
-        GameManager.Instance.CurrentCheckPoint = transform.position;
+        //GameManager.Instance.CurrentCheckPoint = transform.position;
         GameManager.Instance.SetPlayer(gameObject);
         PlayVoiceLine = GetComponent<PlayVoiceLine>();
-        if (GameManager.Instance.RestartedFromLatestCheckpoint)
-        {
-            transform.position = GameManager.Instance.CurrentCheckPoint;
-        }
+        //if (GameManager.Instance.RestartedFromLatestCheckpoint)
+        //{
+        //    transform.position = GameManager.Instance.CurrentCheckPoint;
+        //}
         Collider = GetComponent<CapsuleCollider>();
         Stamina = GetComponent<StaminaComponent>();
-        Flashlight = GetComponentInChildren<Light>();
         mainCamera = Camera.main;
         base.Awake();
     }

@@ -55,7 +55,7 @@ public class PlayerBaseState : State
     {
         HandleDirection();
         CameraRotation();
-        HandleFlashLight();
+
     }
 
     private void HandleDirection()
@@ -273,25 +273,7 @@ public class PlayerBaseState : State
     }
     #endregion
 
-    #region Key Items
-    private void HandleFlashLight()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (Owner.HasFlashlight)
-            {
-                if (Owner.Flashlight.enabled)
-                {
-                    Owner.Flashlight.enabled = false;
-                }
-                else
-                {
-                    Owner.Flashlight.enabled = true;
-                }
-            }
-        }
-    }
-    #endregion
+
 
 
 
