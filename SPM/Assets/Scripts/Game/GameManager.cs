@@ -95,7 +95,10 @@ public class GameManager : Singleton<GameManager>
 
     public void RespawnPlayer()
     {
-        player.transform.position = CurrentCheckPoint;
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        SceneManager.LoadScene(currentScene.buildIndex);
+        LoadGame();
     }
 
     public void ResetScene()
@@ -156,7 +159,7 @@ public class GameManager : Singleton<GameManager>
     public void LoadGame()
     {
 
-        player.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX"), PlayerPrefs.GetFloat("PlayerPositionY"), PlayerPrefs.GetFloat("PlayerPositionZ"));
+        player.transform.position = CurrentCheckPoint;
         player.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("PlayerRotationX"), PlayerPrefs.GetFloat("PlayerRotationY"), PlayerPrefs.GetFloat("PlayerRotationZ"));
 
         mainCamera.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("CameraRotationX"), PlayerPrefs.GetFloat("CameraRotationY"), PlayerPrefs.GetFloat("CameraRotationZ"));

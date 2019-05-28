@@ -15,6 +15,7 @@ public class CheckpointTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && GameManager.Instance != null) {
             GameManager.Instance.CurrentCheckPoint = respawnPoint.position;
+            GameManager.Instance.SaveGame();
         }
     }
 }
