@@ -20,8 +20,8 @@ public class CameraController : MonoBehaviour
 
     public bool MouseControlOn { get; set; }
 
-    private float rotationX;
-    private float rotationY;
+    public float rotationX;
+    public float rotationY;
 
     public static CameraController instance;
     private bool registerCameraInput;
