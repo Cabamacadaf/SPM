@@ -69,14 +69,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.CurrentCheckPoint = transform.position;
+        //GameManager.Instance.CurrentCheckPoint = transform.position;
         GameManager.Instance.SetPlayer(gameObject);
         PlayAudioMessage = GetComponent<PlayAudioMessage>();
         flashlight = GetComponentInChildren<Light>();
 
         if (GameManager.Instance.RestartedFromLatestCheckpoint)
         {
-            transform.position = GameManager.Instance.CurrentCheckPoint;
+            //transform.position = GameManager.Instance.CurrentCheckPoint;
         }
         capsuleCollider = GetComponent<CapsuleCollider>();
         playerCamera = Camera.main;
