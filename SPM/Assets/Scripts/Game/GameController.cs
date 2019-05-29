@@ -8,11 +8,9 @@ public class GameController : Singleton<GameController>
     [SerializeField] private GameObject keyCard;
     [SerializeField] private Transform keySpawnPoint;
 
-
     public bool HasLevel1Keycard { get; set; }
     public bool HasLevel2Keycard { get; set; }
     public bool HasAllPowerCores { get; private set; }
-
     public int PowerCoreCounter { get; set; }
 
 

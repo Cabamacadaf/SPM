@@ -27,6 +27,7 @@ public class Player : StateMachine
     public GameObject GravityGunObject { get => gravityGun; set => gravityGun = value; }
     public PlayAudioMessage PlayVoiceLine { get; private set; }
     public float CrouchMargin { get => crouchMargin; set => crouchMargin = value; }
+    public HealthComponent PlayerHealth { get; set; }
 
     #endregion
 
@@ -66,6 +67,7 @@ public class Player : StateMachine
 
     protected override void Awake()
     {
+        PlayerHealth = GetComponent<HealthComponent>();
         //GameManager.Instance.CurrentCheckPoint = transform.position;
         GameManager.Instance.SetPlayer(gameObject);
         PlayVoiceLine = GetComponent<PlayVoiceLine>();
