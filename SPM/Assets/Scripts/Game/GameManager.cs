@@ -14,7 +14,13 @@ public class GameManager : Singleton<GameManager>
     //[SerializeField] private List<GameObject> powerSourcePlaces;
     [SerializeField] private Light Flashlight;
 
+    [SerializeField] private GameObject keyCard;
+    [SerializeField] private Transform keySpawnPoint;
 
+    public bool HasLevel1Keycard { get; set; }
+    public bool HasLevel2Keycard { get; set; }
+    public bool HasAllPowerCores { get; private set; }
+    public int PowerCoreCounter { get; set; }
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private KeyCode RestartSceneButton = KeyCode.P;
     [SerializeField] private KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
@@ -22,7 +28,6 @@ public class GameManager : Singleton<GameManager>
     private GameObject player;
     private Camera mainCamera;
 
-    public int powercores { get; set; }
     public Vector3 CurrentCheckPoint { get; set; }
     public bool RestartedFromLatestCheckpoint { get; set; }
     public bool HasFlashlight { get; set; }
@@ -30,7 +35,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         SetOnAwake();
-
+        //LoadGame();
         if (instance == null)
         {
             instance = this;
@@ -80,6 +85,8 @@ public class GameManager : Singleton<GameManager>
     {
         PlayerInstance = FindObjectOfType<Player>();
         CanvasInstance = FindObjectOfType<Canvas>();
+
+        pauseMenu.SetActive(false);
 
         mainCamera = Camera.main;
     }
@@ -139,7 +146,26 @@ public class GameManager : Singleton<GameManager>
     #region Save
     public void SaveGame()
     {
-   
+        SavePlayer();
+
+        SaveObjectives();
+
+        PlayerPrefs.Save();
+        Debug.Log("Game Saved");
+    }
+
+    private void SaveObjectives()
+    {
+        if (HasFlashlight == true)
+        {
+            PlayerPrefs.SetInt("Flashlight", 1);
+        }
+
+        PlayerPrefs.SetInt("PowerCores", PowerCoreCounter);
+    }
+
+    private void SavePlayer()
+    {
         PlayerPrefs.SetFloat("PlayerPositionX", player.transform.position.x);
         PlayerPrefs.SetFloat("PlayerPositionY", player.transform.position.y);
         PlayerPrefs.SetFloat("PlayerPositionZ", player.transform.position.z);
@@ -147,40 +173,33 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.SetFloat("PlayerRotationY", player.transform.rotation.eulerAngles.y);
         PlayerPrefs.SetFloat("PlayerRotationZ", player.transform.rotation.eulerAngles.z);
 
+        Debug.Log("PlayerPosition: " + new Vector3(PlayerPrefs.GetFloat("PlayerPositionX"), PlayerPrefs.GetFloat("PlayerPositionY", PlayerPrefs.GetFloat("PlayerPositionZ"))));
+
         PlayerPrefs.SetFloat("CameraRotationX", mainCamera.transform.rotation.eulerAngles.x);
         PlayerPrefs.SetFloat("CameraRotationY", mainCamera.transform.rotation.eulerAngles.y);
         PlayerPrefs.SetFloat("CameraRotationZ", mainCamera.transform.rotation.eulerAngles.z);
 
-
-        if(HasFlashlight == true)
-        {
-            PlayerPrefs.SetInt("Flashlight", 1);
-        }
-
-        PlayerPrefs.SetInt("PowerCores", GameController.instance.PowerCoreCounter);
-
-        PlayerPrefs.Save();
-        Debug.Log("Game Saved");
+        PlayerPrefs.SetFloat("PlayerHealth", PlayerInstance.PlayerHealth.Health);
     }
 
     public void LoadGame()
     {
+        LoadPlayer();
 
-        player.transform.position = CurrentCheckPoint;
-        player.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("PlayerRotationX"), PlayerPrefs.GetFloat("PlayerRotationY"), PlayerPrefs.GetFloat("PlayerRotationZ"));
+        LoadObjectives();
 
-        mainCamera.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("CameraRotationX"), PlayerPrefs.GetFloat("CameraRotationY"), PlayerPrefs.GetFloat("CameraRotationZ"));
+        Debug.Log("Game Loaded");
 
+    }
 
-        CameraController.instance.rotationX = player.transform.eulerAngles.x;
-        CameraController.instance.rotationY = player.transform.eulerAngles.y;
+    private void LoadObjectives()
+    {
+        PowerCoreCounter = PlayerPrefs.GetInt("PowerCores");
 
-        GameController.instance.PowerCoreCounter = PlayerPrefs.GetInt("PowerCores");
-
-        if(PlayerPrefs.GetInt("Flashlight") == 1)
+        if (PlayerPrefs.GetInt("Flashlight") == 1)
         {
             HasFlashlight = true;
-            if(PlayerPrefs.GetInt("FlashlightEnabled") == 1)
+            if (PlayerPrefs.GetInt("FlashlightEnabled") == 1)
             {
                 Flashlight.enabled = true;
 
@@ -194,10 +213,28 @@ public class GameManager : Singleton<GameManager>
         {
             HasFlashlight = false;
         }
-
-        Debug.Log("Game Loaded");
-
     }
+
+    private void LoadPlayer()
+    {
+        //player.transform.position = CurrentCheckPoint;
+        player.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX"), PlayerPrefs.GetFloat("PlayerPositionY"), PlayerPrefs.GetFloat("PlayerPositionZ"));
+
+        player.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("PlayerRotationX"), PlayerPrefs.GetFloat("PlayerRotationY"), PlayerPrefs.GetFloat("PlayerRotationZ"));
+
+        mainCamera.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("CameraRotationX"), PlayerPrefs.GetFloat("CameraRotationY"), PlayerPrefs.GetFloat("CameraRotationZ"));
+
+        CameraController.instance.rotationX = player.transform.eulerAngles.x;
+        CameraController.instance.rotationY = player.transform.eulerAngles.y;
+
+        PlayerInstance.PlayerHealth.Health = PlayerPrefs.GetFloat("PlayerHealth");
+    }
+
+    public void NewGame()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     #endregion
 
     #region UI
