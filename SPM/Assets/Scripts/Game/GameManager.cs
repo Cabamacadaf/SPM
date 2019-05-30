@@ -12,16 +12,14 @@ public class GameManager : Singleton<GameManager>
 
     //[SerializeField] private List<GameObject> powerCores;
     //[SerializeField] private List<GameObject> powerSourcePlaces;
-    [SerializeField] private Light Flashlight;
 
-    [SerializeField] private GameObject keyCard;
-    [SerializeField] private Transform keySpawnPoint;
+    //[SerializeField] private GameObject keyCard;
+    //[SerializeField] private Transform keySpawnPoint;
 
     public bool HasLevel1Keycard { get; set; }
     public bool HasLevel2Keycard { get; set; }
     public bool HasAllPowerCores { get; private set; }
     public int PowerCoreCounter { get; set; }
-    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private KeyCode RestartSceneButton = KeyCode.P;
     [SerializeField] private KeyCode RestartFromLatestCheckpointButton = KeyCode.O;
     [SerializeField] private KeyCode nextLevelButton = KeyCode.L;
@@ -52,6 +50,7 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         HandleInput();
+
     }
 
     private void HandleInput()
@@ -70,7 +69,7 @@ public class GameManager : Singleton<GameManager>
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            UIController.instance.Pause();
         }
     }
 
@@ -86,7 +85,6 @@ public class GameManager : Singleton<GameManager>
         PlayerInstance = FindObjectOfType<Player>();
         CanvasInstance = FindObjectOfType<Canvas>();
 
-        pauseMenu.SetActive(false);
 
         mainCamera = Camera.main;
     }
@@ -156,7 +154,7 @@ public class GameManager : Singleton<GameManager>
 
     private void SaveObjectives()
     {
-        if (HasFlashlight == true)
+        if(HasFlashlight)
         {
             PlayerPrefs.SetInt("Flashlight", 1);
         }
@@ -199,15 +197,7 @@ public class GameManager : Singleton<GameManager>
         if (PlayerPrefs.GetInt("Flashlight") == 1)
         {
             HasFlashlight = true;
-            if (PlayerPrefs.GetInt("FlashlightEnabled") == 1)
-            {
-                Flashlight.enabled = true;
 
-            }
-            else
-            {
-                Flashlight.enabled = false;
-            }
         }
         else
         {
@@ -237,47 +227,7 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
-    #region UI
-
-    public void Pause()
-    {
-        CameraController.instance.UnLockCursor();
-
-        pauseMenu.SetActive(true);
-
-        Time.timeScale = 0;
-    }
-    public void Continue()
-    {
-        Time.timeScale = 1;
-        CameraController.instance.LockCursor();
-        
-        pauseMenu.SetActive(false);
 
 
-    }
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 
-    #endregion
-
-    #region Key Items
-    private void HandleFlashLight()
-    {
-        if (HasFlashlight)
-        {
-            if (Input.GetKeyDown(KeyCode.F) && Flashlight.enabled == false){
-                Flashlight.enabled = true;
-                PlayerPrefs.SetInt("FlashlightEnabled", 1);
-            }
-            else if(Input.GetKeyDown(KeyCode.F) && Flashlight.enabled)
-            {
-                Flashlight.enabled = false;
-                PlayerPrefs.SetInt("FlashlightEnabled", 0);
-            }
-        }
-    }
-    #endregion
 }

@@ -28,6 +28,8 @@ public class Player : StateMachine
     public PlayAudioMessage PlayVoiceLine { get; private set; }
     public float CrouchMargin { get => crouchMargin; set => crouchMargin = value; }
     public HealthComponent PlayerHealth { get; set; }
+    public Light Flashlight { get; set; }
+    
 
     #endregion
 
@@ -68,13 +70,10 @@ public class Player : StateMachine
     protected override void Awake()
     {
         PlayerHealth = GetComponent<HealthComponent>();
-        //GameManager.Instance.CurrentCheckPoint = transform.position;
+        Flashlight = GetComponentInChildren<Light>();
         GameManager.Instance.SetPlayer(gameObject);
         PlayVoiceLine = GetComponent<PlayVoiceLine>();
-        //if (GameManager.Instance.RestartedFromLatestCheckpoint)
-        //{
-        //    transform.position = GameManager.Instance.CurrentCheckPoint;
-        //}
+
         Collider = GetComponent<CapsuleCollider>();
         Stamina = GetComponent<StaminaComponent>();
         mainCamera = Camera.main;

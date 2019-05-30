@@ -18,13 +18,13 @@ public class KeycardReader : InteractiveObject
 
     private void Update ()
     {
-        if (!lightChanged && GameController.Instance.HasLevel1Keycard && GameController.Instance.HasAllPowerCores) {
+        if (!lightChanged && ObjectiveController.Instance.HasPowerCoreKeycard && ObjectiveController.Instance.HasAllPowerCores) {
             light.color = onColor;
             TextToSet = "Press E to interact";
             lightChanged = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && IsInteractive && GameController.Instance.HasLevel1Keycard && GameController.Instance.HasAllPowerCores) {
+        if(Input.GetKeyDown(KeyCode.E) && IsInteractive && ObjectiveController.Instance.HasPowerCoreKeycard && ObjectiveController.Instance.HasAllPowerCores) {
             if (door.IsClosed) {
                 door.Open();
             }
