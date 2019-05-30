@@ -108,9 +108,9 @@ public abstract class Enemy : StateMachine
         MaxHitPoints = hitPoints;
 
         Spawner = transform.parent;
-        if (Spawner.GetComponent<Spawner>() != null) {
-            PatrolArea = Spawner.Find("PatrolArea").GetComponent<Collider>();
-        }
+        //if (Spawner.GetComponent<Spawner>() != null) {
+        //    PatrolArea = Spawner.Find("PatrolArea").GetComponent<Collider>();
+        //}
 
         base.Awake();
     }

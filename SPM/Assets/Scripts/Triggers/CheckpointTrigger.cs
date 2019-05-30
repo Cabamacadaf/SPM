@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckpointTrigger : MonoBehaviour
 {
     private Transform respawnPoint;
+    private bool reachedCheckpoint;
 
     private void Start()
     {
@@ -13,9 +14,10 @@ public class CheckpointTrigger : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.Instance != null) {
+        if (other.CompareTag("Player") && GameManager.Instance != null && reachedCheckpoint == false) {
             GameManager.Instance.CurrentCheckPoint = respawnPoint.position;
             GameManager.Instance.SaveGame();
+            reachedCheckpoint = true;
         }
     }
 }

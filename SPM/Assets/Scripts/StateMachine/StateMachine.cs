@@ -52,8 +52,8 @@ public class StateMachine : MonoBehaviour
         currentState.HandleCollision(collision);
     }
 
-    private void OnTriggerEnter (Collider other)
-    {
-        currentState.HandleTrigger(other);
-    }
+    //private void OnTriggerEnter (Collider other)
+    //{
+    //    currentState.HandleTrigger(other);
+    //}
 }
