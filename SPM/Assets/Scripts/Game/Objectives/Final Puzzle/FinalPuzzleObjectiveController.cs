@@ -15,7 +15,7 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
 
     [SerializeField] private int cubesToCollect = 4;
 
-    [SerializeField] private int[] collectionOrder = { 4, 7, 6, 2 };
+    [SerializeField] private int[] collectionOrder = { 6, 2, 5, 7 };
     
 
     private void Awake ()

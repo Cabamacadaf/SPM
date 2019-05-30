@@ -11,7 +11,6 @@ public class SpawnTrigger : MonoBehaviour
     {
         if (!hasBeenEntered && other.CompareTag("Player"))
         {
-            Debug.Log("Triggered " + gameObject);
             hasBeenEntered = true;
             Spawn();
         }

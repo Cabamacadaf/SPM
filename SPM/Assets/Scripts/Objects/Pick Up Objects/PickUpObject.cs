@@ -103,13 +103,11 @@ public class PickUpObject : MonoBehaviour
         if (IsThrown) {
             if (!enemiesHit.Contains(collision.collider.gameObject)) {
                 if (collision.collider.CompareTag("EnemyMouth")) {
-                    Debug.Log("Mouth Hit");
                     Enemy2 enemy = collision.collider.GetComponentInParent<Enemy2>();
                     DamageEnemy(collision.collider, ImpactDamage * enemy.MouthDamageMultiplier);
                 }
 
                 if (collision.collider.CompareTag("Enemy")) {
-                    Debug.Log("Body Hit");
                     DamageEnemy(collision.collider, ImpactDamage);
                 }
             }

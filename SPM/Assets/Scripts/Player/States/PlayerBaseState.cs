@@ -298,6 +298,11 @@ public class PlayerBaseState : State
                 PlayerPrefs.SetInt("FlashlightEnabled", 0);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIController.instance.Pause();
+        }
     }
     #endregion
 
