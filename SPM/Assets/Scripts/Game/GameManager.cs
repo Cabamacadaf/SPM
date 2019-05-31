@@ -36,6 +36,8 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    
+
     #region Setter/Getters 
     public void SetPlayer(GameObject player)
     {

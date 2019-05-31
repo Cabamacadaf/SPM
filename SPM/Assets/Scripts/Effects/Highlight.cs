@@ -27,7 +27,7 @@ public class Highlight : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         color = meshRenderer.material.color;
         texture = meshRenderer.material.GetTexture("_MainTex");
-        metallic = meshRenderer.material.GetFloat("_Metallic");
+        //metallic = meshRenderer.material.GetFloat("_Metallic");
         smoothness = meshRenderer.material.GetFloat("_Glossiness");
         emissionColor = meshRenderer.material.GetColor("_EmissionColor");
 
