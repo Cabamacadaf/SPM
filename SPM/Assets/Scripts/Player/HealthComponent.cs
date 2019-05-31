@@ -21,6 +21,7 @@ public class HealthComponent : MonoBehaviour
     public void Damage(float amount)
     {
         Health -= amount;
+        Debug.Log(Health);
         if(Health <= 0)
         {
             DeathEvent deathEvent = new DeathEvent(this.gameObject);
