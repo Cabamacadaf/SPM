@@ -25,7 +25,7 @@ public class DestroyListener : MonoBehaviour
 
     private void OnEnemyDeath (EnemyDeathEvent enemyDeathEvent)
     {
-        Destroy(enemyDeathEvent.gameObject);
+        Destroy(enemyDeathEvent.gameObject, 2);
     }
 
     private void OnObjectDestroyed (ObjectDestroyedEvent objectDestroyedEvent)
