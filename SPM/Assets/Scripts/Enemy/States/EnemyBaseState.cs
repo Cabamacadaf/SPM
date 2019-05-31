@@ -46,9 +46,8 @@ public abstract class EnemyBaseState : State
 
     public void Kill ()
     {
-        EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent(Owner.gameObject);
-        enemyDeathEvent.EventDescription = "Enemy " + Owner.gameObject.name + " has died.";
-        enemyDeathEvent.ExecuteEvent();
+        Owner.Transition<EnemyDeathState>();
+
     }
 
     public void PlaySpawnSound ()
