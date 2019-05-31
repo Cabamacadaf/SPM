@@ -22,12 +22,12 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        GameManager.instance.LoadGame();
+        SceneManager.LoadScene(GameManager.instance.CurrentSceneIndex);
     }
 
     public void NewGame()
     {
-        GameManager.instance.NewGame();
+        //GameManager.instance.NewGame();
         SceneManager.LoadScene(1);
     }
 

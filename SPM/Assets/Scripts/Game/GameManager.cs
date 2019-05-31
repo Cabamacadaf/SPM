@@ -22,7 +22,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        SetOnAwake();
         if (instance == null)
         {
             instance = this;
@@ -32,6 +31,9 @@ public class GameManager : Singleton<GameManager>
         {
             Destroy(gameObject);
         }
+
+        SetOnAwake();
+
     }
 
     #region Setter/Getters 
