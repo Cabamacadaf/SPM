@@ -5,7 +5,21 @@ using UnityEngine;
 public class CheckpointTrigger : MonoBehaviour
 {
     private Transform respawnPoint;
-    private bool reachedCheckpoint;
+    public bool reachedCheckpoint;
+
+    private void OnEnable()
+    {
+        LoadCheckpoint();
+    }
+
+    private void LoadCheckpoint()
+    {
+        CheckpointData data = SaveSystem.LoadCheckpoint();
+        if (data != null)
+        {
+            reachedCheckpoint = data.reachedCheckpoint;
+        }
+    }
 
     private void Start()
     {
@@ -18,6 +32,7 @@ public class CheckpointTrigger : MonoBehaviour
             GameManager.Instance.CurrentCheckPoint = respawnPoint.position;
             GameManager.Instance.SaveGame();
             reachedCheckpoint = true;
+            SaveSystem.SaveCheckpoint(this);
         }
     }
 }

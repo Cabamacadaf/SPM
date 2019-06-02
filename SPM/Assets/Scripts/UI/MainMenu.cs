@@ -11,7 +11,8 @@ public class MainMenu : MonoBehaviour
 
     private void Awake ()
     {
-        if(GameManager.instance.HasSavedFile == false)
+        Debug.Log(PlayerPrefs.GetInt("SavedGame"));
+        if(PlayerPrefs.GetInt("SavedGame") == 0)
         {
             loadButton.interactable = false;
         }
@@ -22,13 +23,18 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene(GameManager.instance.CurrentSceneIndex);
+        Debug.Log("LoadGame Main menu");
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+
     }
 
     public void NewGame()
     {
-        //GameManager.instance.NewGame();
+        GameManager.instance.NewGame();
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+
     }
 
     public void ExitGame ()

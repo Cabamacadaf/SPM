@@ -29,7 +29,16 @@ public class PickUpObject : MonoBehaviour
     private float throwTimer = 0.0f;
     private float thrownTime = 3.0f;
 
+    public PickUpObject ActiveObject;
+
     private List<GameObject> enemiesHit = new List<GameObject>();
+
+    private void OnEnable()
+    {
+        ActiveObject = this;
+        GameManager.instance.ActiveObjects.Add(this);
+
+    }
 
     private void Awake ()
     {
@@ -39,6 +48,12 @@ public class PickUpObject : MonoBehaviour
         MeshRenderer = GetComponent<MeshRenderer>();
         Collider = GetComponent<Collider>();
         Highlight = GetComponent<Highlight>();
+    }
+
+    
+
+    public void SaveData()
+    {
     }
 
     private void Update ()
