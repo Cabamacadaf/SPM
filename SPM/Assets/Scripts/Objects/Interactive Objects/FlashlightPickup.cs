@@ -7,11 +7,20 @@ using UnityEngine.UI;
 public class FlashlightPickup : InteractiveObject
 {
     [SerializeField] private float timeToShowMessage = 5.0f;
-
+    
     private Text messageText;
+
+    private void OnEnable()
+    {
+        if (PlayerPrefs.GetInt("Flashlight") == 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     protected override void Awake ()
     {
+       
         messageText = GameManager.CanvasInstance.transform.Find("Tutorial Text").GetComponent<Text>();
         base.Awake();
     }

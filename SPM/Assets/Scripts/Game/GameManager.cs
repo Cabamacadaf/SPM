@@ -15,7 +15,11 @@ public class GameManager : Singleton<GameManager>
     public bool RestartedFromLatestCheckpoint { get; set; }
     public bool HasFlashlight { get; set; }
     public bool HasSavedFile { get; set; }
+    public bool HasKeycard { get; set; }
+
     public int CurrentSceneIndex { get; set; }
+
+    public List<PickUpObject> ActiveObjects;
 
     private GameObject player;
     private GameObject mainCamera;
@@ -34,9 +38,10 @@ public class GameManager : Singleton<GameManager>
 
         SetOnAwake();
 
+
+        
     }
 
-    
 
     #region Setter/Getters 
     public void SetPlayer(GameObject player)
@@ -108,89 +113,91 @@ public class GameManager : Singleton<GameManager>
     #region Save
     public void SaveGame()
     {
-        SavePlayer();
+        PlayerInstance.SavePlayer();
+        //HasSavedFile = true;
+        PlayerPrefs.SetInt("SavedGame", 1);
 
-        SaveObjectives();
-
-        CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("CurrentSceneIndex", CurrentSceneIndex);
-
-        PlayerPrefs.Save();
-        HasSavedFile = true;
-        Debug.Log("Game Saved");
-    }
-
-    private void SaveObjectives()
-    {
-        if(HasFlashlight)
+        if(HasFlashlight && PlayerPrefs.GetInt("Flashlight") == 0)
         {
             PlayerPrefs.SetInt("Flashlight", 1);
         }
+        if (HasKeycard && PlayerPrefs.GetInt("Keycard") == 0)
+        {
+            PlayerPrefs.SetInt("Keycard", 1);
+        }
 
+        ObjectsData save = CreateSaveGameObject();
+      
+        SaveSystem.SaveObjects(save);
+        
+        Debug.Log("Game Saved");
     }
 
-    private void SavePlayer()
+    private ObjectsData CreateSaveGameObject()
     {
-        PlayerPrefs.SetFloat("PlayerPositionX", player.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerPositionY", player.transform.position.y);
-        PlayerPrefs.SetFloat("PlayerPositionZ", player.transform.position.z);
-        PlayerPrefs.SetFloat("PlayerRotationX", player.transform.rotation.eulerAngles.x);
-        PlayerPrefs.SetFloat("PlayerRotationY", player.transform.rotation.eulerAngles.y);
-        PlayerPrefs.SetFloat("PlayerRotationZ", player.transform.rotation.eulerAngles.z);
+        ObjectsData objectsData = new ObjectsData();
 
+        foreach(PickUpObject currentObject in ActiveObjects)
+        {
+            //PickUpObject current = currentObject.GetComponent<PickUpObject>();
+            Debug.Log(currentObject);
+            if(currentObject != null)
+            {
+                PickUpData data = new PickUpData(currentObject);
+                objectsData.activeObjects.Add(data);
+            }
+      
+        }
 
-        PlayerPrefs.SetFloat("CameraRotationX", mainCamera.transform.rotation.eulerAngles.x);
-        PlayerPrefs.SetFloat("CameraRotationY", mainCamera.transform.rotation.eulerAngles.y);
-        PlayerPrefs.SetFloat("CameraRotationZ", mainCamera.transform.rotation.eulerAngles.z);
-
-        PlayerPrefs.SetFloat("PlayerHealth", PlayerInstance.PlayerHealth.Health);
+        return objectsData;
     }
 
     public void LoadGame()
     {
-        //SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentSceneIndex"));
-
-        LoadPlayer();
-
-        LoadObjectives();
+        Time.timeScale = 1;
+        Scene loadedLevel = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(loadedLevel.buildIndex);
 
 
-        Debug.Log("Game Loaded");
-
-    }
-
-    private void LoadObjectives()
-    {
-
-        if (PlayerPrefs.GetInt("Flashlight") == 1)
+        ObjectsData objectsData = SaveSystem.LoadObjects();
+        for(int i = 0; i < objectsData.activeObjects.Count; i++)
         {
-            HasFlashlight = true;
+            PickUpData data = objectsData.activeObjects[i];
+            PickUpObject current = ActiveObjects[i].GetComponent<PickUpObject>();
 
+      
+            if (data != null)
+            {
+
+                Vector3 position;
+                position.x = data.position[0];
+                position.y = data.position[1];
+                position.z = data.position[2];
+                current.transform.position = position;
+
+                Vector3 rotation;
+                rotation.x = data.rotation[0];
+                rotation.y = data.rotation[1];
+                rotation.z = data.rotation[2];
+                current.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+            }
         }
-        else
-        {
-            HasFlashlight = false;
-        }
+
+
     }
 
-    private void LoadPlayer()
-    {
-        player.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX"), PlayerPrefs.GetFloat("PlayerPositionY"), PlayerPrefs.GetFloat("PlayerPositionZ"));
 
-        player.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("PlayerRotationX"), PlayerPrefs.GetFloat("PlayerRotationY"), PlayerPrefs.GetFloat("PlayerRotationZ"));
-
-        mainCamera.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("CameraRotationX"), PlayerPrefs.GetFloat("CameraRotationY"), PlayerPrefs.GetFloat("CameraRotationZ"));
-
-        CameraController.instance.rotationX = player.transform.eulerAngles.x;
-        CameraController.instance.rotationY = player.transform.eulerAngles.y;
-
-        PlayerInstance.PlayerHealth.Health = PlayerPrefs.GetFloat("PlayerHealth");
-    }
 
     public void NewGame()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("SavedGame", 0);
+        PlayerPrefs.SetInt("Flashlight", 0);
+        HasFlashlight = false;
+        PlayerPrefs.SetInt("Keycard", 0);
+        HasKeycard = false;
+        SaveSystem.DeleteFile();
         HasSavedFile = false;
+
     }
 
     #endregion

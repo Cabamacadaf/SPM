@@ -18,5 +18,6 @@ public class ObjectiveListener : MonoBehaviour
     private void OnKeycardPickedUp(KeycardPickedUpEvent keycardPickedUpEvent)
     {
         ObjectiveController.Instance.HasPowerCoreKeycard = true;
+        GameManager.instance.HasKeycard = true;
     }
 }

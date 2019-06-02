@@ -6,6 +6,7 @@ public class SpawnTrigger : MonoBehaviour
 {
     [SerializeField] private Spawner[] spawners;
     private bool hasBeenEntered = false;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,8 +28,15 @@ public class SpawnTrigger : MonoBehaviour
             }
             else
             {
+                //if(spawner is PickUpObject)
+                //{
+                //    GameObject spawnedObject = 
+                //    GameManager.instance.ActiveObjects.Add((PickUpObject)spawnedObject);
+                //}
                 spawner.Spawn();
+
             }
+            
         }
     }
 }

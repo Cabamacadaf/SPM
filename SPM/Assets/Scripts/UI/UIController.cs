@@ -36,4 +36,8 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadGame()
+    {
+        GameManager.instance.LoadGame();
+    }
 }

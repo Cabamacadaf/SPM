@@ -114,4 +114,6 @@ public abstract class Enemy : StateMachine
 
         base.Awake();
     }
+
+
 }

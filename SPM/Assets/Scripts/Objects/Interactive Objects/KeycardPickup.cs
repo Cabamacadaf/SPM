@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class KeycardPickup : InteractiveObject
 {
+    private void OnEnable()
+    {
+        if (PlayerPrefs.GetInt("Keycard") == 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+
     private void Update ()
     {
         if(Input.GetKeyDown(KeyCode.E) && IsInteractive) {
