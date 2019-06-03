@@ -14,7 +14,7 @@ public class PickUpData
     public float[] position;
     public float[] rotation;
 
-    public PickUpData(PickUpObject pickUpObject)
+    public PickUpData(GameObject pickUpObject)
     {
         position = new float[3];
         position[0] = pickUpObject.transform.position.x;
