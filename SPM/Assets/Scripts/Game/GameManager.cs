@@ -112,6 +112,8 @@ public class GameManager : Singleton<GameManager>
     public void SaveGame()
     {
         PlayerInstance.SavePlayer();
+        LevelManager.instance.Save();
+
         //HasSavedFile = true;
         PlayerPrefs.SetInt("SavedGame", 1);
 
@@ -124,7 +126,6 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.SetInt("Keycard", 1);
         }
 
-        //ObjectsData save = LevelManager.instance.CreateSaveGameObject();
 
         //SaveSystem.SaveObjects(save);
         
@@ -139,7 +140,7 @@ public class GameManager : Singleton<GameManager>
         Scene loadedLevel = SceneManager.GetActiveScene();
         SceneManager.LoadScene(loadedLevel.buildIndex);
 
-
+        SaveSystem.LoadObjects();
 
 
     }

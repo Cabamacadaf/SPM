@@ -72,33 +72,51 @@ public static class SaveSystem
         }
     }
 
-    public static void SaveObjects(ObjectsData save)
+    public static void SaveObjects(Dictionary<int, GameObject> AllPickUpObjects)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(objectsPath, FileMode.Create);
 
- 
-        formatter.Serialize(stream, save);
+        foreach (GameObject currentObject in AllPickUpObjects.Values)
+        {
+            PickUpData currentData = new PickUpData(currentObject);
+
+            string currentObjectInfo = currentData + ",";
+
+            formatter.Serialize(stream, currentObjectInfo);
+        }
+
 
         stream.Close();
     }
 
-    public static ObjectsData LoadObjects()
+    public static void LoadObjects()
     {
+        Debug.Log("LoadObjects");
+
         if (File.Exists(objectsPath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(objectsPath, FileMode.Open);
+            StreamReader reader = new StreamReader(stream);
+            string line = reader.ReadLine();
+            int i = 0;
+          
+            while (reader.Read() != -1)
+            {
+                PickUpData data = formatter.Deserialize(stream) as PickUpData;
+                Debug.Log("Line " + i + ": " + data.position[0] + "\n");
 
-            ObjectsData data = formatter.Deserialize(stream) as ObjectsData;
+            }
+
             stream.Close();
 
-            return data;
+
         }
         else
         {
-            //Debug.LogError("Save file not found in " + playerPath);
-            return null;
+            Debug.LogError("Save file not found in " + playerPath);
+
         }
     }
 
