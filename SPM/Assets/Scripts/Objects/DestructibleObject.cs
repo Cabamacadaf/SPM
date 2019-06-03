@@ -12,7 +12,7 @@ public class DestructibleObject : MonoBehaviour
 
     private void Awake ()
     {
-        LevelManager.Instance.AllDestructibleObjects.Add(ID, gameObject);
+        LevelManager.Instance.AllDestructibleObjects.Add(ID, this);
     }
 
     private void Update ()
