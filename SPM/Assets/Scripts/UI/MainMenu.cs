@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake ()
     {
-        Debug.Log(PlayerPrefs.GetInt("SavedGame"));
+
         if(PlayerPrefs.GetInt("SavedGame") == 0)
         {
             loadButton.interactable = false;
