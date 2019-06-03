@@ -7,4 +7,5 @@ using UnityEngine;
 public class ObjectsData
 {
     public List<PickUpData> activeObjects = new List<PickUpData>();
+    public List<EnemyData> activeEnemies = new List<EnemyData>();
 }

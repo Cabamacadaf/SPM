@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     public GameObject Spawn ()
     {
         GameObject spawnedObject = Instantiate(ObjectToSpawn, transform);
-        LevelManager.instance.AllPickUpObjects.Add(spawnedObject.GetInstanceID(), spawnedObject);
+        LevelManager.Instance.AllPickUpObjects.Add(spawnedObject.GetInstanceID(), spawnedObject);
         return spawnedObject;
 
     }

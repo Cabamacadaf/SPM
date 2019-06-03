@@ -78,8 +78,6 @@ public class Player : StateMachine
         Stamina = GetComponent<StaminaComponent>();
         mainCamera = Camera.main;
 
-        LoadPlayer();
-
         base.Awake();
     }
 
@@ -102,9 +100,6 @@ public class Player : StateMachine
             rotation.z = data.rotation[2];
             transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
         }
-
-
-
     }
     public void SavePlayer()
     {

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public abstract class Enemy : StateMachine
 {
     #region Private Fields
+    [SerializeField] private int iD;
     [SerializeField] private float hitPoints = 50.0f;
 
     [SerializeField] private float attackDamage = 25.0f;
@@ -43,6 +44,7 @@ public abstract class Enemy : StateMachine
     #endregion
 
     #region Properties
+    public int ID { get => iD; set => iD = value; }
     public float HitPoints { get => hitPoints; set => hitPoints = value; }
 
     public float AttackDamage { get => attackDamage; private set => attackDamage = value; }
@@ -108,6 +110,8 @@ public abstract class Enemy : StateMachine
         MaxHitPoints = hitPoints;
 
         Spawner = transform.parent;
+
+        LevelManager.Instance.AllEnemies.Add(ID, this);
         //if (Spawner.GetComponent<Spawner>() != null) {
         //    PatrolArea = Spawner.Find("PatrolArea").GetComponent<Collider>();
         //}
