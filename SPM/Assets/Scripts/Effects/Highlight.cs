@@ -9,13 +9,13 @@ public class Highlight : MonoBehaviour
     private MeshRenderer meshRenderer;
     private Color color;
     private Texture texture;
-    private float metallic;
+    //private float metallic;
     private float smoothness;
     private Color emissionColor;
 
     private Color originalHighlightColor;
     private Texture originalHighlightTexture;
-    private float originalHighlightMetallic;
+    //private float originalHighlightMetallic;
     private float originalHighlightSmoothness;
     private Color originalHighlightEmissionColor;
 
@@ -33,7 +33,7 @@ public class Highlight : MonoBehaviour
 
         originalHighlightColor = highlightedMaterial.color;
         originalHighlightTexture = highlightedMaterial.GetTexture("_MainTex");
-        originalHighlightMetallic = highlightedMaterial.GetFloat("_Metallic");
+        //originalHighlightMetallic = highlightedMaterial.GetFloat("_Metallic");
         originalHighlightSmoothness = highlightedMaterial.GetFloat("_Glossiness");
         originalHighlightEmissionColor = highlightedMaterial.GetColor("_EmissionColor");
     }
@@ -44,7 +44,7 @@ public class Highlight : MonoBehaviour
             isHighlighted = true;
             highlightedMaterial.color = color;
             highlightedMaterial.SetTexture("_MainTex", texture);
-            highlightedMaterial.SetFloat("_Metallic", metallic);
+            //highlightedMaterial.SetFloat("_Metallic", metallic);
             highlightedMaterial.SetFloat("_Glossiness", smoothness);
             highlightedMaterial.SetColor("_EmissionColor", emissionColor);
             meshRenderer.material = highlightedMaterial;
@@ -64,7 +64,7 @@ public class Highlight : MonoBehaviour
     {
         highlightedMaterial.color = originalHighlightColor;
         highlightedMaterial.SetTexture("_MainTex", originalHighlightTexture);
-        highlightedMaterial.SetFloat("_Metallic", originalHighlightMetallic);
+        //highlightedMaterial.SetFloat("_Metallic", originalHighlightMetallic);
         highlightedMaterial.SetFloat("_Glossiness", originalHighlightSmoothness);
         highlightedMaterial.SetColor("_EmissionColor", originalHighlightEmissionColor);
     }
