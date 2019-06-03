@@ -76,16 +76,18 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(objectsPath, FileMode.Create);
+        ObjectsData allData = new ObjectsData();
 
         foreach (GameObject currentObject in AllPickUpObjects.Values)
         {
             PickUpData currentData = new PickUpData(currentObject);
 
-            string currentObjectInfo = currentData + ",";
+            allData.activeObjects.Add(currentData);
+            //string currentObjectInfo = currentData + ",";
 
-            formatter.Serialize(stream, currentObjectInfo);
         }
 
+        formatter.Serialize(stream, allData);
 
         stream.Close();
     }
@@ -98,19 +100,19 @@ public static class SaveSystem
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(objectsPath, FileMode.Open);
-            StreamReader reader = new StreamReader(stream);
-            string line = reader.ReadLine();
-            int i = 0;
-          
-            while (reader.Read() != -1)
-            {
-                PickUpData data = formatter.Deserialize(stream) as PickUpData;
-                Debug.Log("Line " + i + ": " + data.position[0] + "\n");
+            //StreamReader reader = new StreamReader(stream);
+            //string line = reader.ReadLine();
+            //int i = 0;
 
-            }
-
+            ObjectsData allData = (ObjectsData) formatter.Deserialize(stream);
             stream.Close();
 
+            foreach(PickUpData data in allData.activeObjects)
+            {
+                Debug.Log("Data: " + data);
+            }
+
+  
 
         }
         else
