@@ -66,6 +66,7 @@ public abstract class Enemy : StateMachine
     public float KnockbackForce { get => knockbackForce; private set => knockbackForce = value; }
 
     public GameObject AttackObject { get => attackObject; private set => attackObject = value; }
+    public Attack Attack { get; private set; }
 
     public LayerMask WallLayer { get => wallLayer; private set => wallLayer = value; }
 
@@ -109,6 +110,7 @@ public abstract class Enemy : StateMachine
         Player = GameManager.PlayerInstance;
         MaxHitPoints = hitPoints;
 
+        Attack = AttackObject.GetComponent<Attack>();
         Spawner = transform.parent;
 
         LevelManager.Instance.AllEnemies.Add(ID, this);

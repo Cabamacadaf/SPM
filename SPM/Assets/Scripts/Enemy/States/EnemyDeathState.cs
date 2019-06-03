@@ -16,7 +16,6 @@ public class EnemyDeathState : EnemyBaseState
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
-        Debug.Log(timer);
         if (timer >= deathAnimationTime) {
             timer = 0.0f;
             Owner.gameObject.SetActive(false);
