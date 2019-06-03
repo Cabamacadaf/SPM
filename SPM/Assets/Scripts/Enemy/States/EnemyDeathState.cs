@@ -6,12 +6,20 @@ using UnityEngine;
 
 public class EnemyDeathState : EnemyBaseState
 {
+    private float timer = 0.0f;
+    private float deathAnimationTime = 2.0f;
     public override void Enter()
     {
         Owner.Animator.SetTrigger("Enemy1Death");
-        EnemyDeathEvent enemyDeathEvent = new EnemyDeathEvent(Owner.gameObject);
-        enemyDeathEvent.EventDescription = "Enemy " + Owner.gameObject.name + " has died.";
-        enemyDeathEvent.ExecuteEvent();
-
+        timer = 0.0f;
+    }
+    public override void HandleUpdate ()
+    {
+        timer += Time.deltaTime;
+        if (timer >= deathAnimationTime) {
+            timer = 0.0f;
+            Owner.gameObject.SetActive(false);
+        }
+        base.HandleUpdate();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEngine;
  * 
  */
 
-[System.Serializable]
+[Serializable]
 public class PickUpData
 {
     public int ID;
@@ -17,7 +18,7 @@ public class PickUpData
 
     public PickUpData(GameObject pickUpObject)
     {
-        ID = pickUpObject.GetInstanceID();
+        ID = pickUpObject.GetComponent<PickUpObject>().ID;
 
         position = new float[3];
         position[0] = pickUpObject.transform.position.x;
@@ -25,9 +26,13 @@ public class PickUpData
         position[2] = pickUpObject.transform.position.z;
 
         rotation = new float[3];
-        rotation[0] = pickUpObject.transform.rotation.x;
-        rotation[1] = pickUpObject.transform.rotation.y;
-        rotation[2] = pickUpObject.transform.rotation.z;
+        rotation[0] = pickUpObject.transform.eulerAngles.x;
+        rotation[1] = pickUpObject.transform.eulerAngles.y;
+        rotation[2] = pickUpObject.transform.eulerAngles.z;
     }
 
+    public override string ToString ()
+    {
+        return ID + " " + position[0] + position[1] + position[2];
+    }
 }

@@ -39,5 +39,11 @@ public class UIController : MonoBehaviour
     public void LoadGame()
     {
         GameManager.instance.LoadGame();
+        Continue();
+    }
+
+    public void SaveGame ()
+    {
+        GameManager.instance.SaveGame();
     }
 }

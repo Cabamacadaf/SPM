@@ -24,17 +24,17 @@ public class MainMenu : MonoBehaviour
     public void LoadGame()
     {
         Debug.Log("LoadGame Main menu");
-        SceneManager.LoadScene(1);
+        GameManager.instance.GameWasLoaded = true;
         Time.timeScale = 1;
-
+        SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
     }
 
     public void NewGame()
     {
         GameManager.instance.NewGame();
-        SceneManager.LoadScene(1);
+        GameManager.instance.GameWasLoaded = false;
         Time.timeScale = 1;
-
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame ()

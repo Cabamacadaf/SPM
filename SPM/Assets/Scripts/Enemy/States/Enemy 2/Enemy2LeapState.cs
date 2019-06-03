@@ -50,6 +50,5 @@ public class Enemy2LeapState : EnemyBaseState
     public override void Exit ()
     {
         base.Exit();
-        Owner.GetComponentInChildren<Attack>().HasAttacked = false;
     }
 }

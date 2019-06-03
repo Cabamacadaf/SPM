@@ -9,10 +9,11 @@ using UnityEngine;
 public class PickUpObject : MonoBehaviour
 {
     [SerializeField] private float impactDamage = 25f;
-    [SerializeField] private int durability = 3;
     [SerializeField] private float holdingOpacity = 0.5f;
+    [SerializeField] private int iD;
 
     public float ImpactDamage { get => impactDamage; set => impactDamage = value; }
+    public int ID { get => iD; set => iD = value; }
 
     public Vector3 LastFramePosition { get; set; }
 
@@ -31,9 +32,7 @@ public class PickUpObject : MonoBehaviour
 
 
     private List<GameObject> enemiesHit = new List<GameObject>();
-
-
-
+    
     private void Awake ()
     {
         OriginalParent = transform.parent;
@@ -42,12 +41,8 @@ public class PickUpObject : MonoBehaviour
         MeshRenderer = GetComponent<MeshRenderer>();
         Collider = GetComponent<Collider>();
         Highlight = GetComponent<Highlight>();
-    }
-
-    
-
-    public void SaveData()
-    {
+        LevelManager.Instance.AllPickUpObjects.Add(ID, gameObject);
+        LevelManager.Instance.ActiveObjects.Add(gameObject);
     }
 
     private void Update ()

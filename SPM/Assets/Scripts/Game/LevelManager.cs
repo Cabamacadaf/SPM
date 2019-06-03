@@ -5,19 +5,23 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
 
-    public static LevelManager instance;
+    public static LevelManager Instance;
 
-    //public List<GameObject> ActiveObjects = new List<GameObject>();
+    public List<GameObject> ActiveObjects = new List<GameObject>();
     public Dictionary<int, GameObject> AllPickUpObjects = new Dictionary<int, GameObject>();
+    public Dictionary<int, DestructibleObject> AllDestructibleObjects = new Dictionary<int, DestructibleObject>();
+    public Dictionary<int, Enemy> AllEnemies = new Dictionary<int, Enemy>();
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     public void Save()
     {
         SaveSystem.SaveObjects(AllPickUpObjects);
+        SaveSystem.SaveEnemies(AllEnemies);
+        SaveSystem.SaveDestructibleObjects(AllDestructibleObjects);
     }
 
 

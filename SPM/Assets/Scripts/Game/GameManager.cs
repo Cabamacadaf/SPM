@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager>
     public bool HasSavedFile { get; set; }
     public bool HasKeycard { get; set; }
 
+    public bool GameWasLoaded { get; set; }
+
     public int CurrentSceneIndex { get; set; }
 
     private GameObject player;
@@ -112,10 +114,12 @@ public class GameManager : Singleton<GameManager>
     public void SaveGame()
     {
         PlayerInstance.SavePlayer();
-        LevelManager.instance.Save();
+        LevelManager.Instance.Save();
 
         //HasSavedFile = true;
         PlayerPrefs.SetInt("SavedGame", 1);
+        Scene currentScene = SceneManager.GetActiveScene();
+        PlayerPrefs.SetInt("CurrentLevel", currentScene.buildIndex);
 
         if(HasFlashlight && PlayerPrefs.GetInt("Flashlight") == 0)
         {
@@ -136,17 +140,14 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadGame()
     {
-        Time.timeScale = 1;
-        Scene loadedLevel = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(loadedLevel.buildIndex);
-
+        //Scene loadedLevel = SceneManager.GetActiveScene();
+        //SceneManager.LoadScene(loadedLevel.buildIndex);
+        PlayerInstance.LoadPlayer();
         SaveSystem.LoadObjects();
-
-
+        SaveSystem.LoadEnemies();
+        SaveSystem.LoadDestructibleObjects();
     }
-
-
-
+    
     public void NewGame()
     {
         PlayerPrefs.SetInt("SavedGame", 0);
@@ -160,8 +161,4 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
-
-
-
-
 }
