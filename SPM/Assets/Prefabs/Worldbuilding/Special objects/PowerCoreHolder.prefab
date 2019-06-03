@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4977129060304975157}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PositionForCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 2390621302798196283}
   - component: {fileID: 1453864027232546952}
   - component: {fileID: 8637111131048063204}
+  - component: {fileID: 7485041940725878980}
   m_Layer: 9
   m_Name: PowerCoreHolder
   m_TagString: Untagged
@@ -148,6 +149,22 @@ MonoBehaviour:
   newColor: {r: 0.26457062, g: 0.9528302, b: 0.13932894, a: 0}
   timeBetweenLights: 0.5
   timeUntillLightsActivate: 0.5
+--- !u!54 &7485041940725878980
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7227802272107749182}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2174789616011908935
 PrefabInstance:
   m_ObjectHideFlags: 0
