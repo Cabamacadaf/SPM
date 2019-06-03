@@ -11,11 +11,14 @@ using UnityEngine;
 [System.Serializable]
 public class PickUpData
 {
+    public int ID;
     public float[] position;
     public float[] rotation;
 
     public PickUpData(GameObject pickUpObject)
     {
+        ID = pickUpObject.GetInstanceID();
+
         position = new float[3];
         position[0] = pickUpObject.transform.position.x;
         position[1] = pickUpObject.transform.position.y;
