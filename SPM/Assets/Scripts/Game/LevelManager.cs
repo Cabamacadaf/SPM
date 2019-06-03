@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     {
         SaveSystem.SaveObjects(AllPickUpObjects);
         SaveSystem.SaveEnemies(AllEnemies);
+        SaveSystem.SaveDestructibleObjects(AllDestructibleObjects);
     }
 
 

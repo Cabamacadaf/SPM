@@ -143,6 +143,7 @@ public class GameManager : Singleton<GameManager>
         PlayerInstance.LoadPlayer();
         SaveSystem.LoadObjects();
         SaveSystem.LoadEnemies();
+        SaveSystem.LoadDestructibleObjects();
     }
     
     public void NewGame()

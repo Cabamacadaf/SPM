@@ -190,11 +190,40 @@ public static class SaveSystem
         stream.Close();
     }
 
+    public static void LoadDestructibleObjects ()
+    {
+        if (File.Exists(destructibleObjectPath)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(destructibleObjectPath, FileMode.Open);
+
+            ObjectsData allData = (ObjectsData)formatter.Deserialize(stream);
+            stream.Close();
+
+            foreach (DestructibleObjectData data in allData.activeDestructibleObjects) {
+                if (LevelManager.Instance.AllDestructibleObjects.ContainsKey(data.ID) == true) {
+                    LevelManager.Instance.AllDestructibleObjects.TryGetValue(data.ID, out DestructibleObject destructibleObject);
+                    if(data.destroyed == 1) {
+                        destructibleObject.HitPoints = destructibleObject.StartHitPoints;
+                        destructibleObject.gameObject.SetActive(true);
+                    }
+                    else {
+                        destructibleObject.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+        else {
+            Debug.LogError("Save file not found in " + playerPath);
+        }
+    }
+
     public static void DeleteFile ()
     {
         File.Delete(playerPath);
         File.Delete(checkpointPath);
         File.Delete(objectsPath);
+        File.Delete(destructibleObjectPath);
+        File.Delete(enemyPath);
     }
 
 }
