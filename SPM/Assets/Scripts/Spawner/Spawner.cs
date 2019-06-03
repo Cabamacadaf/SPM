@@ -9,6 +9,11 @@ public class Spawner : MonoBehaviour
 
     public GameObject Spawn ()
     {
-        return Instantiate(ObjectToSpawn, transform);
+        GameObject spawnedObject = Instantiate(ObjectToSpawn, transform);
+    
+        
+        //LevelManager.instance.ActiveObjects.Add(spawnedObject);
+        return spawnedObject;
+
     }
 }

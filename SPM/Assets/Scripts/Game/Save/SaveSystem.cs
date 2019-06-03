@@ -106,6 +106,7 @@ public static class SaveSystem
     {
         File.Delete(playerPath);
         File.Delete(checkpointPath);
+        File.Delete(objectsPath);
     }
 
 }
