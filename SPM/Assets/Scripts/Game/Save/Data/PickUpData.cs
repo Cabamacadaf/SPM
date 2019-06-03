@@ -9,7 +9,7 @@ using UnityEngine;
  * 
  */
 
-[System.Serializable]
+[Serializable]
 public class PickUpData
 {
     public int ID;

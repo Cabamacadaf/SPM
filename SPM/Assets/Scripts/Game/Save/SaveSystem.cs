@@ -10,8 +10,7 @@ public static class SaveSystem
     public static string checkpointPath = Application.persistentDataPath + "/checkpoints.save";
     public static string objectsPath = Application.persistentDataPath + "/Objects.fun";
     public static string enemyPath = Application.persistentDataPath + "/Enemies.fun";
-
-
+    public static string destructibleObjectPath = Application.persistentDataPath + "/Destructible.fun";
 
     public static void SavePlayer (Player player)
     {
@@ -171,6 +170,24 @@ public static class SaveSystem
         else {
             Debug.LogError("Save file not found in " + playerPath);
         }
+    }
+
+    public static void SaveDestructibleObjects (Dictionary<int, DestructibleObject> AllDestructibleObjects)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(destructibleObjectPath, FileMode.Create);
+        ObjectsData allData = new ObjectsData();
+
+        foreach (DestructibleObject gameObject in AllDestructibleObjects.Values) {
+            DestructibleObjectData currentData = new DestructibleObjectData(gameObject);
+
+            allData.activeDestructibleObjects.Add(currentData);
+        }
+
+
+        formatter.Serialize(stream, allData);
+
+        stream.Close();
     }
 
     public static void DeleteFile ()

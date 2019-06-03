@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 
     public List<GameObject> ActiveObjects = new List<GameObject>();
     public Dictionary<int, GameObject> AllPickUpObjects = new Dictionary<int, GameObject>();
+    public Dictionary<int, DestructibleObject> AllDestructibleObjects = new Dictionary<int, DestructibleObject>();
     public Dictionary<int, Enemy> AllEnemies = new Dictionary<int, Enemy>();
 
     private void Awake()
