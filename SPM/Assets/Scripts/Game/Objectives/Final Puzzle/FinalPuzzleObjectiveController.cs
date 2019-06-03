@@ -7,6 +7,7 @@ using UnityEngine;
 public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveController>
 {
     [SerializeField] private GameObject lights;
+    [SerializeField] private Door door;
 
     public bool FinalPuzzleComplete { get; private set; }
     public bool IsTimerStarted { get; private set; }
@@ -33,6 +34,7 @@ public class FinalPuzzleObjectiveController : Singleton<FinalPuzzleObjectiveCont
             if (finalPuzzleCounter >= cubesToCollect) {
                 FinalPuzzleComplete = true;
                 lights.SetActive(true);
+                door.Open();
             }
         }
 
