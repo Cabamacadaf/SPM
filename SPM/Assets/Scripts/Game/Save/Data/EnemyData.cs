@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyData
 {
     public int aggro;
+    public int dead;
     public int ID;
 
     public float[] position;
@@ -14,11 +15,19 @@ public class EnemyData
     public EnemyData(Enemy enemy)
     {
         ID = enemy.ID;
+
         if(enemy.GetCurrentState() is EnemyIdleState) {
             aggro = 0;
         }
         else {
             aggro = 1;
+        }
+
+        if(enemy.gameObject.activeInHierarchy == true) {
+            dead = 1;
+        }
+        else {
+            dead = 0;
         }
 
         position = new float[3];

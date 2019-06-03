@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("LoadGame Main menu");
         GameManager.instance.GameWasLoaded = true;
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
     }
 
     public void NewGame()

@@ -118,6 +118,8 @@ public class GameManager : Singleton<GameManager>
 
         //HasSavedFile = true;
         PlayerPrefs.SetInt("SavedGame", 1);
+        Scene currentScene = SceneManager.GetActiveScene();
+        PlayerPrefs.SetInt("CurrentLevel", currentScene.buildIndex);
 
         if(HasFlashlight && PlayerPrefs.GetInt("Flashlight") == 0)
         {

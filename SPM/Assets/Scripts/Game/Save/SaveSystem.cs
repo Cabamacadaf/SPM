@@ -148,6 +148,9 @@ public static class SaveSystem
                     LevelManager.Instance.AllEnemies.TryGetValue(data.ID, out Enemy enemy);
                     enemy.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
                     enemy.transform.rotation = Quaternion.Euler(data.rotation[0], data.rotation[1], data.rotation[2]);
+                    if (data.dead == 1) {
+                        enemy.gameObject.SetActive(false);
+                    }
                     if (data.aggro == 1) {
                         if (enemy is Enemy1) {
                             enemy.Transition<Enemy1AggroState>();
