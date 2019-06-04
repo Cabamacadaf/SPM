@@ -117,7 +117,6 @@ public class GameManager : Singleton<GameManager>
         PlayerInstance.SavePlayer();
         LevelManager.Instance.Save();
 
-        //HasSavedFile = true;
         PlayerPrefs.SetInt("SavedGame", 1);
         Scene currentScene = SceneManager.GetActiveScene();
         PlayerPrefs.SetInt("CurrentLevel", currentScene.buildIndex);
@@ -131,22 +130,17 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.SetInt("Keycard", 1);
         }
 
-
-        //SaveSystem.SaveObjects(save);
-        
-        Debug.Log("Game Saved");
     }
 
 
 
     public void LoadGame()
     {
-        //Scene loadedLevel = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(loadedLevel.buildIndex);
         PlayerInstance.LoadPlayer();
         SaveSystem.LoadObjects();
         SaveSystem.LoadEnemies();
         SaveSystem.LoadDestructibleObjects();
+        SaveSystem.LoadHealthPacks();
     }
     
     public void NewGame()
