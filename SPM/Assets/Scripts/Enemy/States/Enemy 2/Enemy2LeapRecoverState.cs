@@ -37,8 +37,6 @@ public class Enemy2LeapRecoverState : EnemyBaseState
 
     public override void Exit ()
     {
-        owner2.LeapAttackHitbox.SetActive(false);
-        owner2.Mouth.gameObject.SetActive(false);
         Owner.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         base.Exit();
     }

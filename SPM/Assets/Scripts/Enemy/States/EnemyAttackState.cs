@@ -13,13 +13,11 @@ public class EnemyAttackState : EnemyBaseState
         AttackTimer = 0.0f;
         EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(Owner.AttackSound, Owner.AudioSource);
         enemyAttackEvent.ExecuteEvent();
-        Owner.AttackObject.SetActive(true);
+        foreach (GameObject attackObject in Owner.AttackObjects) {
+            attackObject.SetActive(true);
+        }
 
-		if (Owner is Enemy1) {
-			Owner.Animator.SetTrigger("Enemy1Attack");
-		} else if (Owner is Enemy2) {
-			Owner.Animator.SetTrigger("Enemy2Attack");
-		}
+        Owner.Animator.SetTrigger("EnemyAttack");
 
         base.Enter();
     }
@@ -30,7 +28,6 @@ public class EnemyAttackState : EnemyBaseState
             Owner.Transition<EnemyAttackRecoverState>();
         }
 
-        Owner.AttackObject.transform.position += Owner.AttackObject.transform.forward * Time.deltaTime * Owner.AttackAnimationSpeed;
         AttackTimer += Time.deltaTime;
         base.HandleUpdate();
     }
@@ -38,8 +35,9 @@ public class EnemyAttackState : EnemyBaseState
     public override void Exit ()
     {
         base.Exit();
-        Owner.AttackObject.transform.position = Owner.transform.position;
-        Owner.GetComponentInChildren<Attack>().HasAttacked = false;
-        Owner.AttackObject.SetActive(false);
+        Owner.HasAttacked = false;
+        foreach(GameObject attackObject in Owner.AttackObjects) {
+            attackObject.SetActive(false);
+        }
     }
 }

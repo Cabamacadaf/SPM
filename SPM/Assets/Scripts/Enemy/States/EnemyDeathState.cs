@@ -8,11 +8,13 @@ public class EnemyDeathState : EnemyBaseState
 {
     private float timer = 0.0f;
     private float deathAnimationTime = 2.0f;
+
     public override void Enter()
     {
-        Owner.Animator.SetTrigger("Enemy1Death");
+        Owner.Animator.SetTrigger("EnemyDeath");
         timer = 0.0f;
     }
+
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
