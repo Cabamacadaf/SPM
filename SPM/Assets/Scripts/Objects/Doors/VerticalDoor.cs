@@ -64,12 +64,14 @@ public class VerticalDoor : Door
 
     public override void Open ()
     {
+        AudioSource.PlayOneShot(DoorSound);
         IsClosed = false;
         isOpening = true;
     }
 
     public override void Close ()
     {
+        AudioSource.PlayOneShot(DoorSound);
         IsOpen = false;
         isClosing = true;
     }

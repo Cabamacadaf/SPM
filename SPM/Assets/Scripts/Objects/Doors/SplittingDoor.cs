@@ -32,12 +32,14 @@ public class SplittingDoor : Door
 
     public override void Open ()
     {
+        AudioSource.PlayOneShot(DoorSound);
         IsClosed = false;
         StartCoroutine(Opening());
     }
 
     public override void Close ()
     {
+        AudioSource.PlayOneShot(DoorSound);
         IsOpen = false;
         StartCoroutine(Closing());
     }
