@@ -15,6 +15,7 @@ public class PlayerBaseState : State
     private float speed;
     private bool canStand;
     protected bool IsCrouching { get; set; }
+    private float backwardsSpeed = 2;
 
     //Collision Check
     private Vector3 point1;
@@ -83,7 +84,7 @@ public class PlayerBaseState : State
         {
             canSprint = true;
         }
-        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState && canSprint)
+        if (Input.GetKey(KeyCode.LeftShift) && Owner.Stamina.Stamina > 0 && IsCrouching == false && Owner.GetCurrentState() is PlayerGroundState && canSprint && Input.GetAxisRaw("Vertical") != -1)
         {
             speed = Owner.SprintSpeed;
             Owner.Stamina.UseStamina();
@@ -103,6 +104,7 @@ public class PlayerBaseState : State
             {
                 IsCrouching = true;
                 Owner.CrouchSetup();
+             
                 speed = Owner.CrouchSpeed;
             }
             else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand == false)
@@ -117,7 +119,15 @@ public class PlayerBaseState : State
             }
             else
             {
-                speed = Owner.WalkSpeed;
+                if (Input.GetAxisRaw("Vertical") == -1)
+                {
+                    speed = backwardsSpeed;
+                }
+                else
+                {
+                    speed = Owner.WalkSpeed;
+
+                }
                 IsCrouching = false;
             }
         }
