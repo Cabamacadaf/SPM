@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     public bool HasKeycard { get; set; }
 
     public bool GameWasLoaded { get; set; }
+    public bool GameIsPaused { get; set; }
 
     public int CurrentSceneIndex { get; set; }
 
@@ -157,6 +158,7 @@ public class GameManager : Singleton<GameManager>
         HasKeycard = false;
         SaveSystem.DeleteFile();
         HasSavedFile = false;
+        GameIsPaused = false;
 
     }
 
