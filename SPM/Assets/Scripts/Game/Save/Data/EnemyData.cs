@@ -24,10 +24,10 @@ public class EnemyData
         }
 
         if(enemy.gameObject.activeInHierarchy == true) {
-            dead = 1;
+            dead = 0;
         }
         else {
-            dead = 0;
+            dead = 1;
         }
 
         position = new float[3];

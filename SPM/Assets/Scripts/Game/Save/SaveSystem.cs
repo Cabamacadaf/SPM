@@ -153,7 +153,12 @@ public static class SaveSystem
                     if (data.dead == 1) {
                         enemy.gameObject.SetActive(false);
                     }
+                    else {
+                        enemy.gameObject.SetActive(true);
+                    }
+                    Transform aggroRange = enemy.transform.Find("Aggro Range");
                     if (data.aggro == 1) {
+                        aggroRange.gameObject.SetActive(false);
                         if (enemy is Enemy1) {
                             enemy.Transition<Enemy1AggroState>();
                         }
@@ -162,6 +167,7 @@ public static class SaveSystem
                         }
                     }
                     else {
+                        aggroRange.gameObject.SetActive(true);
                         if (enemy is Enemy1) {
                             enemy.Transition<Enemy1IdleState>();
                         }
