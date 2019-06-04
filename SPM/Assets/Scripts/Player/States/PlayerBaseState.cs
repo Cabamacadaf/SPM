@@ -113,7 +113,8 @@ public class PlayerBaseState : State
         {
             Owner.Stamina.RecoverStamina();
             
-            canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
+            //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
+            canStand = Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.up, out GroundHitInfo, Owner.CrouchMargin, Owner.WalkableMask) == false;
 
             if (Input.GetKey(KeyCode.LeftControl) && Owner.GetCurrentState() is PlayerGroundState)
             {
@@ -284,6 +285,7 @@ public class PlayerBaseState : State
     #region Key Items
     private void HandleFlashLight()
     {
+        Debug.Log("Flashlight");
 
         if (GameManager.instance.HasFlashlight)
         {
