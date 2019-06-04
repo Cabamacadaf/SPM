@@ -78,6 +78,10 @@ public class Player : StateMachine
         Stamina = GetComponent<StaminaComponent>();
         mainCamera = Camera.main;
 
+        //Remove this later
+        GameManager.instance.HasFlashlight = true;
+
+
         base.Awake();
     }
 
