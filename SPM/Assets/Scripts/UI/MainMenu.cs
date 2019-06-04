@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
     [SerializeField] private Button loadButton;
+    [SerializeField] private LoadScene loadScene;
 
     private void Awake ()
     {
@@ -25,16 +25,14 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("LoadGame Main menu");
         GameManager.instance.GameWasLoaded = true;
-        Time.timeScale = 1;
-        SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
+        loadScene.Load(PlayerPrefs.GetInt("CurrentLevel"));
     }
 
     public void NewGame()
     {
         GameManager.instance.NewGame();
         GameManager.instance.GameWasLoaded = false;
-        Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        loadScene.Load(1);
     }
 
     public void ExitGame ()
