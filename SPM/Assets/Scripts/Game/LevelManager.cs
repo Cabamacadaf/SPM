@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public Dictionary<int, DestructibleObject> AllDestructibleObjects = new Dictionary<int, DestructibleObject>();
     public Dictionary<int, Enemy> AllEnemies = new Dictionary<int, Enemy>();
     public Dictionary<int, HealthPack> AllHealthPacks = new Dictionary<int, HealthPack>();
+    public Dictionary<int, CheckpointTrigger> AllCheckpoints = new Dictionary<int, CheckpointTrigger>();
 
     private void Awake()
     {

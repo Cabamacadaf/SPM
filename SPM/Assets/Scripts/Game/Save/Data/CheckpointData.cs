@@ -5,10 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class CheckpointData
 {
-    public bool reachedCheckpoint;
+    public int reachedCheckpoint;
+    public int ID;
 
     public CheckpointData(CheckpointTrigger checkpoint)
     {
-        reachedCheckpoint = checkpoint.reachedCheckpoint;
+        ID = checkpoint.ID;
+        if (checkpoint.reachedCheckpoint)
+        {
+            reachedCheckpoint = 1;
+        }
+        else
+        {
+            reachedCheckpoint = 0;
+        }
     }
 }

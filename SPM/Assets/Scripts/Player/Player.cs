@@ -103,6 +103,7 @@ public class Player : StateMachine
             rotation.y = data.rotation[1];
             rotation.z = data.rotation[2];
             transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+            Debug.Log("Load Player");
         }
     }
     public void SavePlayer()
