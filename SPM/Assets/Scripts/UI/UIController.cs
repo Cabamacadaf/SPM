@@ -7,12 +7,10 @@ public class UIController : MonoBehaviour
 {
     public static UIController instance;
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject loadingScreen;
 
     private void Awake()
     {
         instance = this;
-        GameManager.instance.SetLoadingScreen(loadingScreen);
         pauseMenu.SetActive(false);
     }
 

@@ -7,8 +7,6 @@ public class LoadScene : MonoBehaviour
 {
     [SerializeField] private GameObject loadingScreen;
 
-    public GameObject LoadingScreen { get => loadingScreen; set => loadingScreen = value; }
-
     public void Load(int sceneToLoad)
     {
         Time.timeScale = 0;
