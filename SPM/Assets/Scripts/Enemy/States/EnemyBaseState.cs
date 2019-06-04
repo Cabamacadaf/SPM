@@ -32,17 +32,19 @@ public abstract class EnemyBaseState : State
 
     public void Damage (float damage)
     {
-        Owner.AudioSource.PlayOneShot(Owner.HitSound);
-        Owner.Transition<EnemyKnockbackState>();
-        EnemyKnockbackState knockbackState = (EnemyKnockbackState)Owner.GetCurrentState();
-        knockbackState.KnockBack(Owner.KnockbackForce, Owner.KnockbackRecoveryTime);
+        if (Owner.GetCurrentState() is EnemyDeathState == false) {
+            Owner.AudioSource.PlayOneShot(Owner.HitSound);
+            Owner.Transition<EnemyKnockbackState>();
+            EnemyKnockbackState knockbackState = (EnemyKnockbackState)Owner.GetCurrentState();
+            knockbackState.KnockBack(Owner.KnockbackForce, Owner.KnockbackRecoveryTime);
 
-        Owner.HitPoints -= damage;
+            Owner.HitPoints -= damage;
 
-        Owner.MeshRenderer.material.color = Owner.Color * Owner.HitPoints / Owner.MaxHitPoints;
+            Owner.MeshRenderer.material.color = Owner.Color * Owner.HitPoints / Owner.MaxHitPoints;
 
-        if (Owner.HitPoints <= 0) {
-            Kill();
+            if (Owner.HitPoints <= 0) {
+                Kill();
+            }
         }
     }
 
