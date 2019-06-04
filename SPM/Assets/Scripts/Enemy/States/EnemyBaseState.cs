@@ -39,8 +39,7 @@ public abstract class EnemyBaseState : State
             knockbackState.KnockBack(Owner.KnockbackForce, Owner.KnockbackRecoveryTime);
 
             Owner.HitPoints -= damage;
-
-            Owner.MeshRenderer.material.color = Owner.Color * Owner.HitPoints / Owner.MaxHitPoints;
+            
 
             if (Owner.HitPoints <= 0) {
                 Kill();
@@ -51,11 +50,6 @@ public abstract class EnemyBaseState : State
     public void Kill ()
     {
         Owner.Transition<EnemyDeathState>();
-    }
-
-    public void PlaySpawnSound ()
-    {
-        Owner.AudioSource.PlayOneShot(Owner.SpawnSound);
     }
 
     public void Aggro ()

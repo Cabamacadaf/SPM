@@ -35,13 +35,7 @@ public abstract class Enemy : StateMachine
     [SerializeField] private AudioClip[] aggroSounds;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hitSound;
-    [SerializeField] private AudioClip idleSound;
-    [SerializeField] private AudioClip spawnSound;
-
-    [SerializeField] private float idleSoundMinTime;
-    [SerializeField] private float idleSoundMaxTime;
-
-    [SerializeField] private Color color;
+    
     [SerializeField] private new Collider collider;
     #endregion
 
@@ -76,13 +70,7 @@ public abstract class Enemy : StateMachine
     public AudioClip[] AggroSounds { get => aggroSounds; private set => aggroSounds = value; }
     public AudioClip DeathSound { get => deathSound; private set => deathSound = value; }
     public AudioClip HitSound { get => hitSound; private set => hitSound = value; }
-    public AudioClip IdleSound { get => idleSound; private set => idleSound = value; }
-    public AudioClip SpawnSound { get => spawnSound; private set => spawnSound = value; }
-
-    public float IdleSoundMinTime { get => idleSoundMinTime; private set => idleSoundMinTime = value; }
-    public float IdleSoundMaxTime { get => idleSoundMaxTime; private set => idleSoundMaxTime = value; }
-
-    public Color Color { get => color; private set => color = value; }
+    
     public Collider Collider { get => collider; private set => collider = value; }
 
     public float MaxHitPoints { get; private set; }
@@ -110,7 +98,6 @@ public abstract class Enemy : StateMachine
         Agent = GetComponent<NavMeshAgent>();
         Obstacle = GetComponent<NavMeshObstacle>();
         MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        MeshRenderer.material.color = Color;
         Player = GameManager.PlayerInstance;
         MaxHitPoints = hitPoints;
         

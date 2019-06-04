@@ -27,12 +27,10 @@ public abstract class EnemyIdleState : EnemyBaseState
     public override void Initialize (StateMachine owner)
     {
         base.Initialize(owner);
-        timeUntilSound = Random.Range(Owner.IdleSoundMinTime, Owner.IdleSoundMaxTime);
     }
 
     public override void HandleUpdate ()
     {
-        HandleSound();
         if (Owner.PatrolArea != null) {
             Patrol();
         }
@@ -52,22 +50,6 @@ public abstract class EnemyIdleState : EnemyBaseState
         if (Vector3.Distance(Owner.transform.position, randomPosition) <= minDistanceToDestination){
             Debug.Log("Destination reached");
             destinationReached = true;
-        }
-    }
-
-    private void HandleSound ()
-    {
-        soundTimer += Time.deltaTime;
-        if (soundTimer >= timeUntilSound && !soundIsPlaying) {
-            Owner.AudioSource.PlayOneShot(Owner.IdleSound);
-            soundIsPlaying = true;
-            soundTimer = 0.0f;
-        }
-
-        if (soundIsPlaying && soundTimer > Owner.IdleSound.length) {
-            soundIsPlaying = false;
-            soundTimer = 0.0f;
-            timeUntilSound = Random.Range(Owner.IdleSoundMinTime, Owner.IdleSoundMaxTime);
         }
     }
 

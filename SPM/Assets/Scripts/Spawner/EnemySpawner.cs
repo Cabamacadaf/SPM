@@ -21,7 +21,7 @@ public class EnemySpawner : Spawner
 
         if (playSoundOnSpawn) {
             EnemyBaseState enemyBaseState = (EnemyBaseState)enemyInstant.GetCurrentState();
-            enemyBaseState.PlaySpawnSound();
+            //enemyBaseState.PlaySpawnSound();
         }
     }
 }
