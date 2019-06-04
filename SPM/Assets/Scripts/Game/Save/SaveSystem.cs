@@ -8,9 +8,11 @@ public static class SaveSystem
 {
     public static string playerPath = Application.persistentDataPath + "/player.save";
     public static string checkpointPath = Application.persistentDataPath + "/checkpoints.save";
-    public static string objectsPath = Application.persistentDataPath + "/Objects.fun";
-    public static string enemyPath = Application.persistentDataPath + "/Enemies.fun";
-    public static string destructibleObjectPath = Application.persistentDataPath + "/Destructible.fun";
+    public static string objectsPath = Application.persistentDataPath + "/Objects.save";
+    public static string enemyPath = Application.persistentDataPath + "/Enemies.save";
+    public static string destructibleObjectPath = Application.persistentDataPath + "/Destructible.save";
+    public static string healthpackPath = Application.persistentDataPath + "/Healthpack.save";
+
 
     public static void SavePlayer (Player player)
     {
@@ -220,6 +222,57 @@ public static class SaveSystem
         }
     }
 
+    public static void SaveHealthPack(Dictionary<int, HealthPack> AllHealthPacks)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(healthpackPath, FileMode.Create);
+        ObjectsData allData = new ObjectsData();
+
+        foreach (HealthPack gameObject in AllHealthPacks.Values)
+        {
+            HealthPackData currentData = new HealthPackData(gameObject);
+
+            allData.activeHealthPacks.Add(currentData);
+        }
+
+        formatter.Serialize(stream, allData);
+        stream.Close();
+    }
+
+    public static void LoadHealthPacks()
+    {
+        if (File.Exists(healthpackPath))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(healthpackPath, FileMode.Open);
+
+            ObjectsData allData = (ObjectsData)formatter.Deserialize(stream);
+            stream.Close();
+
+            foreach (HealthPackData data in allData.activeHealthPacks)
+            {
+                if (LevelManager.Instance.AllHealthPacks.ContainsKey(data.ID) == true)
+                {
+                    LevelManager.Instance.AllHealthPacks.TryGetValue(data.ID, out HealthPack healthPack);
+                    if (data.used == 1)
+                    {
+                        //.HitPoints = destructibleObject.StartHitPoints;
+                        healthPack.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        healthPack.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + playerPath);
+        }
+    }
+
+
     public static void DeleteFile ()
     {
         File.Delete(playerPath);
@@ -227,6 +280,7 @@ public static class SaveSystem
         File.Delete(objectsPath);
         File.Delete(destructibleObjectPath);
         File.Delete(enemyPath);
+        File.Delete(healthpackPath);
     }
 
 }
