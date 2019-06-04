@@ -25,6 +25,9 @@ public class GameManager : Singleton<GameManager>
     private GameObject player;
     private GameObject mainCamera;
 
+    private LoadingScreen loadingScreen;
+    private GameObject loadingScreenObject;
+
     private void Awake()
     {
         if (instance == null)
@@ -37,10 +40,9 @@ public class GameManager : Singleton<GameManager>
             Destroy(gameObject);
         }
 
+        loadingScreen = GetComponent<LoadingScreen>();
+
         SetOnAwake();
-
-
-        
     }
 
 
@@ -53,6 +55,11 @@ public class GameManager : Singleton<GameManager>
     public void SetCamera(GameObject camera)
     {
         mainCamera = camera;
+    }
+
+    public void SetLoadingScreen(GameObject loadingScreen)
+    {
+        loadingScreenObject = loadingScreen;
     }
 
     private void SetOnAwake()
@@ -80,6 +87,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RespawnPlayer()
     {
+        loadingScreen.Load(loadingScreenObject);
         LoadGame();
     }
 

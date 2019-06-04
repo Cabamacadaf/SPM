@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1455434702273012162}
   - component: {fileID: 5851589315536296568}
+  - component: {fileID: 3414365780927452866}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,10 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d989d52e502b31c48b8572773178d69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flashlight: {fileID: 0}
-  keyCard: {fileID: 0}
-  keySpawnPoint: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  RestartSceneButton: 112
-  RestartFromLatestCheckpointButton: 111
-  nextLevelButton: 108
+--- !u!114 &3414365780927452866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725672303995816717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8395c233f0bc1644a8283ae7c56fd8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
