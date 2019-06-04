@@ -8,6 +8,7 @@ public class AggroTrigger : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Player")) {
+
             foreach (Enemy enemy in enemies) {
                 if ((enemy.GetCurrentState() is EnemyIdleState)) {
                     EnemyIdleState enemyIdleState = (EnemyIdleState)enemy.GetCurrentState();
