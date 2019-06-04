@@ -285,7 +285,6 @@ public class PlayerBaseState : State
     #region Key Items
     private void HandleFlashLight()
     {
-        Debug.Log("Flashlight");
 
         if (GameManager.instance.HasFlashlight)
         {
