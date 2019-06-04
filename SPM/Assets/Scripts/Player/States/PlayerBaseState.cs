@@ -26,6 +26,7 @@ public class PlayerBaseState : State
     private bool canSprint = true;
 
     protected RaycastHit GroundHitInfo;
+    RaycastHit AngleHitInfo;
     protected float GroundAngle;
     protected float MaxGroundAngle = 120;
 
@@ -46,7 +47,7 @@ public class PlayerBaseState : State
         HandleInput();
         ApplyGravity();
         SetVelocity();
-        CalculateGrouyndAngle();
+        //CalculateGroundAngle();
         CheckCollision(Owner.Velocity * Time.deltaTime);
         ResetValues();
     }
@@ -153,20 +154,19 @@ public class PlayerBaseState : State
     /// <summary>
     /// Use a vector3 angle between the ground normal and moving direction to determine the slope of the ground
     /// </summary>
-    void CalculateGrouyndAngle()
+    void CalculateGroundAngle()
     {
         if (!IsGrounded())
         {
             GroundAngle = 90;
             return;
         }
+        //Physics.BoxCast(Owner.transform.position, new Vector3(0.5f, 1, 0.5f), Vector3.down, out  AngleHitInfo);
+        GroundAngle = Vector3.Angle(AngleHitInfo.normal, Owner.transform.forward);
+    
+        //Debug.Log("Groundangle: " + GroundAngle );
 
-        GroundAngle = Vector3.Angle(GroundHitInfo.normal, Direction);
-        if(GroundAngle != 90 && GroundAngle != 0)
-        {
-            Debug.Log("Groundangle: " + GroundAngle );
-
-        }
+        
     }
 
     private void ResetValues()
@@ -237,9 +237,12 @@ public class PlayerBaseState : State
                 Owner.Velocity += hitNormalForceVelocity;
             }
 
+          
             Owner.transform.position += snapMovement;
 
-            if(movement.sqrMagnitude > 0.00001f && checkCollisionCounter < maxLoopValue) {
+            
+
+            if (movement.sqrMagnitude > 0.00001f && checkCollisionCounter < maxLoopValue) {
                 checkCollisionCounter++;
                 CheckCollision(movement);
             }
@@ -247,10 +250,7 @@ public class PlayerBaseState : State
         }
         else if(movement.sqrMagnitude > 0.00001f)
         {
-            Debug.Log("Too much angle");
-            if (GroundAngle >= MaxGroundAngle) return;
-            Debug.Log("Move");
-
+     
             Owner.transform.position += movement;
         }
 
