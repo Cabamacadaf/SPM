@@ -11,24 +11,28 @@ public class EnemyKnockbackState : EnemyBaseState
 
     public override void Enter ()
     {
-        //Debug.Log("Blasted State");
+        //Debug.Log("Knockback State");
         base.Enter();
     }
 
     public override void HandleUpdate ()
     {
         timer += Time.deltaTime;
-        Owner.Agent.enabled = true;
-        if (timer >= recoveryTime && Owner.Agent.isOnNavMesh) {
-            if(Owner is Enemy1) {
-                Owner.Transition<Enemy1AggroState>();
+        if (timer >= recoveryTime) {
+            Owner.Obstacle.enabled = false;
+            Owner.Agent.enabled = true;
+            if (Owner.Agent.isOnNavMesh) {
+                if (Owner is Enemy1) {
+                    Owner.Transition<Enemy1AggroState>();
+                }
+                if (Owner is Enemy2) {
+                    Owner.Transition<Enemy2AggroState>();
+                }
             }
-            if (Owner is Enemy2) {
-                Owner.Transition<Enemy2AggroState>();
+            else {
+                Owner.Obstacle.enabled = true;
+                Owner.Agent.enabled = false;
             }
-        }
-        else {
-            Owner.Agent.enabled = false;
         }
         base.HandleUpdate();
     }
