@@ -21,8 +21,9 @@ public class VerticalDoor : Door
 
     private float timer;
 
-    private void Awake ()
+    protected override void Awake ()
     {
+        base.Awake();
         if (IsClosed) {
             topDoor.localPosition = topDoorStartPosition;
             bottomDoor.localPosition = bottomDoorStartPosition;

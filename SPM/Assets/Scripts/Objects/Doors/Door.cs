@@ -17,7 +17,7 @@ public abstract class Door : MonoBehaviour
     public abstract void Open ();
     public abstract void Close ();
 
-    private void Awake ()
+    protected virtual void Awake ()
     {
         AudioSource = GetComponent<AudioSource>();
     }
