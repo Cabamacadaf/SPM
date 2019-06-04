@@ -11,8 +11,8 @@ public class EnemyAttackState : EnemyBaseState
     {
         //Debug.Log("Attack State");
         AttackTimer = 0.0f;
-        EnemyAttackEvent enemyAttackEvent = new EnemyAttackEvent(Owner.AttackSound, Owner.AudioSource);
-        enemyAttackEvent.ExecuteEvent();
+        
+        Owner.AudioSource.PlayOneShot(Owner.AttackSounds[Random.Range(0, Owner.AttackSounds.Length)]);
         foreach (GameObject attackObject in Owner.AttackObjects) {
             attackObject.SetActive(true);
         }
