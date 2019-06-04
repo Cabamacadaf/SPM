@@ -24,7 +24,7 @@ public class HealthComponent : MonoBehaviour
         Debug.Log(Health);
         if(Health <= 0)
         {
-            DeathEvent deathEvent = new DeathEvent(this.gameObject);
+            DeathEvent deathEvent = new DeathEvent(gameObject);
             deathEvent.ExecuteEvent();
         }
         UpdateHealthSlider();

@@ -22,40 +22,44 @@ public class GameManager : Singleton<GameManager>
 
     public int CurrentSceneIndex { get; set; }
 
+    private LoadScene loadScene;
+
+    private GameObject loadingScreen;
     private GameObject player;
     private GameObject mainCamera;
 
-    private void Awake()
+    private void Awake ()
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = this;
             DontDestroyOnLoad(instance);
         }
-        else
-        {
+        else {
             Destroy(gameObject);
         }
 
+        loadScene = GetComponent<LoadScene>();
         SetOnAwake();
-
-
-        
     }
 
 
     #region Setter/Getters 
-    public void SetPlayer(GameObject player)
+    public void SetPlayer (GameObject player)
     {
         this.player = player;
     }
 
-    public void SetCamera(GameObject camera)
+    public void SetCamera (GameObject camera)
     {
         mainCamera = camera;
     }
 
-    private void SetOnAwake()
+    public void SetLoadingScreen (GameObject loadingScreen)
+    {
+        loadScene.LoadingScreen = loadingScreen;
+    }
+
+    private void SetOnAwake ()
     {
         PlayerInstance = FindObjectOfType<Player>();
         CanvasInstance = FindObjectOfType<Canvas>();
@@ -65,7 +69,7 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region  SceneManagement
-    private void RestartScene()
+    private void RestartScene ()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
@@ -73,46 +77,43 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    private void RestartSceneFromLatestCheckpoint()
+    private void RestartSceneFromLatestCheckpoint ()
     {
         RestartedFromLatestCheckpoint = true;
     }
 
-    public void RespawnPlayer()
+    public void RespawnPlayer ()
     {
         LoadGame();
     }
 
-    public void ResetScene()
+    public void ResetScene ()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
-    public void RespawnPlayerNoReset()
+    public void RespawnPlayerNoReset ()
     {
         player.transform.position = CurrentCheckPoint;
     }
 
-    private void StartNextLevel()
+    private void StartNextLevel ()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
+        if (SceneManager.GetActiveScene().buildIndex == 1) {
             SceneManager.LoadScene(2);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
+        else if (SceneManager.GetActiveScene().buildIndex == 2) {
             SceneManager.LoadScene(0);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
+        else if (SceneManager.GetActiveScene().buildIndex == 0) {
             SceneManager.LoadScene(1);
         }
     }
     #endregion
 
     #region Save
-    public void SaveGame()
+    public void SaveGame ()
     {
         PlayerInstance.SavePlayer();
         LevelManager.Instance.Save();
@@ -121,12 +122,10 @@ public class GameManager : Singleton<GameManager>
         Scene currentScene = SceneManager.GetActiveScene();
         PlayerPrefs.SetInt("CurrentLevel", currentScene.buildIndex);
 
-        if(HasFlashlight && PlayerPrefs.GetInt("Flashlight") == 0)
-        {
+        if (HasFlashlight && PlayerPrefs.GetInt("Flashlight") == 0) {
             PlayerPrefs.SetInt("Flashlight", 1);
         }
-        if (HasKeycard && PlayerPrefs.GetInt("Keycard") == 0)
-        {
+        if (HasKeycard && PlayerPrefs.GetInt("Keycard") == 0) {
             PlayerPrefs.SetInt("Keycard", 1);
         }
 
@@ -136,16 +135,17 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public void LoadGame()
+    public void LoadGame ()
     {
+        loadScene.Load(SceneManager.GetActiveScene().buildIndex);
         PlayerInstance.LoadPlayer();
         SaveSystem.LoadObjects();
         SaveSystem.LoadEnemies();
         SaveSystem.LoadDestructibleObjects();
         SaveSystem.LoadHealthPacks();
     }
-    
-    public void NewGame()
+
+    public void NewGame ()
     {
         PlayerPrefs.SetInt("SavedGame", 0);
         PlayerPrefs.SetInt("Flashlight", 0);
