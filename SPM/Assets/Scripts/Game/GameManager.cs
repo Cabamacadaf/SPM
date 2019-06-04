@@ -130,6 +130,8 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.SetInt("Keycard", 1);
         }
 
+        Debug.Log("Game Saved");
+
     }
 
 
