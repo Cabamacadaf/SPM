@@ -57,6 +57,9 @@ public abstract class EnemyBaseState : State
 
     public void Aggro ()
     {
+        EnemyAggroEvent enemyAggroEvent = new EnemyAggroEvent(Owner.AggroSound, Owner.AudioSource);
+        enemyAggroEvent.ExecuteEvent();
+
         if (Owner is Enemy1) {
             Owner.Transition<Enemy1AggroState>();
         }
@@ -64,7 +67,5 @@ public abstract class EnemyBaseState : State
         if (Owner is Enemy2) {
             Owner.Transition<Enemy2AggroState>();
         }
-        EnemyAggroEvent enemyAggroEvent = new EnemyAggroEvent(Owner.AggroSound, Owner.AudioSource);
-        enemyAggroEvent.ExecuteEvent();
     }
 }
