@@ -27,6 +27,8 @@ public class PlayerBaseState : State
 
     protected RaycastHit GroundHitInfo;
     protected float GroundAngle;
+    protected float MaxGroundAngle = 120;
+
 
     public override void Initialize (StateMachine owner)
     {
@@ -35,10 +37,8 @@ public class PlayerBaseState : State
 
     public override void Enter()
     {
-    
         point1 = Owner.Collider.center + Vector3.up * ((Owner.Collider.height / 2) - Owner.Collider.radius);
         point2 = Owner.Collider.center + Vector3.down * ((Owner.Collider.height / 2) - Owner.Collider.radius);
-        
     }
 
     public override void HandleUpdate ()
@@ -46,6 +46,7 @@ public class PlayerBaseState : State
         HandleInput();
         ApplyGravity();
         SetVelocity();
+        CalculateGrouyndAngle();
         CheckCollision(Owner.Velocity * Time.deltaTime);
         ResetValues();
     }
@@ -56,19 +57,13 @@ public class PlayerBaseState : State
         HandleDirection();
         CameraRotation();
         HandleFlashLight();
-
-
-
     }
-
 
     private void HandleDirection()
     {
-
         Direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Quaternion cameraRotation = Owner.mainCamera.transform.rotation;
         Direction = Quaternion.Euler(0, cameraRotation.eulerAngles.y, cameraRotation.eulerAngles.z) * Direction;
-
 
         if (Owner.GetCurrentState() is PlayerGroundState)
         {
@@ -79,12 +74,10 @@ public class PlayerBaseState : State
         {
             Direction = Vector3.ProjectOnPlane(Direction, Vector3.up).normalized;
         }
-        //Direction = new Vector3(Direction.x, 0, Direction.z);
     }
 
     protected void SetVelocity()
     {
-        //Debug.Log("Stamina: " + Owner.Stamina.Stamina);
         if(canSprint == false && Owner.Stamina.Stamina > 30)
         {
             canSprint = true;
@@ -99,38 +92,24 @@ public class PlayerBaseState : State
                 Debug.Log("cannot sprint");
                 canSprint = false;
             }
-            //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0){
-            //    Owner.Stamina.UseStamina();
-
-            //}
-            //else
-            //{
-            //    Owner.Stamina.RecoverStamina();
-
-            //}
         }
         else
         {
             Owner.Stamina.RecoverStamina();
-            
-            //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
             canStand = Physics.SphereCast(Owner.transform.position + point2, Owner.Collider.radius, Vector3.up, out GroundHitInfo, Owner.CrouchMargin, Owner.WalkableMask) == false;
 
             if (Input.GetKey(KeyCode.LeftControl) && Owner.GetCurrentState() is PlayerGroundState)
             {
                 IsCrouching = true;
                 Owner.CrouchSetup();
-                //canStand = Physics.Raycast(Owner.transform.position, Vector3.up, Owner.CrouchMargin, Owner.WalkableMask) == false;
                 speed = Owner.CrouchSpeed;
             }
             else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand == false)
             {
                 speed = Owner.CrouchSpeed;
-
             }
             else if (Input.GetKey(KeyCode.LeftControl) == false && IsCrouching && canStand)
             {
-
                 Owner.NormalSetup();
                 speed = Owner.WalkSpeed;
                 IsCrouching = false;
@@ -140,32 +119,24 @@ public class PlayerBaseState : State
                 speed = Owner.WalkSpeed;
                 IsCrouching = false;
             }
-
-
         }
- 
-
         if(Owner.GetCurrentState() is PlayerGroundState) {
             if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             {
                 Owner.Velocity = new Vector3(Direction.x * speed, 0, Direction.z * speed);
-
             }
             else
             {
                 Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
-
             }
 
             if (Owner.Velocity.magnitude < 1.0f){
                 Owner.Velocity = Vector3.zero;
-
             }
         }
         else
         {
             Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
-
         }
     }
 
@@ -176,8 +147,26 @@ public class PlayerBaseState : State
         cameraRotation.z = 0;
         cameraRotation.x = 0;
         Owner.transform.rotation = cameraRotation;
-        //Owner.GravityGunObject.transform.rotation = cameraRotation;
         cameraRotation = Owner.mainCamera.transform.rotation;
+    }
+
+    /// <summary>
+    /// Use a vector3 angle between the ground normal and moving direction to determine the slope of the ground
+    /// </summary>
+    void CalculateGrouyndAngle()
+    {
+        if (!IsGrounded())
+        {
+            GroundAngle = 90;
+            return;
+        }
+
+        GroundAngle = Vector3.Angle(GroundHitInfo.normal, Direction);
+        if(GroundAngle != 90 && GroundAngle != 0)
+        {
+            Debug.Log("Groundangle: " + GroundAngle );
+
+        }
     }
 
     private void ResetValues()
@@ -206,10 +195,6 @@ public class PlayerBaseState : State
             Debug.Log("Zero");
             Owner.Velocity = Vector3.zero;
         }
-        //else
-        //{
-        //    Owner.Velocity += -Owner.Velocity.normalized * CalculateDynamicFriction(normalForceMagnitude);
-        //}
     }
 
     private float CalculateStaticFriction(float normalForceMagnitude)
@@ -251,8 +236,6 @@ public class PlayerBaseState : State
                 Vector3 hitNormalForceVelocity = Functions.CalculateNormalForce(Owner.Velocity, hitInfo.normal);
                 Owner.Velocity += hitNormalForceVelocity;
             }
-            //ApplyFriction(Owner.Velocity.magnitude);
-
 
             Owner.transform.position += snapMovement;
 
@@ -264,7 +247,10 @@ public class PlayerBaseState : State
         }
         else if(movement.sqrMagnitude > 0.00001f)
         {
-            //ApplyFriction(Owner.Velocity.magnitude);
+            Debug.Log("Too much angle");
+            if (GroundAngle >= MaxGroundAngle) return;
+            Debug.Log("Move");
+
             Owner.transform.position += movement;
         }
 
@@ -277,10 +263,6 @@ public class PlayerBaseState : State
 
     }
     #endregion
-
-
-
-
 
     #region Key Items
     private void HandleFlashLight()
@@ -314,8 +296,5 @@ public class PlayerBaseState : State
 
     }
     #endregion
-
-
-
 
 }

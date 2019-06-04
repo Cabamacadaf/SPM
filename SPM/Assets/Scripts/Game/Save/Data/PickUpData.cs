@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * 
  * Author: Simon Sundström
- * 
  */
 
 [Serializable]
