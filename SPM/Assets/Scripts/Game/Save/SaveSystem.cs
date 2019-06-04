@@ -12,6 +12,7 @@ public static class SaveSystem
     public static string enemyPath = Application.persistentDataPath + "/Enemies.save";
     public static string destructibleObjectPath = Application.persistentDataPath + "/Destructible.save";
     public static string healthpackPath = Application.persistentDataPath + "/Healthpack.save";
+    public static string checkpointsPath = Application.persistentDataPath + "/Checkpoint.save";
 
 
     public static void SavePlayer (Player player)
@@ -42,33 +43,33 @@ public static class SaveSystem
         }
     }
 
-    public static void SaveCheckpoint (CheckpointTrigger checkpoint)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(checkpointPath, FileMode.Create);
+    //public static void SaveCheckpoint (CheckpointTrigger checkpoint)
+    //{
+    //    BinaryFormatter formatter = new BinaryFormatter();
+    //    FileStream stream = new FileStream(checkpointPath, FileMode.Create);
 
-        CheckpointData data = new CheckpointData(checkpoint);
-        Debug.Log(checkpointPath);
-        formatter.Serialize(stream, data);
-        stream.Close();
-    }
+    //    CheckpointData data = new CheckpointData(checkpoint);
+    //    Debug.Log(checkpointPath);
+    //    formatter.Serialize(stream, data);
+    //    stream.Close();
+    //}
 
-    public static CheckpointData LoadCheckpoint ()
-    {
-        if (File.Exists(checkpointPath)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(checkpointPath, FileMode.Open);
+    //public static CheckpointData LoadCheckpoint ()
+    //{
+    //    if (File.Exists(checkpointPath)) {
+    //        BinaryFormatter formatter = new BinaryFormatter();
+    //        FileStream stream = new FileStream(checkpointPath, FileMode.Open);
 
-            CheckpointData data = formatter.Deserialize(stream) as CheckpointData;
-            stream.Close();
+    //        CheckpointData data = formatter.Deserialize(stream) as CheckpointData;
+    //        stream.Close();
 
-            return data;
-        }
-        else {
-            // Debug.LogError("Save file not found in " + checkpointPath);
-            return null;
-        }
-    }
+    //        return data;
+    //    }
+    //    else {
+    //        // Debug.LogError("Save file not found in " + checkpointPath);
+    //        return null;
+    //    }
+    //}
 
     public static void SaveObjects (Dictionary<int, GameObject> AllPickUpObjects)
     {
@@ -278,6 +279,56 @@ public static class SaveSystem
         }
     }
 
+    public static void SaveCheckpoint(Dictionary<int, CheckpointTrigger> AllCheckpoints)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(checkpointPath, FileMode.Create);
+        ObjectsData allData = new ObjectsData();
+
+        foreach (CheckpointTrigger gameObject in AllCheckpoints.Values)
+        {
+            CheckpointData currentData = new CheckpointData(gameObject);
+
+            allData.activeCheckPoints.Add(currentData);
+        }
+
+        formatter.Serialize(stream, allData);
+        stream.Close();
+    }
+
+    public static void LoadCheckpoints()
+    {
+        if (File.Exists(healthpackPath))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(checkpointPath, FileMode.Open);
+
+            ObjectsData allData = (ObjectsData)formatter.Deserialize(stream);
+            stream.Close();
+
+            foreach (CheckpointData data in allData.activeCheckPoints)
+            {
+                if (LevelManager.Instance.AllCheckpoints.ContainsKey(data.ID) == true)
+                {
+                    LevelManager.Instance.AllCheckpoints.TryGetValue(data.ID, out CheckpointTrigger checkpoint);
+                    if (data.reachedCheckpoint == 1)
+                    {
+                        checkpoint.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        checkpoint.gameObject.SetActive(true);
+
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + playerPath);
+        }
+    }
+
 
     public static void DeleteFile ()
     {
@@ -287,6 +338,7 @@ public static class SaveSystem
         File.Delete(destructibleObjectPath);
         File.Delete(enemyPath);
         File.Delete(healthpackPath);
+        File.Delete(checkpointPath);
     }
 
 }

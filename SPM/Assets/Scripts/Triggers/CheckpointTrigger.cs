@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class CheckpointTrigger : MonoBehaviour
 {
+    [SerializeField] private int id;
     private Transform respawnPoint;
     public bool reachedCheckpoint;
 
+    public int ID { get => id; set => id = value; }
+
     private void OnEnable()
     {
-        LoadCheckpoint();
+        //LoadCheckpoint();
     }
 
     private void LoadCheckpoint()
     {
-        CheckpointData data = SaveSystem.LoadCheckpoint();
-        if (data != null)
-        {
-            reachedCheckpoint = data.reachedCheckpoint;
-        }
+        //CheckpointData data = SaveSystem.LoadCheckpoint();
+        //if (data != null)
+        //{
+        //    reachedCheckpoint = data.reachedCheckpoint;
+        //}
+        LevelManager.Instance.AllCheckpoints.Add(ID, this);
     }
 
     private void Start()
@@ -32,7 +36,7 @@ public class CheckpointTrigger : MonoBehaviour
             GameManager.Instance.CurrentCheckPoint = respawnPoint.position;
             GameManager.Instance.SaveGame();
             reachedCheckpoint = true;
-            SaveSystem.SaveCheckpoint(this);
+            //SaveSystem.SaveCheckpoint(this);
         }
     }
 }

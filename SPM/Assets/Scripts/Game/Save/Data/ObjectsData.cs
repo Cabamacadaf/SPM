@@ -10,4 +10,5 @@ public class ObjectsData
     public List<EnemyData> activeEnemies = new List<EnemyData>();
     public List<DestructibleObjectData> activeDestructibleObjects = new List<DestructibleObjectData>();
     public List<HealthPackData> activeHealthPacks = new List<HealthPackData>();
+    public List<CheckpointData> activeCheckPoints = new List<CheckpointData>();
 }
