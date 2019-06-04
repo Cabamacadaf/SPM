@@ -28,6 +28,7 @@ public class EnemyAggro : MonoBehaviour
 
     public void Aggro ()
     {
+        enemy.AudioSource.PlayOneShot(enemy.AttackSounds[Random.Range(0, enemy.AttackSounds.Length)]);
         if (enemy is Enemy1) {
             enemy.Transition<Enemy1AggroState>();
         }
@@ -35,7 +36,5 @@ public class EnemyAggro : MonoBehaviour
         if (enemy is Enemy2) {
             enemy.Transition<Enemy2AggroState>();
         }
-        EnemyAggroEvent enemyAggroEvent = new EnemyAggroEvent(enemy.AggroSound, enemy.AudioSource);
-        enemyAggroEvent.ExecuteEvent();
     }
 }

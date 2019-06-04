@@ -58,8 +58,7 @@ public abstract class EnemyBaseState : State
 
     public void Aggro ()
     {
-        EnemyAggroEvent enemyAggroEvent = new EnemyAggroEvent(Owner.AggroSound, Owner.AudioSource);
-        enemyAggroEvent.ExecuteEvent();
+        Owner.AudioSource.PlayOneShot(Owner.AttackSounds[Random.Range(0, Owner.AttackSounds.Length)]);
 
         if (Owner is Enemy1) {
             Owner.Transition<Enemy1AggroState>();

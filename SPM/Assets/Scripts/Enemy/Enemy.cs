@@ -32,7 +32,7 @@ public abstract class Enemy : StateMachine
     [SerializeField] private LayerMask wallLayer;
 
     [SerializeField] private AudioClip[] attackSounds;
-    [SerializeField] private AudioClip aggroSound;
+    [SerializeField] private AudioClip[] aggroSounds;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip idleSound;
@@ -73,7 +73,7 @@ public abstract class Enemy : StateMachine
     public LayerMask WallLayer { get => wallLayer; private set => wallLayer = value; }
 
     public AudioClip[] AttackSounds { get => attackSounds; private set => attackSounds = value; }
-    public AudioClip AggroSound { get => aggroSound; private set => aggroSound = value; }
+    public AudioClip[] AggroSounds { get => aggroSounds; private set => aggroSounds = value; }
     public AudioClip DeathSound { get => deathSound; private set => deathSound = value; }
     public AudioClip HitSound { get => hitSound; private set => hitSound = value; }
     public AudioClip IdleSound { get => idleSound; private set => idleSound = value; }
