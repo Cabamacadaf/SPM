@@ -38,16 +38,16 @@ public abstract class EnemyBaseState : State
 
         Owner.HitPoints -= damage;
 
+        Owner.MeshRenderer.material.color = Owner.Color * Owner.HitPoints / Owner.MaxHitPoints;
+
         if (Owner.HitPoints <= 0) {
             Kill();
         }
-        Owner.MeshRenderer.material.color = Owner.Color * Owner.HitPoints / Owner.MaxHitPoints;
     }
 
     public void Kill ()
     {
         Owner.Transition<EnemyDeathState>();
-
     }
 
     public void PlaySpawnSound ()

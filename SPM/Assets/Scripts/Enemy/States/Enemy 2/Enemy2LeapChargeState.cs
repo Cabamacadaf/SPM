@@ -22,6 +22,7 @@ public class Enemy2LeapChargeState : EnemyBaseState
         owner2.Mouth.gameObject.SetActive(true);
 		Owner.Animator.SetTrigger("Enemy2JumpAttack");
     }
+
     public override void HandleUpdate ()
     {
         Owner.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(Owner.transform.forward, Owner.Player.transform.position - Owner.transform.position, Owner.RotationSpeed * Time.deltaTime, 0.0f));

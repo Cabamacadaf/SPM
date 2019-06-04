@@ -27,7 +27,7 @@ public abstract class Enemy : StateMachine
 
     [SerializeField] private float knockbackForce = 100f;
 
-    [SerializeField] private GameObject attackObject;
+    [SerializeField] private GameObject[] attackObjects;
 
     [SerializeField] private LayerMask wallLayer;
 
@@ -52,6 +52,7 @@ public abstract class Enemy : StateMachine
     public float AttackTime { get => attackTime; private set => attackTime = value; }
     public float AttackCooldown { get => attackCooldown; private set => attackCooldown = value; }
     public float AttackAnimationSpeed { get => attackAnimationSpeed; private set => attackAnimationSpeed = value; }
+    public bool HasAttacked { get; set; }
 
     public float AggroMovementSpeed { get => aggroMovementSpeed; private set => aggroMovementSpeed = value; }
     public float IdleMovementSpeed { get => idleMovementSpeed; private set => idleMovementSpeed = value; }
@@ -65,8 +66,7 @@ public abstract class Enemy : StateMachine
 
     public float KnockbackForce { get => knockbackForce; private set => knockbackForce = value; }
 
-    public GameObject AttackObject { get => attackObject; private set => attackObject = value; }
-    public Attack Attack { get; private set; }
+    public GameObject[] AttackObjects { get => attackObjects; private set => attackObjects = value; }
 
     public LayerMask WallLayer { get => wallLayer; private set => wallLayer = value; }
 
@@ -109,8 +109,7 @@ public abstract class Enemy : StateMachine
         MeshRenderer.material.color = Color;
         Player = GameManager.PlayerInstance;
         MaxHitPoints = hitPoints;
-
-        Attack = AttackObject.GetComponent<Attack>();
+        
         Spawner = transform.parent;
 
         LevelManager.Instance.AllEnemies.Add(ID, this);

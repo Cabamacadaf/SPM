@@ -49,6 +49,9 @@ public class Enemy2LeapState : EnemyBaseState
 
     public override void Exit ()
     {
+        owner2.LeapAttackHitbox.SetActive(false);
+        Owner.HasAttacked = false;
+        owner2.Mouth.gameObject.SetActive(false);
         base.Exit();
     }
 }
