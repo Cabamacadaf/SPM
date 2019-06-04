@@ -14,8 +14,9 @@ public class HeavyDoor : Door
 
     private bool isMoving = false;
 
-    private void Awake ()
+    protected override void Awake ()
     {
+        base.Awake();
         if (IsClosed) {
             leftDoor.localPosition = Vector3.zero;
             rightDoor.localPosition = Vector3.zero;
