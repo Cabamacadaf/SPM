@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
 
     public void Pause()
     {
+        GameManager.instance.GameIsPaused = true;
         CameraController.instance.UnLockCursor();
         pauseMenu.SetActive(true);
 
@@ -23,13 +24,10 @@ public class UIController : MonoBehaviour
     }
     public void Continue()
     {
+        GameManager.instance.GameIsPaused = false;
         Time.timeScale = 1;
-
         CameraController.instance.LockCursor();
-
         pauseMenu.SetActive(false);
-
-
     }
     public void GoToMainMenu()
     {
@@ -39,6 +37,7 @@ public class UIController : MonoBehaviour
     public void LoadGame()
     {
         GameManager.instance.LoadGame();
+
         Continue();
     }
 

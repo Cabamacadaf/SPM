@@ -303,8 +303,16 @@ public class PlayerBaseState : State
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UIController.instance.Pause();
+            if (GameManager.instance.GameIsPaused)
+            {
+                UIController.instance.Continue();
+            }
+            else
+            {
+                UIController.instance.Pause();
+            }
         }
+
     }
     #endregion
 
