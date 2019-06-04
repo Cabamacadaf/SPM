@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        GameManager.instance.SetLoadingScreen(transform.Find("Loading Screen").gameObject);
         pauseMenu.SetActive(false);
     }
 
@@ -36,7 +37,7 @@ public class UIController : MonoBehaviour
 
     public void LoadGame()
     {
-        GameManager.instance.LoadGame();
+        GameManager.instance.RespawnPlayer();
 
         Continue();
     }
