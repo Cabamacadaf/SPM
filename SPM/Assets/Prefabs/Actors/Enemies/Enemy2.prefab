@@ -718,14 +718,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   attackSounds:
-  - {fileID: 8300000, guid: edb780fbd7a20a84cb327c73e3d01a1a, type: 3}
-  aggroSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
-  deathSound: {fileID: 8300000, guid: ae6e0e91dd827a54ab9d17892852f94d, type: 3}
-  hitSound: {fileID: 8300000, guid: d7c524f05ac8ec940a2f2ab954759f44, type: 3}
-  idleSound: {fileID: 8300000, guid: f9655384cf7bae2448644e38fd737bb3, type: 3}
+  - {fileID: 8300000, guid: b29ea84f7eb86b44794041b0c55da8a7, type: 3}
+  - {fileID: 8300000, guid: aa19af0dcfc3ad343955810f7d8069f2, type: 3}
+  aggroSounds:
+  - {fileID: 8300000, guid: 570cd6907b6112e4c82101ce86bc67c1, type: 3}
+  - {fileID: 8300000, guid: c6e4393b87fb1284eab1ecd6646109e6, type: 3}
+  deathSound: {fileID: 8300000, guid: 9222b010939100d49adf71be233265c1, type: 3}
+  hitSound: {fileID: 8300000, guid: 1ae65a83b20f5c848bf4dbfb3fe8f5cb, type: 3}
+  idleSound: {fileID: 8300000, guid: d29b84047080a734c823089b61fb08fc, type: 3}
   spawnSound: {fileID: 8300000, guid: 11f059c7b05be2a4b852cab21e0073c2, type: 3}
   idleSoundMinTime: 1
-  idleSoundMaxTime: 5
+  idleSoundMaxTime: 2
   color: {r: 0.2231666, g: 0.347388, b: 0.8018868, a: 1}
   collider: {fileID: 5908773152527207067}
   mouthDamageMultiplier: 3
