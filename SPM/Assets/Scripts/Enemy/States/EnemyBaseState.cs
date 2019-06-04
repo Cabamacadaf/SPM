@@ -32,6 +32,7 @@ public abstract class EnemyBaseState : State
 
     public void Damage (float damage)
     {
+        Owner.AudioSource.PlayOneShot(Owner.HitSound);
         Owner.Transition<EnemyKnockbackState>();
         EnemyKnockbackState knockbackState = (EnemyKnockbackState)Owner.GetCurrentState();
         knockbackState.KnockBack(Owner.KnockbackForce, Owner.KnockbackRecoveryTime);

@@ -33,6 +33,8 @@ public abstract class Enemy : StateMachine
 
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip aggroSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip idleSound;
     [SerializeField] private AudioClip spawnSound;
 
@@ -72,6 +74,8 @@ public abstract class Enemy : StateMachine
 
     public AudioClip AttackSound { get => attackSound; private set => attackSound = value; }
     public AudioClip AggroSound { get => aggroSound; private set => aggroSound = value; }
+    public AudioClip DeathSound { get => deathSound; private set => deathSound = value; }
+    public AudioClip HitSound { get => hitSound; private set => hitSound = value; }
     public AudioClip IdleSound { get => idleSound; private set => idleSound = value; }
     public AudioClip SpawnSound { get => spawnSound; private set => spawnSound = value; }
 

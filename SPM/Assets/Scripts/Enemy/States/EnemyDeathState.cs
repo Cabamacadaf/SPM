@@ -12,6 +12,7 @@ public class EnemyDeathState : EnemyBaseState
     public override void Enter()
     {
         Owner.Animator.SetTrigger("EnemyDeath");
+        Owner.AudioSource.PlayOneShot(Owner.DeathSound);
         timer = 0.0f;
     }
 
