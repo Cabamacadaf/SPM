@@ -27,5 +27,6 @@ public class PlayerAirState : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
+        Owner.PlayLandingSound();
     }
 }

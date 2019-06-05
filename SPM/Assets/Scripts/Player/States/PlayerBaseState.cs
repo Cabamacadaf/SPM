@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
 
-
     //Attributes
     protected Player Owner;
     protected Vector3 Direction { get; set; }
@@ -31,6 +30,7 @@ public class PlayerBaseState : State
     protected float GroundAngle;
     protected float MaxGroundAngle = 120;
 
+ 
 
     public override void Initialize (StateMachine owner)
     {
@@ -132,6 +132,8 @@ public class PlayerBaseState : State
             }
         }
         if(Owner.GetCurrentState() is PlayerGroundState) {
+            Owner.IsWalking = true;
+            
             if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             {
                 Owner.Velocity = new Vector3(Direction.x * speed, 0, Direction.z * speed);
@@ -140,13 +142,15 @@ public class PlayerBaseState : State
             {
                 Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
             }
-
+            Owner.ProgressStepCycle(speed);
             if (Owner.Velocity.magnitude < 1.0f){
                 Owner.Velocity = Vector3.zero;
             }
         }
         else
         {
+            Owner.IsWalking = false;
+
             Owner.Velocity = new Vector3(Direction.x * speed, Owner.Velocity.y, Direction.z * speed);
         }
     }
@@ -306,5 +310,7 @@ public class PlayerBaseState : State
 
     }
     #endregion
+
+
 
 }
