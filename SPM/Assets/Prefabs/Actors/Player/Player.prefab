@@ -5392,7 +5392,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a9cd893683256743b45983be3674fde, type: 3}
   m_JumpSound: {fileID: 8300000, guid: fbea1de5ffa2f8c46b0b99aa0da18f08, type: 3}
   m_LandSound: {fileID: 8300000, guid: eb6f5d611f635b6459282884d61775b7, type: 3}
-  m_StepInterval: 1.8
+  m_StepInterval: 1.5
   m_RunstepLenghten: 0
 --- !u!114 &2112989151
 MonoBehaviour:
@@ -5470,7 +5470,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5803,21 +5803,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8727586052577491053}
     m_Modifications:
-    - target: {fileID: 8885604322177308557, guid: a73bf6ff591c8384986b86d156ca1179,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885604322177308557, guid: a73bf6ff591c8384986b86d156ca1179,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885604322177308557, guid: a73bf6ff591c8384986b86d156ca1179,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 8885604322177076141, guid: a73bf6ff591c8384986b86d156ca1179,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5887,6 +5872,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885604322177308557, guid: a73bf6ff591c8384986b86d156ca1179,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885604322177308557, guid: a73bf6ff591c8384986b86d156ca1179,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885604322177308557, guid: a73bf6ff591c8384986b86d156ca1179,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8885604322177308559, guid: a73bf6ff591c8384986b86d156ca1179,
         type: 3}
