@@ -34,7 +34,6 @@ public class Player : StateMachine
     public AudioClip LandSound { get => m_LandSound; set => m_LandSound = value; }
     public bool IsWalking { get; set; }
 
-    public AudioSource AudioSource;
     
 
     #endregion
@@ -85,8 +84,7 @@ public class Player : StateMachine
     //Sound
     private float m_StepCycle;
     private float m_NextStep;
-
-
+    private AudioSource audioSource;
 
     protected override void Awake()
     {
@@ -94,7 +92,7 @@ public class Player : StateMachine
         Flashlight = GetComponentInChildren<Light>();
         GameManager.Instance.SetPlayer(gameObject);
         PlayVoiceLine = GetComponent<PlayVoiceLine>();
-        AudioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         Collider = GetComponent<CapsuleCollider>();
         Stamina = GetComponent<StaminaComponent>();
         mainCamera = Camera.main;
@@ -149,14 +147,14 @@ public class Player : StateMachine
     #region Sound
     public void PlayLandingSound()
     {
-        AudioSource.clip = LandSound;
-        AudioSource.Play();
+        audioSource.clip = LandSound;
+        audioSource.Play();
         m_NextStep = m_StepCycle + .5f;
     }
     public void PlayJumpSound()
     {
-        AudioSource.clip = JumpSound;
-        AudioSource.Play();
+        audioSource.clip = JumpSound;
+        audioSource.Play();
     }
 
     public void ProgressStepCycle(float speed)
@@ -183,11 +181,11 @@ public class Player : StateMachine
         // pick & play a random footstep sound from the array,
         // excluding sound at index 0
         int n = Random.Range(1, m_FootstepSounds.Length);
-        AudioSource.clip = m_FootstepSounds[n];
-        AudioSource.PlayOneShot(AudioSource.clip);
+        audioSource.clip = m_FootstepSounds[n];
+        audioSource.PlayOneShot(audioSource.clip);
         // move picked sound to index 0 so it's not picked next time
         m_FootstepSounds[n] = m_FootstepSounds[0];
-        m_FootstepSounds[0] = AudioSource.clip;
+        m_FootstepSounds[0] = audioSource.clip;
     }
     #endregion
 }
