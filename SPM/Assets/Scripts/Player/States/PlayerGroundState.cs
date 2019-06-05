@@ -22,7 +22,7 @@ public class PlayerGroundState : PlayerBaseState
         base.HandleUpdate();
         
    
-        if (Input.GetKeyDown(KeyCode.Space) && IsCrouching == false)
+        if (Input.GetButtonDown("Jump") && IsCrouching == false)
         {
             Jump();
         }
