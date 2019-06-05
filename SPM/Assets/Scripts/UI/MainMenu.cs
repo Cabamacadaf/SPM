@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button loadButton;
     [SerializeField] private LoadScene loadScene;
+    [SerializeField] private GameObject controlsImage;
 
     private void Awake ()
     {
@@ -33,6 +34,11 @@ public class MainMenu : MonoBehaviour
         GameManager.instance.NewGame();
         GameManager.instance.GameWasLoaded = false;
         loadScene.Load(1);
+    }
+
+    public void Controls ()
+    {
+        controlsImage.SetActive(true);
     }
 
     public void ExitGame ()

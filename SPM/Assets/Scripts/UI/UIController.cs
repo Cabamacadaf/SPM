@@ -41,9 +41,4 @@ public class UIController : MonoBehaviour
 
         Continue();
     }
-
-    public void SaveGame ()
-    {
-        GameManager.instance.SaveGame();
-    }
 }
