@@ -162,7 +162,7 @@ public class Player : StateMachine
         if (Velocity.sqrMagnitude > 0)
         {
             m_StepCycle += (Velocity.magnitude + (speed * (IsWalking ? 1f : m_RunstepLenghten))) *
-                         Time.fixedDeltaTime;
+                         Time.deltaTime;
         }
 
         if (!(m_StepCycle > m_NextStep))
