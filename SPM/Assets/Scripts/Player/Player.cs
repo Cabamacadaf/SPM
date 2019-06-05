@@ -29,6 +29,12 @@ public class Player : StateMachine
     public float CrouchMargin { get => crouchMargin; set => crouchMargin = value; }
     public HealthComponent PlayerHealth { get; set; }
     public Light Flashlight { get; set; }
+    public AudioClip[] FootstepSounds { get => m_FootstepSounds; set => m_FootstepSounds = value; }
+    public AudioClip JumpSound { get => m_JumpSound; set => m_JumpSound = value; }
+    public AudioClip LandSound { get => m_LandSound; set => m_LandSound = value; }
+    public bool IsWalking { get; set; }
+
+    public AudioSource AudioSource;
     
 
     #endregion
@@ -58,12 +64,27 @@ public class Player : StateMachine
     [Header("Inventory")]
     [SerializeField] private bool hasFlashlight;
     [SerializeField] private GameObject gravityGun;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
+    [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
+    [SerializeField] private AudioClip m_LandSound;
+    [SerializeField] private float m_StepInterval;
+    [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
+
+
+
     #endregion
 
     private float acceleration = 10;
     private float CrouchColliderHeight = 0.80f;
     private float CrouchColliderCenter = 0.40f;
     private float CrouchCameraHeight = 0.5f;
+
+
+    //Sound
+    private float m_StepCycle;
+    private float m_NextStep;
 
 
 
@@ -73,7 +94,7 @@ public class Player : StateMachine
         Flashlight = GetComponentInChildren<Light>();
         GameManager.Instance.SetPlayer(gameObject);
         PlayVoiceLine = GetComponent<PlayVoiceLine>();
-
+        AudioSource = GetComponent<AudioSource>();
         Collider = GetComponent<CapsuleCollider>();
         Stamina = GetComponent<StaminaComponent>();
         mainCamera = Camera.main;
@@ -124,4 +145,49 @@ public class Player : StateMachine
         Collider.height = CrouchColliderHeight;
         GetComponentInChildren<LookY>().transform.localPosition = new Vector3(0, CrouchCameraHeight, 0);
     }
+
+    #region Sound
+    public void PlayLandingSound()
+    {
+        AudioSource.clip = LandSound;
+        AudioSource.Play();
+        m_NextStep = m_StepCycle + .5f;
+    }
+    public void PlayJumpSound()
+    {
+        AudioSource.clip = JumpSound;
+        AudioSource.Play();
+    }
+
+    public void ProgressStepCycle(float speed)
+    {
+        if (Velocity.sqrMagnitude > 0)
+        {
+            m_StepCycle += (Velocity.magnitude + (speed * (IsWalking ? 1f : m_RunstepLenghten))) *
+                         Time.fixedDeltaTime;
+        }
+
+        if (!(m_StepCycle > m_NextStep))
+        {
+            return;
+        }
+
+        m_NextStep = m_StepCycle + m_StepInterval;
+
+        PlayFootStepAudio();
+    }
+
+
+    private void PlayFootStepAudio()
+    {
+        // pick & play a random footstep sound from the array,
+        // excluding sound at index 0
+        int n = Random.Range(1, m_FootstepSounds.Length);
+        AudioSource.clip = m_FootstepSounds[n];
+        AudioSource.PlayOneShot(AudioSource.clip);
+        // move picked sound to index 0 so it's not picked next time
+        m_FootstepSounds[n] = m_FootstepSounds[0];
+        m_FootstepSounds[0] = AudioSource.clip;
+    }
+    #endregion
 }

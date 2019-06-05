@@ -45,6 +45,7 @@ public class PlayerGroundState : PlayerBaseState
 
     private void Jump ()
     {
+        Owner.PlayJumpSound();
         Owner.Velocity = new Vector3(Owner.Velocity.x, 0, Owner.Velocity.z);
         Owner.Velocity += Vector3.up * Owner.JumpHeight;
         Owner.Transition<PlayerAirState>();
