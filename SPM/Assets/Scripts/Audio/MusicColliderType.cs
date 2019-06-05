@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicColliderType : MonoBehaviour
 {
 
-    public enum Mode { Default, Intro, House, Ending }
+    public enum Mode { Default, Intro, Spooky, Ending }
     public Mode musicType;
 
     // Start is called before the first frame update
@@ -33,8 +33,8 @@ public class MusicColliderType : MonoBehaviour
             case Mode.Intro:
                 typeString = "Intro";
                 break;
-            case Mode.House:
-                typeString = "House";
+            case Mode.Spooky:
+                typeString = "Spooky";
                 break;
             case Mode.Ending:
                 typeString = "Ending";

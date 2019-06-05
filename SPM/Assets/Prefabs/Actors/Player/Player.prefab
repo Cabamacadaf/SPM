@@ -5364,7 +5364,7 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: 781aa33cba385034d80425f930223363, type: 2}
   - {fileID: 11400000, guid: 4a8f0adcbeec9da4b9236f350e46b3c1, type: 2}
-  jumpHeight: 6
+  jumpHeight: 6.5
   walkSpeed: 4
   sprintSpeed: 6
   crouchSpeed: 2
@@ -5381,6 +5381,19 @@ MonoBehaviour:
   groundCheckDistance: 0.02
   hasFlashlight: 0
   gravityGun: {fileID: 8727586052577491052}
+  m_FootstepSounds:
+  - {fileID: 8300000, guid: 5344c26b41907a84f94b179134f35ad5, type: 3}
+  - {fileID: 8300000, guid: 7df504156a73dc442add2fe0d7335cd6, type: 3}
+  - {fileID: 8300000, guid: 3d4a7df3483c981439903d342f522c21, type: 3}
+  - {fileID: 8300000, guid: a6988b4ab41b5f14d94f83746bfa644f, type: 3}
+  - {fileID: 8300000, guid: b43c288a7e592b047bf0ab5a153afe3c, type: 3}
+  - {fileID: 8300000, guid: b81027efd1b1b3345b37861d590057b1, type: 3}
+  - {fileID: 8300000, guid: e6007f5610bb92a468c3f4098eb60923, type: 3}
+  - {fileID: 8300000, guid: 1a9cd893683256743b45983be3674fde, type: 3}
+  m_JumpSound: {fileID: 8300000, guid: fbea1de5ffa2f8c46b0b99aa0da18f08, type: 3}
+  m_LandSound: {fileID: 8300000, guid: eb6f5d611f635b6459282884d61775b7, type: 3}
+  m_StepInterval: 1.8
+  m_RunstepLenghten: 0
 --- !u!114 &2112989151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5409,7 +5422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaSlider: {fileID: 0}
   addStaminaRate: 15
-  loseStaminaRate: 25
+  loseStaminaRate: 30
 --- !u!54 &2821774831742086203
 Rigidbody:
   m_ObjectHideFlags: 0

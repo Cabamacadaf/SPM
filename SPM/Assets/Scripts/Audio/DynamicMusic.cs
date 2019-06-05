@@ -72,7 +72,7 @@ public class DynamicMusic : MonoBehaviour
                 source2.PlayOneShot(bgMusic[1]);
                 Debug.Log("det triggades!");
                 break;
-            case "House":
+            case "Spooky":
                 source2.PlayOneShot(bgMusic[2]);
                 break;
             case "Ending":
