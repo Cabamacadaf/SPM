@@ -1,5 +1,5 @@
-﻿//Author: Marcus Mellström
-
+﻿//Author: Marcus Mellström 
+//Author: Simon Sundström
 using UnityEngine;
 
 public abstract class Event<T> where T : Event<T>
